@@ -26,10 +26,11 @@ CREATE TABLE usuarios (
     email VARCHAR(50),
     telefono VARCHAR(15),
     password VARCHAR(255)
-),
+);
 
 CREATE TABLE clientes(
     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    id_contenedor INT NOT NULL,
     cif VARCHAR(30),
     telefono VARCHAR(15),
     inicio DATE,
@@ -38,10 +39,12 @@ CREATE TABLE clientes(
     notas VARCHAR(255)
     FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor)
 
-),
+);
 
 CREATE TABLE contenedores (
     id_contenedor int PRIMARY KEY AUTO_INCREMENT,
+    id_tipo_contenedor INT NOT NULL,
+    id_cliente INT NOT NULL,
     tipo_legal ENUM ('horeca', 'EESS_repsol', 'contenedor'),
     recogida BOOLEAN,
     periodo_recogida_dias INT,
@@ -50,7 +53,75 @@ CREATE TABLE contenedores (
     altitud FLOAT(12,8),
     FOREIGN KEY (id_tipo_contenedor) REFERENCES tipo_contenedor (id_tipo_contenedor),
     FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+);
 
-    
+CREATE TABLE recogidas (
+    id_contenedor int PRIMARY KEY,
+    fecha DATE PRIMARY KEY,
+    id_ruta int NOT NULL,
+    id_conductor int NOT NULL,
+    id_producto int NOT NULL,
+    litros_recogidos INT NOT NULL,
+    visitado BOOLEAN,
+    recogida BOOLEAN,
+    mes_recogida INT,
+    anos_recogida INT,
+    cantidad INT
+    FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor),
+    FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta),
+    FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor),
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto)
+);
 
-)
+CREATE TABLE tipo_contenedor (
+    id_tipo_contenedor INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR (50),
+    capacidad INT,
+    notas VARCHAR(255)
+);
+
+CREATE TABLE direcciones (
+    id_contenedor INT PRIMARY KEY,
+    direccion VARCHAR(255),
+    cod_postal VARCHAR(50),
+    FOREIGN KEY (id_municipio) REFERENCES municipios(id_municipio)
+);
+
+CREATE TABLE municipios (
+    id_municipio INT PRIMARY KEY AUTO_INCREMENT,
+    localidad VARCHAR(50),
+    provincia VARCHAR(50),
+    pais VARCHAR(50),
+    id_zona INT NOT NULL,
+    FOREIGN KEY (id_zona) REFERENCES zonas (id_zona)
+
+);
+
+CREATE TABLE zonas (
+    id_zona INT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+CREATE TABLE conductores (
+
+    id_conductor INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50)
+
+);
+
+CREATE TABLE productos(
+    id_producto INT PRIMARY KEY AUTO_INCREMENT,
+    coste FLOAT(5,2),
+    tipo VARCHAR(50),
+    nota VARCHAR(255)
+);
+
+CREATE TABLE rutas (
+    id_ruta INT PRIMARY KEY AUTO_INCREMENT,
+    id_contenedor INT NOT NULL,
+    id_municipio INT NOT NULL,
+    id_conductor INT NOT NULL,
+    Foreign Key (id_contenedor) REFERENCES direcciones(id_contenedor),
+    Foreign Key (id_municipio) REFERENCES direcciones(id_municipio),
+    Foreign Key (id_conductor) REFERENCES conductores(id_conductor)
+);
