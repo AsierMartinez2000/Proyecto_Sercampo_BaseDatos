@@ -110,8 +110,8 @@ CREATE TABLE rutas (
 );
 
 CREATE TABLE recogidas (
-    id_contenedor int PRIMARY KEY,
-    fecha DATE PRIMARY KEY,
+    id_contenedor int,
+    fecha DATE,
     id_ruta int NOT NULL,
     id_conductor int NOT NULL,
     id_producto int NOT NULL,
@@ -120,7 +120,8 @@ CREATE TABLE recogidas (
     recogida BOOLEAN,
     mes_recogida INT,
     anos_recogida INT,
-    cantidad INT
+    cantidad INT,
+    PRIMARY KEY (id_contenedor, fecha),
     FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor),
     FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta),
     FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor),
