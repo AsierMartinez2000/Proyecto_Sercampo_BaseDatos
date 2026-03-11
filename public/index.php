@@ -30,7 +30,6 @@ foreach ($_POST as $key => $value) {
     }
 }
 
-
 // Construir nombre del archivo y clase
 $controllerName = $controller . 'Controller'; 
 $controllerFile = '../app/controllers/' . $controllerName . '.php';
