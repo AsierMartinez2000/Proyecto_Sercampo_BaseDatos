@@ -28,8 +28,8 @@ class LoginController
 
         if ($id_usuario) {
 
-            // $_SESSION['id_usuario'] = $id_usuario;
-            // $_SESSION['nombre'] = $usuario;
+            $_SESSION['id_usuario'] = $id_usuario;
+            $_SESSION['nombre'] = $usuario;
             header('Location: index.php?controller=dashBoard&action=mostrarDashBoard');
             # code...
         } else {
