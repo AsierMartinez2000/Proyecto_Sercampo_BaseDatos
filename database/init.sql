@@ -85,7 +85,7 @@ CREATE TABLE municipios (
     localidad VARCHAR(50),
     provincia VARCHAR(50),
     pais VARCHAR(50),
-    id_zona INT NOT NULL,
+    id_zona INT,
     FOREIGN KEY (id_zona) REFERENCES zonas (id_zona)
 );
 
