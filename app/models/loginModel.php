@@ -23,7 +23,7 @@
             $stmt->execute();
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            //VERIFICAR CONTRASEÑA Y DAR ACCESO
+            //VERIFICAR CONTRASEÑA
             if(password_verify($password, $usuario['password']))
             {
                 return $usuario['id_usuario'];
