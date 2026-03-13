@@ -6,20 +6,38 @@
     <title>DashBoard</title>
 </head>
 <body>
-    <h1>DashBoard Principal</h1>
+    
+    <div class="header-container">
+        <h3>Bienvenido <?php echo $_SESSION['nombre']; ?> </h3>
+        <h1>DashBoard</h1>
+        
+    </div>
+    
 
-    <h3>Bienvenido <?php echo $_SESSION['nombre']; ?> </h3>
 
-    <!-- AQUI SE MOSTRARA LA INFORMACION NECESARIA PARA HACER LAS CONSULTAS -->
+    <div class="contenedor">
+        <p class="parrafo">hola</p>
+        <p class="parrafo">quetal</p>
+        <p class="parrafo">adios</p>
+    </div>
+
+
+
+
+    
+    <!-- FORMULARIOS -->
     <form action="index.php" method="post">
         <input type="hidden" name="controller" value="productos_test">
         <input type="hidden" name="action" value="mostrarBuscador">
         <button type="submit">Buscar producto</button>
     </form>
+
     <form action="index.php" method="post">
         <input type="hidden" name="controller" value="login">
         <input type="hidden" name="action" value="logout">
         <button type="submit">Cerrar sesión</button>
     </form>
+
+    
 </body>
 </html>
