@@ -5,7 +5,6 @@ require_once '../app/models/productos_testModel.php';
 
 class Productos_testController
 {
-
     public function mostrarBuscador(){
         require_once '../app/views/productos_testView.php';
     }
