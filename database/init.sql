@@ -55,7 +55,7 @@ CREATE TABLE
         periodo_recogida_dias INT,
         mercancia VARCHAR(255),
         latitud FLOAT (100, 8), -- Esto habrá que modificarlo cuando arreglemos las coordenadas
-        longitud FLOAT (100, 8), -- Esto habrá que modificarlo cuando arreglemos las coordenadas
+        longitud FLOAT (100, 8), -- Esto habr que modificarlo cuando arreglemos las coordenadas
         inicio DATE,
         fin DATE,
         activo BOOLEAN,
