@@ -11,7 +11,7 @@
             $this->db = ConexionBD::conexion();
         }
 
-        //metodo para buscar al usuario en la base de datos
+        // Método para buscar al usuario en la base de datos
         public function buscarUsuario($nombre, $password){
 
             $sql = "SELECT id_usuario, nombre, password 

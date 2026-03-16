@@ -6,24 +6,11 @@ class infoClientController{
 
     public function mostrarInfoClient(){
 
-        session_start();
-
         $model = new infoClientModel();
 
-        $clienteId = $_GET['id'] ?? 1;
+        $buscar = $_GET['buscar'] ?? '';
 
-        $cliente = $model->getCliente($clienteId);
-
-        if($cliente){
-
-            $_SESSION['cif'] = $cliente['cif'];
-            $_SESSION['telefono'] = $cliente['telefono'];
-            $_SESSION['inicio'] = $cliente['inicio'];
-            $_SESSION['fin'] = $cliente['fin'];
-            $_SESSION['activo'] = $cliente['activo'];
-            $_SESSION['notas'] = $cliente['notas'];
-
-        }
+        $cliente = $model->buscarCliente($buscar);
 
         require_once '../app/views/infoClientView.php';
     }
