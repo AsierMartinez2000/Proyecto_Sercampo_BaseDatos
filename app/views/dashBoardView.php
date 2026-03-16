@@ -33,6 +33,12 @@
     </form>
 
     <form action="index.php" method="post">
+        <input type="hidden" name="controller" value="infoClient">
+        <input type="hidden" name="action" value="mostrarInfoClient">
+        <button type="submit">Ver información del cliente</button>
+    </form>
+    
+    <form action="index.php" method="post">
         <input type="hidden" name="controller" value="login">
         <input type="hidden" name="action" value="logout">
         <button type="submit">Cerrar sesión</button>
