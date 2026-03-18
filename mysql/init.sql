@@ -31,6 +31,7 @@ CREATE TABLE
 CREATE TABLE
     clientes (
         id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+        PointID VARCHAR(20) UNIQUE NOT NULL,
         nombre VARCHAR(255) NOT NULL,
         cif VARCHAR(30),
         telefono VARCHAR(15),
@@ -58,7 +59,7 @@ CREATE TABLE
         longitud FLOAT (100, 8), -- Esto habr que modificarlo cuando arreglemos las coordenadas
         inicio DATE,
         fin DATE,
-        activo BOOLEAN,
+        activo ENUM ('Sí', 'No'),
         FOREIGN KEY (id_tipo_contenedor) REFERENCES tipo_contenedor (id_tipo_contenedor),
         FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
     );
@@ -114,20 +115,28 @@ CREATE TABLE
 
 CREATE TABLE
     recogidas (
+        id_recogida INT PRIMARY KEY AUTO_INCREMENT,
         id_contenedor int,
         fecha DATE,
         id_ruta int NOT NULL,
         id_conductor int NOT NULL,
-        id_producto int NOT NULL,
         litros_recogidos INT NOT NULL,
         visitado BOOLEAN,
         recogida BOOLEAN,
         mes_recogida INT,
         anos_recogida INT,
-        cantidad INT,
-        PRIMARY KEY (id_contenedor, fecha),
         FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor),
         FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta),
-        FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor),
-        FOREIGN KEY (id_producto) REFERENCES productos (id_producto)
+        FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor)
     );
+
+CREATE TABLE
+    productos_recogidas(
+        id_recogida INT,
+        id_producto INT,
+        cantidad INT,
+        PRIMARY KEY (id_recogida, id_producto),
+        FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida),
+        FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+    );
+
