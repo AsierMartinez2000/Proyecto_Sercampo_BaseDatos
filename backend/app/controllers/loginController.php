@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/models/loginModel.php';
+require_once '../backend/app/models/loginModel.php';
 
 class LoginController
 {

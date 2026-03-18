@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/models/infoClientModel.php';
+require_once '../backend/app/models/infoClientModel.php';
 
 class infoClientController{
 
