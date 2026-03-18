@@ -23,4 +23,28 @@ class infoClientModel{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function buscarCliente($valor){
+
+    if(is_numeric($valor)){
+
+        $sql = "SELECT nombre, cif, telefono, inicio, fin, activo, notas
+                FROM clientes
+                WHERE id_cliente = :valor";
+
+    }else{
+
+        $sql = "SELECT nombre,cif, telefono, inicio, fin, activo, notas
+                FROM clientes
+                WHERE nombre LIKE :valor";
+
+        $valor = "%".$valor."%";
+    }
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':valor', $valor);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
