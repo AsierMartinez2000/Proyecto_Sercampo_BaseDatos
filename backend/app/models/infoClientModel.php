@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config/conexionBaseDatos.php';
+require_once '../backend/config/conexionBaseDatos.php';
 
 class infoClientModel{
 

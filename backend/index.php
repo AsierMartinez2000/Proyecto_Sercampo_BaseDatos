@@ -32,7 +32,7 @@ foreach ($_POST as $key => $value) {
 
 // Construir nombre del archivo y clase
 $controllerName = $controller . 'Controller'; 
-$controllerFile = 'app/controllers/' . $controllerName . '.php';
+$controllerFile = './app/controllers/' . $controllerName . '.php';
 //Esto nos permite que para ampliar podamos crear un controlador que acabe en Controller.php y lo encontrará siempre.
 
 if(file_exists($controllerFile)) { //Comprueba que existe el archivo.

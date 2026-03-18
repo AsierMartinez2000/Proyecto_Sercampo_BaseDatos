@@ -5,7 +5,7 @@ session_start();
 
         public function mostrarDashBoard() {
             
-            require_once'../app/views/dashBoardView.php';  
+            require_once'../backend/app/views/dashBoardView.php';  
         }
     }
 

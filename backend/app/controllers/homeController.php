@@ -6,7 +6,7 @@ session_start();
        
         public function home() {
             
-           require_once '../app/views/homeView.php';  
+           require_once '../backend/app/views/homeView.php';  
         }
 
     }

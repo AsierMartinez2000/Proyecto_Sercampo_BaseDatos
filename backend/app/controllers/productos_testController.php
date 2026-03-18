@@ -1,12 +1,12 @@
 <?php
 
-require_once '../app/models/productos_testModel.php';
+require_once '../backend/app/models/productos_testModel.php';
 
 
 class Productos_testController
 {
     public function mostrarBuscador(){
-        require_once '../app/views/productos_testView.php';
+        require_once '../backend/app/views/productos_testView.php';
     }
     public function autocompletado()
     {
