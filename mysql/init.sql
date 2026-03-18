@@ -127,7 +127,7 @@ CREATE TABLE
         anos_recogida INT,
         FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor),
         FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta),
-        FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor),
+        FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor)
     );
 
 CREATE TABLE
@@ -136,7 +136,7 @@ CREATE TABLE
         id_producto INT,
         cantidad INT,
         PRIMARY KEY (id_recogida, id_producto),
-        FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida)
+        FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida),
         FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
     );
 
