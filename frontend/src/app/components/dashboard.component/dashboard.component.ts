@@ -9,26 +9,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent{  //implements OnInit, AfterViewInit{
+export class DashboardComponent implements OnInit{  //implements OnInit, AfterViewInit{
 
   private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php'
   //El atributo de nuestro componente es un array.
   //Queremos guardar aquí todos los clientes cuando nos lleguen del backend.
-  clientes: any[] = [this.recuperarClientes()];
+  
+  clientes: any[] = [];
 
   //Para usar los metodos de los "componentes" importados que vienen por defecto en Angular
   //Tendremos que inicializar el atributo que se refiere a ellos.
   constructor(
     private router: Router,
-    private httpClient: HttpClient,
-    private common: CommonModule,
+    private httpClient: HttpClient
   ){}
 
-
   // // Esto carga al final de cargar el componente
-  // ngOnInit(): void {
-    
-  // }
+
+  ngOnInit(): void {
+    this.recuperarClientes(); // Llamar aquí
+  }
 
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(): void {
@@ -38,6 +38,14 @@ export class DashboardComponent{  //implements OnInit, AfterViewInit{
   recuperarClientes(){
     return this.httpClient.get(`${this.url}?controller=clientes&action=obtenerClientes`, {
       withCredentials: true
-    }).subscribe;
+    }).subscribe({
+      next: (response: any) => {
+        this.clientes = response; // Asignar la respuesta al array
+        console.log('Clientes cargados:', this.clientes);
+      },
+      error: (error) => {
+        console.error('Error al cargar clientes:', error);
+      }
+    });
   }
 }
