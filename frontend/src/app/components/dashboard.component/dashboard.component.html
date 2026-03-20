@@ -1,0 +1,29 @@
+<p>dashboard.component works!</p>
+
+
+<h3>Clientes Sercampo</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id cliente</th>
+            <th>PointID</th>
+            <th>Nombre</th>
+            <th>CIF</th>
+            <th>Teléfono</th>
+            <th>Notas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (cliente of clientes; track cliente.id_cliente){
+            <tr>
+                <td>{{cliente.id_cliente}}</td>
+                <td>{{cliente.PointID}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.cif}}</td>
+                <td>{{cliente.telefono}}</td>
+                <td>{{cliente.nota}}</td>
+            </tr>
+        }
+    </tbody>
+</table>
