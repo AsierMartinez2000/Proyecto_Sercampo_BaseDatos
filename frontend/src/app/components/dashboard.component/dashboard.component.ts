@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
  ngOnInit() {
     // Llamar aquí los métodos que vengan del servicios
     // this.recuperarClientes(); 
-    // this.clientes = this.clienteService.obtenerClientes();
+    this.clientes = this.clienteService.obtenerClientes();
     // this.clientes = this.clienteService.obtenerClienteNombre(this.datos);
     // console.log(this.clientes);
     // console.log(this.datos);
