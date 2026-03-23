@@ -53,15 +53,16 @@ class clientesModel{
     public function getClienteNombre($datosCliente){
         $sql = "SELECT *
         FROM clientes
-        WHERE nombre LIKE ':nombre'";
+        WHERE nombre LIKE %':nombre'%";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
 
-
         $stmt->execute();
+        
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
     }
 
     public function getClientePointID($datosCliente) {
