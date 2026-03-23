@@ -14,8 +14,7 @@ class clientesModel{
     public function getClientes(){
 
         $sql = "SELECT *    
-                FROM clientes
-                ORDER BY PointID ASC";
+                FROM clientes";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
@@ -53,14 +52,15 @@ class clientesModel{
     public function getClienteNombre($datosCliente){
         $sql = "SELECT *
         FROM clientes
-        WHERE nombre LIKE %':nombre'%";
+        WHERE nombre LIKE :nombre";
 
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
+        $nombre = "%" . $datosCliente['nombre'] . "%";
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
 
         $stmt->execute();
         
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
     }
@@ -108,8 +108,8 @@ class clientesModel{
     }
 
     public function setnuevoCliente($datosCliente) {
-        $sql = "INSERT INTO clientes (PointID, nombre, cif, telefono)
-                VALUES :PointID, :nombre, :cif, :telefono";
+        $sql = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
+                VALUES (:PointID, :nombre, :cif, :telefono, null)";
         
         $stmt = $this->db->prepare($sql);
 
@@ -126,7 +126,7 @@ class clientesModel{
                 SET PointID = :PointID, nombre = :nombre, cif = :cif, telefono = :telefono
                 WHERE id_cliente = (SELECT DISTINCT id_cliente
                                     FROM clientes
-                                    WHERE nombre = :nombre AND cif = :cif AND telefono = :telefono)";
+                                    WHERE PointID = :PointID)";
 
 
         $stmt = $this->db->prepare($sql);

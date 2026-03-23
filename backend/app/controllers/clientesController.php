@@ -52,7 +52,7 @@ session_start();
 
         public function obtenerClienteTelefono($datos){
             $modelo = new clientesModel();
-            $resultados = $modelo->getClienteCIF($datos);
+            $resultados = $modelo->getClienteTelefono($datos);
 
             echo json_encode($resultados);
         }
