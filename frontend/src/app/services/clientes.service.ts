@@ -50,7 +50,6 @@ export class ClientesService {
   }
 
 
-  //ESTE MÉTODO NO FUNCIONA ¡¡TODAVIA!!
   obtenerClienteNombre(nombre:any): Observable<any> {
     return this.httpClient
     .post(`${this.url}?controller=clientes&action=obtenerClienteNombre`, nombre, {
