@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../../services/clientes.service';
 import { FormsModule } from '@angular/forms';
+import { isEmpty } from 'rxjs';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
 
   clientes: any[] = [];
   cliente = {nombre: ""};
+
+  timeoutId: any;
+  isActive: boolean = true;
+
  
   //Para usar los metodos de los "componentes" importados que vienen por defecto en Angular
   //Tendremos que inicializar el atributo que se refiere a ellos.
@@ -38,6 +43,8 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
     
     // console.log(this.clientes);
     // console.log(this.datos);
+    this.ejecutarRecursivamente();
+
   }
 
   cargarClientesPorNombre(){
@@ -47,8 +54,23 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
         console.log(resultado)
       
   });
+  }
 
+  async ejecutarRecursivamente(iteracion: number = 1) {
+    if (!this.isActive ) return;
+    
+    if (iteracion > 2) {
+
+        return;
+    }
+    
+    await this.cargarClientesPorNombre();
+    
+    this.timeoutId = setTimeout(() => {
+        this.ejecutarRecursivamente(iteracion + 1);
+    }, 1000);
 }
+
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(){
   //   this.cargarClientesPorNombre();
