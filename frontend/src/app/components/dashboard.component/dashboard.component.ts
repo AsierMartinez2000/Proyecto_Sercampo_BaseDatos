@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../../services/clientes.service';
@@ -16,28 +16,37 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   //Queremos guardar aquí todos los clientes cuando nos lleguen del backend.
 
   clientes: any[] = [];
-  datos = {"nombre" : "Bar La Plaza"};
+  nombre = {nombre : "Bar"};
  
   //Para usar los metodos de los "componentes" importados que vienen por defecto en Angular
   //Tendremos que inicializar el atributo que se refiere a ellos.
   constructor(
     private router: Router,
-    private clienteService: ClientesService
+    private clienteService: ClientesService,
   ){}
 
   // // Esto carga al final de cargar el componente
 
  ngOnInit() {
+
+    this.cargarClientesPorNombre();
     // Llamar aquí los métodos que vengan del servicios
     // this.recuperarClientes(); 
-    this.clientes = this.clienteService.obtenerClientes();
-    // this.clientes = this.clienteService.obtenerClienteNombre(this.datos);
+    // this.clientes = this.clienteService.obtenerClientes();
+    
     // console.log(this.clientes);
     // console.log(this.datos);
   }
 
+  cargarClientesPorNombre(){
+    this.clienteService.obtenerClienteNombre(this.nombre).subscribe(
+      (resultado:any) =>{
+        this.clientes = resultado;
+        console.log(resultado)
+      
+  });
 
-
+}
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(): void {
 

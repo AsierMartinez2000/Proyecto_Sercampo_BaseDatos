@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -50,27 +51,16 @@ export class ClientesService {
 
 
   //ESTE MÉTODO NO FUNCIONA ¡¡TODAVIA!!
-  async obtenerClienteNombre(datos:any) {
-    this.httpClient
-    .post(`${this.url}?controller=clientes&action=obtenerClienteNombre`, datos, {
+  obtenerClienteNombre(nombre:any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=obtenerClienteNombre`, nombre, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
       withCredentials: true
-    }).subscribe({
-        next: (response: any) => {
-          this.clientes = response; // Asignar la respuesta al array
-          console.log('Clientes cargados:', (this.clientes = response));
-        },
-        error: (error) => {
-          console.error('Error al cargar clientes:', error);
-        },
-      });
-      console.log(datos);
-      console.log(this.clientes);
+    })
+  
 
-      console.log("Soy return");
-    return this.clientes;
   }
 }
