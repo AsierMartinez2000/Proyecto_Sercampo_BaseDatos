@@ -12,6 +12,7 @@
 </form> -->
 <button (click)="cargarClientesPorNombre()">Buscar</button>
 
+<input type="text" [(ngModel)]="cliente.nombre" (keyup)="cargarClientesPorNombre()"/>
 <table>
     <thead>
         <tr>
