@@ -1,29 +1,29 @@
 <h3>Clientes Sercampo</h3>
     
-    <div class="dashboard">
+    <div class="dashboard container">
         
         <div class="buscador">
-            <input type="text" [(ngModel)]="cliente.nombre" (keyup)="cargarClientesPorNombre()" placeholder="Nombre Cliente"/>
-            <button (click)="cargarClientesPorNombre()">Buscar</button>
+            <input class="form-control form-control" type="text" [(ngModel)]="cliente.nombre" (keyup)="cargarClientesPorNombre()" placeholder="Nombre Cliente"/>
+            <button class="btn btn-primary" (click)="cargarClientesPorNombre()">Buscar</button>
         </div>
         
         <div class="tabla">
             
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Id cliente</th>
-                        <th>PointID</th>
-                        <th>Nombre</th>
-                        <th>CIF</th>
-                        <th>Teléfono</th>
-                        <th>Notas</th>
+                        <th class="table-primary" >Id cliente</th>
+                        <th class="table-primary">PointID</th>
+                        <th class="table-primary">Nombre</th>
+                        <th class="table-primary">CIF</th>
+                        <th class="table-primary">Teléfono</th>
+                        <th class="table-primary">Notas</th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (cliente of clientes; track cliente.id_cliente){
-                        <tr>
-                            <td>{{cliente.id_cliente}}</td>
+                        <tr class="table-ligth">
+                            <td >{{cliente.id_cliente}}</td>
                             <td>{{cliente.PointID}}</td>
                             <td>{{cliente.nombre}}</td>
                             <td>{{cliente.cif}}</td>
