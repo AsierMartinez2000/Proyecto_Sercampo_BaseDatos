@@ -141,9 +141,11 @@ class clientesModel{
     }
 
     public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT *
-                FROM clientes
-                WHERE id_cliente = :id_cliente";
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.direccion, m.localidad
+                FROM contenedores AS con INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                            INNER JOIN direcciones AS d ON d.id_contenedor = con.id_contenedor
+                            INNER JOIN municipios AS m ON m.id_municipio = d.id_municipio
+                WHERE c.id_cliente = :id_cliente";
 
         $stmt = $this->db->prepare($sql);
 
@@ -155,5 +157,4 @@ class clientesModel{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
 }
