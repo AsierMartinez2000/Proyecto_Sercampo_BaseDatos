@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../../services/clientes.service';
@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   constructor(
     private router: Router,
     private clienteService: ClientesService,
+    private cdr: ChangeDetectorRef
   ){}
 
   
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
     this.clienteService.obtenerClienteNombre(this.cliente).subscribe(
       (resultado:any) =>{
         this.clientes = resultado;
+        this.cdr.detectChanges();
         console.log(resultado)
       
   });
@@ -54,6 +56,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
     this.clienteService.obtenerClienteGeneral(this.cliente).subscribe(
       (resultado:any) =>{
         this.clientes = resultado;
+        this.cdr.detectChanges();
         console.log(resultado)
       
   });
