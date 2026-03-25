@@ -140,4 +140,20 @@ class clientesModel{
 
     }
 
+    public function getClienteGeneral($datosCliente){
+        $sql = "SELECT *
+        FROM clientes
+        WHERE (nombre LIKE :dato) OR (cif LIKE :dato) OR (telefono LIKE :dato)";
+
+        $stmt = $this->db->prepare($sql);
+        $dato = "%" . $datosCliente['dato'] . "%";
+        $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+        
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
+    }
+
 }

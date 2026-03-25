@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   //El atributo de nuestro componente es un array.
   //Queremos guardar aquí todos los clientes cuando nos lleguen del backend.
   
-  cliente = {nombre: ""};
+  cliente = {dato: ""};
   clientes: any[] = [];
 
   //Para usar los metodos de los "componentes" importados que vienen por defecto en Angular
@@ -50,6 +50,14 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   });
   }
 
+  cargarClientesGeneral(){
+    this.clienteService.obtenerClienteGeneral(this.cliente).subscribe(
+      (resultado:any) =>{
+        this.clientes = resultado;
+        console.log(resultado)
+      
+  });
+  }
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(){
   //   this.cargarClientesPorNombre();
