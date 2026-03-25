@@ -79,9 +79,13 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
       (resultado:any) =>{
         this.clientes = resultado;
         this.cdr.detectChanges();
-
-      
   });
+  }
+
+  redirigirCliente(id_cliente: any){
+    console.log("Navegando");
+    this.router.navigate(['cliente']);
+    };
   }
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(){
@@ -89,4 +93,4 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   // }
 
  
-}
+
