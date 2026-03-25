@@ -1,17 +1,10 @@
 <h3>Clientes Sercampo</h3>
-    
-    <!-- <form action="#" method="post">
-        <p>Seleccionar cliente por nombre:</p>
-        <br>
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" [(ngModel)]="nombre">
-        <button type="submit" >Buscar</button>
-    </form> -->
+
     <div class="dashboard">
         
         <div class="buscador">
-            <input type="text" [(ngModel)]="cliente.nombre" (keyup)="cargarClientesPorNombre()" placeholder="Nombre Cliente"/>
-            <button (click)="cargarClientesPorNombre()">Buscar</button>
+            <input type="text" [(ngModel)]="cliente.dato" (keyup)="cargarClientesGeneral()" placeholder="Cliente"/>
+            <button (click)="cargarClientesGeneral()">Buscar</button>
         </div>
         
         <div class="tabla">
