@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
 
   redirigirCliente(id_cliente: any){
     console.log("Navegando");
-    this.router.navigate(['cliente']);
+    this.router.navigate(['cliente', id_cliente]);
     };
   }
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM

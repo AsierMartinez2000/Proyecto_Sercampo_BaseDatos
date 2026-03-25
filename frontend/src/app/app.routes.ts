@@ -7,6 +7,6 @@ export const routes: Routes = [
 
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: DashboardComponent, title: 'Dashboard'},
-    {path: 'cliente', component: ClienteComponent, title: 'Cliente'},
+    {path: 'cliente/:id_cliente', component: ClienteComponent, title: 'Cliente'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];

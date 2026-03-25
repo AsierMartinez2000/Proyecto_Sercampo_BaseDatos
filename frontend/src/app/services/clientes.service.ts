@@ -71,4 +71,16 @@ export class ClientesService {
       withCredentials: true
     })
   }
+
+  obtenerClienteEspecifico(cliente: any): Observable<any> {
+    console.log(cliente);
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=obtenerClienteEspecifico`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }

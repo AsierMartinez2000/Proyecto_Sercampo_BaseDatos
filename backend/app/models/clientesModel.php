@@ -33,22 +33,6 @@ class clientesModel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT *
-                FROM clientes
-                WHERE nombre = :nombre AND cif = :cif AND telefono = :telefono";
-
-        $stmt = $this->db->prepare($sql);
-
-        $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
-        $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function getClienteNombre($datosCliente){
         $sql = "SELECT *
         FROM clientes
@@ -154,6 +138,22 @@ class clientesModel{
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
+    }
+
+    public function getClienteEspecifico($datosCliente){
+        $sql = "SELECT *
+                FROM clientes
+                WHERE id_cliente = :id_cliente";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = $datosCliente['dato'];
+
+        $stmt->bindParam(':id_cliente', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 }
