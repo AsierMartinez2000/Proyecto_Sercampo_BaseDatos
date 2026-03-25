@@ -36,6 +36,13 @@ session_start();
             echo json_encode($resultados);
         }
 
+        public function obtenerClienteGeneral($datos){
+            $modelo = new clientesModel();
+            $resultados = $modelo->getClienteGeneral($datos);
+
+            echo json_encode($resultados);
+        }
+
         public function obtenerClientePointID($datos){
             $modelo = new clientesModel();
             $resultados = $modelo->getClientePointID($datos);
