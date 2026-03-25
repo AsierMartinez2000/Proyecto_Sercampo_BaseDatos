@@ -3,8 +3,16 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../../services/clientes.service';
 import { FormsModule } from '@angular/forms';
+// import { form } from '@angular/forms/signals';
 
-
+// export interface Cliente {
+//   id_cliente: number;
+//   pointID: string;
+//   nombre: string;
+//   cif: string;
+//   telefono: string;
+//   notas: string;
+// }
 
 @Component({
   selector: 'app-dashboard.component',
@@ -17,8 +25,22 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   //El atributo de nuestro componente es un array.
   //Queremos guardar aquí todos los clientes cuando nos lleguen del backend.
   
+
+  // cliente =signal<Cliente>(
+  //   { id_cliente: NaN,
+  //     pointID: '',
+  //     nombre: '',
+  //     cif: '',
+  //     telefono: '',
+  //     notas: ''
+  //   }
+  // );
+
   cliente = {dato: ""};
+
   clientes: any[] = [];
+
+  // formulario = form(this.cliente);
 
   //Para usar los metodos de los "componentes" importados que vienen por defecto en Angular
   //Tendremos que inicializar el atributo que se refiere a ellos.
@@ -57,7 +79,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
       (resultado:any) =>{
         this.clientes = resultado;
         this.cdr.detectChanges();
-        console.log(resultado)
+
       
   });
   }
