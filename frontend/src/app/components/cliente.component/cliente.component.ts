@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ClientesService } from '../../services/clientes.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cliente.component',
@@ -7,10 +9,49 @@ import { Router } from '@angular/router';
   templateUrl: './cliente.component.html',
   styleUrl: './cliente.component.css',
 })
-export class ClienteComponent {
+export class ClienteComponent implements OnInit{
 
-    constructor(
-    private router: Router
+  id_cliente: any;
+
+  cliente = {
+    dato: '',
+    id_cliente: '',
+    PointID: '',
+    nombre: '',
+    cif: '',
+    telefono: '',
+    notas: ''
+  };
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private servicioCliente: ClientesService
   ){}
+
+  ngOnInit(){
+
+    // this.route.params.subscribe((params: Params) => this.id_cliente = params['id_cliente']);
+    this.route.params.subscribe({
+      next: (response: any) => {
+          this.id_cliente = response.id_cliente; // Asignar la respuesta al array
+          console.log('Id cargados:', (this.id_cliente = response.id_cliente));
+        },
+    });
+
+    this.cliente.dato = this.id_cliente;
+    this.cargarClienteEspecifico();
+  }
+
+
+  cargarClienteEspecifico(){
+    this.servicioCliente.obtenerClienteEspecifico(this.cliente).subscribe(
+      (resultado:any) =>{
+        this.cliente = resultado;
+        console.log (resultado);
+        this.cdr.detectChanges();
+  });
+  }
 
 }
