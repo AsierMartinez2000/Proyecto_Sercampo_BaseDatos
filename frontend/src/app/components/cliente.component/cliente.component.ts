@@ -20,7 +20,9 @@ export class ClienteComponent implements OnInit{
     nombre: '',
     cif: '',
     telefono: '',
-    notas: ''
+    notas: '',
+    localidad: '',
+    direccion: ''
   };
 
 
@@ -36,7 +38,7 @@ export class ClienteComponent implements OnInit{
     this.route.params.subscribe({
       next: (response: any) => {
           this.id_cliente = response.id_cliente; // Asignar la respuesta al array
-          console.log('Id cargados:', (this.id_cliente = response.id_cliente));
+          console.log('Id cargado:', (this.id_cliente = response.id_cliente));
         },
     });
 
