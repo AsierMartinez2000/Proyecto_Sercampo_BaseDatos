@@ -23,12 +23,12 @@
                 <tbody>
                     @for (cliente of clientes; track cliente.id_cliente){
                         <tr class="table-ligth">
-                            <td >{{cliente.id_cliente}}</td>
-                            <td>{{cliente.PointID}}</td>
-                            <td>{{cliente.nombre}}</td>
-                            <td>{{cliente.cif}}</td>
-                            <td>{{cliente.telefono}}</td>
-                            <td>{{cliente.nota}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.id_cliente}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.PointID}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nombre}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.cif}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.telefono}}</td>
+                            <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nota}}</td>
                         </tr>
                     }
                 </tbody>
