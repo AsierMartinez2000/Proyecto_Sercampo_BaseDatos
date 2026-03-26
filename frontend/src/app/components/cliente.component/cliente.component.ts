@@ -1,11 +1,15 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { verifyHostBindings } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-cliente.component',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cliente.component.html',
   styleUrl: './cliente.component.css',
 })
@@ -25,11 +29,21 @@ export class ClienteComponent implements OnInit{
     direccion: ''
   };
 
+  cliente_nuevo = {
+    id_cliente: '',
+    PointID: '',
+    nombre: '',
+    cif: '',
+    telefono: '',
+    notas: '',
+  };
+
 
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private servicioCliente: ClientesService
+    private servicioCliente: ClientesService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -54,6 +68,20 @@ export class ClienteComponent implements OnInit{
         console.log (resultado);
         this.cdr.detectChanges();
   });
+  }
+
+  anadirCliente(cliente_nuevo: any){
+    this.servicioCliente.anadirCliente(cliente_nuevo).subscribe({
+      next: (respuesta) => {
+        console.log('Cliente añadido:', respuesta);
+      },
+      error: (error) => {
+        console.error('Error al añadir cliente:', error);
+      },
+      complete: () => {
+        console.log('Cliente añadido');
+      }
+    })
   }
 
 }

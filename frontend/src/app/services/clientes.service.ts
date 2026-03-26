@@ -83,4 +83,16 @@ export class ClientesService {
       withCredentials: true
     })
   }
+
+  anadirCliente(cliente: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=nuevoCliente`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
 }

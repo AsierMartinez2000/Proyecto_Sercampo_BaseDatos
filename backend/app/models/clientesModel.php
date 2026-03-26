@@ -102,7 +102,7 @@ class clientesModel{
         $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
         $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
         
-        $stmt->execute();
+        $stmt->execute();    
     }
 
     public function modificarCliente($datosCliente) {
