@@ -11,10 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ClienteComponent implements OnInit{
 
-  id_cliente: any;
-
   cliente = {
-    dato: '',
     id_cliente: '',
     PointID: '',
     nombre: '',
@@ -37,12 +34,10 @@ export class ClienteComponent implements OnInit{
     // this.route.params.subscribe((params: Params) => this.id_cliente = params['id_cliente']);
     this.route.params.subscribe({
       next: (response: any) => {
-          this.id_cliente = response.id_cliente; // Asignar la respuesta al array
-          console.log('Id cargado:', (this.id_cliente = response.id_cliente));
+          this.cliente.id_cliente = response.id_cliente; // Asignar la respuesta al array
+          console.log('Id cargado:', (this.cliente.id_cliente = response.id_cliente));
         },
     });
-
-    this.cliente.dato = this.id_cliente;
     this.cargarClienteEspecifico();
   }
 

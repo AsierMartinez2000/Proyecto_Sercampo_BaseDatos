@@ -149,9 +149,9 @@ class clientesModel{
 
         $stmt = $this->db->prepare($sql);
 
-        $dato = $datosCliente['dato'];
+        $id_cliente = $datosCliente['id_cliente'];
 
-        $stmt->bindParam(':id_cliente', $dato, PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_STR);
 
         $stmt->execute();
 
