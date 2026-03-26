@@ -40,7 +40,6 @@ export class ClienteComponent implements OnInit{
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private servicioCliente: ClientesService,
-    private router: Router
   ){}
 
   ngOnInit(){

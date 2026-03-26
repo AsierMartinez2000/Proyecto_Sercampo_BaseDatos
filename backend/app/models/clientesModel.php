@@ -141,7 +141,7 @@ class clientesModel{
     }
 
     public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.direccion, m.localidad
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas, d.direccion, m.localidad
                 FROM contenedores AS con INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                             INNER JOIN direcciones AS d ON d.id_contenedor = con.id_contenedor
                             INNER JOIN municipios AS m ON m.id_municipio = d.id_municipio
