@@ -157,4 +157,21 @@ class clientesModel{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getClientesTipo($datosCliente){
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas
+        FROM clientes AS c
+            INNER JOIN contenedores AS con ON c.id_cliente = con.id_cliente
+        WHERE con.tipo_legal = :dato";
+
+        $stmt = $this->db->prepare($sql);
+        $dato = $datosCliente['tipo_legal'];
+        $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+    }
 }

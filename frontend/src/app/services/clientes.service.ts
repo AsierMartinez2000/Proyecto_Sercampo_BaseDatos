@@ -83,4 +83,16 @@ export class ClientesService {
       withCredentials: true
     })
   }
+
+  obtenerClientesTipo(cliente: any): Observable<any> {
+    console.log(cliente);
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=obtenerClientesTipo`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }
