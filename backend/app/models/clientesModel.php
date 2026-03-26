@@ -33,22 +33,6 @@ class clientesModel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT *
-                FROM clientes
-                WHERE nombre = :nombre AND cif = :cif AND telefono = :telefono";
-
-        $stmt = $this->db->prepare($sql);
-
-        $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
-        $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function getClienteNombre($datosCliente){
         $sql = "SELECT *
         FROM clientes
@@ -156,4 +140,21 @@ class clientesModel{
         return $resultado;
     }
 
+    public function getClienteEspecifico($datosCliente){
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.direccion, m.localidad
+                FROM contenedores AS con INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                            INNER JOIN direcciones AS d ON d.id_contenedor = con.id_contenedor
+                            INNER JOIN municipios AS m ON m.id_municipio = d.id_municipio
+                WHERE c.id_cliente = :id_cliente";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = $datosCliente['dato'];
+
+        $stmt->bindParam(':id_cliente', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
