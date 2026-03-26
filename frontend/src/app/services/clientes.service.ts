@@ -62,6 +62,7 @@ export class ClientesService {
   }
 
   obtenerClienteGeneral(dato: any): Observable<any> {
+    console.log(dato);
     return this.httpClient
     .post(`${this.url}?controller=clientes&action=obtenerClienteGeneral`,dato, {
       headers: new HttpHeaders({
@@ -84,6 +85,18 @@ export class ClientesService {
     })
   }
 
+  obtenerClientesTipo(cliente: any): Observable<any> {
+    console.log(cliente);
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=obtenerClientesTipo`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+      
   anadirCliente(cliente: any): Observable<any> {
     return this.httpClient
     .post(`${this.url}?controller=clientes&action=nuevoCliente`, cliente, {
@@ -94,5 +107,4 @@ export class ClientesService {
       withCredentials: true
     })
   }
-
 }

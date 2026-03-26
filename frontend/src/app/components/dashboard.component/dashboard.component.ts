@@ -36,9 +36,13 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   //   }
   // );
 
-  cliente = {dato: ""};
+  cliente = {dato: "",
+    tipo_legal: ""
+  };
 
   clientes: any[] = [];
+
+  active: string = '';
 
   // formulario = form(this.cliente);
 
@@ -77,6 +81,7 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
   cargarClientesGeneral(){
     this.clienteService.obtenerClienteGeneral(this.cliente).subscribe(
       (resultado:any) =>{
+        console.log(resultado);
         this.clientes = resultado;
         this.cdr.detectChanges();
   });
@@ -86,11 +91,29 @@ export class DashboardComponent implements OnInit{  //implements OnInit, AfterVi
     console.log("Navegando");
     this.router.navigate(['cliente', id_cliente]);
     };
+
+      
+  seleccionarTipo(tipo: any){
+      this.active = tipo;
+      this.cliente.tipo_legal = tipo;
+      this.cargarClientesGeneral()
+  }
+
+  // cargarClientesPorTipo(){
+  //   this.clienteService.obtenerClientesTipo(this.cliente).subscribe(
+  //     (resultado:any) =>{
+  //       this.clientes = resultado;
+  //       this.cdr.detectChanges();
+  //       console.log(resultado)  
+  // });
+  // }
+
   }
   // Esto se carga después de que la vista (HTML) del componente y sus hijos ya están renderizados en el DOM
   // ngAfterViewInit(){
   //   this.cargarClientesPorNombre();
   // }
+
 
  
 

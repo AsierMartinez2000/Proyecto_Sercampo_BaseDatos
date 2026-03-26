@@ -125,19 +125,40 @@ class clientesModel{
     }
 
     public function getClienteGeneral($datosCliente){
-        $sql = "SELECT *
-        FROM clientes
-        WHERE (nombre LIKE :dato) OR (cif LIKE :dato) OR (telefono LIKE :dato)";
+
+         $tipo = $datosCliente['tipo_legal'];
+        if ($tipo == ""){
+            $sql = "SELECT *
+            FROM clientes
+            WHERE (nombre LIKE :dato) OR (cif LIKE :dato) OR (telefono LIKE :dato)";
+
+            $stmt = $this->db->prepare($sql);
+            $dato = "%" . $datosCliente['dato'] . "%";
+            $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+
+            $stmt->execute();
+            
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultado;
+        } else {
+
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas
+            FROM clientes AS c 
+            INNER JOIN contenedores AS con ON c.id_cliente = con.id_cliente
+            WHERE  (con.tipo_legal = :tipo) AND (c.nombre LIKE :dato OR c.cif LIKE :dato OR c.telefono LIKE :dato)";
 
         $stmt = $this->db->prepare($sql);
         $dato = "%" . $datosCliente['dato'] . "%";
         $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
 
         $stmt->execute();
         
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
+        }
     }
 
     public function getClienteEspecifico($datosCliente){
@@ -156,5 +177,22 @@ class clientesModel{
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getClientesTipo($datosCliente){
+        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas
+        FROM clientes AS c
+            INNER JOIN contenedores AS con ON c.id_cliente = con.id_cliente
+        WHERE con.tipo_legal = :dato";
+
+        $stmt = $this->db->prepare($sql);
+        $dato = $datosCliente['tipo_legal'];
+        $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        
     }
 }

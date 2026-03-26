@@ -73,6 +73,13 @@ session_start();
             $modelo = new clientesModel();
             $modelo->modificarCliente($datos);
         }
+
+        public function obtenerClientesTipo($datos){
+            $modelo = new clientesModel();
+            $resultados = $modelo->getClientesTipo($datos);
+
+            echo json_encode($resultados);
+        }
         
     }
 
