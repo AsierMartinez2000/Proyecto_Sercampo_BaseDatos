@@ -62,6 +62,7 @@ export class ClientesService {
   }
 
   obtenerClienteGeneral(dato: any): Observable<any> {
+    console.log(dato);
     return this.httpClient
     .post(`${this.url}?controller=clientes&action=obtenerClienteGeneral`,dato, {
       headers: new HttpHeaders({
