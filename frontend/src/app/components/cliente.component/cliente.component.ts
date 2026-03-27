@@ -33,6 +33,8 @@ export class ClienteComponent implements OnInit{
     cif: '',
     telefono: '',
     notas: '',
+    localidad: '',
+    direccion: ''
   };
 
 
@@ -40,6 +42,7 @@ export class ClienteComponent implements OnInit{
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private servicioCliente: ClientesService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -65,8 +68,11 @@ export class ClienteComponent implements OnInit{
   }
 
   anadirCliente(cliente_nuevo: any){
+
+    if(cliente_nuevo.PointID != "" && cliente_nuevo.nombre != ""){
     this.servicioCliente.anadirCliente(cliente_nuevo).subscribe({
-      next: (respuesta) => {
+      next: (respuesta:any) => {
+        this.cliente_nuevo = respuesta;
         console.log('Cliente añadido:', respuesta);
       },
       error: (error) => {
@@ -76,6 +82,11 @@ export class ClienteComponent implements OnInit{
         console.log('Cliente añadido');
       }
     })
+    this.cliente = this.cliente_nuevo; //ESTAS 3 LINEAS PARA REDIRIGIR CREO QUE ESTAN MAL
+    this.cdr.detectChanges();
+    this.router.navigate(['cliente', this.cliente.id_cliente]); 
+    } else {
+      console.log("PointID y Nombre es obligatorio");
+    }
   }
-
 }
