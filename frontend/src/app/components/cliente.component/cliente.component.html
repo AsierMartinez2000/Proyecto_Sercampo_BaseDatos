@@ -38,28 +38,28 @@
 
   <div class="mb-3">
     <label class="form-label">PointID</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.PointID" name="PointID" required>
+    <input type="text" class="form-control" [(ngModel)]="this.cliente_nuevo.PointID" name="PointID" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label">Nombre</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.nombre" name="nombre" required>
+    <input type="text" class="form-control" [(ngModel)]="this.cliente_nuevo.nombre" name="nombre" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label">CIF</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.cif" name="cif" required>
+    <input type="text" class="form-control" [(ngModel)]="this.cliente_nuevo.cif" name="cif" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label">Teléfono</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.telefono" name="telefono" required>
+    <input type="text" class="form-control" [(ngModel)]="this.cliente_nuevo.telefono" name="telefono" required>
   </div>
 
-  <!-- <div class="mb-3">
+  <div class="mb-3">
     <label class="form-label">Notas</label>
-    <textarea class="form-control" [(ngModel)]="cliente_nuevo.notas" name="notas" rows="3"></textarea>
-  </div> -->
+    <textarea class="form-control" [(ngModel)]="this.cliente_nuevo.notas" name="notas" rows="3"></textarea>
+  </div>
 
   <button type="submit" class="btn btn-primary">Guardar Cliente</button>
 

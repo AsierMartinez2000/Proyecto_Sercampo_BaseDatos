@@ -82,9 +82,8 @@ export class ClienteComponent implements OnInit{
         console.log('Cliente añadido');
       }
     })
-    this.cliente = this.cliente_nuevo; //ESTAS 3 LINEAS PARA REDIRIGIR CREO QUE ESTAN MAL
     this.cdr.detectChanges();
-    this.router.navigate(['cliente', this.cliente.id_cliente]); 
+    this.router.navigate(['']); 
     } else {
       console.log("PointID y Nombre es obligatorio");
     }
