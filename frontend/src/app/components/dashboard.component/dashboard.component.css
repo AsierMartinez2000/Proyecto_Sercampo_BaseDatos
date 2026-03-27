@@ -13,7 +13,7 @@ button{
 
 .buscador{
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    align-items: center;
    justify-content: center;
    gap: 1em;
@@ -21,6 +21,8 @@ button{
    padding-bottom: 1em;
    
 }
+
+
 
 .tabla{
     display: flex;
