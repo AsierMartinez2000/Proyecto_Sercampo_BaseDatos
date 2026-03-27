@@ -34,11 +34,11 @@
         </div>
     </div>
 
-<form (ngSubmit)="anadirCliente(this.cliente_nuevo)">
+<form (ngSubmit)="anadirCliente(cliente_nuevo)">
 
   <div class="mb-3">
     <label class="form-label">PointID</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.PointID" name="nombre" required>
+    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.PointID" name="PointID" required>
   </div>
 
   <div class="mb-3">

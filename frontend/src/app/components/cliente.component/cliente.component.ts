@@ -40,6 +40,7 @@ export class ClienteComponent implements OnInit{
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private servicioCliente: ClientesService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -68,6 +69,7 @@ export class ClienteComponent implements OnInit{
     this.servicioCliente.anadirCliente(cliente_nuevo).subscribe({
       next: (respuesta) => {
         console.log('Cliente añadido:', respuesta);
+        this.router.navigate(['dashboard']);
       },
       error: (error) => {
         console.error('Error al añadir cliente:', error);
