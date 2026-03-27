@@ -66,7 +66,9 @@ session_start();
 
         public function nuevoCliente($datos){
             $modelo = new clientesModel();
-            $modelo->setnuevoCliente($datos);
+            $resultados = $modelo->setnuevoCliente($datos);
+
+            echo json_encode($resultados);
         }
 
         public function modificarCliente($datos){

@@ -93,7 +93,7 @@ class clientesModel{
 
     public function setnuevoCliente($datosCliente) {
         $sql = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
-                VALUES (:PointID, :nombre, :cif, :telefono, null)";
+                VALUES (:PointID, :nombre, :cif, :telefono, :notas)";
         
         $stmt = $this->db->prepare($sql);
 
@@ -101,8 +101,21 @@ class clientesModel{
         $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
         $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
+        $stmt->bindParam(':notas', $datosCliente['notas'], PDO::PARAM_STR);
         
         $stmt->execute();    
+
+        $sql2 = "SELECT *
+                FROM clientes
+                WHERE PointID = :PointID"; 
+        
+        $stmt = $this->db->prepare($sql2);
+        $stmt->bindParam(':PointID', $datosCliente['PointID'], PDO::PARAM_STR);
+
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
     }
 
     public function modificarCliente($datosCliente) {
