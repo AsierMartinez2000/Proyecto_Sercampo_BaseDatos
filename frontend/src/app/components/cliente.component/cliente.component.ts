@@ -26,23 +26,10 @@ export class ClienteComponent implements OnInit{
     direccion: ''
   };
 
-  cliente_nuevo = {
-    id_cliente: '',
-    PointID: '',
-    nombre: '',
-    cif: '',
-    telefono: '',
-    notas: '',
-    localidad: '',
-    direccion: ''
-  };
-
-
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private servicioCliente: ClientesService,
-    private router: Router
+    private servicioCliente: ClientesService
   ){}
 
   ngOnInit(){
