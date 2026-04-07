@@ -15,15 +15,18 @@ export class NuevoClienteComponent {
 
 cliente_nuevo = {
     id_cliente: '',
-    PointID: '',
-    nombre: '',
-    cif: '',
-    telefono: '',
-    notas: '',
+    tipo_contenedor: '',
+    PointID: '', 
+    nombre_cliente: '',
+    cif_cliente: '',
+    telefono_cliente: '',
+    tipo_legal: '',
+    direccion: '',
+    cod_postal: '',
     localidad: '',
-    direccion: ''
+    provincia: '',
+    pais: ''
   };
-
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +57,4 @@ cliente_nuevo = {
       console.log("PointID y Nombre es obligatorio");
     }
   }
-
-
-
 }
