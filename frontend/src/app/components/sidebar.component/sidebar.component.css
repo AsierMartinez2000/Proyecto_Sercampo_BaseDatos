@@ -1,0 +1,32 @@
+ul,li, a{
+    list-style: none;
+   
+}
+
+.main-container {
+    background-color: rgb(210, 224, 253);
+    /* display: flex;
+    justify-content: center; */
+    position: fixed;
+    height: 100vh;
+    padding-right: 2%;
+    
+}
+
+.navbar{
+    padding-top: 45%;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn{
+    margin-bottom: 0.5em;
+    width: 8em;
+
+}
+

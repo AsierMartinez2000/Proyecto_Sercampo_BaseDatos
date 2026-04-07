@@ -1,0 +1,37 @@
+<h1 class="display-1">{{cliente.nombre}}</h1>
+   
+    <div class="dashboard container-md">
+
+        <div class="tabla">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-primary" >Id cliente</th>
+                        <th class="table-primary">PointID</th>
+                        <th class="table-primary">Nombre</th>
+                        <th class="table-primary">CIF</th>
+                        <th class="table-primary">Teléfono</th>
+                        <th class="table-primary">Notas</th>
+                        <th class="table-primary">Dirección</th>
+                        <th class="table-primary">Localidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr class="table-ligth">
+                            <td>{{cliente.id_cliente}}</td>
+                            <td>{{cliente.PointID}}</td>
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.cif}}</td>
+                            <td>{{cliente.telefono}}</td>
+                            <td>{{cliente.notas}}</td>
+                            <td>{{cliente.direccion}}</td>
+                            <td>{{cliente.localidad}}</td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+            <button class="btn btn-warning btn-sm">Modificar Cliente</button> 
+        </div>
+    </div>
+
