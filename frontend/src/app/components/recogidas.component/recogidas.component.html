@@ -1,38 +1,134 @@
-<h3>Recogidas Sercampo</h3>
+<h1>Recogidas</h1>
 
-
-<div class="botones container mt-5 mb-3">
-    <button class="btn btn-outline-secondary sm">RECOGIDA HORECA</button>
-    <button class="btn btn-outline-secondary sm">RECOGIDA CONTENEDOR</button>
-    <button class="btn btn-outline-secondary sm">RECOGIDA EESS</button>
+<div class="botones container mt-3 mb-3">
+  <button class="btn btn-outline-secondary sm me-3">RECOGIDA HORECA</button>
+  <button class="btn btn-outline-secondary sm me-3">RECOGIDA CONTENEDOR</button>
+  <button class="btn btn-outline-secondary sm">RECOGIDA EESS</button>
 </div>
 
-<form >
-  <div class="mb-3 mt-5">
-    <label class="form-label">aqui ponemos el tipo segun el boton pulsado</label>
-    <input type="text" class="form-control"  name="numEESS" required>
-  </div>
-
+<form class="horeca">
+  <h3>Datos Cliente</h3>
   <div class="mb-3">
-    <label class="form-label">Nombre</label>
-    <input type="text" class="form-control"  name="nombre" required>
+    <input type="text" class="form-control" name="Establecimiento" placeholder="Establecimiento" />
   </div>
-
   <div class="mb-3">
-    <label class="form-label">CIF</label>
-    <input type="text" class="form-control" name="cif" required>
+    <input type="text" class="form-control" name="localidad" placeholder="Localidad" />
   </div>
 
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <input type="text" class="form-control" name="cif" placeholder="CIF" />
+    </div>
+    <div class="col mb-3">
+      <input type="text" class="form-control" name="telefono" placeholder="Teléfono" />
+    </div>
+  </div>
   <div class="mb-3">
-    <label class="form-label">Teléfono</label>
-    <input type="text" class="form-control"  name="telefono" required>
+    <input type="date" class="form-control" name="fecha" />
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Notas</label>
-    <textarea class="form-control"  name="notas" rows="3"></textarea>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Bidones Recogidos</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Bidones Entregados</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+  <h3>Productos</h3>
 
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Desengrasantes</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Limpiacristales</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Fregasuelos</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Lejías</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+  </div>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Jabón de manos</span>
+    <input
+      type="number"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+    />
+  </div>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Higienizantes</span>
+    <input
+      type="number"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+    />
+  </div>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">WC baños</span>
+    <input
+      type="number"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+    />
+  </div>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Otros</span>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar Recogida</button>
 </form>
+
+<!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
+<form class="contenedor"></form>
+<form class="eess"></form>
