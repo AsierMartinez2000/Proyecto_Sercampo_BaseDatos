@@ -18,7 +18,8 @@ class clientesModel{
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
-                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio";
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+                ORDER BY con.id_contenedor";
     
 
         $stmt = $this->db->prepare($sql);
@@ -38,7 +39,8 @@ class clientesModel{
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-            WHERE (c.nombre LIKE :dato) OR (c.cif LIKE :dato) OR (c.telefono LIKE :dato)";
+            WHERE (c.nombre LIKE :dato) OR (c.cif LIKE :dato) OR (c.telefono LIKE :dato)
+            ORDER BY con.id_contenedor";
 
             $stmt = $this->db->prepare($sql);
             $dato = "%" . $datosCliente['dato'] . "%";
@@ -57,7 +59,8 @@ class clientesModel{
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-                WHERE  (con.tipo_legal = :tipo) AND (c.nombre LIKE :dato OR c.cif LIKE :dato OR c.telefono LIKE :dato)";
+                WHERE  (con.tipo_legal = :tipo) AND (c.nombre LIKE :dato OR c.cif LIKE :dato OR c.telefono LIKE :dato)
+                ORDER BY con.id_contenedor";
 
         $stmt = $this->db->prepare($sql);
         $dato = "%" . $datosCliente['dato'] . "%";
