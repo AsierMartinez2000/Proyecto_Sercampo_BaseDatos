@@ -11,27 +11,38 @@
             </div>
             
             <div class="tabla">
-                
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="table-primary" >Id cliente</th>
-                            <th class="table-primary">PointID</th>
-                            <th class="table-primary">Nombre</th>
-                            <th class="table-primary">CIF</th>
-                            <th class="table-primary">Teléfono</th>
-                            <th class="table-primary">Notas</th>
+                            <th class="table-primary">ID Contenedor</th>
+                            <th class="table-primary">PointID Cliente</th>
+                            <th class="table-primary">Nombre Cliente</th>
+                            <th class="table-primary">CIF Cliente</th>
+                            <th class="table-primary">Telefono</th>
+                            <th class="table-primary">Codigo Postal</th>
+                            <th class="table-primary">Direccion</th>
+                            <th class="table-primary">Localidad</th>
+                            <th class="table-primary">Provincia</th>
+                            <th class="table-primary">Tipo Contenedor</th>
+                            <th class="table-primary">Tipo Legal</th>
+                            <th class="table-primary">Activo</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (cliente of clientes; track cliente.id_cliente){
                             <tr class="table-ligth">
-                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.id_cliente}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.id_contenedor}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.PointID}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nombre}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.cif}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.telefono}}</td>
-                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nota}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.cod_postal}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.direccion}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.localidad}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.provincia}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo_legal}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.activo}}</td>
                             </tr>
                         }
                     </tbody>
