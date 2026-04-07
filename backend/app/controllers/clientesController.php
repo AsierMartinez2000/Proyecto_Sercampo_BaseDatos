@@ -14,10 +14,9 @@ session_start();
             echo json_encode($resultados);
         }
 
-        public function obtenerClientesOrdenados(){
-                        
+        public function obtenerClienteGeneral($datos){
             $modelo = new clientesModel();
-            $resultados = $modelo->getClientesOrdenados();
+            $resultados = $modelo->getClienteGeneral($datos);
 
             echo json_encode($resultados);
         }
@@ -29,56 +28,9 @@ session_start();
             echo json_encode($resultados);
         }
 
-        public function obtenerClienteNombre($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClienteNombre($datos);
-
-            echo json_encode($resultados);
-        }
-
-        public function obtenerClienteGeneral($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClienteGeneral($datos);
-
-            echo json_encode($resultados);
-        }
-
-        public function obtenerClientePointID($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClientePointID($datos);
-
-            echo json_encode($resultados);
-        }
-
-        public function obtenerClienteCIF($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClienteCIF($datos);
-
-            echo json_encode($resultados);
-        }
-
-        public function obtenerClienteTelefono($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClienteTelefono($datos);
-
-            echo json_encode($resultados);
-        }
-
         public function nuevoCliente($datos){
             $modelo = new clientesModel();
             $resultados = $modelo->setnuevoCliente($datos);
-
-            echo json_encode($resultados);
-        }
-
-        public function modificarCliente($datos){
-            $modelo = new clientesModel();
-            $modelo->modificarCliente($datos);
-        }
-
-        public function obtenerClientesTipo($datos){
-            $modelo = new clientesModel();
-            $resultados = $modelo->getClientesTipo($datos);
 
             echo json_encode($resultados);
         }
