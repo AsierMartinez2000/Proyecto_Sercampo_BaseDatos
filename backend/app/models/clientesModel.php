@@ -13,7 +13,7 @@ class clientesModel{
 
     public function getClientes(){
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, t.tipo, con.tipo_legal, con.activo
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -33,7 +33,7 @@ class clientesModel{
         $tipo = $datosCliente['tipo_legal'];
         if ($tipo == ""){
 
-            $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, t.tipo, con.tipo_legal, con.activo
+            $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -53,7 +53,7 @@ class clientesModel{
             return $resultado;
         } else {
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, t.tipo, con.tipo_legal, con.activo
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -75,10 +75,12 @@ class clientesModel{
         }
     }
     public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.direccion, m.localidad
-                FROM contenedores AS con INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
-                            INNER JOIN direcciones AS d ON d.id_contenedor = con.id_contenedor
-                            INNER JOIN municipios AS m ON m.id_municipio = d.id_municipio
+       $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio                
                 WHERE c.id_cliente = :id_cliente";
 
         $stmt = $this->db->prepare($sql);
@@ -131,6 +133,25 @@ class clientesModel{
             
         return $id_cliente;
         
+    }
+
+    public function updateCliente($datos){
+
+        $sql = "UPDATE clientes 
+                SET nombre = :nombre_nuevo, cif = :cif_nuevo, telefono = :telefono_nuevo 
+                WHERE id_cliente = :id_cliente";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':nombre_nuevo', $datos['nombre'], PDO::PARAM_STR);
+        $stmt->bindParam(':cif_nuevo', $datos['cif'], PDO::PARAM_STR);
+        $stmt->bindParam(':telefono_nuevo', $datos['telefono'], PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $datos['id_cliente'], PDO::PARAM_INT);
+        
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
     }
 
 

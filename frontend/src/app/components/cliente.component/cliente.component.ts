@@ -29,8 +29,9 @@ export class ClienteComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private cdr: ChangeDetectorRef,
-    private servicioCliente: ClientesService
+    private clienteService: ClientesService
   ){}
 
   ngOnInit(){
@@ -47,13 +48,19 @@ export class ClienteComponent implements OnInit{
 
 
   cargarClienteEspecifico(){
-    this.servicioCliente.obtenerClienteEspecifico(this.cliente).subscribe(
+    this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe(
       (resultado:any) =>{
         this.cliente = resultado;
         console.log (resultado);
         this.cdr.detectChanges();
   });
   }
+
+
+ modificarCliente(){
+    console.log("Navegando");
+    this.router.navigate(['modificar', this.cliente.id_cliente]);
+    };
 
   
 }
