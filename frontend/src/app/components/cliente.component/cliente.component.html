@@ -15,6 +15,7 @@
                         <th class="table-primary">Notas</th>
                         <th class="table-primary">Dirección</th>
                         <th class="table-primary">Localidad</th>
+                        <th class="table-primary">Activo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,8 +28,17 @@
                             <td>{{cliente.notas}}</td>
                             <td>{{cliente.direccion}}</td>
                             <td>{{cliente.localidad}}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                <input 
+                                    (click)="cambiarEstado()"
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    [(ngModel)]="activado">
+                                <label class="form-check-label"></label>
+                                </div>
+                            </td>
                         </tr>
-                    
                 </tbody>
             </table>
             <button (click)="modificarCliente()" class="btn btn-warning btn-sm">Modificar Cliente</button> 
