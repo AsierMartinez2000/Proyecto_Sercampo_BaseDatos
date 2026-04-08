@@ -51,6 +51,18 @@ session_start();
             
             echo json_encode($id_cliente);
         }
+
+        public function actualizarCliente($datos){
+
+        $modeloCliente = new clientesModel();
+        $modeloDireccion = new direccionModel();
+        
+
+        $cliente_actualizado = $modeloCliente->updateCliente($datos);
+        $cliente_actualizado = $modeloDireccion->updateDireccion($datos);
+
+        echo json_encode($cliente_actualizado);
+        }
         
     }
 

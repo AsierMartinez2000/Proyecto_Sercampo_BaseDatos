@@ -31,7 +31,7 @@ cliente_nuevo = {
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private servicioCliente: ClientesService,
+    private clienteService: ClientesService,
     private router: Router
   ){}
 
@@ -39,7 +39,7 @@ cliente_nuevo = {
   anadirCliente(cliente_nuevo: any){
 
     if(cliente_nuevo.PointID != "" && cliente_nuevo.nombre != ""){
-    this.servicioCliente.anadirCliente(cliente_nuevo).subscribe({
+    this.clienteService.anadirCliente(cliente_nuevo).subscribe({
       next: (respuesta:any) => {
         this.cliente_nuevo = respuesta;
         console.log('Cliente añadido:', respuesta);

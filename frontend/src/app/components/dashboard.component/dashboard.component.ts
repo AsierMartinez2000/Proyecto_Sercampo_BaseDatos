@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit{  //implements OnInit, AfterViewInit{
 
-  cliente = {dato: "",
+  cliente = {
+    dato: "",
     tipo_legal: ""
   };
 
