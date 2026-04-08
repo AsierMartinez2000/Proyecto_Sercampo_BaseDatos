@@ -62,17 +62,8 @@ class contenedorModel{
 
     $stmt->execute();
 
-    $sql2 = "SELECT activo 
-             FROM contenedores 
-             WHERE id_contenedor = :id_contenedor";
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $this->db->prepare($sql2);
-    $stmt->bindParam(':id_contenedor', $datos['id_contenedor'], PDO::PARAM_INT);
-
-    $stmt->execute();
-
-    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $resultado;
     }
 
     

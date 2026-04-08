@@ -14,16 +14,21 @@ import { verifyHostBindings } from '@angular/compiler';
 })
 export class ClienteComponent implements OnInit {
   cliente = {
-    id_cliente: '',
-    PointID: '',
-    nombre: '',
-    cif: '',
-    telefono: '',
-    notas: '',
-    localidad: '',
-    direccion: '',
-    activo: '',
-  };
+      id_contenedor: " ",
+      id_cliente: " ",
+      PointID: " ",
+      nombre: " ",
+      cif: " ",
+      telefono: " ",
+      cod_postal: " ",
+      direccion: " ",
+      localidad: " ",
+      provincia: " ",
+      pais: " ",
+      tipo: " ",
+      tipo_legal: " ",
+      activo: " "
+  }
 
   activado:boolean = true;
   
@@ -47,6 +52,7 @@ export class ClienteComponent implements OnInit {
     console.log(this.cliente.activo);
     
     this.cdr.detectChanges();
+    
     if (this.cliente.activo === "Sí") {
       this.activado = true;
     } 
@@ -71,17 +77,23 @@ export class ClienteComponent implements OnInit {
 
   cambiarEstado() {
 
-    this.activado = !this.activado;
+    // this.activado = !this.activado;
 
-    if(this.activado == true){
+    // if(this.activado == true){
+    //   this.cliente.activo = "No";
+    //   this.activado = false;
+    // } 
+
+    // if(this.activado == false){
+    //   this.cliente.activo = "Sí";
+    //   this.activado = true;
+    // } 
+
+    if(this.cliente.activo === "Sí"){
       this.cliente.activo = "No";
-      this.activado = false;
-    } 
-
-    if(this.activado == false){
+    } else {
       this.cliente.activo = "Sí";
-      this.activado = true;
-    } 
+    }
 
     this.clienteService.actualizarEstadoCliente(this.cliente).subscribe((resultado: any) => {
       this.cliente = resultado;
