@@ -63,6 +63,15 @@ session_start();
 
         echo json_encode($cliente_actualizado);
         }
+
+        public function actualizarEstadoCliente($datos){
+
+        $modeloContenedor = new contenedorModel();
+        $estadoActualizado = $modeloContenedor->setNuevoEstado($datos);
+
+        echo json_encode($estadoActualizado);
+
+        }
         
     }
 

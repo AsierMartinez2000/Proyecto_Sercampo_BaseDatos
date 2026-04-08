@@ -50,6 +50,22 @@ class contenedorModel{
         return $id_contenedor;
     }
 
+    public function setNuevoEstado($datos){
+
+    $sql = 'UPDATE contenedores
+            SET activo = :activo
+            WHERE id_contenedor = :id_contenedor';
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':activo', $datos['activo'], PDO::PARAM_STR);
+    $stmt->bindParam(':id_contenedor', $datos['id_contenedor'], PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     
 
 

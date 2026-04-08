@@ -77,4 +77,16 @@ export class ClientesService {
     })
 
   }
+
+  actualizarEstadoCliente(cliente: any): Observable<any>{
+     return this.httpClient
+    .post(`${this.url}?controller=clientes&action=actualizarEstadoCliente`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
 }
