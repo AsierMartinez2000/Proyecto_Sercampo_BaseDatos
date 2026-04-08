@@ -27,10 +27,10 @@ export class ClienteComponent implements OnInit {
       pais: " ",
       tipo: " ",
       tipo_legal: " ",
-      activo: " "
+      activo: ""
   }
 
-  activado:boolean = true;
+  // activado:boolean = true;
   
   constructor(
     private route: ActivatedRoute,
@@ -53,13 +53,13 @@ export class ClienteComponent implements OnInit {
     
     this.cdr.detectChanges();
     
-    if (this.cliente.activo === "Sí") {
-      this.activado = true;
-    } 
+    // if (this.cliente.activo == "Sí") {
+    //   this.activado = true;
+    // } 
     
-    if(this.cliente.activo === "No"){
-      this.activado = false;
-    }
+    // if(this.cliente.activo == "No"){
+    //   this.activado = false;
+    // }
   }
 
   cargarClienteEspecifico() {
@@ -77,18 +77,6 @@ export class ClienteComponent implements OnInit {
 
   cambiarEstado() {
 
-    // this.activado = !this.activado;
-
-    // if(this.activado == true){
-    //   this.cliente.activo = "No";
-    //   this.activado = false;
-    // } 
-
-    // if(this.activado == false){
-    //   this.cliente.activo = "Sí";
-    //   this.activado = true;
-    // } 
-
     if(this.cliente.activo === "Sí"){
       this.cliente.activo = "No";
     } else {
@@ -101,7 +89,7 @@ export class ClienteComponent implements OnInit {
       this.cdr.detectChanges();
     });
 
-    console.log(this.activado);
+    // console.log(this.activado);
 
   }
 }

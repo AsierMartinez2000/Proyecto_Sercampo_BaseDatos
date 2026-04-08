@@ -36,13 +36,15 @@
                                 <td>{{cliente.tipo_legal}}</td>
                                 <td>
                                 <div class="form-check form-switch">
-                                <!-- <input 
-                                    (click)="cambiarEstado()"
-                                    class="form-check-input" 
-                                    type="checkbox" 
-                                    [(ngModel)]="activado"> -->
-                                <button (click)="cambiarEstado()" class="btn btn-warning btn-sm">{{cliente.activo}}</button> 
-                                <label class="form-check-label"></label>
+                                  <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        role="switch"
+                                        [checked]="cliente.activo === 'Sí'"
+                                        (change)="cambiarEstado()">
+                                <label class="form-check-label" for="flexSwitchCheck{{cliente.activo}}">
+                                    {{cliente.activo}}
+                                </label>
                                 </div>
                                 </td>
                         </tr>
