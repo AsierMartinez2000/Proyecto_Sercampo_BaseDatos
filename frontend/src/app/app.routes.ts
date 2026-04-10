@@ -15,7 +15,8 @@ export const routes: Routes = [
     {path: 'nuevoCliente', component: NuevoClienteComponent, title: 'nuevoCliente'},
     {path: 'recogidas', component: RecogidasComponent, title: 'recogidas'},
     {path: 'modificar/:id_cliente', component: ModificarComponent, title: 'modificar'},
-    {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
+    // {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
+    {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'confirmado'},
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];

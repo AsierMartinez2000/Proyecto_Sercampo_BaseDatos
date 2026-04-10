@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -84,7 +83,7 @@ export class ClienteComponent implements OnInit {
       this.cdr.detectChanges();
     });
 
-    this.router.navigate(['confirmado']);
+    this.router.navigate(['confirmado',this.cliente.id_cliente]);
 
     // console.log(this.activado);
 

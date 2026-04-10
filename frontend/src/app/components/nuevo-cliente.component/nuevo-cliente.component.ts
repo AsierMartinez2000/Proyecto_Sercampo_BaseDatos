@@ -28,6 +28,8 @@ cliente_nuevo = {
     pais: ''
   };
 
+  //HAY QUE PONER ACTIVO POR DEFECTO A SI
+
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
@@ -39,21 +41,22 @@ cliente_nuevo = {
   anadirCliente(cliente_nuevo: any){
 
     if(cliente_nuevo.PointID != "" && cliente_nuevo.nombre != ""){
-    this.clienteService.anadirCliente(cliente_nuevo).subscribe({
-      next: (respuesta:any) => {
-        this.cliente_nuevo = respuesta;
-        console.log('Cliente añadido:', respuesta);
-      },
-      error: (error) => {
-        console.error('Error al añadir cliente:', error);
-      },
-      complete: () => {
-        console.log('Cliente añadido');
-      }
-    })
-    this.cdr.detectChanges();
-    this.router.navigate(['cliente', this.cliente_nuevo.id_cliente]); 
-    } else {
+      this.clienteService.anadirCliente(cliente_nuevo).subscribe({
+        next: (respuesta:any) => {
+          this.cliente_nuevo = respuesta;
+          console.log('Cliente añadido:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al añadir cliente:', error);
+        },
+        complete: () => {
+          console.log('Cliente añadido');
+        }
+      })
+      this.cdr.detectChanges();
+      this.router.navigate(['confirmado', this.cliente_nuevo.id_cliente]); 
+    } 
+    else {
       console.log("PointID y Nombre es obligatorio");
     }
   }

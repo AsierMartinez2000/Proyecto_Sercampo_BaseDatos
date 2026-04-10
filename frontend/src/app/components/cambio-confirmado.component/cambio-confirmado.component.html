@@ -1,3 +1,7 @@
 <h1>El cambio se hizo con exito</h1>
 <button class="btn btn-outline-primary btn-sm" 
         [routerLink]="['/dashboard']">Volver a Inicio</button>
+
+@if (this.nuevo_cliente == true) {
+    <button class="btn btn-outline-primary btn-sm" (click)="redirigirCliente(cliente.id_cliente)">Ir a {{cliente.nombre}}</button>
+}

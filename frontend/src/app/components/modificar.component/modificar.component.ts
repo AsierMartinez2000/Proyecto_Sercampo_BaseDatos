@@ -64,8 +64,8 @@ export class ModificarComponent implements OnInit {
   actualizarCliente(){
         this.clienteService.actualizarCliente(this.cliente).subscribe((resultado:any) =>{
         this.cliente = resultado;
-        this.router.navigate(['confirmado']);
   });
+  this.router.navigate(['confirmado',this.cliente.id_cliente]);
   }
 
 
