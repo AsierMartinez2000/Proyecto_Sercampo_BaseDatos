@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modificar.component',
@@ -14,7 +15,7 @@ export class ModificarComponent implements OnInit {
 
    constructor(
     private route: ActivatedRoute,
-    // private router: Router,
+    private router: Router,
     private cdr: ChangeDetectorRef,
     private clienteService: ClientesService
   ){ 
@@ -63,8 +64,7 @@ export class ModificarComponent implements OnInit {
   actualizarCliente(){
         this.clienteService.actualizarCliente(this.cliente).subscribe((resultado:any) =>{
         this.cliente = resultado;
-        console.log (resultado);
-        this.cdr.detectChanges();
+        this.router.navigate(['confirmado']);
   });
   }
 

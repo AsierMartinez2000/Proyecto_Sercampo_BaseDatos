@@ -5,6 +5,7 @@ import { ClienteComponent } from './components/cliente.component/cliente.compone
 import { NuevoClienteComponent } from './components/nuevo-cliente.component/nuevo-cliente.component';
 import { RecogidasComponent } from './components/recogidas.component/recogidas.component';
 import { ModificarComponent } from './components/modificar.component/modificar.component';
+import { CambioConfirmadoComponent } from './components/cambio-confirmado.component/cambio-confirmado.component';
 
 export const routes: Routes = [
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'nuevoCliente', component: NuevoClienteComponent, title: 'nuevoCliente'},
     {path: 'recogidas', component: RecogidasComponent, title: 'recogidas'},
     {path: 'modificar/:id_cliente', component: ModificarComponent, title: 'modificar'},
+    {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];

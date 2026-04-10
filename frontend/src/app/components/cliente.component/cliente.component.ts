@@ -55,13 +55,6 @@ export class ClienteComponent implements OnInit {
     
     this.cdr.detectChanges();
     
-    // if (this.cliente.activo == "Sí") {
-    //   this.activado = true;
-    // } 
-    
-    // if(this.cliente.activo == "No"){
-    //   this.activado = false;
-    // }
   }
 
   cargarClienteEspecifico() {
@@ -90,6 +83,8 @@ export class ClienteComponent implements OnInit {
       console.log(resultado);
       this.cdr.detectChanges();
     });
+
+    this.router.navigate(['confirmado']);
 
     // console.log(this.activado);
 
