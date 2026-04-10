@@ -30,6 +30,8 @@ export class ClienteComponent implements OnInit {
       activo: ""
   }
 
+  botonToggle:any;
+
   // activado:boolean = true;
   
   constructor(
@@ -90,6 +92,19 @@ export class ClienteComponent implements OnInit {
     });
 
     // console.log(this.activado);
+
+  }
+
+  comprobarEstado(){
+
+    const botonToggle: HTMLInputElement = document.getElementById('botonToggle') as HTMLInputElement;
+    
+    // Verificar el valor de cliente.activo y actualizar el checkbox
+    if (this.cliente.activo === 'Sí') {
+        botonToggle.checked = true;
+    } else {
+        botonToggle.checked = false;
+    }
 
   }
 }
