@@ -15,11 +15,16 @@
 }
 
 
-
+/* El componente que llamamos*/
 .router{
     overflow: hidden;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+
+
         
 }
+
 
 .sidebar{
 
