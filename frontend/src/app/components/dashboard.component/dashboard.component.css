@@ -1,7 +1,7 @@
 .dashboard{
-    display: block;
+    /* display: block;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 h1{
     text-align: center;
@@ -10,7 +10,6 @@ h1{
 button{
     
     width: 175px;
-    /* background-color: rgb(212, 248, 246); */
     font-weight: bold;
     border-radius: 5px;
 }
@@ -29,9 +28,9 @@ button{
 
 
 .tabla{
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
    
 }
 th{

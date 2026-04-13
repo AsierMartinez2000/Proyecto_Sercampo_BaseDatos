@@ -1,7 +1,7 @@
 <div class="dashboard">
     <h1>Clientes Sercampo</h1>
     
-        <div class="container-md">
+       
             <div class="buscador ">
                 <input  class="form-control " type="text" [(ngModel)]="cliente.dato" (keyup)="cargarClientesGeneral()" placeholder="Cliente"/>
                 <button class="btn btn-outline-primary" type="button" (click)="seleccionarTipo('Horeca')" [class.active]="active === 'Horeca'">HORECA</button>
@@ -48,5 +48,5 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        
 </div>

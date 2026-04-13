@@ -5,12 +5,14 @@
     
 }
 
+
+
 .router{
-    border: 2px solid red;
- 
+    overflow: hidden;
+        
 }
 
 .sidebar{
-    border: 2px solid green;
-    /* position: sticky; */
+
+    
 }

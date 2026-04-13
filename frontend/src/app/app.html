@@ -7,18 +7,22 @@
      <div class="sidebar">
           <app-sidebar></app-sidebar>
      </div>
-     <div class="router">
-         <router-outlet></router-outlet>
-         <!-- Añadiremos un footer o no -->
-         
-         <!-- La vista varía en función de si el usuario ha iniciado sesión o no, 
-              Esto se hará con un método en app.ts que comprobaá el estado del usuario 
-              y desde aquí mostrareos un componente u otro
+     <div class="container-md">
           
-                   Componente Login: para que el usuario se loguee
-                   Si ya e ha iniciado sesión si mostraremos el app-nav y el router-outlet y el app-footer
-                   
-                   -->
+          <div class="router">
+              <router-outlet></router-outlet>
+              <!-- Añadiremos un footer o no -->
+              
+              <!-- La vista varía en función de si el usuario ha iniciado sesión o no, 
+                   Esto se hará con un método en app.ts que comprobaá el estado del usuario 
+                   y desde aquí mostrareos un componente u otro
+               
+                        Componente Login: para que el usuario se loguee
+                        Si ya e ha iniciado sesión si mostraremos el app-nav y el router-outlet y el app-footer
+                        
+                        -->
+          </div>
+          
      </div>
 </div>
 
