@@ -1,5 +1,9 @@
-
-h3, button{
+.dashboard{
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+h1{
     text-align: center;
 }
 

@@ -1,11 +1,14 @@
 <div class="main-container">
+    <div class="logo-sercampo">
+        <a [routerLink]="['/dashboard']"><img src="../../../logo.jpg" alt="logo-sercampo"></a>
+    </div>
     <nav class="navbar">
         <ul>
-            <li><button class="btn btn-outline-primary btn-sm" 
+            <li><button class="btn btn-primary btn-sm" 
                         [routerLink]="['/dashboard']">Inicio</button></li>      
-            <li><button class="btn btn-outline-primary btn-sm" 
+            <li><button class="btn btn-primary btn-sm" 
                         [routerLink]="['/nuevoCliente']">Nuevo Cliente</button></li>      
-            <li><button class="btn btn-outline-primary btn-sm" 
+            <li><button class="btn btn-primary btn-sm" 
                         [routerLink]="['/recogidas']">Recogidas</button></li>      
         </ul>
     </nav>

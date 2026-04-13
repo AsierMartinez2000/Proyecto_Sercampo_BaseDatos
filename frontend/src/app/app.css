@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-
 .main{
-    padding: 4em;
-    margin-left: 15em;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    
+}
+
+.router{
+    border: 2px solid red;
+ 
 }
 
 .sidebar{
-    position: sticky;
+    border: 2px solid green;
+    /* position: sticky; */
 }
