@@ -1,10 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    font-family: 'Montserrat';
-    font-size: 1.5vh;
-}
-
-
 
 /* Todos los componentes, tanto el sidebar como el que llamemos */
 .main{
@@ -17,9 +11,9 @@
 
 /* El componente que llamamos*/
 .router{
-    overflow: hidden;
     padding-top: 8vh;
     padding-bottom: 8vh;
+    overflow: hidden;
 
 
         
@@ -28,7 +22,7 @@
 
 .sidebar{
 
-
     
 }
+
 

@@ -39,12 +39,3 @@
     height: 5vh;
 }
 
-.btn-primary:hover{
-    background-color: #ff8f50;
-  
-}
-
-.btn-primary {
-    border: none;
-    background-color: #4d5b9f;
-}

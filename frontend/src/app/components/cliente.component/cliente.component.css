@@ -1,9 +1,3 @@
-h1{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1em;
-}
-
 /* Para switch de Bootstrap */
 .form-switch .form-check-input:checked {
   background-color: #28a745;  /* Verde */

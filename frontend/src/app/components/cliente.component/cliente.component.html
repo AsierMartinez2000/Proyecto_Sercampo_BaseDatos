@@ -1,29 +1,29 @@
 <h1>{{cliente.nombre}}</h1>
    
-    <div class="dashboard container-md">
+    <div class="dashboard">
 
         <div class="tabla">
             
             <table class="table">
                 <thead>
                     <tr>
-                            <th class="table-primary">ID Contenedor</th>
-                            <th class="table-primary">PointID Cliente</th>
-                            <th class="table-primary">Nombre Cliente</th>
-                            <th class="table-primary">CIF Cliente</th>
+                            <!-- <th class="table-primary">ID Contenedor</th> -->
+                            <th class="table-primary">PointID </th>
+                            <th class="table-primary">Nombre</th>
+                            <th class="table-primary">CIF</th>
                             <th class="table-primary">Telefono</th>
-                            <th class="table-primary">Codigo Postal</th>
+                            <th class="table-primary">CP</th>
                             <th class="table-primary">Direccion</th>
                             <th class="table-primary">Localidad</th>
                             <th class="table-primary">Provincia</th>
-                            <th class="table-primary">Tipo Contenedor</th>
+                            <th class="table-primary">Contenedor</th>
                             <th class="table-primary">Tipo Legal</th>
                             <th class="table-primary">Activo</th>
                     </tr>
                 </thead>
                 <tbody>
                         <tr class="table-ligth">
-                                <td>{{cliente.id_contenedor}}</td>
+                                <!-- <td>{{cliente.id_contenedor}}</td> -->
                                 <td>{{cliente.PointID}}</td>
                                 <td>{{cliente.nombre}}</td>
                                 <td>{{cliente.cif}}</td>
@@ -52,7 +52,7 @@
                         </tr>
                 </tbody>
             </table>
-            <button (click)="modificarCliente()" class="btn btn-warning btn-sm">Modificar Cliente</button> 
+            <button (click)="modificarCliente()" class="btn btn-danger btn-sm mt-4">Modificar Cliente</button> 
         </div>
     </div>
 

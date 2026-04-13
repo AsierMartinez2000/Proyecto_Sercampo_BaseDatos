@@ -20,6 +20,11 @@
   font-style: normal;
 }
 
+/* ESTILOS GENERALES */
+*{
+    font-family: 'Montserrat';
+}
+
 
 /* TITULOS */
 
@@ -28,3 +33,48 @@ h1 {
   font-weight: 800;
   text-align: center;
 }
+
+/* TABLAS */
+table{
+  margin-top: 2vh;
+}
+
+thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.table th{
+  background-color: #ff8f50;
+}
+
+/* BOTONES */
+.btn-sercampo {
+  border: none;
+  background-color: #4d5b9f;
+  color:white
+}
+.btn-sercampo:hover{
+  background-color: #ff8f50;
+  color:white
+}
+
+.btn-filtro{
+  background-color: #4d5b9f;
+  color: white;
+}
+
+.btn-filtro:hover{
+  background-color: white;
+  color: #4d5b9f;
+  border: 1px solid #4d5b9f;
+}
+.btn-filtro.active{
+  background-color: #ff90507c;
+  color: black;
+  border: white;
+}
+
