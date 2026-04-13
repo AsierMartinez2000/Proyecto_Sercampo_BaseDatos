@@ -1,18 +1,9 @@
 .dashboard{
-    /* display: block;
-    justify-content: center;
-    align-items: center; */
-}
-h1{
+    border: 2px rgb(248, 104, 1) solid;
     text-align: center;
 }
 
-button{
-    
-    width: 175px;
-    font-weight: bold;
-    border-radius: 5px;
-}
+
 
 .buscador{
    display: flex;
@@ -23,23 +14,6 @@ button{
    padding-top: 1em;
    padding-bottom: 1em;
    
-}
-
-
-
-.tabla{
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-   
-}
-th{
-    padding: 10px;
-    /* background-color: lightblue; */
-}
-td{
-    padding: 5px;
-    /* background-color: rgba(173, 216, 230, 0.212); */
 }
 
 

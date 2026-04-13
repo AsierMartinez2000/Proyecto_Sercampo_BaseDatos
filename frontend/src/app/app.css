@@ -4,7 +4,11 @@
     font-size: 1.5vh;
 }
 
+
+
+/* Todos los componentes, tanto el sidebar como el que llamemos */
 .main{
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 7fr;
     
@@ -18,6 +22,7 @@
 }
 
 .sidebar{
+
 
     
 }
