@@ -2,8 +2,6 @@
     text-align: center;
 }
 
-
-
 .buscador{
    display: flex;
    flex-direction: row;
@@ -14,6 +12,7 @@
    padding-bottom: 1em;
    
 }
+
 
 
 
