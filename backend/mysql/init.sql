@@ -164,6 +164,8 @@ CREATE TABLE recogidas (
         litros_recogidos INT NOT NULL,
         visitado BOOLEAN,
         recogida BOOLEAN,
+        bidones_recogidos INT,
+        bidones_entregados INT,
         notas VARCHAR(255),
         FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor) ON DELETE SET NULL,
         FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta) ON DELETE RESTRICT
