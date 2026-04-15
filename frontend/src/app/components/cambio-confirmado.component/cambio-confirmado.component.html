@@ -1,7 +1,14 @@
-<h1>El cambio se hizo con exito</h1>
-<button class="btn btn-outline-primary btn-sm" 
-        [routerLink]="['/dashboard']">Volver a Inicio</button>
+<h1>El cambio se hizo con éxito</h1>
 
-@if (this.nuevo_cliente == true) {
-    <button class="btn btn-outline-primary btn-sm" (click)="redirigirCliente(cliente.id_cliente)">Ir a {{cliente.nombre}}</button>
-}
+<div class="emoji">
+    <p>&#129400;</p>
+
+</div>
+
+<div class="botones">
+    <button class="btn btn-sercampo btn-md" 
+            [routerLink]="['/dashboard']">Volver a Inicio</button>
+    @if (this.nuevo_cliente == true) {
+        <button class="btn btn-sercampo btn-md" (click)="redirigirCliente(cliente.id_cliente)">Ir a {{cliente.nombre}}</button>
+    }
+</div>

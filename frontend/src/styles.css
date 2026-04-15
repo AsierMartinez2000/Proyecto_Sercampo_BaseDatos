@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+/* En este CSS ajustaremos los estilos generales del proyecto */
+
+/* FUENTES DEL PROYECTO */
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat-Italic.ttf") format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: italic; /* Italic */
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}
+
+/* ESTILOS GENERALES */
+*{
+    font-family: 'Montserrat';
+}
+
+
+/* TITULOS */
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  text-align: center;
+}
+
+h4{
+    font-weight: bold;
+}
+
+/*ESTILOS RELACIONADOS CON LAS TABLAS */
+table{
+  margin-top: 2vh;
+  
+}
+
+thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.table th{
+  background-color: #ff8f50;
+  text-wrap: nowrap;
+}
+
+.table td{
+  border-right: 1px solid rgb(241, 241, 241);
+  border-bottom: 2px solid #4d5b9f41;
+}
+
+/* Esto es el hover de las filas de las tablas */
+.fila-tabla:hover td{
+  background-color: #ff905027;
+  cursor: pointer;
+}
+
+
+/* FORMULARIOS */
+
+/* Etiquetas de formularios*/
+label{
+    font-weight: bold;
+}
+
+
+
+/* BOTONES */
+.btn-sercampo {
+  border: none;
+  background-color: #4d5b9f;
+  color:white
+}
+.btn-sercampo:hover{
+  background-color: #ff8f50;
+  color:white
+}
+
+.btn-filtro{
+  background-color: #4d5b9f;
+  color: white;
+}
+
+.btn-filtro:hover{
+  background-color: white;
+  color: #4d5b9f;
+  border: 1px solid #4d5b9f;
+}
+.btn-filtro.active{
+  background-color: #ff90507c;
+  color: black;
+  border: white;
+}
+
+

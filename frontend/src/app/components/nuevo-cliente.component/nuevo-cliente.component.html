@@ -1,30 +1,10 @@
-<h3>Nuevo Cliente</h3>
+<h1>Nuevo Cliente</h1>
 
 <form (ngSubmit)="anadirCliente(this.cliente_nuevo)">
-  <!-- <input type="text" class="form-control" [(ngModel)]="this.cliente_nuevo.tipo_contenedor" name="tipo_contenedor" required> -->
-
-  <div class="form-floating mt-3 mb-3">
-    <select
-      class="form-select"
-      id="floatingSelect"
-      [(ngModel)]="cliente_nuevo.tipo_contenedor"
-      name="tipo_contenedor"
-    >
-      <option value="" disabled selected>Selecciona tipo contenedor</option>
-      <option value="Urbanoil">Urbanoil</option>
-      <option value="Interoil">Interoil</option>
-      <option value="Bidón">Bidón</option>
-      <option value="Soterrado">Soterrado</option>
-      <option value="Horecoil">Horecoil</option>
-      <option value="Conteroil">Conteroil</option>
-      <option value="Box">Box</option>
-      <option value="Repsol">Repsol</option>
-    </select>
-    <label for="floatingSelect">Tipo Contenedor</label>
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">PointID</label>
+  <h4>Datos Cliente</h4>
+  <!-- POINT-ID -->
+    <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">PointID</span>
     <input
       type="text"
       class="form-control"
@@ -34,8 +14,9 @@
     />
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Nombre</label>
+  <!-- NOMBRE -->
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Nombre</span>
     <input
       type="text"
       class="form-control"
@@ -44,92 +25,123 @@
       required
     />
   </div>
+ 
+  <!-- CIF Y TELEFONO -->
+  <div class="row mt-3 mb-3">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">CIF</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.cif_cliente"
+        name="cif_cliente"
+      />
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">CIF</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.cif_cliente"
-      name="cif_cliente"
-    />
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Teléfono</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.telefono_cliente"
+        name="telefono_cliente"
+      />
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Teléfono</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.telefono_cliente"
-      name="telefono_cliente"
-    />
-  </div>
+  <!-- TIPO CONTENEDOR Y TIPO LEGAL -->
+   <div class="row mt-3 mb-3">
 
-  <!-- <textarea class="form-control" [(ngModel)]="cliente_nuevo.tipo_legal" name="tipo_legal" rows="3"></textarea> -->
-  <div class="form-floating mt-3 mb-3">
-    <select
-      class="form-select"
-      id="floatingSelect"
-      [(ngModel)]="cliente_nuevo.tipo_legal"
-      name="tipo_legal"
-      required
-    >
-      <option value="" disabled selected>Selecciona tipo legal</option>
-      <option value="Horeca">Horeca</option>
-      <option value="EESS Repsol">EESS Repsol</option>
-      <option value="Contenedor">Contenedor</option>
-    </select>
-    <label for="floatingSelect">Tipo legal</label>
-  </div>
+     <div class="col mb-3">
+       <h4 for="floatingSelect">Tipo Contenedor</h4>
+       <select
+         class="form-select"
+         id="floatingSelect"
+         [(ngModel)]="cliente_nuevo.tipo_contenedor"
+         name="tipo_contenedor"
+       >
+         <option value="" disabled selected>Selecciona tipo contenedor</option>
+         <option value="Urbanoil">Urbanoil</option>
+         <option value="Interoil">Interoil</option>
+         <option value="Bidón">Bidón</option>
+         <option value="Soterrado">Soterrado</option>
+         <option value="Horecoil">Horecoil</option>
+         <option value="Conteroil">Conteroil</option>
+         <option value="Box">Box</option>
+         <option value="Repsol">Repsol</option>
+       </select>
+     </div>
+   
+     <div class="col mb-3">
+       <h4 for="floatingSelect">Tipo legal</h4>
+       <select
+         class="form-select"
+         id="floatingSelect"
+         [(ngModel)]="cliente_nuevo.tipo_legal"
+         name="tipo_legal"
+         required
+       >
+         <option value="" disabled selected>Selecciona tipo legal</option>
+         <option value="Horeca">Horeca</option>
+         <option value="EESS Repsol">EESS Repsol</option>
+         <option value="Contenedor">Contenedor</option>
+       </select>
+     </div>
+   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Dirección</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.direccion"
-      name="direccion"
-      required
-    />
+  <h4>Dirección</h4>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.direccion"
+        name="direccion"
+        required
+      />
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label">Código Postal</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.cod_postal"
-      name="cod_postal"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Localidad</label>
-    <input
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Localidad</span>
+      <input
       type="text"
       class="form-control"
       [(ngModel)]="cliente_nuevo.localidad"
       name="localidad"
       required
-    />
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.cod_postal"
+        name="cod_postal"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.provincia"
+        name="provincia"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.pais" name="pais" required />
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label">Provincia</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.provincia"
-      name="provincia"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Pais</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.pais" name="pais" required />
-  </div>
-
-  <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+ 
+  <button type="submit" class="btn btn-danger">Guardar Nuevo Cliente</button>
 </form>
+
+<!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
+<form class="contenedor"></form>
+<form class="eess"></form>
