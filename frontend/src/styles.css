@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/* En este CSS ajustaremos los estilos generales del proyecto */
+
+/* FUENTES DEL PROYECTO */
 @font-face {
   font-family: "Montserrat";
   src: url("../public/fonts/Montserrat-Regular.ttf") format("truetype");
@@ -27,16 +29,20 @@
 
 
 /* TITULOS */
-
 h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   text-align: center;
 }
 
-/* TABLAS */
+h4{
+    font-weight: bold;
+}
+
+/*ESTILOS RELACIONADOS CON LAS TABLAS */
 table{
   margin-top: 2vh;
+  
 }
 
 thead th:first-child {
@@ -49,7 +55,29 @@ thead th:last-child {
 
 .table th{
   background-color: #ff8f50;
+  text-wrap: nowrap;
 }
+
+.table td{
+  border-right: 1px solid rgb(241, 241, 241);
+  border-bottom: 2px solid #4d5b9f41;
+}
+
+/* Esto es el hover de las filas de las tablas */
+.fila-tabla:hover td{
+  background-color: #ff905027;
+  cursor: pointer;
+}
+
+
+/* FORMULARIOS */
+
+/* Etiquetas de formularios*/
+label{
+    font-weight: bold;
+}
+
+
 
 /* BOTONES */
 .btn-sercampo {
@@ -77,4 +105,5 @@ thead th:last-child {
   color: black;
   border: white;
 }
+
 
