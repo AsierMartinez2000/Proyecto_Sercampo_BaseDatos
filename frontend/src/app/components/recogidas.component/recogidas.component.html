@@ -7,15 +7,12 @@
   <button class="btn btn-outline-secondary sm">RECOGIDA EESS</button>
 </div>
 
-<form class="horeca">
+<!-- FORMULARIO RECOGIDA HORECA -->
+<form class="horeca" id="horeca">
   <h4>Datos Cliente</h4>
   <div class="mb-3">
-    <input type="text" class="form-control" name="Establecimiento" placeholder="Establecimiento" />
+    <input type="text" class="form-control" name="nombre" placeholder="Nombre Establecimiento" />
   </div>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="municipio" placeholder="Municipio" />
-  </div>
-
   <div class="row mt-3 mb-3">
     <div class="col mb-3">
       <input type="text" class="form-control" name="cif" placeholder="CIF" />
@@ -24,6 +21,54 @@
       <input type="text" class="form-control" name="telefono" placeholder="Teléfono" />
     </div>
   </div>
+     <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input
+        type="text"
+        class="form-control"
+        name="direccion"
+        required
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input
+      type="text"
+      class="form-control"
+      name="municipio"
+      required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input
+        type="text"
+        class="form-control"
+        name="cod_postal"
+        required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input
+        type="text"
+        class="form-control"
+        name="provincia"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" name="pais" required />
+    </div>
+  </div>
+
+  
   <div class="mb-3 w-25">
     <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
   </div>
@@ -170,6 +215,183 @@
   <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
 </form>
 
+<br><br><br>
 <!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
-<form class="contenedor"></form>
-<form class="eess"></form>
+<!-- FORMULARIO RECOGIDA CONTENEDOR -->
+<form class="contenedor" id="contenedor">
+  <h4>Datos Contenedor</h4>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="nombre" value="Contenedor Vía Pública" disabled />
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <input type="text" class="form-control" name="cif" value="B16249906" disabled />
+    </div>
+    <div class="col mb-3">
+      <input type="text" class="form-control" name="telefono" value="969240610" disabled  />
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input
+        type="text"
+        class="form-control"
+        name="direccion"
+        required
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input
+      type="text"
+      class="form-control"
+      name="municipio"
+      required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input
+        type="text"
+        class="form-control"
+        name="cod_postal"
+        required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input
+        type="text"
+        class="form-control"
+        name="provincia"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" name="pais" required />
+    </div>
+  </div>
+
+  
+  <div class="mb-3 w-25">
+    <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
+    <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Contenedores Recogidos</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Contenedores Entregados</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
+</form>
+<br><br><br>
+<!-- FORMULARIO RECOGIDA EESS -->
+<form class="eess" id="eess">
+  <h4>Datos EESS</h4>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="codigo_eess"  placeholder="Código EESS" />
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="nombre"  placeholder="Establecimiento" />
+  </div>
+ 
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input
+        type="text"
+        class="form-control"
+        name="direccion"
+        required
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input
+      type="text"
+      class="form-control"
+      name="municipio"
+      required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input
+        type="text"
+        class="form-control"
+        name="cod_postal"
+        required
+      />
+    </div>
+    
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input
+        type="text"
+        class="form-control"
+        name="provincia"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" name="pais" required />
+    </div>
+  </div>
+
+  <div class="mb-3 w-25">
+    <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Bidones Recogidos</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Bidones Entregados</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
+
+</form>
+<br><br><br>
