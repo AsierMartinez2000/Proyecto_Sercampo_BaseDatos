@@ -23,7 +23,7 @@ cliente_nuevo = {
     tipo_legal: '',
     direccion: '',
     cod_postal: '',
-    localidad: '',
+    municipio: '',
     provincia: '',
     pais: ''
   };

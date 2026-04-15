@@ -19,11 +19,11 @@ class municipioModel{
             
             $sql = "SELECT id_municipio 
                     FROM municipios
-                    WHERE localidad = :localidad AND provincia = :provincia";
+                    WHERE municipio = :municipio AND provincia = :provincia";
             
             $stmt = $this->db->prepare($sql);
             
-            $stmt->bindParam(':localidad', $datos['localidad'], PDO::PARAM_STR);
+            $stmt->bindParam(':municipio', $datos['municipio'], PDO::PARAM_STR);
             $stmt->bindParam(':provincia', $datos['provincia'], PDO::PARAM_STR);
             
             $stmt->execute();
@@ -33,12 +33,12 @@ class municipioModel{
             if($resultado && isset($resultado['id_municipio'])){
                 $id_municipio = $resultado['id_municipio']; 
             } else {
-                $sql2 = "INSERT INTO municipios (localidad, provincia, pais, id_zona)
-                        VALUES (:localidad, :provincia, :pais, null)";
+                $sql2 = "INSERT INTO municipios (municipio, provincia, pais, id_zona)
+                        VALUES (:municipio, :provincia, :pais, null)";
                 
                 $stmt = $this->db->prepare($sql2);
                 
-                $stmt->bindParam(':localidad', $datos['localidad'], PDO::PARAM_STR);
+                $stmt->bindParam(':municipio', $datos['municipio'], PDO::PARAM_STR);
                 $stmt->bindParam(':provincia', $datos['provincia'], PDO::PARAM_STR);
                 $stmt->bindParam(':pais', $datos['pais'], PDO::PARAM_STR);
                 
