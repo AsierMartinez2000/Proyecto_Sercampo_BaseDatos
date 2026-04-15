@@ -11,4 +11,17 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './recogidas.component.html',
   styleUrl: './recogidas.component.css',
 })
-export class RecogidasComponent {}
+export class RecogidasComponent {
+
+  active = "horeca";
+
+  //este método es para que el boton de "HORECA" "RESPOL", "CONTENEDOR" se quede marcado y mostrar el formulario correspondiente
+  seleccionarTipo(tipo: any) {
+    this.active = tipo;
+    
+    
+
+  }
+
+
+}

@@ -2,396 +2,399 @@
 <h1>Recogidas</h1>
 
 <div class="botones container mt-3 mb-3">
-  <button class="btn btn-outline-secondary sm me-3">RECOGIDA HORECA</button>
-  <button class="btn btn-outline-secondary sm me-3">RECOGIDA CONTENEDOR</button>
-  <button class="btn btn-outline-secondary sm">RECOGIDA EESS</button>
+  <button class="btn btn-filtro sm me-3" (click)="seleccionarTipo('horeca')" [class.active]="active === 'horeca'">RECOGIDA HORECA</button>
+  <button class="btn btn-filtro sm me-3" (click)="seleccionarTipo('contenedor')" [class.active]="active === 'contenedor'">RECOGIDA CONTENEDOR</button>
+  <button class="btn btn-filtro sm" (click)="seleccionarTipo('eess')" [class.active]="active === 'eess'">RECOGIDA EESS</button>
 </div>
 
 <!-- FORMULARIO RECOGIDA HORECA -->
-<form class="horeca" id="horeca">
-  <h4>Datos Cliente</h4>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="nombre" placeholder="Nombre Establecimiento" />
-  </div>
-  <div class="row mt-3 mb-3">
-    <div class="col mb-3">
-      <input type="text" class="form-control" name="cif" placeholder="CIF" />
-    </div>
-    <div class="col mb-3">
-      <input type="text" class="form-control" name="telefono" placeholder="Teléfono" />
-    </div>
-  </div>
+ @if(active == "horeca") {
+   <form class="horeca" id="horeca">
+     <h4>Datos Cliente</h4>
+     <div class="mb-3">
+       <input type="text" class="form-control" name="nombre" placeholder="Nombre Establecimiento" />
+     </div>
+     <div class="row mt-3 mb-3">
+       <div class="col mb-3">
+         <input type="text" class="form-control" name="cif" placeholder="CIF" />
+       </div>
+       <div class="col mb-3">
+         <input type="text" class="form-control" name="telefono" placeholder="Teléfono" />
+       </div>
+     </div>
+        <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Dirección</span>
+         <input
+           type="text"
+           class="form-control"
+           name="direccion"
+           required
+         />
+       </div>
+     </div>
      <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Dirección</span>
-      <input
-        type="text"
-        class="form-control"
-        name="direccion"
-        required
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Municipio</span>
-      <input
-      type="text"
-      class="form-control"
-      name="municipio"
-      required
-      />
-    </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Código Postal</span>
-      <input
-        type="text"
-        class="form-control"
-        name="cod_postal"
-        required
-      />
-    </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Provincia</span>
-      <input
-        type="text"
-        class="form-control"
-        name="provincia"
-        required
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">País</span>
-      <input type="text" class="form-control" name="pais" required />
-    </div>
-  </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Municipio</span>
+         <input
+         type="text"
+         class="form-control"
+         name="municipio"
+         required
+         />
+       </div>
+       
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Código Postal</span>
+         <input
+           type="text"
+           class="form-control"
+           name="cod_postal"
+           required
+         />
+       </div>
+       
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Provincia</span>
+         <input
+           type="text"
+           class="form-control"
+           name="provincia"
+           required
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">País</span>
+         <input type="text" class="form-control" name="pais" required />
+       </div>
+     </div>
+   
+     
+     <div class="mb-3 w-25">
+       <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
+     </div>
+   
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text  span_contenedor">Bidones Recogidos</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text  span_contenedor">Bidones Entregados</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+   
+     <h4>Productos</h4>
+   
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Desengrasantes</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Limpiacristales</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Fregasuelos</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Lejías</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+   
+     <div class="row">
+   
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Jabón de manos</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Bayetas</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+   
+     <div class="row">
+   
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Lavavajillas</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Higienizantes</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+   
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">WC baños</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Filtros</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+   
+     </div>
+     <div class="col input-group input-group-sm mb-3">
+       <span class="input-group-text">Dinero</span>
+       <input
+         type="number"
+         class="form-control"
+         aria-label="Sizing example input"
+         aria-describedby="inputGroup-sizing-sm"
+       />
+     </div>
+   </form>
+ }
 
-  
-  <div class="mb-3 w-25">
-    <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
-  </div>
-
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Bidones Recogidos</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Bidones Entregados</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-
-  <h4>Productos</h4>
-
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Desengrasantes</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Limpiacristales</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Fregasuelos</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Lejías</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Jabón de manos</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Bayetas</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Lavavajillas</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Higienizantes</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">WC baños</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Filtros</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-
-  </div>
-  <div class="col input-group input-group-sm mb-3">
-    <span class="input-group-text">Dinero</span>
-    <input
-      type="number"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-sm"
-    />
-  </div>
-  <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
-</form>
-
-<br><br><br>
 <!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
 <!-- FORMULARIO RECOGIDA CONTENEDOR -->
-<form class="contenedor" id="contenedor">
-  <h4>Datos Contenedor</h4>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="nombre" value="Contenedor Vía Pública" disabled />
-  </div>
-  <div class="row mt-3 mb-3">
-    <div class="col mb-3">
-      <input type="text" class="form-control" name="cif" value="B16249906" disabled />
-    </div>
-    <div class="col mb-3">
-      <input type="text" class="form-control" name="telefono" value="969240610" disabled  />
-    </div>
-  </div>
- 
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Dirección</span>
-      <input
-        type="text"
-        class="form-control"
-        name="direccion"
-        required
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Municipio</span>
-      <input
-      type="text"
-      class="form-control"
-      name="municipio"
-      required
-      />
-    </div>
+ @if(active == "contenedor"){
+   <form class="contenedor" id="contenedor">
+     <h4>Datos Contenedor</h4>
+     <div class="mb-3">
+       <input type="text" class="form-control" name="nombre" value="Contenedor Vía Pública" disabled />
+     </div>
+     <div class="row mt-3 mb-3">
+       <div class="col mb-3">
+         <input type="text" class="form-control" name="cif" value="B16249906" disabled />
+       </div>
+       <div class="col mb-3">
+         <input type="text" class="form-control" name="telefono" value="969240610" disabled  />
+       </div>
+     </div>
     
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Código Postal</span>
-      <input
-        type="text"
-        class="form-control"
-        name="cod_postal"
-        required
-      />
-    </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Provincia</span>
-      <input
-        type="text"
-        class="form-control"
-        name="provincia"
-        required
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">País</span>
-      <input type="text" class="form-control" name="pais" required />
-    </div>
-  </div>
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Dirección</span>
+         <input
+           type="text"
+           class="form-control"
+           name="direccion"
+           required
+         />
+       </div>
+     </div>
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Municipio</span>
+         <input
+         type="text"
+         class="form-control"
+         name="municipio"
+         required
+         />
+       </div>
+       
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Código Postal</span>
+         <input
+           type="text"
+           class="form-control"
+           name="cod_postal"
+           required
+         />
+       </div>
+       
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">Provincia</span>
+         <input
+           type="text"
+           class="form-control"
+           name="provincia"
+           required
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text">País</span>
+         <input type="text" class="form-control" name="pais" required />
+       </div>
+     </div>
+   
+     
+     <div class="mb-3 w-25">
+       <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
+       <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
+     </div>
+   
+     <div class="row">
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text span_contenedor">Contenedores Recogidos</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+       <div class="col input-group input-group-sm mb-3">
+         <span class="input-group-text span_contenedor">Contenedores Entregados</span>
+         <input
+           type="number"
+           class="form-control"
+           aria-label="Sizing example input"
+           aria-describedby="inputGroup-sizing-sm"
+         />
+       </div>
+     </div>
+   </form>
+ }
 
-  
-  <div class="mb-3 w-25">
-    <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
-    <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
-  </div>
-
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Contenedores Recogidos</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Contenedores Entregados</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
-</form>
-<br><br><br>
 <!-- FORMULARIO RECOGIDA EESS -->
-<form class="eess" id="eess">
-  <h4>Datos EESS</h4>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="codigo_eess"  placeholder="Código EESS" />
-  </div>
-  <div class="mb-3">
-    <input type="text" class="form-control" name="nombre"  placeholder="Establecimiento" />
-  </div>
- 
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Dirección</span>
-      <input
+ @if(active == "eess"){
+   
+   <form class="eess" id="eess">
+    <h4>Datos EESS</h4>
+    <div class="mb-3">
+      <input type="text" class="form-control" name="codigo_eess"  placeholder="Código EESS" />
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" name="nombre"  placeholder="Establecimiento" />
+    </div>
+   
+    <div class="row">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text">Dirección</span>
+        <input
+          type="text"
+          class="form-control"
+          name="direccion"
+          required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text">Municipio</span>
+        <input
         type="text"
         class="form-control"
-        name="direccion"
+        name="municipio"
         required
-      />
+        />
+      </div>
+      
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text">Código Postal</span>
+        <input
+          type="text"
+          class="form-control"
+          name="cod_postal"
+          required
+        />
+      </div>
+      
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text">Provincia</span>
+        <input
+          type="text"
+          class="form-control"
+          name="provincia"
+          required
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text">País</span>
+        <input type="text" class="form-control" name="pais" required />
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Municipio</span>
-      <input
-      type="text"
-      class="form-control"
-      name="municipio"
-      required
-      />
+   
+    <div class="mb-3 w-25">
+      <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
     </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Código Postal</span>
-      <input
-        type="text"
-        class="form-control"
-        name="cod_postal"
-        required
-      />
-    </div>
-    
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Provincia</span>
-      <input
-        type="text"
-        class="form-control"
-        name="provincia"
-        required
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">País</span>
-      <input type="text" class="form-control" name="pais" required />
-    </div>
-  </div>
+   
+    <div class="row">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text  span_contenedor">Bidones Recogidos</span>
+        <input
+          type="number"
+          class="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text  span_contenedor">Bidones Entregados</span>
+        <input
+          type="number"
+          class="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+      </div>
+    </div>  
+  </form>
 
-  <div class="mb-3 w-25">
-    <input type="date" class="form-control" name="fecha" placeholder="Fecha"/>
-  </div>
 
-  <div class="row">
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Bidones Recogidos</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Bidones Entregados</span>
-      <input
-        type="number"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-      />
-    </div>
-  </div>
+}
 
-  <button type="submit" class="btn btn-sercampo">Guardar Recogida</button>
-
-</form>
-<br><br><br>
+<button type="submit" class="btn btn-success">Guardar Recogida</button>
