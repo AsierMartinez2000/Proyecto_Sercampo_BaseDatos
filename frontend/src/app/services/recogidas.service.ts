@@ -1,0 +1,26 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RecogidasService {
+  private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
+
+  constructor(private httpClient: HttpClient) {}
+
+  nuevaRecogida(recogida: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=nuevaRecogida`, recogida, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+
+
+
+  }
+}
