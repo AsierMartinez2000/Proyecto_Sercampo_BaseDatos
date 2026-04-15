@@ -21,7 +21,7 @@ export class ClienteComponent implements OnInit {
       telefono: " ",
       cod_postal: " ",
       direccion: " ",
-      localidad: " ",
+      municipio: " ",
       provincia: " ",
       pais: " ",
       tipo: " ",

@@ -23,7 +23,7 @@ export class CambioConfirmadoComponent implements OnInit{
       telefono: " ",
       cod_postal: " ",
       direccion: " ",
-      localidad: " ",
+      municipio: " ",
       provincia: " ",
       pais: " ",
       tipo: " ",

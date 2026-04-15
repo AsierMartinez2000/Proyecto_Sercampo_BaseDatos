@@ -13,7 +13,7 @@ class clientesModel{
 
     public function getClientes(){
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -33,7 +33,7 @@ class clientesModel{
         $tipo = $datosCliente['tipo_legal'];
         if ($tipo == ""){
 
-            $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+            $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -53,7 +53,7 @@ class clientesModel{
             return $resultado;
         } else {
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
@@ -75,7 +75,7 @@ class clientesModel{
         }
     }
     public function getClienteEspecifico($datosCliente){
-       $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.localidad, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+       $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
