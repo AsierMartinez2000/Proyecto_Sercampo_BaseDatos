@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +29,8 @@ export class ClienteComponent implements OnInit {
       activo: ""
   }
 
+  botonToggle:any;
+
   // activado:boolean = true;
   
   constructor(
@@ -53,13 +54,6 @@ export class ClienteComponent implements OnInit {
     
     this.cdr.detectChanges();
     
-    // if (this.cliente.activo == "Sí") {
-    //   this.activado = true;
-    // } 
-    
-    // if(this.cliente.activo == "No"){
-    //   this.activado = false;
-    // }
   }
 
   cargarClienteEspecifico() {
@@ -89,7 +83,22 @@ export class ClienteComponent implements OnInit {
       this.cdr.detectChanges();
     });
 
+    this.router.navigate(['confirmado',this.cliente.id_cliente]);
+
     // console.log(this.activado);
+
+  }
+
+  comprobarEstado(){
+
+    const botonToggle: HTMLInputElement = document.getElementById('botonToggle') as HTMLInputElement;
+    
+    // Verificar el valor de cliente.activo y actualizar el checkbox
+    if (this.cliente.activo === 'Sí') {
+        botonToggle.checked = true;
+    } else {
+        botonToggle.checked = false;
+    }
 
   }
 }

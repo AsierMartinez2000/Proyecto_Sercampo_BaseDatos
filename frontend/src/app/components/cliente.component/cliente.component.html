@@ -40,8 +40,10 @@
                                         class="form-check-input" 
                                         type="checkbox" 
                                         role="switch"
+                                        id = "botonToggle"
                                         [checked]="cliente.activo === 'Sí'"
-                                        (change)="cambiarEstado()">
+                                         data-bs-toggle="modal" data-bs-target="#confirmarActivo"
+                                        >
                                 <label class="form-check-label" for="flexSwitchCheck{{cliente.activo}}">
                                     {{cliente.activo}}
                                 </label>
@@ -54,3 +56,22 @@
         </div>
     </div>
 
+
+
+<div class="modal fade" id="confirmarActivo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarActivoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarActivoLabel">Guardar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Cambiar estado de {{cliente.nombre}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="comprobarEstado()" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="cambiarEstado()" class="btn btn-success" data-bs-dismiss="modal">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
