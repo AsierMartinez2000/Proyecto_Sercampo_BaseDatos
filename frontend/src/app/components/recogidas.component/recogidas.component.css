@@ -8,6 +8,7 @@ span{
     width: 22vh;
 }
 
+
 .botones{
     display: flex;
     flex-direction: row;
@@ -16,4 +17,10 @@ span{
 
 #limpiar_formulario_btn{
     margin-left: auto;
+
+}
+
+.buscador_horeca_item:hover{
+    background-color:  #4d5b9f41;
+    cursor: pointer;
 }
