@@ -8,3 +8,23 @@ span{
     width: 22vh;
 }
 
+/* justify-content
+align-items
+flex-direction
+order
+align-self
+flex-wrap
+flex-flow
+align-content */
+
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+#limpiar_formulario_btn{
+    margin-left: auto;
+
+}

@@ -17,12 +17,23 @@
     RECOGIDA CONTENEDOR
   </button>
   <button
-    class="btn btn-filtro sm"
+    class="btn btn-filtro sm me-3"
     (click)="seleccionarTipo('eess')"
     [class.active]="active === 'eess'"
   >
     RECOGIDA EESS
   </button>
+
+  <button
+    class="btn btn-danger sm"
+    (click)="seleccionarTipo('eess')"
+    [class.active]="active === 'eess'"
+    id="limpiar_formulario_btn"
+  >
+    LIMPIAR FORMULARIO
+  </button>
+
+
 </div>
 
 <!-- FORMULARIO RECOGIDA HORECA -->
@@ -69,8 +80,6 @@
           required
         />
       </div>
-    </div>
-    <div class="row">
       <div class="col input-group input-group-sm mb-3">
         <span class="input-group-text">Municipio</span>
         <input
@@ -81,6 +90,8 @@
           required
         />
       </div>
+    </div>
+    <div class="row">
 
       <div class="col input-group input-group-sm mb-3">
         <span class="input-group-text">Código Postal</span>
@@ -126,7 +137,6 @@
       />
     </div>
 
-    
     <div class="row">
       <!-- VISITADO -->
       <label for="visitado">Visitado</label>
@@ -162,41 +172,39 @@
         </div>
       </div>
     </div>
-      <!-- BIDON RECOGIDO -->
-      <label for="recogido">Recogido</label>
-      <div class="col input-group mb-2">
-        <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="recogido"
-            id="recogido_true"
-            value="true"
-            checked
-            (click)="cambiarEstadoRecogido(true)"
-            (click)="imprimirCosas()"
-          />
-          <p class="form-check-label" for="radioDefault1">Recogido</p>
-        </div>
-
-        <!-- NO Recogido -->
-        <div class="form-check ms-2">
-          <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
-          <input
-            class="form-check-input"
-            type="radio"
-            name="recogido"
-            id="recogido_false"
-            value="false"
-            (click)="cambiarEstadoRecogido(false)"
-            (click)="imprimirCosas()"
-          />
-          <p class="form-check-label" for="radioDefault2">No Recogido</p>
-        </div>
+    <!-- BIDON RECOGIDO -->
+    <label for="recogido">Recogido</label>
+    <div class="col input-group mb-2">
+      <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="recogido"
+          id="recogido_true"
+          value="true"
+          checked
+          (click)="cambiarEstadoRecogido(true)"
+          (click)="imprimirCosas()"
+        />
+        <p class="form-check-label" for="radioDefault1">Recogido</p>
       </div>
-    
 
+      <!-- NO Recogido -->
+      <div class="form-check ms-2">
+        <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
+        <input
+          class="form-check-input"
+          type="radio"
+          name="recogido"
+          id="recogido_false"
+          value="false"
+          (click)="cambiarEstadoRecogido(false)"
+          (click)="imprimirCosas()"
+        />
+        <p class="form-check-label" for="radioDefault2">No Recogido</p>
+      </div>
+    </div>
 
     <div class="row">
       <!-- LITROS RECOGIDOS -->
@@ -215,8 +223,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.bidones_recogidos"
+          name="bidones_recogidos"
         />
       </div>
       <div class="col input-group input-group-sm mb-3">
@@ -224,8 +232,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.bidones_entregados"
+          name="bidones_entregados"
         />
       </div>
     </div>
@@ -233,7 +241,14 @@
     <!-- NOTAS -->
     <div class="mb-3">
       <label for="notas">Notas</label>
-      <textarea type="textarea" class="form-control" name="notas" placeholder="Notas" rows="2">
+      <textarea
+        type="textarea"
+        class="form-control"
+        name="notas"
+        placeholder="Notas"
+        rows="2"
+        [(ngModel)]="recogida_nueva.notas"
+      >
       </textarea>
     </div>
 
@@ -245,8 +260,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.desengrasante"
+          name="desengrasante"
         />
       </div>
       <div class="col input-group input-group-sm mb-3">
@@ -254,8 +269,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.limpia_cristales"
+          name="limpia_cristales"
         />
       </div>
     </div>
@@ -265,8 +280,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.fregasuelo"
+          name="fregasuelo"
         />
       </div>
       <div class="col input-group input-group-sm mb-3">
@@ -274,8 +289,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.lejia"
+          name="lejia"
         />
       </div>
     </div>
@@ -286,8 +301,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.jabon_manos"
+          name="jabon_manos"
         />
       </div>
       <div class="col input-group input-group-sm mb-3">
@@ -295,8 +310,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.bayeta"
+          name="bayeta"
         />
       </div>
     </div>
@@ -307,8 +322,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.lavavajilla"
+          name="lavavajilla"
         />
       </div>
 
@@ -317,8 +332,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.higienizante"
+          name="higienizante"
         />
       </div>
     </div>
@@ -329,8 +344,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.wc_banos"
+          name="wc_banos"
         />
       </div>
       <div class="col input-group input-group-sm mb-3">
@@ -338,8 +353,8 @@
         <input
           type="number"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm"
+          [(ngModel)]="recogida_nueva.filtros"
+          name="filtros"
         />
       </div>
     </div>
@@ -348,8 +363,8 @@
       <input
         type="number"
         class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
+        [(ngModel)]="recogida_nueva.dinero"
+        name="dinero"
       />
     </div>
   </form>
