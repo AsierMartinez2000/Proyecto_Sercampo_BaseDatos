@@ -20,24 +20,24 @@ export class RecogidasComponent {
     id_contenedor: "",
     fecha: "",
     id_ruta: "",
-    litros_recogidos: "",
+    litros_recogidos: 0,
     visitado: true,
     recogida: true,
-    bidones_recogidos: "",
-    bidones_entregados: "",
+    bidones_recogidos: 0,
+    bidones_entregados: 0,
     notas: "",
     //datos del producto
-    desengrasante: "",
-    fregasuelo: "",
-    lavavajilla: "",
-    jabon_manos: "",
-    higienizante: "",
-    wc_banos: "",
-    limpia_cristales: "",
-    lejia: "",
-    bayeta: "",
-    filtros: "",
-    dinero: "",
+    desengrasante: 0,
+    fregasuelo: 0,
+    lavavajilla: 0,
+    jabon_manos: 0,
+    higienizante: 0,
+    wc_banos: 0,
+    limpia_cristales: 0,
+    lejia: 0,
+    bayeta: 0,
+    filtros: 0,
+    dinero: 0,
     //datos del cliente
     nombre: "",
     cif:"",
@@ -48,6 +48,10 @@ export class RecogidasComponent {
     provincia:"",
     pais:""
   };
+
+  productos_recogida = {
+    
+  }
 
   horeca_buscado = {
     nombre: "",
@@ -79,7 +83,8 @@ export class RecogidasComponent {
   }
 
   seleccionarHoreca(horeca: any) { //Este Horeca es el seleccionado dentro del array Horecas, de la lista.
-
+    
+    this.recogida_nueva.id_contenedor = horeca.id_contenedor;
     this.recogida_nueva.nombre = horeca.nombre;
     this.recogida_nueva.cif = horeca.cif;
     this.recogida_nueva.telefono = horeca.telefono;
@@ -94,11 +99,11 @@ export class RecogidasComponent {
 
   }
 
-  insertarRecogida(recogida_nueva: any) {
-    if (recogida_nueva.id_contenedor != '') {
-      this.recogidaService.nuevaRecogida(recogida_nueva).subscribe({
+  insertarRecogida() {
+
+    if (this.recogida_nueva.id_contenedor != '') {
+      this.recogidaService.nuevaRecogida(this.recogida_nueva).subscribe({
         next: (respuesta: any) => {
-          this.recogida_nueva = respuesta;
           console.log('Recogida añadida:', respuesta);
         },
         error: (error) => {
@@ -121,24 +126,24 @@ export class RecogidasComponent {
     this.recogida_nueva.id_contenedor = "",
     this.recogida_nueva.fecha = "",
     this.recogida_nueva.id_ruta = "",
-    this.recogida_nueva.litros_recogidos = "",
+    this.recogida_nueva.litros_recogidos = 0,
     this.recogida_nueva.visitado = true,
     this.recogida_nueva.recogida = true,
-    this.recogida_nueva.bidones_recogidos = "",
-    this.recogida_nueva.bidones_entregados = "",
+    this.recogida_nueva.bidones_recogidos = 0,
+    this.recogida_nueva.bidones_entregados = 0,
     this.recogida_nueva.notas = "",
     //datos del producto
-    this.recogida_nueva.desengrasante = "",
-    this.recogida_nueva.fregasuelo = "",
-    this.recogida_nueva.lavavajilla = "",
-    this.recogida_nueva.jabon_manos = "",
-    this.recogida_nueva.higienizante = "",
-    this.recogida_nueva.wc_banos = "",
-    this.recogida_nueva.limpia_cristales = "",
-    this.recogida_nueva.lejia = "",
-    this.recogida_nueva.bayeta = "",
-    this.recogida_nueva.filtros = "",
-    this.recogida_nueva.dinero = "",
+    this.recogida_nueva.desengrasante = 0,
+    this.recogida_nueva.fregasuelo = 0,
+    this.recogida_nueva.lavavajilla = 0,
+    this.recogida_nueva.jabon_manos = 0,
+    this.recogida_nueva.higienizante = 0,
+    this.recogida_nueva.wc_banos = 0,
+    this.recogida_nueva.limpia_cristales = 0,
+    this.recogida_nueva.lejia = 0,
+    this.recogida_nueva.bayeta = 0,
+    this.recogida_nueva.filtros = 0,
+    this.recogida_nueva.dinero = 0,
     //datos del cliente
     this.recogida_nueva.nombre = "",
     this.recogida_nueva.cif = "",
