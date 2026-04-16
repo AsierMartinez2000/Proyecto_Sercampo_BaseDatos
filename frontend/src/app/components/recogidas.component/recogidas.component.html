@@ -39,6 +39,15 @@
 <!-- FORMULARIO RECOGIDA HORECA -->
 @if (active == 'horeca') {
   <form class="horeca" id="horeca">
+    <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="horeca_buscado.nombre"
+        name="nombre_buscado"
+        placeholder="Buscar Horeca"
+        (keyup)="buscarHoreca()"
+      />
+
     <h4>Datos Cliente</h4>
     <div class="mb-3">
       <input

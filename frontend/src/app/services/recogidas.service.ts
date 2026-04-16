@@ -19,8 +19,17 @@ export class RecogidasService {
       }),
       withCredentials: true
     })
-
-
-
   }
+
+  traerHorecasPorNombre(datoBuscador: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerHorecasPorNombre`,datoBuscador, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
 }

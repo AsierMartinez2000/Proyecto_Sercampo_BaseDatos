@@ -26,15 +26,6 @@ export class RecogidasComponent {
     bidones_recogidos: "",
     bidones_entregados: "",
     notas: "",
-    //datos del cliente
-    nombre: "",
-    cif:"",
-    telefono: "",
-    direccion: "",
-    municipio: "",
-    cod_postal: "",
-    provincia:"",
-    pais:"",
     //datos del producto
     desengrasante: "",
     fregasuelo: "",
@@ -46,8 +37,25 @@ export class RecogidasComponent {
     lejia: "",
     bayeta: "",
     filtros: "",
-    dinero: ""  
+    dinero: "",
+    //datos del cliente
+    nombre: "",
+    cif:"",
+    telefono: "",
+    direccion: "",
+    municipio: "",
+    cod_postal: "",
+    provincia:"",
+    pais:""
   };
+
+  horeca_buscado = {
+    nombre: "",
+    municipio: "",
+    provincia: ""
+  };
+
+  horecas: any[] = [];
 
   //constructor
   constructor(
@@ -56,6 +64,18 @@ export class RecogidasComponent {
     private recogidaService: RecogidasService,
     private router: Router,
   ) {}
+
+  buscarHoreca(){
+    this.recogidaService.traerHorecasPorNombre(this.horeca_buscado).subscribe((resultado: any) => {
+      this.horecas = resultado; //Esto es el array
+      this.cdr.detectChanges();
+      console.log(resultado);
+    });
+  }
+
+  seleccionarHoreca(horeca: any) {
+
+  }
 
   insertarRecogida(recogida_nueva: any) {
     if (recogida_nueva.id_contenedor != '') {
