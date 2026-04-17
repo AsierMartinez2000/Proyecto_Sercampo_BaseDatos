@@ -1,1 +1,25 @@
-<H1>HOLA SOY RUTAS</H1>
+ <h1>Rutas</h1>
+ 
+ <form class="Buscador" id="Buscador">
+    <div class="container mt-4 mb-4">
+      <!-- Buscador -->
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          placeholder="Buscar Buscador"
+          [(ngModel)]="dato_buscado.dato"
+          (keyup)="buscarGeneral()"
+        />
+      </div>
+      <!-- Resultados -->
+      <ul class="list-group">
+        @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
+          <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
+            {{ cliente_encontrado.nombre }},  {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }}, {{ cliente_encontrado.provincia }}
+          </li>
+        }
+      </ul>
+    </div>
+  </form>
