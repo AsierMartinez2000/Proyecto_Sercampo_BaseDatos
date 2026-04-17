@@ -24,3 +24,7 @@ span{
     background-color:  #4d5b9f41;
     cursor: pointer;
 }
+
+.label_sin_negrita:hover{
+    cursor: pointer;
+}
