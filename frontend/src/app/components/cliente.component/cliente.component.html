@@ -41,11 +41,11 @@
                                         type="checkbox" 
                                         role="switch"
                                         id = "botonToggle"
-                                        [checked]="cliente.activo === 'Sí'"
+                                        [checked]="cliente.activo === 1"
                                          data-bs-toggle="modal" data-bs-target="#confirmarActivo"
                                         >
                                 <label class="form-check-label" for="flexSwitchCheck{{cliente.activo}}">
-                                    {{cliente.activo}}
+                                    {{cliente.activo ? 'Si' : 'No'}}
                                 </label>
                                 </div>
                                 </td>
@@ -63,7 +63,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="confirmarActivoLabel">Guardar Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" (click)="comprobarEstado()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         Cambiar estado de {{cliente.nombre}}

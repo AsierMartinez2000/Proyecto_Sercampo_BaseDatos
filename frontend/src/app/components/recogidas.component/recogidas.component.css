@@ -2,7 +2,25 @@ span{
     width: 19vh;
     /* background-color: #ff905057; */
 
-
-   
 }
 
+.span_contenedor{
+    width: 22vh;
+}
+
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+#limpiar_formulario_btn{
+    margin-left: auto;
+
+}
+
+.buscador_horeca_item:hover{
+    background-color:  #4d5b9f41;
+    cursor: pointer;
+}

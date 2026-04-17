@@ -40,7 +40,7 @@
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.provincia}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo_legal}}</td>
-                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.activo}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.activo ? 'Si' : 'No'}}</td>
 
                             </tr>
                         }
