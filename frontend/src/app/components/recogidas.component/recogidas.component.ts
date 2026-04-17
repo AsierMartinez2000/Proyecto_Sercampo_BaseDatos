@@ -239,36 +239,60 @@ export class RecogidasComponent {
   }
 
   limpiarFormulario() {
-    //datos del contenedor
-    ((this.recogida_nueva.id_contenedor = ''),
-      (this.recogida_nueva.fecha = ''),
-      (this.recogida_nueva.id_ruta = ''),
-      (this.recogida_nueva.litros_recogidos = 0),
-      (this.recogida_nueva.visitado = true),
-      (this.recogida_nueva.recogida = true),
-      (this.recogida_nueva.bidones_recogidos = 0),
-      (this.recogida_nueva.bidones_entregados = 0),
-      (this.recogida_nueva.notas = ''),
-      //datos del producto
-      (this.recogida_nueva.desengrasante = 0),
-      (this.recogida_nueva.fregasuelo = 0),
-      (this.recogida_nueva.lavavajilla = 0),
-      (this.recogida_nueva.jabon_manos = 0),
-      (this.recogida_nueva.higienizante = 0),
-      (this.recogida_nueva.wc_banos = 0),
-      (this.recogida_nueva.limpia_cristales = 0),
-      (this.recogida_nueva.lejia = 0),
-      (this.recogida_nueva.bayeta = 0),
-      (this.recogida_nueva.filtros = 0),
-      (this.recogida_nueva.dinero = 0),
+      //datos de horeca
+      this.recogida_nueva.id_contenedor = '',
+      this.recogida_nueva.fecha = '',
+      this.recogida_nueva.id_ruta = '',
+      this.recogida_nueva.litros_recogidos = 0,
+      this.recogida_nueva.visitado = true,
+      this.recogida_nueva.recogida = true,
+      this.recogida_nueva.bidones_recogidos = 0,
+      this.recogida_nueva.bidones_entregados = 0,
+      this.recogida_nueva.notas = '',
+      //datos del producto de Horeca
+      this.recogida_nueva.desengrasante = 0,
+      this.recogida_nueva.fregasuelo = 0,
+      this.recogida_nueva.lavavajilla = 0,
+      this.recogida_nueva.jabon_manos = 0,
+      this.recogida_nueva.higienizante = 0,
+      this.recogida_nueva.wc_banos = 0,
+      this.recogida_nueva.limpia_cristales = 0,
+      this.recogida_nueva.lejia = 0,
+      this.recogida_nueva.bayeta = 0,
+      this.recogida_nueva.filtros = 0,
+      this.recogida_nueva.dinero = 0,
+      //datos del cliente de Horeca
+      this.recogida_nueva.nombre = '',
+      this.recogida_nueva.cif = '',
+      this.recogida_nueva.telefono = '',
+      this.recogida_nueva.direccion = '',
+      this.recogida_nueva.municipio = '',
+      this.recogida_nueva.cod_postal = '',
+      this.recogida_nueva.provincia = '',
+      this.recogida_nueva.pais = '',
+
+      //datos del contenedor
+      //datos del "cliente"
+      this.cont_recogida_nueva.nombre = '',
+      this.cont_recogida_nueva.cif = '',
+      this.cont_recogida_nueva.telefono = '',
+      this.cont_recogida_nueva.direccion = '',
+      this.cont_recogida_nueva.municipio = '',
+      this.cont_recogida_nueva.cod_postal = '',
+      this.cont_recogida_nueva.provincia = '',
+      this.cont_recogida_nueva.pais = '',
+      //Datos del formulario de contenedor
+      this.cont_recogida_nueva.id_contenedor = '',
+      this.cont_recogida_nueva.fecha = '',
+      this.cont_recogida_nueva.id_ruta = '',
+      this.cont_recogida_nueva.litros_recogidos = 0,
+      this.cont_recogida_nueva.visitado = true,
+      this.cont_recogida_nueva.recogida = true,
+      this.cont_recogida_nueva.bidones_recogidos = null,
+      this.cont_recogida_nueva.bidones_entregados = null,
+      this.cont_recogida_nueva.notas = ''
+
+      //datos de EESS
       //datos del cliente
-      (this.recogida_nueva.nombre = ''),
-      (this.recogida_nueva.cif = ''),
-      (this.recogida_nueva.telefono = ''),
-      (this.recogida_nueva.direccion = ''),
-      (this.recogida_nueva.municipio = ''),
-      (this.recogida_nueva.cod_postal = ''),
-      (this.recogida_nueva.provincia = ''),
-      (this.recogida_nueva.pais = ''));
-  }
+    }
 }
