@@ -6,17 +6,19 @@ import { NuevoClienteComponent } from './components/nuevo-cliente.component/nuev
 import { RecogidasComponent } from './components/recogidas.component/recogidas.component';
 import { ModificarComponent } from './components/modificar.component/modificar.component';
 import { CambioConfirmadoComponent } from './components/cambio-confirmado.component/cambio-confirmado.component';
+import { RutasComponent } from './components/rutas.component/rutas.component';
 
 export const routes: Routes = [
 
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: DashboardComponent, title: 'Dashboard'},
+    {path: 'rutas', component: RutasComponent, title: 'Rutas'},
     {path: 'cliente/:id_cliente', component: ClienteComponent, title: 'Cliente'},
-    {path: 'nuevoCliente', component: NuevoClienteComponent, title: 'nuevoCliente'},
-    {path: 'recogidas', component: RecogidasComponent, title: 'recogidas'},
-    {path: 'modificar/:id_cliente', component: ModificarComponent, title: 'modificar'},
+    {path: 'nuevoCliente', component: NuevoClienteComponent, title: 'NuevoCliente'},
+    {path: 'recogidas', component: RecogidasComponent, title: 'Recogidas'},
+    {path: 'modificar/:id_cliente', component: ModificarComponent, title: 'Modificar'},
     // {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
-    {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'confirmado'},
+    {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'Confirmado'},
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];

@@ -1,17 +1,27 @@
 <div class="sidebar">
-    <div class="logo-sercampo">
-      <a [routerLink]="['/dashboard']"><img src="../../../logo.jpg" alt="logo-sercampo" /></a>
-    </div>
-    <nav class="navbar">
+  <div class="logo-sercampo">
+    <a [routerLink]="['/dashboard']"><img src="../../../logo.jpg" alt="logo-sercampo" /></a>
+  </div>
+  <nav class="navbar">
     <ul>
-      <li><button class="btn btn-sercampo btn-sm" [routerLink]="['/dashboard']">Inicio</button></li>
+      <li><button class="btn btn-sercampo btn-sm" [routerLink]="['/dashboard']">
+          Inicio
+        </button>
+      </li>
       <li>
         <button class="btn btn-sercampo btn-sm" [routerLink]="['/nuevoCliente']">
           Nuevo Cliente
         </button>
       </li>
       <li>
-        <button class="btn btn-sercampo btn-sm" [routerLink]="['/recogidas']">Recogidas</button>
+        <button class="btn btn-sercampo btn-sm" [routerLink]="['/recogidas']">
+          Recogidas
+        </button>
+      </li>
+      <li>
+        <button class="btn btn-sercampo btn-sm" [routerLink]="['/rutas']">
+          Rutas
+        </button>
       </li>
     </ul>
   </nav>
