@@ -10,26 +10,39 @@ session_start();
     //DASHBOARD PRINCIPAL
     class recogidasController{
 
+
+        // MÉTODOS HORECA
         public function traerHorecasPorNombre($datoBuscador){
-
             $modeloCliente = new clientesModel();
-
             $horeca = $modeloCliente->getClientePorNombre($datoBuscador);
-
             echo json_encode($horeca);
         }
 
-        public function nuevaRecogida($datosRecogida){
-
+        public function nuevaRecogidaHoreca($datosRecogida){
             $modeloRecogida = new recogidasModel();
+            $recogidaExitosa = $modeloRecogida->insertarRecogidaHoreca($datosRecogida);
+            echo json_encode($recogidaExitosa);
+        }
 
-            $recogidaExitosa = $modeloRecogida->insertarRecogida($datosRecogida);
 
+        // MÉTODOS CONTENEDOR
+        public function traerContenedorPorDato($datoBuscador){
+
+            $modeloCliente = new clientesModel();
+
+            $contenedor = $modeloCliente->getClientePorDato($datoBuscador);
+
+            echo json_encode($contenedor);
+        }
+
+        public function nuevaRecogidaContenedor($datosRecogida){
+            $modeloRecogida = new recogidasModel();
+            $recogidaExitosa = $modeloRecogida->insertarRecogidaContenedor($datosRecogida);
             echo json_encode($recogidaExitosa);
         }
 
        
-        
+        // MÉTODOS EESS
         
 
         

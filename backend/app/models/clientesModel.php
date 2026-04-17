@@ -74,6 +74,7 @@ class clientesModel{
         return $resultado;
         }
     }
+
     public function getClienteEspecifico($datosCliente){
        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
                 FROM contenedores AS con 
@@ -93,7 +94,7 @@ class clientesModel{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function comprobarCliente($datos){
 
         $id_cliente = null;
@@ -175,6 +176,32 @@ class clientesModel{
         
         return $resultado;
     }
+
+
+    public function getClientePorDato($datoBuscador){
+        
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+            WHERE (m.municipio LIKE :datoBuscador OR d.direccion LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Contenedor')
+            ORDER BY m.provincia, m.municipio";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datoBuscador['dato'] . "%";
+
+        $stmt->bindParam(':datoBuscador', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
+
 
 
 }

@@ -20,7 +20,7 @@ span{
 
 }
 
-.buscador_horeca_item:hover{
+.buscador_item:hover{
     background-color:  #4d5b9f41;
     cursor: pointer;
 }
