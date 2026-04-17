@@ -14,6 +14,15 @@ session_start();
 
             echo json_encode($datos_encontrados);
         }
+
+        public function buscadorConductor($datoConductor){
+
+            $modeloRutas = new rutasModel();
+
+            $conductores_encontrados = $modeloRutas->getConductores($datoConductor);
+
+            echo json_encode($conductores_encontrados);
+        }
         
     }
 

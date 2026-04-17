@@ -24,7 +24,15 @@ export class RutasComponent {
     dato: ''
   }
 
+  dato_conductor = {
+    nombre: ''
+  }
+
   array_buscador: any[] = [];
+
+  array_buscador_conductores: any[] = [];
+
+  rutas_guardadas: any[] = [];
 
   buscarGeneral() {
     if (this.dato_buscado.dato.length >= 3) {
@@ -41,6 +49,31 @@ export class RutasComponent {
   }
 
   meterEnRuta(cliente_encontrado:any){
+    this.rutas_guardadas.push(cliente_encontrado);
+    this.cdr.detectChanges();
+  }
+
+  buscarConductores(){
+     if (this.dato_conductor.nombre.length > 1) {
+      this.clienteService
+        .traerDatosConductores(this.dato_conductor)
+        .subscribe((resultado: any) => {
+          this.array_buscador_conductores = resultado; //Esto es el array
+          this.cdr.detectChanges();
+          console.log(resultado);
+        });
+    } else {
+      this.array_buscador_conductores = [];
+    }
+  }
+
+  limpiarPagina(){
+      
+    this.dato_buscado.dato = '';
+
+    this.array_buscador = [];
+
+    this.rutas_guardadas = [];
   }
 
 }

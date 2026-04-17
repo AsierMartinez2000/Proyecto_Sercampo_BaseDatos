@@ -1,25 +1,87 @@
- <h1>Rutas</h1>
- 
- <form class="Buscador" id="Buscador">
+<h1>Rutas</h1>
+
+<form class="Buscador" id="Buscador">
     <div class="container mt-4 mb-4">
-      <!-- Buscador -->
-      <div class="mb-3">
-        <input
-          type="text"
-          class="form-control buscador_Buscador"
-          name="nombre_buscado"
-          placeholder="Buscar Buscador"
-          [(ngModel)]="dato_buscado.dato"
-          (keyup)="buscarGeneral()"
-        />
-      </div>
-      <!-- Resultados -->
-      <ul class="list-group">
-        @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
-          <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
-            {{ cliente_encontrado.nombre }},  {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }}, {{ cliente_encontrado.provincia }}
-          </li>
-        }
-      </ul>
+        <!-- Buscador Contenedor-->
+        <div class="mb-3">
+            <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" placeholder="Buscar Lugar"
+                [(ngModel)]="dato_buscado.dato" (keyup)="buscarGeneral()" />
+        </div>
+        <!-- Resultados -->
+        <ul class="list-group">
+            @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
+            <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
+                {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }},
+                {{ cliente_encontrado.provincia }}
+            </li>
+            }
+        </ul>
     </div>
-  </form>
+    <div class="row">
+        <div class="mb-3 col">
+            <label for="conductor">Asignar Conductor</label>
+            <input type="text" class="form-control buscador_Buscador" name="nombre_buscado"
+                [(ngModel)]="dato_conductor.nombre" (click)="buscarConductores()" (keyup)="buscarConductores()" />
+            <ul class="list-group">
+                <!-- Resultados -->
+                @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+                <li class="list-group-item buscador_item">
+                    {{ conductor.nombre }}
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="mb-3 col">
+            <label for="notas">Notas</label>
+            <input type="text" class="form-control" name="notas">
+        </div>
+
+
+    </div>
+</form>
+
+<button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
+    LIMPIAR PAGINA
+</button>
+
+
+<h2>¿Donde vamos hoy?</h2>
+<div class="tabla">
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th class="table-primary">ID Contenedor</th> -->
+                <!-- <th class="table-primary">PointID</th> -->
+                <th class="table-primary">Nombre</th>
+                <th class="table-primary">CIF</th>
+                <th class="table-primary">Telefono</th>
+                <th class="table-primary">CP</th>
+                <th class="table-primary">Direccion</th>
+                <th class="table-primary">Municipio</th>
+                <th class="table-primary">Provincia</th>
+                <th class="table-primary">Contenedor</th>
+                <!-- <th class="table-primary">Tipo Legal</th> -->
+                <!-- <th class="table-primary">Activo</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            @for (cliente of rutas_guardadas; track cliente.id_cliente){
+            <tr class="table-ligth fila-tabla">
+                <!-- <td>{{cliente.id_contenedor}}</td> -->
+                <!-- <td>{{cliente.PointID}}</td> -->
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.cif}}</td>
+                <td>{{cliente.telefono}}</td>
+                <td>{{cliente.cod_postal}}</td>
+                <td>{{cliente.direccion}}</td>
+                <td>{{cliente.municipio}}</td>
+                <td>{{cliente.provincia}}</td>
+                <td>{{cliente.tipo}}</td>
+                <!-- <td>{{cliente.tipo_legal}}</td> -->
+                <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

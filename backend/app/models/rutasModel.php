@@ -35,4 +35,23 @@ class rutasModel{
         return $resultado;
     }
 
+    public function getConductores($datoConductor){
+        $sql = "SELECT id_conductor, nombre
+                FROM conductores
+                WHERE nombre LIKE :datoConductor";
+
+        $stmt = $this->db->prepare($sql);
+
+        $nombre = "%" . $datoConductor['nombre'] . "%";
+
+        $stmt->bindParam(':datoConductor', $nombre, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+
+    }
+
 }
