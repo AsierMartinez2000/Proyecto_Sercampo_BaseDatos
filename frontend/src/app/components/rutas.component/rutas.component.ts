@@ -12,12 +12,12 @@ import { ClientesService } from '../../services/clientes.service';
   styleUrl: './rutas.component.css',
 })
 export class RutasComponent {
-   constructor(
+  constructor(
     // private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private clienteService: ClientesService,
     private router: Router,
-  ) {}
+  ) { }
 
 
   dato_buscado = {
@@ -48,13 +48,13 @@ export class RutasComponent {
     }
   }
 
-  meterEnRuta(cliente_encontrado:any){
+  meterEnRuta(cliente_encontrado: any) {
     this.rutas_guardadas.push(cliente_encontrado);
     this.cdr.detectChanges();
   }
 
-  buscarConductores(){
-     if (this.dato_conductor.nombre.length > 1) {
+  buscarConductores() {
+    if (this.dato_conductor.nombre.length > 1) {
       this.clienteService
         .traerDatosConductores(this.dato_conductor)
         .subscribe((resultado: any) => {
@@ -67,8 +67,16 @@ export class RutasComponent {
     }
   }
 
-  limpiarPagina(){
-      
+  quitarCliente(id_cliente_buscado: any) {
+
+    this.rutas_guardadas = this.rutas_guardadas.filter(
+      cliente => cliente.id_contenedor !== id_cliente_buscado
+    );
+    console.log(this.rutas_guardadas);
+  }
+
+  limpiarPagina() {
+
     this.dato_buscado.dato = '';
 
     this.array_buscador = [];

@@ -60,6 +60,7 @@
                 <th class="table-primary">Municipio</th>
                 <th class="table-primary">Provincia</th>
                 <th class="table-primary">Contenedor</th>
+                <th></th>
                 <!-- <th class="table-primary">Tipo Legal</th> -->
                 <!-- <th class="table-primary">Activo</th> -->
             </tr>
@@ -77,6 +78,8 @@
                 <td>{{cliente.municipio}}</td>
                 <td>{{cliente.provincia}}</td>
                 <td>{{cliente.tipo}}</td>
+                <button class="btn btn-danger" (click)="quitarCliente(cliente.id_contenedor)">X</button>
+
                 <!-- <td>{{cliente.tipo_legal}}</td> -->
                 <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
 
