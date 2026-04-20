@@ -209,12 +209,36 @@
     <input type="number" class="form-control" [(ngModel)]="recogida_nueva.dinero" name="dinero" />
   </div>
 </form>
-<button type="submit" class="btn btn-success" (click)="insertarRecogidaHoreca()">
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarHoreca">
   Guardar Recogida
 </button>
+<!-- <button type="submit" class="btn btn-success" (click)="insertarRecogidaHoreca()">
+  Guardar Recogida
+</button> -->
+
+<!-- Modal HORECA-->
+<div class="modal fade" id="confirmarHoreca" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarHorecaLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarHorecaLabel">Confirmar Recogida</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Confirma recogida de {{recogida_nueva.nombre}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="insertarRecogidaHoreca()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 }
 
-<!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
+
 <!-- FORMULARIO RECOGIDA CONTENEDOR -->
 @if (active == 'contenedor') {
 <form class="contenedor" id="contenedor">
@@ -348,9 +372,34 @@
   </div>
 </form>
 
-<button type="submit" class="btn btn-success" (click)="insertarRecogidaContenedor()">
+<!-- <button type="submit" class="btn btn-success" (click)="insertarRecogidaContenedor()">
+  Guardar Recogida
+</button> -->
+
+
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarContenedor">
   Guardar Recogida
 </button>
+
+<!-- Modal Contenedor-->
+<div class="modal fade" id="confirmarContenedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarContenedorLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarContenedorLabel">Confirmar Recogida</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Confirma recogida de {{cont_recogida_nueva.nombre}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="insertarRecogidaContenedor()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 }
 
 <!-- FORMULARIO RECOGIDA EESS -->
@@ -480,5 +529,36 @@
       </textarea>
   </div>
 </form>
-<button type="submit" class="btn btn-success" (click)="insertarEESS()">Guardar Recogida</button>
+
+<!-- <button type="submit" class="btn btn-success" (click)="insertarEESS()">Guardar Recogida</button> -->
+
+
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarEESS">
+  Guardar Recogida
+</button>
+<!-- <button type="submit" class="btn btn-success" (click)="insertarRecogidaEESS()">
+  Guardar Recogida
+</button> -->
+
+<!-- Modal EESS-->
+<div class="modal fade" id="confirmarEESS" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarEESSLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarEESSLabel">Confirmar Recogida</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Confirma recogida de {{eess_recogida_nueva.nombre}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="insertarEESS()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 }
