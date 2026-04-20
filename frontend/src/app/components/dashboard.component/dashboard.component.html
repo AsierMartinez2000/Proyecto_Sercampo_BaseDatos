@@ -1,5 +1,6 @@
 <div class="dashboard">
     <h1>Clientes Sercampo</h1>
+    
             <div class="buscador ">
                 <input  class="form-control " type="text" [(ngModel)]="cliente.dato" (keyup)="cargarClientesGeneral()" placeholder="Cliente"/>
                 <button class="btn btn-filtro" type="button" (click)="seleccionarTipo('Horeca')" [class.active]="active === 'Horeca'">HORECA</button>
@@ -7,7 +8,7 @@
                 <button class="btn btn-filtro" type="button" (click)="seleccionarTipo('EESS Repsol')" [class.active]="active === 'EESS Repsol'">EESS</button>
                 <button class="btn btn-danger" type="button" (click)="seleccionarTipo('')">X</button>
             </div>
-            
+        
             <div class="tabla">
                 <table class="table">
                     <thead>
