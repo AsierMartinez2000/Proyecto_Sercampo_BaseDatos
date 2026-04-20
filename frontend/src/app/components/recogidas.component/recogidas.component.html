@@ -223,14 +223,20 @@
 
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+          <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
+          @if (fallo_recogida) {
+          <i class="bi bi-exclamation-circle-fill"></i>
+          Fallo en la recogida
+        } @else {
+          <i class="bi bi-check-circle-fill"></i>
+          Confirmar recogida
+        }
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          <i class="bi bi-exclamation-diamond-fill"></i>
           Asegurate de introducir la fecha y/o un HORECA correspondiente
         } @else {
           Confirma recogida de {{recogida_nueva.nombre}}
@@ -582,6 +588,7 @@
 
       <div class="modal-header">
         <h5 class="modal-title">
+          
           {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
