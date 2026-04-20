@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
 import { ViewportScroller } from '@angular/common';
+import { log } from 'console';
 
 @Component({
   selector: 'app-recogidas.component',
@@ -115,6 +116,9 @@ export class RecogidasComponent {
   // almacenar eess
   array_eess: any[] = [];
 
+  // Variable para el modal de error
+  fallo_recogida: boolean = false;
+
   //constructor
   constructor(
     // private route: ActivatedRoute,
@@ -156,7 +160,6 @@ export class RecogidasComponent {
   }
 
   insertarRecogidaHoreca() {
-    if (this.recogida_nueva.id_contenedor != '') {
       this.recogidaService.nuevaRecogidaHoreca(this.recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -170,10 +173,8 @@ export class RecogidasComponent {
       });
       this.cdr.detectChanges();
       this.limpiarFormulario();
-    } else {
-      console.log('no hay nada que recoger');
     }
-  }
+  
 
   cambiarHorecaVisitado(estado: boolean) {
     this.recogida_nueva.visitado = estado;
@@ -215,7 +216,7 @@ export class RecogidasComponent {
   }
 
   insertarRecogidaContenedor() {
-    if (this.cont_recogida_nueva.id_contenedor != '') {
+   
       this.recogidaService.nuevaRecogidaContenedor(this.cont_recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -229,9 +230,7 @@ export class RecogidasComponent {
       });
       this.cdr.detectChanges();
       this.limpiarFormulario();
-    } else {
-      console.log('no hay nada que recoger');
-    }
+     
   }
 
   cambiarContenedorVisitado(estado: boolean) {
@@ -272,7 +271,7 @@ export class RecogidasComponent {
   }
 
   insertarEESS() {
-    if (this.eess_recogida_nueva.id_contenedor != '') {
+    
       this.recogidaService.nuevaRecogidaEESS(this.eess_recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -287,10 +286,8 @@ export class RecogidasComponent {
 
       this.cdr.detectChanges();
       this.limpiarFormulario();
-    } else {
-      console.log('No hay nada que recoger');
-    }
-  }
+    } 
+  
 
   cambiarEESSVisitado(estado: boolean) {
     this.eess_recogida_nueva.visitado = estado;
@@ -388,4 +385,31 @@ export class RecogidasComponent {
       //   this.viewportScroll.scrollToPosition([0, 0]);
       // }, 50);
   }
+
+  comprobarFormularioHoreca() {
+    if (this.recogida_nueva.id_contenedor == '' || this.recogida_nueva.fecha == '') {
+      this.falloInsertar();
+    }
+  }
+  comprobarFormularioContenedor() {
+    if (this.cont_recogida_nueva.id_contenedor == '' || this.cont_recogida_nueva.fecha == '') {
+      this.falloInsertar();
+    }
+  }
+  comprobarFormularioEESS() {
+    if (this.eess_recogida_nueva.id_contenedor == '' || this.eess_recogida_nueva.fecha == '') {
+      this.falloInsertar();
+    }
+  }
+
+  falloInsertar(){
+    this.fallo_recogida = true;
+  }
+
+  cerrarFallo(){
+    setTimeout(() => {
+      this.fallo_recogida = false;
+    }, 50);
+  }
 }
+

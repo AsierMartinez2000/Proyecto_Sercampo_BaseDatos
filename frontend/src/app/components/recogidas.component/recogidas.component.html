@@ -80,7 +80,7 @@
   <!-- FECHA -->
   <div class="mb-3 w-25">
     <label for="fecha">Fecha</label>
-    <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+    <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha"/>
   </div>
 
   <div class="row">
@@ -209,7 +209,7 @@
     <input type="number" class="form-control" [(ngModel)]="recogida_nueva.dinero" name="dinero" />
   </div>
 </form>
-<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarHoreca">
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarHoreca" (click)="comprobarFormularioHoreca()">
   Guardar Recogida
 </button>
 <!-- <button type="submit" class="btn btn-success" (click)="insertarRecogidaHoreca()">
@@ -217,27 +217,43 @@
 </button> -->
 
 <!-- Modal HORECA-->
-<div class="modal fade" id="confirmarHoreca" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarHorecaLabel" aria-hidden="true">
+<div class="modal fade" id="confirmarHoreca" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title" id="confirmarHorecaLabel">Confirmar Recogida</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">
+          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
       <div class="modal-body">
-        Confirma recogida de {{recogida_nueva.nombre}}
+        @if (fallo_recogida) {
+          <i class="bi bi-exclamation-diamond-fill"></i>
+          Asegurate de introducir la fecha y/o un HORECA correspondiente
+        } @else {
+          Confirma recogida de {{recogida_nueva.nombre}}
+        }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="insertarRecogidaHoreca()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+        @if (fallo_recogida) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="insertarRecogidaHoreca()" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Recogida
+          </button>
+        }
       </div>
+
     </div>
   </div>
 </div>
 
-
 }
-
 
 <!-- FORMULARIO RECOGIDA CONTENEDOR -->
 @if (active == 'contenedor') {
@@ -377,25 +393,44 @@
 </button> -->
 
 
-<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarContenedor">
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarContenedor" (click)="comprobarFormularioContenedor()">
   Guardar Recogida
 </button>
 
-<!-- Modal Contenedor-->
-<div class="modal fade" id="confirmarContenedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarContenedorLabel" aria-hidden="true">
+
+<!-- MODAL CONTENEDOR -->
+<div class="modal fade" id="confirmarContenedor" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title" id="confirmarContenedorLabel">Confirmar Recogida</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">
+          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
       <div class="modal-body">
-        Confirma recogida de {{cont_recogida_nueva.nombre}}
+        @if (fallo_recogida) {
+          <i class="bi bi-exclamation-diamond-fill"></i>
+          Asegurate de introducir la fecha y/o un CONTENEDOR correspondiente
+        } @else {
+          Confirma recogida de {{cont_recogida_nueva.nombre}}
+        }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="insertarRecogidaContenedor()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+        @if (fallo_recogida) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="insertarRecogidaContenedor()" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Recogida
+          </button>
+        }
       </div>
+
     </div>
   </div>
 </div>
@@ -533,7 +568,7 @@
 <!-- <button type="submit" class="btn btn-success" (click)="insertarEESS()">Guardar Recogida</button> -->
 
 
-<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarEESS">
+<button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarEESS" (click)="comprobarFormularioEESS()">
   Guardar Recogida
 </button>
 <!-- <button type="submit" class="btn btn-success" (click)="insertarRecogidaEESS()">
@@ -541,20 +576,38 @@
 </button> -->
 
 <!-- Modal EESS-->
-<div class="modal fade" id="confirmarEESS" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarEESSLabel" aria-hidden="true">
+<div class="modal fade" id="confirmarEESS" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title" id="confirmarEESSLabel">Confirmar Recogida</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">
+          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+
       <div class="modal-body">
-        Confirma recogida de {{eess_recogida_nueva.nombre}}
+        @if (fallo_recogida) {
+          <i class="bi bi-exclamation-diamond-fill"></i>
+          Asegurate de introducir la fecha y/o una EESS correspondiente
+        } @else {
+          Confirma recogida de {{cont_recogida_nueva.nombre}}
+        }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="insertarEESS()" class="btn btn-success" data-bs-dismiss="modal">Guardar Recogida</button>
+        @if (fallo_recogida) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="insertarEESS()" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Recogida
+          </button>
+        }
       </div>
+
     </div>
   </div>
 </div>
@@ -562,3 +615,4 @@
 
 
 }
+
