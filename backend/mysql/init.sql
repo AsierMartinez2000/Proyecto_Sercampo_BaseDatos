@@ -14,13 +14,14 @@ USE sercampo_db;
 -- Tipo_contenedor: id_tipo_contenedor(PK), tipo, capacidad, notas
 -- Contenedores: id­_contenedor(PK), id_tipo_contenedor(FK), id_cliente(FK), tipo_legal, recogida, periodo_recogida_dias, mercancia, latitud, longitud, inicio, fin, activo
 -- Productos: id_productos(PK), tipo, coste, notas.
--- Conductores: id_conductor(PK), nombre.
+-- Conductores: id_conductor(PK), nombre, email.
 -- Zonas: id_zona(PK), nombre.
 -- Municipios: id_municipio(PK), municipio, provincia, pais, id_zona(FK).
 -- Direcciones: id_contenedor(PK FK), dirección, cod_postal, id_municipio(FK).
 -- Rutas: id_ruta(PK), id_contenedor(FK), id_conductor(FK), notas.
 -- Recogidas: id_recogida(PK), id_contenedor(FK), fecha, id_ruta(FK), litros_recogidos, visitado, recogida, notas.
 -- Productos_recogidas: id_recogida(PK FK), id_producto(PK FK), cantidad
+-- Codigos_eess: cod_eess(PK), id_cliente(FK)
 
 
 -- -----------------------------------------------------
@@ -100,6 +101,7 @@ CREATE TABLE productos (
 CREATE TABLE conductores (
         id_conductor INT PRIMARY KEY AUTO_INCREMENT,
         nombre VARCHAR(100) NOT NULL
+        email VARCHAR(255) NOT NULL
     );
 
 -- -----------------------------------------------------
@@ -183,4 +185,16 @@ CREATE TABLE productos_recogidas(
         PRIMARY KEY (id_recogida, id_producto),
         FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida) ON DELETE CASCADE,
         FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
+    );
+
+
+-- -----------------------------------------------------
+-- Tabla: Codigos_EESS
+-- -----------------------------------------------------
+CREATE TABLE codigos_eess(
+        cod_eess INT,
+        id_cliente INT,
+        PRIMARY KEY (cod_eess),
+        FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON DELETE CASCADE
+       
     );
