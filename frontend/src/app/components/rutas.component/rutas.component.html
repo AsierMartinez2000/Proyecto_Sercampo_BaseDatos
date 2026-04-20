@@ -4,8 +4,9 @@
     <div class="container mt-4 mb-4">
         <!-- Buscador Contenedor-->
         <div class="mb-3">
-            <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" placeholder="Buscar Lugar"
-                [(ngModel)]="dato_buscado.dato" (keyup)="buscarGeneral()" />
+    <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" placeholder="Buscar Lugar"
+        [(ngModel)]="dato_buscado.dato" (keyup)="buscarGeneral()" />
+  
         </div>
         <!-- Resultados -->
         <ul class="list-group">
@@ -31,21 +32,23 @@
                 }
             </ul>
         </div>
-        <div class="mb-3 col">
-            <label for="notas">Notas</label>
-            <input type="text" class="form-control" name="notas">
+        <div class="mb-3 col-3">
+            <label for="fecha">Fecha</label>
+            <input type="date" class="form-control" name="fecha">
         </div>
-
-
     </div>
+    <div class="mb-3">
+            <label for="notas">Notas</label>
+            <textarea class="form-control" name="notas" id="notas" ></textarea>
+        </div>
 </form>
 
-<button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
+<!-- <button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
     LIMPIAR PAGINA
-</button>
+</button> -->
 
 
-<h2>¿Donde vamos hoy?</h2>
+<!-- <h2>¿Donde vamos hoy?</h2> -->
 <div class="tabla">
     <table class="table">
         <thead>
@@ -60,7 +63,7 @@
                 <th class="table-primary">Municipio</th>
                 <th class="table-primary">Provincia</th>
                 <th class="table-primary">Contenedor</th>
-                <th></th>
+                
                 <!-- <th class="table-primary">Tipo Legal</th> -->
                 <!-- <th class="table-primary">Activo</th> -->
             </tr>
@@ -78,13 +81,16 @@
                 <td>{{cliente.municipio}}</td>
                 <td>{{cliente.provincia}}</td>
                 <td>{{cliente.tipo}}</td>
-                <button class="btn btn-danger" (click)="quitarCliente(cliente.id_contenedor)">X</button>
-
+                <button type="button" class="btn btn-danger btn-sm" (click)="quitarCliente(cliente.id_contenedor)"> <i class="bi bi-trash"></i></button>
+                
                 <!-- <td>{{cliente.tipo_legal}}</td> -->
                 <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
-
+                
             </tr>
             }
         </tbody>
     </table>
+    
+  
+
 </div>
