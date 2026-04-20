@@ -57,8 +57,30 @@ export class RecogidasComponent {
     litros_recogidos: 0,
     visitado: true,
     recogida: true,
-    bidones_recogidos: null, // esto igual no hace falta mostrarlo luego
-    bidones_entregados: null, // esto igual no hace falta mostrarlo luego
+    bidones_recogidos: '', // esto igual no hace falta mostrarlo luego
+    bidones_entregados: '', // esto igual no hace falta mostrarlo luego
+    notas: '',
+    //datos del cliente
+    nombre: '',
+    cif: '',
+    telefono: '',
+    direccion: '',
+    municipio: '',
+    cod_postal: '',
+    provincia: '',
+    pais: '',
+  };
+
+  eess_recogida_nueva = {
+    //datos del contenedor
+    id_contenedor: '', //estoy hay que sacarlo porque los contenedores son varios clietnes
+    fecha: '',
+    id_ruta: '',
+    litros_recogidos: 0,
+    visitado: true,
+    recogida: true,
+    bidones_recogidos: '', // esto igual no hace falta mostrarlo luego
+    bidones_entregados: '', // esto igual no hace falta mostrarlo luego
     notas: '',
     //datos del cliente
     nombre: '',
@@ -220,17 +242,67 @@ export class RecogidasComponent {
   }
 
   // MÉTODOS PARA EESS
-  buscarEESS() {}
-  seleccionarEESS(eess: any) {}
-  insertarEESS() {}
-  cambiarEESSVisitado(estado: boolean) {}
-  cambiarEESSRecogido(estado: boolean) {}
+  buscarEESS() {
+    if (this.EESS_buscado.codigo.length >= 3) {
+      this.recogidaService
+        .traerEESSPorDato(this.EESS_buscado)
+        .subscribe((resultado: any) => {
+          this.array_eess = resultado; //Esto es el array
+          this.cdr.detectChanges();
+          console.log(resultado);
+        });
+    } else {
+      this.array_eess = [];
+    }
+  }
+
+  seleccionarEESS(eess: any) {    //Este Contenedor es el seleccionado dentro del array_contenedores de la lista.
+    this.eess_recogida_nueva.id_contenedor = eess.id_contenedor;
+    this.eess_recogida_nueva.nombre = eess.nombre;
+    this.eess_recogida_nueva.cif = eess.cif;
+    this.eess_recogida_nueva.telefono = eess.telefono;
+    this.eess_recogida_nueva.direccion = eess.direccion;
+    this.eess_recogida_nueva.municipio = eess.municipio;
+    this.eess_recogida_nueva.cod_postal = eess.cod_postal;
+    this.eess_recogida_nueva.provincia = eess.provincia;
+    this.eess_recogida_nueva.pais = eess.pais;
+
+    this.EESS_buscado.codigo = '';
+    this.buscarEESS();
+  }
+
+  insertarEESS() {
+    if (this.eess_recogida_nueva.id_contenedor != '') {
+      this.recogidaService.nuevaRecogidaEESS(this.eess_recogida_nueva).subscribe({
+        next: (respuesta: any) => {
+          console.log('Recogida añadida:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al añadir recogida:', error);
+        },
+        complete: () => {
+          console.log('Recogida añadida');
+        },
+      });
+
+      this.cdr.detectChanges();
+      this.router.navigate(['dashboard']);
+    } else {
+      console.log('No hay nada que recoger');
+    }
+  }
+
+  cambiarEESSVisitado(estado: boolean) {
+    this.eess_recogida_nueva.visitado = estado;
+  }
+  cambiarEESSRecogido(estado: boolean) {
+    this.eess_recogida_nueva.recogida = estado;
+  }
 
   //MÉTODOS PARA TODOS
   //DEBUG
   imprimirCosas() {
     console.log(this.recogida_nueva);
-    console.log(this.cont_recogida_nueva);
   }
 
   //este método es para que el boton de "HORECA" "RESPOL", "CONTENEDOR" se quede marcado y mostrar el formulario correspondiente
@@ -288,11 +360,29 @@ export class RecogidasComponent {
       this.cont_recogida_nueva.litros_recogidos = 0,
       this.cont_recogida_nueva.visitado = true,
       this.cont_recogida_nueva.recogida = true,
-      this.cont_recogida_nueva.bidones_recogidos = null,
-      this.cont_recogida_nueva.bidones_entregados = null,
+      this.cont_recogida_nueva.bidones_recogidos = '',
+      this.cont_recogida_nueva.bidones_entregados = '',
       this.cont_recogida_nueva.notas = ''
 
       //datos de EESS
       //datos del cliente
+      this.eess_recogida_nueva.nombre = '',
+      this.eess_recogida_nueva.cif = '',
+      this.eess_recogida_nueva.telefono = '',
+      this.eess_recogida_nueva.direccion = '',
+      this.eess_recogida_nueva.municipio = '',
+      this.eess_recogida_nueva.cod_postal = '',
+      this.eess_recogida_nueva.provincia = '',
+      this.eess_recogida_nueva.pais = '',
+      //Datos del formulario de contenedor
+      this.eess_recogida_nueva.id_contenedor = '',
+      this.eess_recogida_nueva.fecha = '',
+      this.eess_recogida_nueva.id_ruta = '',
+      this.eess_recogida_nueva.litros_recogidos = 0,
+      this.eess_recogida_nueva.visitado = true,
+      this.eess_recogida_nueva.recogida = true,
+      this.eess_recogida_nueva.bidones_recogidos = '',
+      this.eess_recogida_nueva.bidones_entregados = '',
+      this.eess_recogida_nueva.notas = ''
     }
 }

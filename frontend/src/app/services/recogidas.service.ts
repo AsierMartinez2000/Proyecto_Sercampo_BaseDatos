@@ -54,4 +54,25 @@ export class RecogidasService {
     })
   }
 
+  traerEESSPorDato(datoBuscador: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerEESSPorDato`,datoBuscador, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  nuevaRecogidaEESS(eess: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=recogidas&action=nuevaRecogidaEESS`, eess, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
 }

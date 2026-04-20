@@ -44,7 +44,19 @@ session_start();
        
         // MÉTODOS EESS
         
+        public function traerEESSPorDato($datoBuscador){
+            $modeloCliente = new clientesModel();
 
+            $eess = $modeloCliente->getClientePorCodigoEESS($datoBuscador);
+
+            echo json_encode($eess);
+        }
+
+        public function nuevaRecogidaEESS($datosRecogida){
+            $modeloRecogida = new recogidasModel();
+            $recogidaExitosa = $modeloRecogida->insertarRecogidaEESS($datosRecogida);
+            echo json_encode($recogidaExitosa);
+        }
         
 
        

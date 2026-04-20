@@ -2,25 +2,14 @@
 
 <!-- BOTONES -->
 <div class="botones container mt-3 mb-3">
-  <button
-    class="btn btn-filtro sm me-3"
-    (click)="seleccionarTipo('horeca')"
-    [class.active]="active === 'horeca'"
-  >
+  <button class="btn btn-filtro sm me-3" (click)="seleccionarTipo('horeca')" [class.active]="active === 'horeca'">
     RECOGIDA HORECA
   </button>
-  <button
-    class="btn btn-filtro sm me-3"
-    (click)="seleccionarTipo('contenedor')"
-    [class.active]="active === 'contenedor'"
-  >
+  <button class="btn btn-filtro sm me-3" (click)="seleccionarTipo('contenedor')"
+    [class.active]="active === 'contenedor'">
     RECOGIDA CONTENEDOR
   </button>
-  <button
-    class="btn btn-filtro sm me-3"
-    (click)="seleccionarTipo('eess')"
-    [class.active]="active === 'eess'"
-  >
+  <button class="btn btn-filtro sm me-3" (click)="seleccionarTipo('eess')" [class.active]="active === 'eess'">
     RECOGIDA EESS
   </button>
 
@@ -31,763 +20,465 @@
 
 <!-- FORMULARIO RECOGIDA HORECA -->
 @if (active == 'horeca') {
-  <form class="horeca" id="horeca">
-    <div class="container mt-4 mb-4">
-      <!-- Buscador -->
-      <div class="mb-3">
-        <input
-          type="text"
-          class="form-control buscador_horeca"
-          name="nombre_buscado"
-          placeholder="Buscar Horeca"
-          [(ngModel)]="horeca_buscado.nombre"
-          (keyup)="buscarHoreca()"
-        />
-      </div>
-      <!-- Resultados -->
-      <ul class="list-group">
-        @for (horeca of horecas; track horeca.id_cliente) {
-          <li class="list-group-item buscador_item" (click)="seleccionarHoreca(horeca)">
-            {{ horeca.nombre }}, {{ horeca.municipio }}, {{ horeca.provincia }}
-          </li>
-        }
-      </ul>
-    </div>
-
-    <h4>Datos Cliente</h4>
+<form class="horeca" id="horeca">
+  <div class="container mt-4 mb-4">
+    <!-- Buscador -->
     <div class="mb-3">
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="recogida_nueva.nombre"
-        name="nombre"
-        placeholder="Nombre Establecimiento"
-        disabled
-      />
+      <input type="text" class="form-control buscador_horeca" name="nombre_buscado" placeholder="Buscar Horeca"
+        [(ngModel)]="horeca_buscado.nombre" (keyup)="buscarHoreca()" />
     </div>
-    <div class="row mt-3 mb-3">
-      <div class="col mb-3">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.cif"
-          name="cif"
-          placeholder="CIF"
-          disabled
-        />
-      </div>
-      <div class="col mb-3">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.telefono"
-          name="telefono"
-          placeholder="Teléfono"
-          disabled
-        />
-      </div>
+    <!-- Resultados -->
+    <ul class="list-group">
+      @for (horeca of horecas; track horeca.id_cliente) {
+      <li class="list-group-item buscador_item" (click)="seleccionarHoreca(horeca)">
+        {{ horeca.nombre }}, {{ horeca.municipio }}, {{ horeca.provincia }}
+      </li>
+      }
+    </ul>
+  </div>
+
+  <h4>Datos Cliente</h4>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="recogida_nueva.nombre" name="nombre"
+      placeholder="Nombre Establecimiento" disabled />
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.cif" name="cif" placeholder="CIF" disabled />
     </div>
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Dirección</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.direccion"
-          name="direccion"
-          disabled
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Municipio</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.municipio"
-          name="municipio"
-          disabled
-        />
-      </div>
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.telefono" name="telefono"
+        placeholder="Teléfono" disabled />
     </div>
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Código Postal</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.cod_postal"
-          name="cod_postal"
-          disabled
-        />
-      </div>
-
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Provincia</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.provincia"
-          name="provincia"
-          disabled
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">País</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.pais"
-          name="pais"
-          disabled
-        />
-      </div>
-    </div>
-
-    <!-- FECHA -->
-    <div class="mb-3 w-25">
-      <label for="fecha">Fecha</label>
-      <input
-        type="date"
-        class="form-control"
-        [(ngModel)]="recogida_nueva.fecha"
-        name="fecha"
-        placeholder="Fecha"
-      />
-    </div>
-
-    <div class="row">
-      <!-- VISITADO -->
-      <label for="visitado">Visitado</label>
-      <div class="col input-group mb-2">
-        <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_true"
-            value="true"
-            checked
-            (click)="cambiarHorecaVisitado(true)"
-          >
-          <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
-        </div>
-
-        <!-- NO VISITADO -->
-        <div class="form-check ms-3">
-          <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_false"
-            value="false"
-            (click)="cambiarHorecaVisitado(false)"
-          />
-          <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
-        </div>
-      </div>
-    </div>
-    <!-- BIDON RECOGIDO -->
-    <label for="recogido">Recogido</label>
-    <div class="col input-group mb-2">
-      <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_true"
-          value="true"
-          checked
-          (click)="cambiarHorecaRecogido(true)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
-      </div>
-
-      <!-- NO Recogido -->
-      <div class="form-check ms-2">
-        <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_false"
-          value="false"
-          (click)="cambiarHorecaRecogido(false)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- LITROS RECOGIDOS -->
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Litros Recogidos</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.litros_recogidos"
-          name="litros_recogidos"
-        />
-      </div>
-
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Bidones Recogidos</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.bidones_recogidos"
-          name="bidones_recogidos"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Bidones Entregados</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.bidones_entregados"
-          name="bidones_entregados"
-        />
-      </div>
-    </div>
-
-    <!-- NOTAS -->
-    <div class="mb-3">
-      <label for="notas">Notas</label>
-      <textarea
-        type="textarea"
-        class="form-control"
-        name="notas"
-        rows="2"
-        [(ngModel)]="recogida_nueva.notas"
-      >
-      </textarea>
-    </div>
-
-    <h4>Productos</h4>
-
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Desengrasantes</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.desengrasante"
-          name="desengrasante"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Limpiacristales</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.limpia_cristales"
-          name="limpia_cristales"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Fregasuelos</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.fregasuelo"
-          name="fregasuelo"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Lejías</span>
-        <input type="number" class="form-control" [(ngModel)]="recogida_nueva.lejia" name="lejia" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Jabón de manos</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.jabon_manos"
-          name="jabon_manos"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Bayetas</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.bayeta"
-          name="bayeta"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Lavavajillas</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.lavavajilla"
-          name="lavavajilla"
-        />
-      </div>
-
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Higienizantes</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.higienizante"
-          name="higienizante"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">WC baños</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.wc_banos"
-          name="wc_banos"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Filtros</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="recogida_nueva.filtros"
-          name="filtros"
-        />
-      </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.direccion" name="direccion" disabled />
     </div>
     <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Dinero</span>
-      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.dinero" name="dinero" />
+      <span class="input-group-text">Municipio</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.municipio" name="municipio" disabled />
     </div>
-  </form>
-  <button type="submit" class="btn btn-success" (click)="insertarRecogidaHoreca()">
-    Guardar Recogida
-  </button>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.cod_postal" name="cod_postal" disabled />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.provincia" name="provincia" disabled />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.pais" name="pais" disabled />
+    </div>
+  </div>
+
+  <!-- FECHA -->
+  <div class="mb-3 w-25">
+    <label for="fecha">Fecha</label>
+    <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+  </div>
+
+  <div class="row">
+    <!-- VISITADO -->
+    <label for="visitado">Visitado</label>
+    <div class="col input-group mb-2">
+      <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_true" value="true" checked
+          (click)="cambiarHorecaVisitado(true)">
+        <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
+      </div>
+
+      <!-- NO VISITADO -->
+      <div class="form-check ms-3">
+        <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_false" value="false"
+          (click)="cambiarHorecaVisitado(false)" />
+        <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
+      </div>
+    </div>
+  </div>
+  <!-- BIDON RECOGIDO -->
+  <label for="recogido">Recogido</label>
+  <div class="col input-group mb-2">
+    <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_true" value="true" checked
+        (click)="cambiarHorecaRecogido(true)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
+    </div>
+
+    <!-- NO Recogido -->
+    <div class="form-check ms-2">
+      <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_false" value="false"
+        (click)="cambiarHorecaRecogido(false)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- LITROS RECOGIDOS -->
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Litros Recogidos</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.litros_recogidos" name="litros_recogidos" />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Bidones Recogidos</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.bidones_recogidos"
+        name="bidones_recogidos" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Bidones Entregados</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.bidones_entregados"
+        name="bidones_entregados" />
+    </div>
+  </div>
+
+  <!-- NOTAS -->
+  <div class="mb-3">
+    <label for="notas">Notas</label>
+    <textarea type="textarea" class="form-control" name="notas" rows="2" [(ngModel)]="recogida_nueva.notas">
+      </textarea>
+  </div>
+
+  <h4>Productos</h4>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Desengrasantes</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.desengrasante" name="desengrasante" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Limpiacristales</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.limpia_cristales" name="limpia_cristales" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Fregasuelos</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.fregasuelo" name="fregasuelo" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Lejías</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.lejia" name="lejia" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Jabón de manos</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.jabon_manos" name="jabon_manos" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Bayetas</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.bayeta" name="bayeta" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Lavavajillas</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.lavavajilla" name="lavavajilla" />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Higienizantes</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.higienizante" name="higienizante" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">WC baños</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.wc_banos" name="wc_banos" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Filtros</span>
+      <input type="number" class="form-control" [(ngModel)]="recogida_nueva.filtros" name="filtros" />
+    </div>
+  </div>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Dinero</span>
+    <input type="number" class="form-control" [(ngModel)]="recogida_nueva.dinero" name="dinero" />
+  </div>
+</form>
+<button type="submit" class="btn btn-success" (click)="insertarRecogidaHoreca()">
+  Guardar Recogida
+</button>
 }
 
 <!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
 <!-- FORMULARIO RECOGIDA CONTENEDOR -->
 @if (active == 'contenedor') {
-  <form class="contenedor" id="contenedor">
-    <div class="container mt-4 mb-4">
-      <!-- Buscador contenedor -->
-      <div class="mb-3">
-        <input
-          type="text"
-          class="form-control buscador_contenedor"
-          name="nombre_buscado"
-          placeholder="Buscar Contenedor"
-          [(ngModel)]="contenedor_buscado.dato"
-          (keyup)="buscarContenedor()"
-        />
-      </div>
-      <!-- Resultados -->
-      <ul class="list-group">
-        @for (contenedor of array_contenedores; track contenedor.id_cliente) {
-          <li
-            class="list-group-item buscador_item"
-            (click)="seleccionarContenedor(contenedor)"
-          >
-            {{contenedor.direccion}}, {{contenedor.cod_postal}}, {{ contenedor.municipio }}, {{ contenedor.provincia }}
-          </li>
-        }
-      </ul>
-    </div>
-
-    <h4>Datos Contenedor</h4>
+<form class="contenedor" id="contenedor">
+  <div class="container mt-4 mb-4">
+    <!-- Buscador contenedor -->
     <div class="mb-3">
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="cont_recogida_nueva.nombre"
-        name="nombre"
-        value="Contenedor Vía Pública"
-        disabled
-      />
+      <input type="text" class="form-control buscador_contenedor" name="nombre_buscado" placeholder="Buscar Contenedor"
+        [(ngModel)]="contenedor_buscado.dato" (keyup)="buscarContenedor()" />
     </div>
-    <div class="row mt-3 mb-3">
-      <div class="col mb-3">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.cif"
-          name="cif"
-          disabled
-        />
-      </div>
-      <div class="col mb-3">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.telefono"
-          name="telefono"
-          disabled
-        />
-      </div>
+    <!-- Resultados -->
+    <ul class="list-group">
+      @for (contenedor of array_contenedores; track contenedor.id_cliente) {
+      <li class="list-group-item buscador_item" (click)="seleccionarContenedor(contenedor)">
+        {{contenedor.direccion}}, {{contenedor.cod_postal}}, {{ contenedor.municipio }}, {{ contenedor.provincia }}
+      </li>
+      }
+    </ul>
+  </div>
+
+  <h4>Datos Contenedor</h4>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.nombre" name="nombre"
+      value="Contenedor Vía Pública" disabled />
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.cif" name="cif" disabled />
+    </div>
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.telefono" name="telefono" disabled />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.direccion" name="direccion" required
+        disabled />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.municipio" name="municipio" required
+        disabled />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.cod_postal" name="cod_postal" required
+        disabled />
     </div>
 
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Dirección</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.direccion"
-          name="direccion"
-          required
-          disabled
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Municipio</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.municipio"
-          name="municipio"
-          required
-          disabled
-        />
-      </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.provincia" name="provincia" required
+        disabled />
     </div>
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Código Postal</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.cod_postal"
-          name="cod_postal"
-          required
-          disabled
-        />
-      </div>
-
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Provincia</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.provincia"
-          name="provincia"
-          required
-          disabled
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">País</span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.pais"
-          name="pais"
-          required
-          disabled
-        />
-      </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.pais" name="pais" required disabled />
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label for="fecha">Fecha</label>
-      <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
-      <input
-        type="date"
-        class="form-control"
-        [(ngModel)]="cont_recogida_nueva.fecha"
-        name="fecha"
-        placeholder="Fecha"
-      />
-    </div>
+  <div class="mb-3 w-25">
+    <label for="fecha">Fecha</label>
+    <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
+    <input type="date" class="form-control" [(ngModel)]="cont_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+  </div>
 
-    <div class="row">
-      <!-- VISITADO -->
-      <label for="visitado">Visitado</label>
-      <div class="col input-group mb-2">
-        <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_true"
-            value="true"
-            checked
-            (click)="cambiarContenedorVisitado(true)"
-          />
-          <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
-        </div>
-
-        <!-- NO VISITADO -->
-        <div class="form-check ms-3">
-          <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_false"
-            value="false"
-            (click)="cambiarContenedorVisitado(false)"
-          />
-          <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
-        </div>
-      </div>
-    </div>
-    <!-- BIDON RECOGIDO -->
-    <label for="recogido">Recogido</label>
+  <div class="row">
+    <!-- VISITADO -->
+    <label for="visitado">Visitado</label>
     <div class="col input-group mb-2">
-      <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+      <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
       <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_true"
-          value="true"
-          checked
-          (click)="cambiarContenedorRecogido(true)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_true" value="true" checked
+          (click)="cambiarContenedorVisitado(true)" />
+        <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
       </div>
 
-      <!-- NO Recogido -->
-      <div class="form-check ms-2">
-        <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_false"
-          value="false"
-          (click)="cambiarContenedorRecogido(false)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
+      <!-- NO VISITADO -->
+      <div class="form-check ms-3">
+        <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_false" value="false"
+          (click)="cambiarContenedorVisitado(false)" />
+        <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
       </div>
     </div>
-
-    <div class="row">
-       <!-- LITROS RECOGIDOS -->
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Litros Recogidos</span>
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="cont_recogida_nueva.litros_recogidos"
-          name="litros_recogidos"
-        />
-      </div>
-
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Contenedores Recogidos</span>
-        <input
-          type="number"
-          class="form-control"
-
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Contenedores Entregados</span>
-        <input
-          type="number"
-          class="form-control"
-        />
-      </div>
+  </div>
+  <!-- BIDON RECOGIDO -->
+  <label for="recogido">Recogido</label>
+  <div class="col input-group mb-2">
+    <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_true" value="true" checked
+        (click)="cambiarContenedorRecogido(true)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
     </div>
-    <!-- NOTAS -->
-    <div class="mb-3">
-      <label for="notas">Notas</label>
-      <textarea
-        type="textarea"
-        class="form-control"
-        name="notas"
-        rows="2"
-        [(ngModel)]="cont_recogida_nueva.notas"
-      >
+
+    <!-- NO Recogido -->
+    <div class="form-check ms-2">
+      <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_false" value="false"
+        (click)="cambiarContenedorRecogido(false)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- LITROS RECOGIDOS -->
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Litros Recogidos</span>
+      <input type="number" class="form-control" [(ngModel)]="cont_recogida_nueva.litros_recogidos"
+        name="litros_recogidos" />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Contenedores Recogidos</span>
+      <input type="number" class="form-control"  [(ngModel)]="cont_recogida_nueva.bidones_recogidos" name="bidones_recogidos"/>
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Contenedores Entregados</span>
+      <input type="number" class="form-control"  [(ngModel)]="cont_recogida_nueva.bidones_entregados" name="bidones_entregados"/>
+    </div>
+  </div>
+  <!-- NOTAS -->
+  <div class="mb-3">
+    <label for="notas">Notas</label>
+    <textarea type="textarea" class="form-control" name="notas" rows="2" [(ngModel)]="cont_recogida_nueva.notas">
       </textarea>
-    </div>
-  </form>
+  </div>
+</form>
 
-  <button type="submit" class="btn btn-success" (click)="insertarRecogidaContenedor()">
-    Guardar Recogida
-  </button>
+<button type="submit" class="btn btn-success" (click)="insertarRecogidaContenedor()">
+  Guardar Recogida
+</button>
 }
 
 <!-- FORMULARIO RECOGIDA EESS -->
 @if (active == 'eess') {
-  <form class="eess" id="eess">
-    <div class="container mt-4 mb-4">
-      <!-- Buscador contenedor -->
-      <div class="mb-3">
-        <input
-          type="text"
-          class="form-control buscador_EESS"
-          name="codigo_buscado"
-          placeholder="Buscar Código EESS"
-          [(ngModel)]="EESS_buscado.codigo"
-          (keyup)="buscarEESS()"
-        />
-      </div>
-      <!-- Resultados -->
-      <ul class="list-group">
-        @for (eess of array_eess; track eess.id_cliente) {
-          <li
-            class="list-group-item buscador_item"
-            (click)="seleccionarEESS(eess)"
-          >
-            {{ eess.nombre }}, {{ eess.municipio }}, {{ eess.provincia }}
-          </li>
-        }
-      </ul>
-    </div>
-
-    <h4>Datos EESS</h4>
+<form class="eess" id="eess">
+  <div class="container mt-4 mb-4">
+    <!-- Buscador contenedor -->
     <div class="mb-3">
-      <input type="text" class="form-control" name="nombre" placeholder="Establecimiento" />
+      <input type="text" class="form-control buscador_EESS" name="codigo_buscado" placeholder="Buscar Código EESS"
+        [(ngModel)]="EESS_buscado.codigo" (keyup)="buscarEESS()" />
+    </div>
+    <!-- Resultados -->
+    <ul class="list-group">
+      @for (eess of array_eess; track eess.id_cliente) {
+      <li class="list-group-item buscador_item" (click)="seleccionarEESS(eess)">
+        {{ eess.cod_eess }}, {{ eess.nombre }},  {{ eess.direccion }}, {{ eess.municipio }}, {{ eess.provincia }}
+      </li>
+      }
+    </ul>
+  </div>
+
+  <h4>Datos EESS</h4>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.nombre" name="nombre"
+      placeholder="Estación" disabled />
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.cif" name="cif" placeholder="CIF"
+        disabled />
+    </div>
+    <div class="col mb-3">
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.telefono" name="telefono"
+        placeholder="Teléfono" disabled />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.direccion" name="direccion" required disabled />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.municipio" name="municipio" required disabled />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.cod_postal" name="cod_postal" required disabled />
     </div>
 
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Dirección</span>
-        <input type="text" class="form-control" name="direccion" required />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Municipio</span>
-        <input type="text" class="form-control" name="municipio" required />
-      </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.provincia" name="provincia" required disabled />
     </div>
-    <div class="row">
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Código Postal</span>
-        <input type="text" class="form-control" name="cod_postal" required />
-      </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="eess_recogida_nueva.pais" name="pais" required disabled/>
+    </div>
+  </div>
 
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">Provincia</span>
-        <input type="text" class="form-control" name="provincia" required />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text">País</span>
-        <input type="text" class="form-control" name="pais" required />
-      </div>
-    </div>
+  <div class="mb-3 w-25">
+    <label for="fecha">Fecha</label>
+    <input type="date" class="form-control" [(ngModel)]="eess_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+  </div>
 
-    <div class="mb-3 w-25">
-      <label for="fecha">Fecha</label>
-      <input type="date" class="form-control" name="fecha" placeholder="Fecha" />
-    </div>
-    
-    <div class="row">
-      <!-- VISITADO -->
-      <label for="visitado">Visitado</label>
-      <div class="col input-group mb-2">
-        <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_true"
-            value="true"
-            checked
-            (click)="cambiarContenedorVisitado(true)"
-          />
-          <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
-        </div>
-
-        <!-- NO VISITADO -->
-        <div class="form-check ms-3">
-          <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
-          <input
-            class="form-check-input"
-            type="radio"
-            name="visitado"
-            id="visitado_false"
-            value="false"
-            (click)="cambiarContenedorVisitado(false)"
-          />
-          <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
-        </div>
-      </div>
-    </div>
-    <!-- BIDON RECOGIDO -->
-    <label for="recogido">Recogido</label>
+  <div class="row">
+    <!-- VISITADO -->
+    <label for="visitado">Visitado</label>
     <div class="col input-group mb-2">
-      <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+      <!-- <span class="input-group-text span_contenedor">Visitado</span> -->
       <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_true"
-          value="true"
-          checked
-          (click)="cambiarContenedorRecogido(true)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_true" value="true" checked
+          (click)="cambiarContenedorVisitado(true)" />
+        <label class="form-check-label label_sin_negrita" for="visitado_true">Visitado</label>
       </div>
 
-      <!-- NO Recogido -->
-      <div class="form-check ms-2">
-        <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
-        <input
-          class="form-check-input"
-          type="radio"
-          name="recogido"
-          id="recogido_false"
-          value="false"
-          (click)="cambiarContenedorRecogido(false)"
-        />
-        <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
+      <!-- NO VISITADO -->
+      <div class="form-check ms-3">
+        <!-- <span class="input-group-text span_contenedor">No Visitado</span> -->
+        <input class="form-check-input" type="radio" name="visitado" id="visitado_false" value="false"
+          (click)="cambiarContenedorVisitado(false)" />
+        <label class="form-check-label label_sin_negrita" for="visitado_false">No visitado</label>
       </div>
+    </div>
+  </div>
+  <!-- BIDON RECOGIDO -->
+  <label for="recogido">Recogido</label>
+  <div class="col input-group mb-2">
+    <!-- <span class="input-group-text span_contenedor">Recogido</span> -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_true" value="true" checked
+        (click)="cambiarContenedorRecogido(true)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_true">Recogido</label>
     </div>
 
-    <div class="row">
-      <!-- LITROS RECOGIDOS -->
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">Litros Recogidos</span>
-        <input
-          type="number"
-          class="form-control"
-          name="litros_recogidos"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">EESS Recogidas</span>
-        <input
-          type="number"
-          class="form-control"
-        />
-      </div>
-      <div class="col input-group input-group-sm mb-3">
-        <span class="input-group-text span_contenedor">EESS Entregados</span>
-        <input
-          type="number"
-          class="form-control"
-        />
-      </div>
+    <!-- NO Recogido -->
+    <div class="form-check ms-2">
+      <!-- <span class="input-group-text span_contenedor">No Recogido</span> -->
+      <input class="form-check-input" type="radio" name="recogido" id="recogido_false" value="false"
+        (click)="cambiarContenedorRecogido(false)" />
+      <label class="form-check-label label_sin_negrita" for="recogido_false">No Recogido</label>
     </div>
-    <!-- NOTAS -->
-    <div class="mb-3">
-      <label for="notas">Notas</label>
-      <textarea
-        type="textarea"
-        class="form-control"
-        name="notas"
-        rows="2"
-        [(ngModel)]="cont_recogida_nueva.notas"
-      >
+  </div>
+
+  <div class="row">
+    <!-- LITROS RECOGIDOS -->
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">Litros Recogidos</span>
+      <input type="number" class="form-control" [(ngModel)]="eess_recogida_nueva.litros_recogidos" name="litros_recogidos" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">EESS Recogidas</span>
+      <input type="number" class="form-control" [(ngModel)]="eess_recogida_nueva.bidones_recogidos" name="bidones_recogidos" />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text span_contenedor">EESS Entregados</span>
+      <input type="number" class="form-control" [(ngModel)]="eess_recogida_nueva.bidones_entregados" name="bidones_entregados" />
+    </div>
+  </div>
+  <!-- NOTAS -->
+  <div class="mb-3">
+    <label for="notas">Notas</label>
+    <textarea type="textarea" class="form-control" name="notas" rows="2" [(ngModel)]="eess_recogida_nueva.notas">
       </textarea>
-    </div>
-  </form>
-  <button type="submit" class="btn btn-success" (click)="insertarEESS()">Guardar Recogida</button>
+  </div>
+</form>
+<button type="submit" class="btn btn-success" (click)="insertarEESS()">Guardar Recogida</button>
 }
