@@ -1,1 +1,17 @@
-<p>editar-productos.component works!</p>
+<h1>Editar Productos</h1>
+
+
+<div class="productos-container">
+    
+     <ul class="list-group">
+      @for (producto of productos; track producto.id_cliente) {
+        <li class="list-group-item buscador_item">
+          {{ producto.tipo}} - {{ producto.coste }} - {{ producto.notas }}
+        </li>
+      }
+    </ul>
+
+  
+
+
+</div>
