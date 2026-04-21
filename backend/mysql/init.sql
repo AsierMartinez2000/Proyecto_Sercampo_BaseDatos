@@ -1,5 +1,7 @@
 -- ESTE ARCHIVO ES EL SCRIPT DE CREACION DE LA BASE DE DATOS
 -- CREA LA BASE DE DATOS SI NO EXISTE
+
+DROP DATABASE IF EXISTS sercampo_db;
 CREATE DATABASE IF NOT EXISTS sercampo_db CHARACTER
 SET
     utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -7,29 +9,39 @@ SET
 USE sercampo_db;
 
 -- TABLAS 
--- Usuarios: id_usuario(PK), nombre, passsword
--- Clientes: id_cliente(PK), nombre, cif, telefono, inicio, fin, activo, observaciones.
--- Tipo_contenedor: id_tipo_contenedor(PK), tipo, capacidad(L), notas
--- Contenedores: id­_contenedor(PK), direccion, tipo_legal, ID_TIPO_CONTENEDOR, ID_CLIENTE, recogida, periodo_recogida, mercancia, latitud, longitud, notas.
--- Productos: id_productos(PK), coste, tipo, notas.
--- Conductores: id_conductores(PK), nombre.
--- Zonas: id_zonas, nombre.
--- Municipios: id_municipio(PK), localidad, provincia, pais, ID_ZONA.
--- Direcciones: ID_CONTENEDOR(PK), dirección, cod_postal, ID_MUNICIPIO.
--- Rutas: id_ruta(PK), ID_CONTENEDOR, ID_MUNICIPIO, ID_CONDUCTOR, notas.
--- Recogidas: ID_CONTENEDOR(PK), fecha(PK), ID_RUTA, litro_recogidos, visitado, recogida, mes_recogida, año_recogida, ID_CONDUCTOR, ID_PRODUCTO, cantidad, notas.
+-- Usuarios: id_usuario(PK), nombre, email, telefono, password
+-- Clientes: id_cliente(PK), POINTID, nombre, cif, telefono, notas
+-- Tipo_contenedor: id_tipo_contenedor(PK), tipo, capacidad, notas
+-- Contenedores: id­_contenedor(PK), id_tipo_contenedor(FK), id_cliente(FK), tipo_legal, recogida, periodo_recogida_dias, mercancia, latitud, longitud, inicio, fin, activo
+-- Productos: id_productos(PK), tipo, coste, notas.
+-- Conductores: id_conductor(PK), nombre, email.
+-- Zonas: id_zona(PK), nombre.
+-- Municipios: id_municipio(PK), municipio, provincia, pais, id_zona(FK).
+-- Direcciones: id_contenedor(PK FK), dirección, cod_postal, id_municipio(FK).
+-- Rutas: id_ruta(PK), id_contenedor(FK), id_conductor(FK), notas.
+-- Recogidas: id_recogida(PK), id_contenedor(FK), fecha, id_ruta(FK), litros_recogidos, visitado, recogida, notas.
+-- Productos_recogidas: id_recogida(PK FK), id_producto(PK FK), cantidad
+-- Codigos_eess: cod_eess(PK), id_cliente(FK)
 
-CREATE TABLE
-    usuarios (
+
+-- -----------------------------------------------------
+-- Tabla: usuarios
+-- -----------------------------------------------------
+
+CREATE TABLE usuarios (
         id_usuario int PRIMARY KEY AUTO_INCREMENT,
-        nombre VARCHAR(255),
-        email VARCHAR(50),
+        nombre VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
         telefono VARCHAR(15),
-        password VARCHAR(255)
+        password VARCHAR(255) NOT NULL
     );
 
-CREATE TABLE
-    clientes (
+
+-- -----------------------------------------------------
+-- Tabla: clientes
+-- -----------------------------------------------------
+
+CREATE TABLE clientes (
         id_cliente INT PRIMARY KEY AUTO_INCREMENT,
         PointID VARCHAR(20) UNIQUE NOT NULL,
         nombre VARCHAR(255) NOT NULL,
@@ -38,105 +50,151 @@ CREATE TABLE
         notas VARCHAR(255)
     );
 
-CREATE TABLE
-    tipo_contenedor (
+-- -----------------------------------------------------
+-- Tabla: tipo_contenedor
+-- -----------------------------------------------------
+
+CREATE TABLE tipo_contenedor (
         id_tipo_contenedor INT PRIMARY KEY AUTO_INCREMENT,
-        tipo VARCHAR(50),
+        tipo VARCHAR(50) NOT NULL,
         capacidad INT,
         notas VARCHAR(255)
     );
 
-CREATE TABLE
-    contenedores (
+-- -----------------------------------------------------
+-- Tabla: contenedores
+-- -----------------------------------------------------
+
+CREATE TABLE contenedores (
         id_contenedor int PRIMARY KEY AUTO_INCREMENT,
         id_tipo_contenedor INT NOT NULL,
         id_cliente INT NOT NULL,
-        tipo_legal ENUM ('Horeca', 'EESS Repsol', 'Contenedor'),
+        tipo_legal ENUM ('Horeca', 'EESS Repsol', 'Contenedor') NOT NULL,
         recogida BOOLEAN,
         periodo_recogida_dias INT,
         mercancia VARCHAR(255),
-        latitud FLOAT (100, 8), -- Esto habrá que modificarlo cuando arreglemos las coordenadas
-        longitud FLOAT (100, 8), -- Esto habr que modificarlo cuando arreglemos las coordenadas
+        latitud DECIMAL(10,8),   
+        longitud DECIMAL(11,8),
         inicio DATE,
         fin DATE,
-        activo ENUM ('Sí', 'No'),
-        FOREIGN KEY (id_tipo_contenedor) REFERENCES tipo_contenedor (id_tipo_contenedor),
-        FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+        activo BOOLEAN DEFAULT TRUE,
+        FOREIGN KEY (id_tipo_contenedor) REFERENCES tipo_contenedor (id_tipo_contenedor) ON DELETE CASCADE, 
+        FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente) ON DELETE CASCADE
+        -- Aqui en principio nunca se borrará y pasará activo a False, pero ponemos el DELETE CASCADE para poder hacer pruebas. Cambiarlo por DELETE RESTRICT
     );
 
-CREATE TABLE
-    productos (
+-- -----------------------------------------------------
+-- Tabla: productos
+-- -----------------------------------------------------
+
+CREATE TABLE productos (
         id_producto INT PRIMARY KEY AUTO_INCREMENT,
-        tipo VARCHAR(50),
-        coste FLOAT (5, 2),
-        nota VARCHAR(255)
+        tipo VARCHAR(50) NOT NULL,
+        coste DECIMAL(7,2),
+        notas VARCHAR(255)
     );
 
-CREATE TABLE
-    conductores (
+-- -----------------------------------------------------
+-- Tabla: conductores
+-- -----------------------------------------------------
+
+CREATE TABLE conductores (
         id_conductor INT PRIMARY KEY AUTO_INCREMENT,
-        nombre VARCHAR(50)
+        nombre VARCHAR(100) NOT NULL
+        email VARCHAR(255) NOT NULL
     );
 
-CREATE TABLE
-    zonas (id_zona INT PRIMARY KEY, nombre VARCHAR(50));
+-- -----------------------------------------------------
+-- Tabla: zonas
+-- -----------------------------------------------------
 
-CREATE TABLE
-    municipios (
+CREATE TABLE zonas (
+    id_zona INT PRIMARY KEY, 
+    nombre VARCHAR(50));
+
+
+-- -----------------------------------------------------
+-- Tabla: municipios
+-- -----------------------------------------------------
+
+CREATE TABLE municipios (
         id_municipio INT PRIMARY KEY AUTO_INCREMENT,
-        localidad VARCHAR(50),
+        municipio VARCHAR(50) NOT NULL,
         provincia VARCHAR(50),
         pais VARCHAR(50),
-        id_zona INT,
-        FOREIGN KEY (id_zona) REFERENCES zonas (id_zona)
+        id_zona INT DEFAULT NULL,
+        FOREIGN KEY (id_zona) REFERENCES zonas (id_zona) ON DELETE SET NULL
     );
 
-CREATE TABLE
-    direcciones (
+-- -----------------------------------------------------
+-- Tabla: direcciones (relación 1:1 con contenedor)
+-- -----------------------------------------------------
+
+CREATE TABLE direcciones (
         id_contenedor INT PRIMARY KEY,
-        direccion VARCHAR(255),
-        cod_postal VARCHAR(50),
+        direccion VARCHAR(255) NOT NULL,
+        cod_postal VARCHAR(10),
         id_municipio INT NOT NULL,
-        FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio),
-        FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor)
+        FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor) ON DELETE CASCADE,
+        FOREIGN KEY (id_municipio) REFERENCES municipios (id_municipio) ON DELETE RESTRICT 
     );
 
-CREATE TABLE
-    rutas (
+-- -----------------------------------------------------
+-- Tabla: rutas
+-- -----------------------------------------------------
+
+CREATE TABLE rutas (
         id_ruta INT PRIMARY KEY AUTO_INCREMENT,
         id_contenedor INT NOT NULL,
-        id_municipio INT NOT NULL,
         id_conductor INT NOT NULL,
         notas VARCHAR(255),
-        Foreign Key (id_contenedor) REFERENCES direcciones (id_contenedor),
-        Foreign Key (id_municipio) REFERENCES direcciones (id_municipio),
-        Foreign Key (id_conductor) REFERENCES conductores (id_conductor)
+        Foreign Key (id_contenedor) REFERENCES direcciones (id_contenedor) ON DELETE CASCADE,
+        Foreign Key (id_conductor) REFERENCES conductores (id_conductor) ON DELETE RESTRICT
+        -- Aqui en principio nunca se borrará, pero ponemos el DELETE CASCADE para poder hacer pruebas. Cambiarlo por DELETE RESTRICT o No poner nada
     );
 
-CREATE TABLE
-    recogidas (
+
+-- -----------------------------------------------------
+-- Tabla: recogidas
+-- -----------------------------------------------------
+
+CREATE TABLE recogidas (
         id_recogida INT PRIMARY KEY AUTO_INCREMENT,
-        id_contenedor int,
-        fecha DATE,
+        id_contenedor INT,
+        fecha DATE NOT NULL,
         id_ruta int NOT NULL,
-        id_conductor int NOT NULL,
         litros_recogidos INT NOT NULL,
         visitado BOOLEAN,
         recogida BOOLEAN,
-        mes_recogida INT,
-        anos_recogida INT,
-        FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor),
-        FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta),
-        FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor)
+        bidones_recogidos INT,
+        bidones_entregados INT,
+        notas VARCHAR(255),
+        FOREIGN KEY (id_contenedor) REFERENCES contenedores (id_contenedor) ON DELETE SET NULL,
+        FOREIGN KEY (id_ruta) REFERENCES rutas (id_ruta) ON DELETE RESTRICT
+        -- Aqui en principio nunca se borrará, pero ponemos el DELETE SET NULL para poder hacer pruebas. Cambiarlo por NO poner nada
     );
 
-CREATE TABLE
-    productos_recogidas(
+-- -----------------------------------------------------
+-- Tabla: productos_recogidas (relación N:M)
+-- -----------------------------------------------------
+
+CREATE TABLE productos_recogidas(
         id_recogida INT,
         id_producto INT,
         cantidad INT,
         PRIMARY KEY (id_recogida, id_producto),
-        FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida),
-        FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+        FOREIGN KEY (id_recogida) REFERENCES recogidas(id_recogida) ON DELETE CASCADE,
+        FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
     );
 
+
+-- -----------------------------------------------------
+-- Tabla: Codigos_EESS
+-- -----------------------------------------------------
+CREATE TABLE codigos_eess(
+        cod_eess INT,
+        id_cliente INT,
+        PRIMARY KEY (cod_eess),
+        FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON DELETE CASCADE
+       
+    );

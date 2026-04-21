@@ -13,137 +13,34 @@ class clientesModel{
 
     public function getClientes(){
 
-        $sql = "SELECT *    
-                FROM clientes";
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+                ORDER BY con.id_contenedor";
+    
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getClientesOrdenados(){
-        $sql = "SELECT *    
-                FROM clientes
-                ORDER BY PointID ASC";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getClienteNombre($datosCliente){
-        $sql = "SELECT *
-        FROM clientes
-        WHERE nombre LIKE :nombre";
-
-        $stmt = $this->db->prepare($sql);
-        $nombre = "%" . $datosCliente['nombre'] . "%";
-        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-
-        $stmt->execute();
-        
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultado;
-    }
-
-    public function getClientePointID($datosCliente) {
-        $sql = "SELECT *
-        FROM clientes
-        WHERE PointID = :PointID";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':PointID', $datosCliente['PointID'], PDO::PARAM_STR);
-
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function getClienteCIF($datosCliente) {
-        $sql = "SELECT *
-        FROM clientes
-        WHERE cif = :cif";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
-
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function getClienteTelefono($datosCliente) {
-        $sql = "SELECT *
-        FROM clientes
-        WHERE telefono = :telefono";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
-
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function setnuevoCliente($datosCliente) {
-        $sql = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
-                VALUES (:PointID, :nombre, :cif, :telefono, :notas)";
-        
-        $stmt = $this->db->prepare($sql);
-
-        $stmt->bindParam(':PointID', $datosCliente['PointID'], PDO::PARAM_STR);
-        $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
-        $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
-        $stmt->bindParam(':notas', $datosCliente['notas'], PDO::PARAM_STR);
-        
-        $stmt->execute();    
-
-        $sql2 = "SELECT *
-                FROM clientes
-                WHERE PointID = :PointID"; 
-        
-        $stmt = $this->db->prepare($sql2);
-        $stmt->bindParam(':PointID', $datosCliente['PointID'], PDO::PARAM_STR);
-
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultado;
-    }
-
-    public function modificarCliente($datosCliente) {
-        $sql = "UPDATE clientes
-                SET PointID = :PointID, nombre = :nombre, cif = :cif, telefono = :telefono
-                WHERE id_cliente = (SELECT DISTINCT id_cliente
-                                    FROM clientes
-                                    WHERE PointID = :PointID)";
-
-
-        $stmt = $this->db->prepare($sql);
-
-        $stmt->bindParam(':PointID', $datosCliente['PointID'], PDO::PARAM_STR);
-        $stmt->bindParam(':nombre', $datosCliente['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':cif', $datosCliente['cif'], PDO::PARAM_STR);
-        $stmt->bindParam(':telefono', $datosCliente['telefono'], PDO::PARAM_STR);
-        
-        $stmt->execute();
-
     }
 
     public function getClienteGeneral($datosCliente){
 
-         $tipo = $datosCliente['tipo_legal'];
+        $tipo = $datosCliente['tipo_legal'];
         if ($tipo == ""){
-            $sql = "SELECT *
-            FROM clientes
-            WHERE (nombre LIKE :dato) OR (cif LIKE :dato) OR (telefono LIKE :dato)";
+
+            $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+            WHERE (c.nombre LIKE :dato) OR (c.cif LIKE :dato) OR (c.telefono LIKE :dato)
+            ORDER BY con.id_contenedor";
 
             $stmt = $this->db->prepare($sql);
             $dato = "%" . $datosCliente['dato'] . "%";
@@ -156,10 +53,14 @@ class clientesModel{
             return $resultado;
         } else {
 
-        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas
-            FROM clientes AS c 
-            INNER JOIN contenedores AS con ON c.id_cliente = con.id_cliente
-            WHERE  (con.tipo_legal = :tipo) AND (c.nombre LIKE :dato OR c.cif LIKE :dato OR c.telefono LIKE :dato)";
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+                WHERE  (con.tipo_legal = :tipo) AND (c.nombre LIKE :dato OR c.cif LIKE :dato OR c.telefono LIKE :dato)
+                ORDER BY con.id_contenedor";
 
         $stmt = $this->db->prepare($sql);
         $dato = "%" . $datosCliente['dato'] . "%";
@@ -175,10 +76,12 @@ class clientesModel{
     }
 
     public function getClienteEspecifico($datosCliente){
-        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas, d.direccion, m.localidad
-                FROM contenedores AS con INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
-                            INNER JOIN direcciones AS d ON d.id_contenedor = con.id_contenedor
-                            INNER JOIN municipios AS m ON m.id_municipio = d.id_municipio
+       $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio                
                 WHERE c.id_cliente = :id_cliente";
 
         $stmt = $this->db->prepare($sql);
@@ -192,20 +95,136 @@ class clientesModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getClientesTipo($datosCliente){
-        $sql = "SELECT c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, c.notas
-        FROM clientes AS c
-            INNER JOIN contenedores AS con ON c.id_cliente = con.id_cliente
-        WHERE con.tipo_legal = :dato";
+    public function comprobarCliente($datos){
+
+        $id_cliente = null;
+
+        while($id_cliente === null){
+
+        $sql = "SELECT id_cliente
+                FROM clientes
+                WHERE PointID = :PointID";
 
         $stmt = $this->db->prepare($sql);
-        $dato = $datosCliente['tipo_legal'];
-        $stmt->bindParam(':dato', $dato, PDO::PARAM_STR);
+
+        $stmt->bindParam(':PointID', $datos['PointID'], PDO::PARAM_STR);
 
         $stmt->execute();
-        
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($resultado && isset($resultado['id_cliente'])){
+                $id_cliente = $resultado['id_cliente']; 
+            } else {
+                $sql2 = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
+                        VALUES (:PointID, :nombre, :cif, :telefono, null) ";
+
+                $stmt = $this->db->prepare($sql2);
+
+                $stmt->bindParam(':PointID', $datos['PointID'], PDO::PARAM_STR);
+                $stmt->bindParam(':nombre', $datos['nombre_cliente'], PDO::PARAM_STR);
+                $stmt->bindParam(':cif', $datos['cif_cliente'], PDO::PARAM_STR);
+                $stmt->bindParam(':telefono', $datos['telefono_cliente'], PDO::PARAM_STR);
+
+                $stmt->execute();
+
+                $id_cliente = $this->db->lastInsertId();
+            }
+        } 
+            
+        return $id_cliente;
         
     }
+
+    public function updateCliente($datos){
+
+        $sql = "UPDATE clientes 
+                SET nombre = :nombre_nuevo, cif = :cif_nuevo, telefono = :telefono_nuevo 
+                WHERE id_cliente = :id_cliente";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':nombre_nuevo', $datos['nombre'], PDO::PARAM_STR);
+        $stmt->bindParam(':cif_nuevo', $datos['cif'], PDO::PARAM_STR);
+        $stmt->bindParam(':telefono_nuevo', $datos['telefono'], PDO::PARAM_STR);
+        $stmt->bindParam(':id_cliente', $datos['id_cliente'], PDO::PARAM_INT);
+        
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getClientePorNombre($datoBuscador){
+        
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+            WHERE (c.nombre LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Horeca')
+            ORDER BY m.provincia, m.municipio";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datoBuscador['nombre'] . "%";
+
+        $stmt->bindParam(':datoBuscador', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
+
+
+    public function getClientePorDato($datoBuscador){
+        
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+            WHERE (m.municipio LIKE :datoBuscador OR d.direccion LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Contenedor')
+            ORDER BY m.provincia, m.municipio";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datoBuscador['dato'] . "%";
+
+        $stmt->bindParam(':datoBuscador', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
+
+    public function getClientePorCodigoEESS($datoBuscador){
+
+        $sql = "SELECT codeess.cod_eess, con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+                FROM contenedores AS con 
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+                INNER JOIN codigos_eess AS codeess ON c.id_cliente = codeess.id_cliente
+            WHERE (codeess.cod_eess LIKE :cod_buscado) AND (con.activo = true) AND (con.tipo_legal = 'EESS Repsol')
+            ORDER BY m.provincia, m.municipio";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datoBuscador['codigo'] . "%";
+
+        $stmt->bindParam(':cod_buscado', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
+
 }

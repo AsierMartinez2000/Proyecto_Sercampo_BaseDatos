@@ -1,0 +1,40 @@
+span{
+    width: 19vh;
+    /* background-color: #ff905057; */
+
+}
+
+.span_contenedor{
+    width: 22vh;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#limpiar_formulario_btn{
+    margin-left: auto;
+
+}
+
+.buscador_item:hover{
+    background-color:  #4d5b9f28;
+    cursor: pointer;
+}
+
+.label_sin_negrita:hover{
+    cursor: pointer;
+}
+
+.bi-exclamation-circle-fill{
+    font-size:xx-large;
+    color: #ff8f50;
+}
+
+.bi-check-circle-fill{
+    font-size:xx-large;
+    color: #198754;
+
+}

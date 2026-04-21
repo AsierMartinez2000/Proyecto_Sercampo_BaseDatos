@@ -15,20 +15,25 @@ export class NuevoClienteComponent {
 
 cliente_nuevo = {
     id_cliente: '',
-    PointID: '',
-    nombre: '',
-    cif: '',
-    telefono: '',
-    notas: '',
-    localidad: '',
-    direccion: ''
+    tipo_contenedor: '',
+    PointID: '', 
+    nombre_cliente: '',
+    cif_cliente: '',
+    telefono_cliente: '',
+    tipo_legal: '',
+    direccion: '',
+    cod_postal: '',
+    municipio: '',
+    provincia: '',
+    pais: ''
   };
 
+  //HAY QUE PONER ACTIVO POR DEFECTO A SI
 
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private servicioCliente: ClientesService,
+    private clienteService: ClientesService,
     private router: Router
   ){}
 
@@ -36,25 +41,23 @@ cliente_nuevo = {
   anadirCliente(cliente_nuevo: any){
 
     if(cliente_nuevo.PointID != "" && cliente_nuevo.nombre != ""){
-    this.servicioCliente.anadirCliente(cliente_nuevo).subscribe({
-      next: (respuesta:any) => {
-        this.cliente_nuevo = respuesta;
-        console.log('Cliente añadido:', respuesta);
-      },
-      error: (error) => {
-        console.error('Error al añadir cliente:', error);
-      },
-      complete: () => {
-        console.log('Cliente añadido');
-      }
-    })
-    this.cdr.detectChanges();
-    this.router.navigate(['cliente', this.cliente_nuevo.id_cliente]); 
-    } else {
+      this.clienteService.anadirCliente(cliente_nuevo).subscribe({
+        next: (respuesta:any) => {
+          this.cliente_nuevo = respuesta;
+          console.log('Cliente añadido:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al añadir cliente:', error);
+        },
+        complete: () => {
+          console.log('Cliente añadido');
+        }
+      })
+      this.cdr.detectChanges();
+      this.router.navigate(['confirmado', this.cliente_nuevo.id_cliente]); 
+    } 
+    else {
       console.log("PointID y Nombre es obligatorio");
     }
   }
-
-
-
 }

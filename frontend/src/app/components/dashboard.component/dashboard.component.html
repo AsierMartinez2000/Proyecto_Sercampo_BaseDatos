@@ -1,41 +1,52 @@
 <div class="dashboard">
-    <h3 class="display-3">Clientes Sercampo</h3>
+    <h1>Clientes Sercampo</h1>
     
-        <div class="container-md">
             <div class="buscador ">
                 <input  class="form-control " type="text" [(ngModel)]="cliente.dato" (keyup)="cargarClientesGeneral()" placeholder="Cliente"/>
-                <button class="btn btn-outline-primary" type="button" (click)="seleccionarTipo('Horeca')" [class.active]="active === 'Horeca'">HORECA</button>
-                <button class="btn btn-outline-primary" type="button" (click)="seleccionarTipo('Contenedor')" [class.active]="active === 'Contenedor'">CONTENEDOR</button>
-                <button class="btn btn-outline-primary" type="button" (click)="seleccionarTipo('EESS Repsol')" [class.active]="active === 'EESS Repsol'">EESS</button>
+                <button class="btn btn-filtro" type="button" (click)="seleccionarTipo('Horeca')" [class.active]="active === 'Horeca'">HORECA</button>
+                <button class="btn btn-filtro" type="button" (click)="seleccionarTipo('Contenedor')" [class.active]="active === 'Contenedor'">CONTENEDOR</button>
+                <button class="btn btn-filtro" type="button" (click)="seleccionarTipo('EESS Repsol')" [class.active]="active === 'EESS Repsol'">EESS</button>
                 <button class="btn btn-danger" type="button" (click)="seleccionarTipo('')">X</button>
             </div>
-            
+        
             <div class="tabla">
-                
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="table-primary" >Id cliente</th>
+                            <!-- <th class="table-primary">ID Contenedor</th> -->
                             <th class="table-primary">PointID</th>
                             <th class="table-primary">Nombre</th>
                             <th class="table-primary">CIF</th>
-                            <th class="table-primary">Teléfono</th>
-                            <th class="table-primary">Notas</th>
+                            <th class="table-primary">Telefono</th>
+                            <th class="table-primary">CP</th>
+                            <th class="table-primary">Direccion</th>
+                            <th class="table-primary">Municipio</th>
+                            <th class="table-primary">Provincia</th>
+                            <th class="table-primary">Contenedor</th>
+                            <th class="table-primary">Tipo Legal</th>
+                            <th class="table-primary">Activo</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (cliente of clientes; track cliente.id_cliente){
-                            <tr class="table-ligth">
-                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.id_cliente}}</td>
+                            <tr class="table-ligth fila-tabla">
+                                <!-- <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.id_contenedor}}</td> -->
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.PointID}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nombre}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.cif}}</td>
                                 <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.telefono}}</td>
-                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.nota}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.cod_postal}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.direccion}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.municipio}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.provincia}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.tipo_legal}}</td>
+                                <td (click)="redirigirCliente(cliente.id_cliente)">{{cliente.activo ? 'Si' : 'No'}}</td>
+
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
-        </div>
+        
 </div>

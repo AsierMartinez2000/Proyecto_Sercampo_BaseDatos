@@ -1,14 +1,5 @@
-
-h3, button{
+.dashboard{
     text-align: center;
-}
-
-button{
-    
-    width: 175px;
-    /* background-color: rgb(212, 248, 246); */
-    font-weight: bold;
-    border-radius: 5px;
 }
 
 .buscador{
@@ -22,22 +13,6 @@ button{
    
 }
 
-
-
-.tabla{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-}
-th{
-    padding: 10px;
-    /* background-color: lightblue; */
-}
-td{
-    padding: 5px;
-    /* background-color: rgba(173, 216, 230, 0.212); */
-}
 
 
 

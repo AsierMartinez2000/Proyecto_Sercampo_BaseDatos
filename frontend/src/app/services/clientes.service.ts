@@ -31,36 +31,6 @@ export class ClientesService {
     return this.clientes;
   }
 
-  obtenerClientesOrdenados() {
-    this.httpClient
-      .get(`${this.url}?controller=clientes&action=obtenerClientesOrdenados`, {
-        withCredentials: true,
-      })
-      .subscribe({
-        next: (response: any) => {
-          this.clientes = response; // Asignar la respuesta al array
-          console.log('Clientes cargados:', (this.clientes = response));
-        },
-        error: (error) => {
-          console.error('Error al cargar clientes:', error);
-        },
-      });
-
-    return this.clientes;
-  }
-
-
-  obtenerClienteNombre(nombre:any): Observable<any> {
-    return this.httpClient
-    .post(`${this.url}?controller=clientes&action=obtenerClienteNombre`, nombre, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
-  }
-
   obtenerClienteGeneral(dato: any): Observable<any> {
     console.log(dato);
     return this.httpClient
@@ -85,18 +55,6 @@ export class ClientesService {
     })
   }
 
-  obtenerClientesTipo(cliente: any): Observable<any> {
-    console.log(cliente);
-    return this.httpClient
-    .post(`${this.url}?controller=clientes&action=obtenerClientesTipo`, cliente, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
-  }
-      
   anadirCliente(cliente: any): Observable<any> {
     return this.httpClient
     .post(`${this.url}?controller=clientes&action=nuevoCliente`, cliente, {
@@ -107,4 +65,50 @@ export class ClientesService {
       withCredentials: true
     })
   }
+
+  actualizarCliente(cliente: any): Observable<any>{
+     return this.httpClient
+    .post(`${this.url}?controller=clientes&action=actualizarCliente`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+
+  }
+
+  actualizarEstadoCliente(cliente: any): Observable<any>{
+     return this.httpClient
+    .post(`${this.url}?controller=clientes&action=actualizarEstadoCliente`, cliente, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  traerDatosBuscador(datoBuscador: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=rutas&action=buscadorParaRutas`, datoBuscador, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
+  traerDatosConductores(datoConductor: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=rutas&action=buscadorConductor`, datoConductor, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
 }
