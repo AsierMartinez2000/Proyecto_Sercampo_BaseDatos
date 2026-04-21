@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
+import { ViewportScroller } from '@angular/common';
+import { log } from 'console';
 
 @Component({
   selector: 'app-recogidas.component',
@@ -99,7 +101,6 @@ export class RecogidasComponent {
 
   contenedor_buscado = {
     dato: '', //aqui será dirección o municipio independientemente
-
   };
 
   EESS_buscado = {
@@ -115,12 +116,16 @@ export class RecogidasComponent {
   // almacenar eess
   array_eess: any[] = [];
 
+  // Variable para el modal de error
+  fallo_recogida: boolean = false;
+
   //constructor
   constructor(
     // private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private recogidaService: RecogidasService,
     private router: Router,
+    private viewportScroll: ViewportScroller,
   ) {}
 
   // MÉTODOS PARA HORECAS
@@ -155,7 +160,6 @@ export class RecogidasComponent {
   }
 
   insertarRecogidaHoreca() {
-    if (this.recogida_nueva.id_contenedor != '') {
       this.recogidaService.nuevaRecogidaHoreca(this.recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -168,11 +172,9 @@ export class RecogidasComponent {
         },
       });
       this.cdr.detectChanges();
-      this.router.navigate(['dashboard']);
-    } else {
-      console.log('no hay nada que recoger');
+      this.limpiarFormulario();
     }
-  }
+  
 
   cambiarHorecaVisitado(estado: boolean) {
     this.recogida_nueva.visitado = estado;
@@ -214,7 +216,7 @@ export class RecogidasComponent {
   }
 
   insertarRecogidaContenedor() {
-    if (this.cont_recogida_nueva.id_contenedor != '') {
+   
       this.recogidaService.nuevaRecogidaContenedor(this.cont_recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -227,10 +229,8 @@ export class RecogidasComponent {
         },
       });
       this.cdr.detectChanges();
-      this.router.navigate(['dashboard']);
-    } else {
-      console.log('no hay nada que recoger');
-    }
+      this.limpiarFormulario();
+     
   }
 
   cambiarContenedorVisitado(estado: boolean) {
@@ -244,19 +244,18 @@ export class RecogidasComponent {
   // MÉTODOS PARA EESS
   buscarEESS() {
     if (this.EESS_buscado.codigo.length >= 3) {
-      this.recogidaService
-        .traerEESSPorDato(this.EESS_buscado)
-        .subscribe((resultado: any) => {
-          this.array_eess = resultado; //Esto es el array
-          this.cdr.detectChanges();
-          console.log(resultado);
-        });
+      this.recogidaService.traerEESSPorDato(this.EESS_buscado).subscribe((resultado: any) => {
+        this.array_eess = resultado; //Esto es el array
+        this.cdr.detectChanges();
+        console.log(resultado);
+      });
     } else {
       this.array_eess = [];
     }
   }
 
-  seleccionarEESS(eess: any) {    //Este Contenedor es el seleccionado dentro del array_contenedores de la lista.
+  seleccionarEESS(eess: any) {
+    //Este Contenedor es el seleccionado dentro del array_contenedores de la lista.
     this.eess_recogida_nueva.id_contenedor = eess.id_contenedor;
     this.eess_recogida_nueva.nombre = eess.nombre;
     this.eess_recogida_nueva.cif = eess.cif;
@@ -272,7 +271,7 @@ export class RecogidasComponent {
   }
 
   insertarEESS() {
-    if (this.eess_recogida_nueva.id_contenedor != '') {
+    
       this.recogidaService.nuevaRecogidaEESS(this.eess_recogida_nueva).subscribe({
         next: (respuesta: any) => {
           console.log('Recogida añadida:', respuesta);
@@ -286,11 +285,9 @@ export class RecogidasComponent {
       });
 
       this.cdr.detectChanges();
-      this.router.navigate(['dashboard']);
-    } else {
-      console.log('No hay nada que recoger');
-    }
-  }
+      this.limpiarFormulario();
+    } 
+  
 
   cambiarEESSVisitado(estado: boolean) {
     this.eess_recogida_nueva.visitado = estado;
@@ -311,78 +308,108 @@ export class RecogidasComponent {
   }
 
   limpiarFormulario() {
-      //datos de horeca
-      this.recogida_nueva.id_contenedor = '',
-      this.recogida_nueva.fecha = '',
-      this.recogida_nueva.id_ruta = '',
-      this.recogida_nueva.litros_recogidos = 0,
-      this.recogida_nueva.visitado = true,
-      this.recogida_nueva.recogida = true,
-      this.recogida_nueva.bidones_recogidos = 0,
-      this.recogida_nueva.bidones_entregados = 0,
-      this.recogida_nueva.notas = '',
+    //datos de horeca
+    ((this.recogida_nueva.id_contenedor = ''),
+      // this.recogida_nueva.fecha = '',
+      (this.recogida_nueva.id_ruta = ''),
+      (this.recogida_nueva.litros_recogidos = 0),
+      (this.recogida_nueva.visitado = true),
+      (this.recogida_nueva.recogida = true),
+      (this.recogida_nueva.bidones_recogidos = 0),
+      (this.recogida_nueva.bidones_entregados = 0),
+      (this.recogida_nueva.notas = ''),
       //datos del producto de Horeca
-      this.recogida_nueva.desengrasante = 0,
-      this.recogida_nueva.fregasuelo = 0,
-      this.recogida_nueva.lavavajilla = 0,
-      this.recogida_nueva.jabon_manos = 0,
-      this.recogida_nueva.higienizante = 0,
-      this.recogida_nueva.wc_banos = 0,
-      this.recogida_nueva.limpia_cristales = 0,
-      this.recogida_nueva.lejia = 0,
-      this.recogida_nueva.bayeta = 0,
-      this.recogida_nueva.filtros = 0,
-      this.recogida_nueva.dinero = 0,
+      (this.recogida_nueva.desengrasante = 0),
+      (this.recogida_nueva.fregasuelo = 0),
+      (this.recogida_nueva.lavavajilla = 0),
+      (this.recogida_nueva.jabon_manos = 0),
+      (this.recogida_nueva.higienizante = 0),
+      (this.recogida_nueva.wc_banos = 0),
+      (this.recogida_nueva.limpia_cristales = 0),
+      (this.recogida_nueva.lejia = 0),
+      (this.recogida_nueva.bayeta = 0),
+      (this.recogida_nueva.filtros = 0),
+      (this.recogida_nueva.dinero = 0),
       //datos del cliente de Horeca
-      this.recogida_nueva.nombre = '',
-      this.recogida_nueva.cif = '',
-      this.recogida_nueva.telefono = '',
-      this.recogida_nueva.direccion = '',
-      this.recogida_nueva.municipio = '',
-      this.recogida_nueva.cod_postal = '',
-      this.recogida_nueva.provincia = '',
-      this.recogida_nueva.pais = '',
-
+      (this.recogida_nueva.nombre = ''),
+      (this.recogida_nueva.cif = ''),
+      (this.recogida_nueva.telefono = ''),
+      (this.recogida_nueva.direccion = ''),
+      (this.recogida_nueva.municipio = ''),
+      (this.recogida_nueva.cod_postal = ''),
+      (this.recogida_nueva.provincia = ''),
+      (this.recogida_nueva.pais = ''),
       //datos del contenedor
       //datos del "cliente"
-      this.cont_recogida_nueva.nombre = '',
-      this.cont_recogida_nueva.cif = '',
-      this.cont_recogida_nueva.telefono = '',
-      this.cont_recogida_nueva.direccion = '',
-      this.cont_recogida_nueva.municipio = '',
-      this.cont_recogida_nueva.cod_postal = '',
-      this.cont_recogida_nueva.provincia = '',
-      this.cont_recogida_nueva.pais = '',
+      (this.cont_recogida_nueva.nombre = ''),
+      (this.cont_recogida_nueva.cif = ''),
+      (this.cont_recogida_nueva.telefono = ''),
+      (this.cont_recogida_nueva.direccion = ''),
+      (this.cont_recogida_nueva.municipio = ''),
+      (this.cont_recogida_nueva.cod_postal = ''),
+      (this.cont_recogida_nueva.provincia = ''),
+      (this.cont_recogida_nueva.pais = ''),
       //Datos del formulario de contenedor
-      this.cont_recogida_nueva.id_contenedor = '',
-      this.cont_recogida_nueva.fecha = '',
-      this.cont_recogida_nueva.id_ruta = '',
-      this.cont_recogida_nueva.litros_recogidos = 0,
-      this.cont_recogida_nueva.visitado = true,
-      this.cont_recogida_nueva.recogida = true,
-      this.cont_recogida_nueva.bidones_recogidos = '',
-      this.cont_recogida_nueva.bidones_entregados = '',
-      this.cont_recogida_nueva.notas = ''
+      (this.cont_recogida_nueva.id_contenedor = ''),
+      // this.cont_recogida_nueva.fecha = '',
+      (this.cont_recogida_nueva.id_ruta = ''),
+      (this.cont_recogida_nueva.litros_recogidos = 0),
+      (this.cont_recogida_nueva.visitado = true),
+      (this.cont_recogida_nueva.recogida = true),
+      (this.cont_recogida_nueva.bidones_recogidos = ''),
+      (this.cont_recogida_nueva.bidones_entregados = ''),
+      (this.cont_recogida_nueva.notas = ''));
 
-      //datos de EESS
-      //datos del cliente
-      this.eess_recogida_nueva.nombre = '',
-      this.eess_recogida_nueva.cif = '',
-      this.eess_recogida_nueva.telefono = '',
-      this.eess_recogida_nueva.direccion = '',
-      this.eess_recogida_nueva.municipio = '',
-      this.eess_recogida_nueva.cod_postal = '',
-      this.eess_recogida_nueva.provincia = '',
-      this.eess_recogida_nueva.pais = '',
+    //datos de EESS
+    //datos del cliente
+    ((this.eess_recogida_nueva.nombre = ''),
+      (this.eess_recogida_nueva.cif = ''),
+      (this.eess_recogida_nueva.telefono = ''),
+      (this.eess_recogida_nueva.direccion = ''),
+      (this.eess_recogida_nueva.municipio = ''),
+      (this.eess_recogida_nueva.cod_postal = ''),
+      (this.eess_recogida_nueva.provincia = ''),
+      (this.eess_recogida_nueva.pais = ''),
       //Datos del formulario de contenedor
-      this.eess_recogida_nueva.id_contenedor = '',
-      this.eess_recogida_nueva.fecha = '',
-      this.eess_recogida_nueva.id_ruta = '',
-      this.eess_recogida_nueva.litros_recogidos = 0,
-      this.eess_recogida_nueva.visitado = true,
-      this.eess_recogida_nueva.recogida = true,
-      this.eess_recogida_nueva.bidones_recogidos = '',
-      this.eess_recogida_nueva.bidones_entregados = '',
-      this.eess_recogida_nueva.notas = ''
+      (this.eess_recogida_nueva.id_contenedor = ''),
+      // this.eess_recogida_nueva.fecha = '',
+      (this.eess_recogida_nueva.id_ruta = ''),
+      (this.eess_recogida_nueva.litros_recogidos = 0),
+      (this.eess_recogida_nueva.visitado = true),
+      (this.eess_recogida_nueva.recogida = true),
+      (this.eess_recogida_nueva.bidones_recogidos = ''),
+      (this.eess_recogida_nueva.bidones_entregados = ''),
+      (this.eess_recogida_nueva.notas = ''));
+
+      //    setTimeout(() => {
+      //   this.viewportScroll.scrollToPosition([0, 0]);
+      // }, 50);
+  }
+
+  comprobarFormularioHoreca() {
+    if (this.recogida_nueva.id_contenedor == '' || this.recogida_nueva.fecha == '') {
+      this.falloInsertar();
     }
+  }
+  comprobarFormularioContenedor() {
+    if (this.cont_recogida_nueva.id_contenedor == '' || this.cont_recogida_nueva.fecha == '') {
+      this.falloInsertar();
+    }
+  }
+  comprobarFormularioEESS() {
+    if (this.eess_recogida_nueva.id_contenedor == '' || this.eess_recogida_nueva.fecha == '') {
+      this.falloInsertar();
+    }
+  }
+
+  falloInsertar(){
+    this.fallo_recogida = true;
+  }
+
+  cerrarFallo(){
+    setTimeout(() => {
+      this.fallo_recogida = false;
+    }, 50);
+  }
 }
+

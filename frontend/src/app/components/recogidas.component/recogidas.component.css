@@ -8,7 +8,6 @@ span{
     width: 22vh;
 }
 
-
 .botones{
     display: flex;
     flex-direction: row;
@@ -27,4 +26,15 @@ span{
 
 .label_sin_negrita:hover{
     cursor: pointer;
+}
+
+.bi-exclamation-circle-fill{
+    font-size:xx-large;
+    color: #ff8f50;
+}
+
+.bi-check-circle-fill{
+    font-size:xx-large;
+    color: #198754;
+
 }
