@@ -40,8 +40,11 @@ h4{
 }
 
 /*ESTILOS RELACIONADOS CON LAS TABLAS */
+
+
 table{
   margin-top: 2vh;
+
   
 }
 
@@ -55,12 +58,13 @@ thead th:last-child {
 
 .table th{
   background-color: #ff8f50;
-  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
 }
 
 .table td{
   border-right: 1px solid rgb(241, 241, 241);
   border-bottom: 2px solid #4d5b9f41;
+  font-size: 15px;
 }
 
 /* Esto es el hover de las filas de las tablas */
