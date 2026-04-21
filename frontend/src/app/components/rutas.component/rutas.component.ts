@@ -20,6 +20,8 @@ export class RutasComponent {
   ) { }
 
 
+  
+  //aqui almacenamos el dato que viene del input de rutas para buscar
   dato_buscado = {
     dato: ''
   }
@@ -32,13 +34,34 @@ export class RutasComponent {
     dato: ''
   }
 
+  //estos arrays son las lista que aparecen cuando buscamos
   array_buscador: any[] = [];
 
   array_buscador_conductores: any[] = [];
   
   array_buscador_vehiculos: any[] = [];
 
+  //este array es para almacenar los datos que se muestran en la tabla
   rutas_guardadas: any[] = [];
+
+  //Conductor seleccionado
+  conductor_seleccionado = {
+    id_conductor: '',
+    nombre: '',
+    email: ' '
+  }
+  
+  //Vehiculo seleccionado
+  vehiculo_seleccionado = {
+    matricula: '',
+    modelo: '',
+    num_poliza: '',
+    telefono_emergencias: '', //telefono de asistencia en carretera
+    telefeno_aseguradora: '', //telefono comercial de la aseguradora
+    empresa: '' //mapfre, mutua, etc...
+  }
+
+
 
   // MÉTODOS GENERALES PARA TODOS
   buscarGeneral() {
@@ -71,7 +94,6 @@ export class RutasComponent {
   }  
 
 
-
   // MÉTODOS CONDUCTORES
   buscarConductores() {
     if (this.dato_conductor.nombre.length > 1) {
@@ -86,10 +108,23 @@ export class RutasComponent {
       this.array_buscador_conductores = [];
     }
   }
+
+   seleccionarConductor(conductor: any) {
+    //Este conductor es el seleccionado dentro del array_conductores de la lista.
+    this.conductor_seleccionado.id_conductor = conductor.id_conductor;
+    this.conductor_seleccionado.nombre = conductor.nombre;
+    this.conductor_seleccionado.email = conductor.email;
+
+    this.dato_conductor.nombre = '';
+    this.buscarConductores();
+  }
+
+
+
+
   
   //MÉTODOS FORMULARIO
   quitarCliente(id_cliente_buscado: any) {
-    
     this.rutas_guardadas = this.rutas_guardadas.filter(
       cliente => cliente.id_contenedor !== id_cliente_buscado
     );
