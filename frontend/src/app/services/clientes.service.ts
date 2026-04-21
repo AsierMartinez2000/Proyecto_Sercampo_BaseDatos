@@ -89,4 +89,26 @@ export class ClientesService {
     })
   }
 
+  traerDatosBuscador(datoBuscador: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=rutas&action=buscadorParaRutas`, datoBuscador, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
+  traerDatosConductores(datoConductor: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=rutas&action=buscadorConductor`, datoConductor, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
 }

@@ -11,10 +11,13 @@
 .logo-sercampo {
     margin-bottom: 3vh;
     text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 .logo-sercampo img {
     max-width: 20vh;
+
 }
 
 .navbar ul {
@@ -37,5 +40,11 @@
 .navbar button {
     width: 16vh; 
     height: 5vh;
+    
 }
 
+.navbar{
+    /* background-color: rebeccapurple; */
+    position: sticky;
+    top: 15%;
+}

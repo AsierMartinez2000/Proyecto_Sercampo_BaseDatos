@@ -10,9 +10,9 @@ export class RecogidasService {
 
   constructor(private httpClient: HttpClient) {}
 
-  nuevaRecogida(recogida: any): Observable<any> {
+  nuevaRecogidaHoreca(recogida: any): Observable<any> {
     return this.httpClient
-    .post(`${this.url}?controller=recogidas&action=nuevaRecogida`, recogida, {
+    .post(`${this.url}?controller=recogidas&action=nuevaRecogidaHoreca`, recogida, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -32,4 +32,47 @@ export class RecogidasService {
     })
   }
 
+  traerContenedorPorDato(datoBuscador: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerContenedorPorDato`,datoBuscador, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  nuevaRecogidaContenedor(contenedor: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=recogidas&action=nuevaRecogidaContenedor`, contenedor, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
+  traerEESSPorDato(datoBuscador: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerEESSPorDato`,datoBuscador, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  nuevaRecogidaEESS(eess: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=recogidas&action=nuevaRecogidaEESS`, eess, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
 }

@@ -12,7 +12,7 @@ class recogidasModel
         $this->db = ConexionBD::conexion();
     }
 
-    public function insertarRecogida($datosRecogida)
+    public function insertarRecogidaHoreca($datosRecogida)
     {
 
         try {
@@ -62,6 +62,77 @@ class recogidasModel
             $contador++;
 
             }
+
+            $this->db->commit();
+
+            return true;
+
+
+        } catch (Exception $e) {
+            
+            $this->db->rollBack();
+            
+            return $e;
+        }
+    }
+
+
+    public function insertarRecogidaContenedor($datosRecogida){
+        
+        try {
+
+            $this->db->beginTransaction();
+
+            $sqlRecogidas = "INSERT INTO recogidas (id_contenedor, fecha, id_ruta, litros_recogidos, visitado, recogida, bidones_recogidos, bidones_entregados, notas)
+                VALUES (:id_contenedor, :fecha, null, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
+
+            $stmt = $this->db->prepare($sqlRecogidas);
+
+            $stmt->bindParam(':id_contenedor', $datosRecogida['id_contenedor'], PDO::PARAM_INT);
+            $stmt->bindParam(':fecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':litros_recogidos', $datosRecogida['litros_recogidos'], PDO::PARAM_INT);
+            $stmt->bindParam(':visitado', $datosRecogida['visitado'], PDO::PARAM_BOOL);
+            $stmt->bindParam(':recogida', $datosRecogida['recogida'], PDO::PARAM_BOOL);
+            $stmt->bindParam(':bidones_recogidos', $datosRecogida['bidones_recogidos'], PDO::PARAM_INT);
+            $stmt->bindParam(':bidones_entregados', $datosRecogida['bidones_entregados'], PDO::PARAM_INT);
+            $stmt->bindParam(':notas', $datosRecogida['notas'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $this->db->commit();
+
+            return true;
+
+
+        } catch (Exception $e) {
+            
+            $this->db->rollBack();
+            
+            return $e;
+        }
+    }
+
+
+    public function insertarRecogidaEESS($datosRecogida){
+         try {
+
+            $this->db->beginTransaction();
+
+            $sqlRecogidas = "INSERT INTO recogidas (id_contenedor, fecha, id_ruta, litros_recogidos, visitado, recogida, bidones_recogidos, bidones_entregados, notas)
+                VALUES (:id_contenedor, :fecha, null, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
+
+            $stmt = $this->db->prepare($sqlRecogidas);
+
+            $stmt->bindParam(':id_contenedor', $datosRecogida['id_contenedor'], PDO::PARAM_INT);
+            $stmt->bindParam(':fecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':litros_recogidos', $datosRecogida['litros_recogidos'], PDO::PARAM_INT);
+            $stmt->bindParam(':visitado', $datosRecogida['visitado'], PDO::PARAM_BOOL);
+            $stmt->bindParam(':recogida', $datosRecogida['recogida'], PDO::PARAM_BOOL);
+            $stmt->bindParam(':bidones_recogidos', $datosRecogida['bidones_recogidos'], PDO::PARAM_INT);
+            $stmt->bindParam(':bidones_entregados', $datosRecogida['bidones_entregados'], PDO::PARAM_INT);
+            $stmt->bindParam(':notas', $datosRecogida['notas'], PDO::PARAM_STR);
+
+            $stmt->execute();
 
             $this->db->commit();
 

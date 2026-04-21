@@ -13,14 +13,18 @@ span{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-
 }
+
 #limpiar_formulario_btn{
     margin-left: auto;
 
 }
 
-.buscador_horeca_item:hover{
-    background-color:  #4d5b9f41;
+.buscador_item:hover{
+    background-color:  #4d5b9f28;
+    cursor: pointer;
+}
+
+.label_sin_negrita:hover{
     cursor: pointer;
 }
