@@ -32,6 +32,20 @@
                 }
             </ul>
         </div>
+        <div class="mb-3 col">
+            <label for="conductor">Asignar Vehiculo</label>
+            <input type="text" class="form-control buscador_Buscador" name="nombre_buscado"
+                [(ngModel)]="dato_vehiculo.dato" (click)="buscarVehiculos()" (keyup)="buscarVehiculos()" 
+                />
+            <ul class="list-group">
+                <!-- Resultados -->
+                @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
+                <li class="list-group-item buscador_item">
+                    {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
+                </li>
+                }
+            </ul>
+        </div>
         <div class="mb-3 col-3">
             <label for="fecha">Fecha</label>
             <input type="date" class="form-control" name="fecha">
@@ -85,7 +99,6 @@
                 
                 <!-- <td>{{cliente.tipo_legal}}</td> -->
                 <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
-                
             </tr>
             }
         </tbody>

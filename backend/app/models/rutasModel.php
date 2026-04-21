@@ -53,5 +53,24 @@ class rutasModel{
         return $resultado;
 
     }
+    public function getVehiculos($datoVehiculo){
+        
+        $sql = "SELECT matricula, modelo
+                FROM vehiculos
+                WHERE (matricula LIKE :datoVehiculo) OR (modelo LIKE :datoVehiculo)";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datoVehiculo['dato'] . "%";
+
+        $stmt->bindParam(':datoVehiculo', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+
+    }
 
 }

@@ -23,6 +23,15 @@ session_start();
 
             echo json_encode($conductores_encontrados);
         }
+
+        public function buscadorVehiculo($datoVehiculo){
+
+            $modeloRutas = new rutasModel();
+
+            $vehiculos_encontrados = $modeloRutas->getVehiculos($datoVehiculo);
+
+            echo json_encode($vehiculos_encontrados);
+        }
         
     }
 
