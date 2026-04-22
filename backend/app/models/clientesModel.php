@@ -115,6 +115,7 @@ class clientesModel{
 
         if($resultado && isset($resultado['id_cliente'])){
                 $id_cliente = $resultado['id_cliente']; 
+                return false;
             } else {
                 $sql2 = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
                         VALUES (:PointID, :nombre, :cif, :telefono, null) ";
