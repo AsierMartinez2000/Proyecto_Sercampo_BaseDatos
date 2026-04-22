@@ -37,14 +37,17 @@ cliente_nuevo = {
     private router: Router
   ){}
 
-
   anadirCliente(cliente_nuevo: any){
 
     if(cliente_nuevo.PointID != "" && cliente_nuevo.nombre != ""){
       this.clienteService.anadirCliente(cliente_nuevo).subscribe({
         next: (respuesta:any) => {
+          if(respuesta == false){
+            this.router.navigate(['cagaste']); 
+          } else {
           this.cliente_nuevo = respuesta;
           console.log('Cliente añadido:', respuesta);
+          }
         },
         error: (error) => {
           console.error('Error al añadir cliente:', error);
