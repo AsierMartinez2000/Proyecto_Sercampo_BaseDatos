@@ -3,15 +3,20 @@
 <form class="Buscador" id="Buscador">
   <div class="container mt-4 mb-4">
     <!-- Buscador Contenedor-->
-    <div class="mb-3">
-      <input
-        type="text"
-        class="form-control buscador_Buscador"
-        name="nombre_buscado"
-        placeholder="Buscar Lugar"
-        [(ngModel)]="dato_buscado.dato"
-        (keyup)="buscarGeneral()"
-      />
+    <div class="row">
+      <div class="col-11">
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          placeholder="Buscar Lugar"
+          [(ngModel)]="dato_buscado.dato"
+          (keyup)="buscarGeneral()"
+        />
+      </div>
+      <div class="col-1 ms-auto">
+        <i class="bi bi-x-square icono" (click)="vaciarBuscador()"></i>
+      </div>
     </div>
     <!-- Resultados -->
     <ul class="list-group">
@@ -189,7 +194,7 @@
           <td>{{ cliente.tipo }}</td>
           <button
             type="button"
-            class="btn btn-danger btn-sm"
+            class="btn btn-danger btn-sm boton-eliminar"
             (click)="quitarCliente(cliente.id_contenedor)"
           >
             <i class="bi bi-trash"></i>
@@ -201,4 +206,6 @@
       }
     </tbody>
   </table>
+  <hr>
+  <button type="submit" class="btn btn-success" (click)="guardarRuta()">Enviar Ruta</button>
 </div>

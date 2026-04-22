@@ -3,6 +3,36 @@
     cursor: pointer;
 }
 
+.buscador_item:active{
+    background-color:   #ff90506a;
+}
+
 .titulo-datos{
     text-align: center;
+}
+
+/* .bi-x-square{
+    font-size: x-large;
+    color: red;
+}
+*/
+
+.icono::before {
+    content: "\F629"; 
+    font-size: xx-large;
+    color: var(--bs-danger);
+}
+
+.icono:hover::before {
+    content: "\F628"; /* código del icono hover */
+    font-size: xx-large;
+    color: var(--bs-danger);
+}
+
+.bi-trash {
+    color: var(--bs-danger);
+}
+
+.boton-eliminar:hover .bi-trash {
+    color: white;
 }

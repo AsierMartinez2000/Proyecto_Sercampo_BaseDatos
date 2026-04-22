@@ -55,7 +55,7 @@ class rutasModel{
     }
     public function getVehiculos($datoVehiculo){
         
-        $sql = "SELECT matricula, modelo
+        $sql = "SELECT matricula, modelo, num_poliza
                 FROM vehiculos
                 WHERE (matricula LIKE :datoVehiculo) OR (modelo LIKE :datoVehiculo)";
 

@@ -55,10 +55,7 @@ export class RutasComponent {
   vehiculo_seleccionado = {
     matricula: '',
     modelo: '',
-    num_poliza: '',
-    telefono_emergencias: '', //telefono de asistencia en carretera
-    telefeno_aseguradora: '', //telefono comercial de la aseguradora
-    empresa: '' //mapfre, mutua, etc...
+    num_poliza: ''
   }
 
 
@@ -81,6 +78,11 @@ export class RutasComponent {
     }
   }
 
+  vaciarBuscador(){
+    this.dato_buscado.dato = '';
+    this.array_buscador = [];
+  }
+
   // --------------------------------- MÉTODOS VEHICULOS ---------------------------------
   buscarVehiculos() {
     if (this.dato_vehiculo.dato.length > 3) {
@@ -100,6 +102,7 @@ export class RutasComponent {
     //Este vehiculo es el seleccionado dentro del array_conductores de la lista.
     this.vehiculo_seleccionado.matricula = vehiculo.matricula;
     this.vehiculo_seleccionado.modelo = vehiculo.modelo;
+    this.vehiculo_seleccionado.num_poliza = vehiculo.num_poliza;
 
     this.dato_vehiculo.dato = '';
     this.buscarVehiculos();
@@ -155,5 +158,9 @@ export class RutasComponent {
   meterEnRuta(cliente_encontrado: any) {
     this.rutas_guardadas.push(cliente_encontrado);
     this.cdr.detectChanges();
+  }
+
+  guardarRuta(){
+    
   }
 }
