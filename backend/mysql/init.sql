@@ -20,7 +20,8 @@ USE sercampo_db;
 -- Direcciones: id_contenedor(PK FK), dirección, cod_postal, id_municipio(FK).
 -- Seguros_vehiculo: num_poliza(PK), tel_emergencias, tel_contacto, empresa.
 -- Vehiculos: matricula(PK), modelo, fecha_itv, fecha_mantenimiento, precio_mantenimiento, taller_mantenimiento, num_poliza(FK), num_bastidor.
--- Rutas: id_ruta(PK), id_contenedor(FK), id_conductor(FK), matricula(FK), notas, fecha.
+-- Rutas: id_ruta(PK), id_conductor(FK), matricula(FK), notas, fecha.
+-- Rutas-contenedores: id_ruta(PK FK), id_contenedor(PK FK).
 -- Recogidas: id_recogida(PK), id_contenedor(FK), fecha, id_ruta(FK), litros_recogidos, visitado, recogida, notas.
 -- Productos_recogidas: id_recogida(PK FK), id_producto(PK FK), cantidad
 -- Codigos_eess: cod_eess(PK), id_cliente(FK)
@@ -176,16 +177,25 @@ CREATE TABLE vehiculos (
 
 CREATE TABLE rutas (
         id_ruta INT PRIMARY KEY AUTO_INCREMENT,
-        id_contenedor INT NOT NULL,
         id_conductor INT NOT NULL,
         matricula VARCHAR(10),
         notas VARCHAR(255),
-        FOREIGN KEY (id_contenedor) REFERENCES direcciones (id_contenedor) ON DELETE CASCADE,
         FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor) ON DELETE RESTRICT,
         FOREIGN KEY (matricula) REFERENCES vehiculos (matricula) ON DELETE SET NULL
         -- Aqui en principio nunca se borrará, pero ponemos el DELETE CASCADE para poder hacer pruebas. Cambiarlo por DELETE RESTRICT o No poner nada
     );
 
+
+-- -----------------------------------------------------
+-- Tabla: Rutas-contenedores
+-- -----------------------------------------------------
+CREATE TABLE rutas-contenedores(
+        id_ruta INT,
+        id_contenedor INT,
+        PRIMARY KEY (id_ruta, id_contenedor),
+        FOREIGN KEY (id_ruta) REFERENCES rutas(id_ruta) ON DELETE CASCADE,
+        FOREIGN KEY (id_contenedor) REFERENCES contenedores(id_contenedor) ON DELETE CASCADE
+    );
 
 -- -----------------------------------------------------
 -- Tabla: recogidas
