@@ -39,7 +39,7 @@
         <!-- Resultados -->
         @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
           <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
-            {{ conductor.nombre }}
+            {{ conductor.nombre }} - {{conductor.email}}
           </li>
         }
       </ul>
@@ -57,7 +57,7 @@
       <ul class="list-group">
         <!-- Resultados -->
         @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
-          <li class="list-group-item buscador_item">
+          <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)" >
             {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
           </li>
         }
@@ -65,7 +65,7 @@
     </div>
     <div class="mb-3 col-3">
       <label for="fecha">Fecha</label>
-      <input type="date" class="form-control" name="fecha" />
+      <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
     </div>
   </div>
   <div class="mb-3">
@@ -82,6 +82,9 @@
 <!-- AQUI IRAN LOS DATOS QUE SELECCIONEMOS EN EL BUSCADOR -->
 @if (conductor_seleccionado.nombre != '') {
 <hr>
+<div class="titulo-datos mb-3">
+  <label>DATOS RUTA</label>
+</div>
   <div class="datos_seleccionados">
     <div class="row mb-3">
       <div class="col input-group input-group-sm mb-3">
@@ -135,7 +138,23 @@
   </div>
 }
 
-<!-- <h2></h2> -->
+@if ( fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="fecha"
+          name="fecha"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 <div class="tabla">
   <table class="table">
     <thead>

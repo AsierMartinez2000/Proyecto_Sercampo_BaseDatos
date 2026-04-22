@@ -36,7 +36,7 @@ class rutasModel{
     }
 
     public function getConductores($datoConductor){
-        $sql = "SELECT id_conductor, nombre
+        $sql = "SELECT id_conductor, nombre, email
                 FROM conductores
                 WHERE nombre LIKE :datoConductor";
 
