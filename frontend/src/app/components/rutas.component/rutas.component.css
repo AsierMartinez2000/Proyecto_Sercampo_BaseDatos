@@ -11,21 +11,19 @@
     text-align: center;
 }
 
-/* .bi-x-square{
-    font-size: x-large;
-    color: red;
+.icono-vaciar{
+    margin-top: 1px;
 }
-*/
 
 .icono::before {
     content: "\F629"; 
-    font-size: xx-large;
+    font-size: 4vh;
     color: var(--bs-danger);
 }
 
 .icono:hover::before {
     content: "\F628"; /* código del icono hover */
-    font-size: xx-large;
+    font-size: 4vh;
     color: var(--bs-danger);
 }
 
@@ -36,3 +34,8 @@
 .boton-eliminar:hover .bi-trash {
     color: white;
 }
+.buscador {
+    height: auto;
+    min-height: 5vh;
+}
+

@@ -1,9 +1,9 @@
 <h1>Rutas</h1>
 
 <form class="Buscador" id="Buscador">
-  <div class="container mt-4 mb-4">
+  <div class="container">
     <!-- Buscador Contenedor-->
-    <div class="row">
+    <div class="row buscador mb-4">
       <div class="col-11">
         <input
           type="text"
@@ -14,10 +14,12 @@
           (keyup)="buscarGeneral()"
         />
       </div>
-      <div class="col-1 ms-auto">
+      <div class="col-1 icono-vaciar">
         <i class="bi bi-x-square icono" (click)="vaciarBuscador()"></i>
       </div>
     </div>
+    </div>
+    <div class="resultados">   
     <!-- Resultados -->
     <ul class="list-group">
       @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
