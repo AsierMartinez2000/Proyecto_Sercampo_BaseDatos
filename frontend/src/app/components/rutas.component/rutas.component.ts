@@ -62,8 +62,11 @@ export class RutasComponent {
   }
 
 
+  //fecha
+  fecha:any = '';
 
-  // MÉTODOS GENERALES PARA TODOS
+
+  // --------------------------------- MÉTODO GENERAL ---------------------------------
   buscarGeneral() {
     if (this.dato_buscado.dato.length >= 3) {
       this.rutasService
@@ -78,7 +81,7 @@ export class RutasComponent {
     }
   }
 
-  // MÉTODOS VEHICULOS
+  // --------------------------------- MÉTODOS VEHICULOS ---------------------------------
   buscarVehiculos() {
     if (this.dato_vehiculo.dato.length > 3) {
       this.rutasService
@@ -93,8 +96,17 @@ export class RutasComponent {
     }
   }  
 
+  seleccionarVehiculo(vehiculo: any){
+    //Este vehiculo es el seleccionado dentro del array_conductores de la lista.
+    this.vehiculo_seleccionado.matricula = vehiculo.matricula;
+    this.vehiculo_seleccionado.modelo = vehiculo.modelo;
 
-  // MÉTODOS CONDUCTORES
+    this.dato_vehiculo.dato = '';
+    this.buscarVehiculos();
+  }
+
+
+  // --------------------------------- MÉTODOS CONDUCTORES  ---------------------------------
   buscarConductores() {
     if (this.dato_conductor.nombre.length > 1) {
       this.rutasService
@@ -122,8 +134,10 @@ export class RutasComponent {
 
 
 
+
+
   
-  //MÉTODOS FORMULARIO
+  //--------------------------------- MÉTODOS FORMULARIO ---------------------------------
   quitarCliente(id_cliente_buscado: any) {
     this.rutas_guardadas = this.rutas_guardadas.filter(
       cliente => cliente.id_contenedor !== id_cliente_buscado
