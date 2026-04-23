@@ -113,4 +113,7 @@ label{
   color: #4d5b9f;
 }
 
-
+/* BACKGROUND */
+.bg-sercampo{
+  box-shadow: 0 3px 7px #4d5b9fa5;
+}
