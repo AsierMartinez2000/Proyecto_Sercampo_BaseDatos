@@ -73,4 +73,54 @@ class rutasModel{
 
     }
 
+    public function nuevaRuta($datosRuta)
+    {
+
+        try {
+
+            $this->db->beginTransaction();
+
+            $sqlRutas= "INSERT INTO rutas (id_conductor, matricula, fecha, notas)
+                VALUES (:id_conductor, :matricula, :fecha, :notas)";
+
+            $stmt = $this->db->prepare($sqlRutas);
+
+            $stmt->bindParam(':id_conductor', $datosRuta['conductor']['id_conductor'], PDO::PARAM_INT);
+            $stmt->bindParam(':matricula', $datosRuta['vehiculo']['matricula'], PDO::PARAM_STR);
+            $stmt->bindParam(':fecha', $datosRuta['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':notas', $datosRuta['notas'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $id_ruta = $this->db->lastInsertId();
+
+            $sqlRutasContenedores = "INSERT INTO rutas_contenedores(id_ruta, id_contenedor)
+                            VALUES (:id_ruta, :id_contenedor)";
+
+            $stmt = $this->db->prepare($sqlRutasContenedores);
+            $stmt->bindParam(':id_ruta', $id_ruta, PDO::PARAM_INT);
+            
+            $arrayRutas = [];
+
+            $arrayRutas = $datosRuta['rutas'];
+
+            for ($i = 0; $i < count($arrayRutas); $i++){
+                $stmt->bindParam(':id_contenedor', $arrayRutas[$i]['id_contenedor'], PDO::PARAM_INT);
+
+                $stmt->execute();
+            }
+
+            $this->db->commit();
+
+            return true;
+
+
+        } catch (Exception $e) {
+            
+            $this->db->rollBack();
+            
+            return $e;
+        }
+    }
+
 }

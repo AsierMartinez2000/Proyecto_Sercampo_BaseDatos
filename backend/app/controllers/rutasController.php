@@ -33,6 +33,16 @@ session_start();
             echo json_encode($vehiculos_encontrados);
         }
         
+        public function insertarRuta($datoRuta){
+
+            $modeloRutas = new rutasModel();
+
+            $exito = $modeloRutas->nuevaRuta($datoRuta);
+
+            echo json_encode($exito);
+        }
+        
+        
     }
 
 ?>

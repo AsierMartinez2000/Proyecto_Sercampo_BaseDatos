@@ -51,4 +51,18 @@ export class RutasService {
       },
     );
   }
+
+  nuevaRuta(datoRuta: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=rutas&action=insertarRuta`,
+      datoRuta,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
 }
