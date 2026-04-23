@@ -62,6 +62,16 @@ export class RutasComponent {
   //fecha
   fecha:any = '';
 
+  //notas
+  notas: any = '';
+
+  json_enviar = {
+    rutas: this.rutas_guardadas,
+    conductor: this.conductor_seleccionado,
+    vehiculo: this.vehiculo_seleccionado,
+    fecha: this.fecha,
+    notas: this.notas
+  }
 
   // --------------------------------- MÉTODO GENERAL ---------------------------------
   buscarGeneral() {
@@ -161,6 +171,26 @@ export class RutasComponent {
   }
 
   guardarRuta(){
-    
+
+    this.json_enviar.rutas = this.rutas_guardadas;
+    this.json_enviar.conductor = this.conductor_seleccionado;
+    this.json_enviar.vehiculo = this.vehiculo_seleccionado;
+    this.json_enviar.fecha = this.fecha;
+    this.json_enviar.notas = this.notas;
+
+    this.rutasService.nuevaRuta(this.json_enviar).subscribe({
+        next: (respuesta: any) => {
+          console.log('Ruta añadida:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al añadir recogida:', error);
+        },
+        complete: () => {
+          console.log('Recogida añadida');
+        },
+      });
+
+      this.cdr.detectChanges();
+      this.router.navigate(['dashboard']);
   }
 }

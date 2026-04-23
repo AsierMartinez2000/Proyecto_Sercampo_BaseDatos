@@ -179,6 +179,7 @@ CREATE TABLE rutas (
         id_ruta INT PRIMARY KEY AUTO_INCREMENT,
         id_conductor INT NOT NULL,
         matricula VARCHAR(10),
+        fecha DATE,
         notas VARCHAR(255),
         FOREIGN KEY (id_conductor) REFERENCES conductores (id_conductor) ON DELETE RESTRICT,
         FOREIGN KEY (matricula) REFERENCES vehiculos (matricula) ON DELETE SET NULL
