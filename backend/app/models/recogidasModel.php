@@ -20,12 +20,13 @@ class recogidasModel
             $this->db->beginTransaction();
 
             $sqlRecogidas = "INSERT INTO recogidas (id_contenedor, fecha, id_ruta, litros_recogidos, visitado, recogida, bidones_recogidos, bidones_entregados, notas)
-                VALUES (:id_contenedor, :fecha, null, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
+                VALUES (:id_contenedor, :fecha, :id_ruta, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
 
             $stmt = $this->db->prepare($sqlRecogidas);
 
             $stmt->bindParam(':id_contenedor', $datosRecogida['id_contenedor'], PDO::PARAM_INT);
             $stmt->bindParam(':fecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_ruta', $datosRecogida['id_ruta'], PDO::PARAM_INT);
             $stmt->bindParam(':litros_recogidos', $datosRecogida['litros_recogidos'], PDO::PARAM_INT);
             $stmt->bindParam(':visitado', $datosRecogida['visitado'], PDO::PARAM_BOOL);
             $stmt->bindParam(':recogida', $datosRecogida['recogida'], PDO::PARAM_BOOL);
@@ -84,12 +85,13 @@ class recogidasModel
             $this->db->beginTransaction();
 
             $sqlRecogidas = "INSERT INTO recogidas (id_contenedor, fecha, id_ruta, litros_recogidos, visitado, recogida, bidones_recogidos, bidones_entregados, notas)
-                VALUES (:id_contenedor, :fecha, null, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
+                VALUES (:id_contenedor, :fecha, :id_ruta, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
 
             $stmt = $this->db->prepare($sqlRecogidas);
 
             $stmt->bindParam(':id_contenedor', $datosRecogida['id_contenedor'], PDO::PARAM_INT);
             $stmt->bindParam(':fecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_ruta', $datosRecogida['id_ruta'], PDO::PARAM_INT);
             $stmt->bindParam(':litros_recogidos', $datosRecogida['litros_recogidos'], PDO::PARAM_INT);
             $stmt->bindParam(':visitado', $datosRecogida['visitado'], PDO::PARAM_BOOL);
             $stmt->bindParam(':recogida', $datosRecogida['recogida'], PDO::PARAM_BOOL);
@@ -119,12 +121,13 @@ class recogidasModel
             $this->db->beginTransaction();
 
             $sqlRecogidas = "INSERT INTO recogidas (id_contenedor, fecha, id_ruta, litros_recogidos, visitado, recogida, bidones_recogidos, bidones_entregados, notas)
-                VALUES (:id_contenedor, :fecha, null, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
+                VALUES (:id_contenedor, :fecha, :id_ruta, :litros_recogidos, :visitado, :recogida, :bidones_recogidos, :bidones_entregados, :notas)";
 
             $stmt = $this->db->prepare($sqlRecogidas);
 
             $stmt->bindParam(':id_contenedor', $datosRecogida['id_contenedor'], PDO::PARAM_INT);
             $stmt->bindParam(':fecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_ruta', $datosRecogida['id_ruta'], PDO::PARAM_INT);
             $stmt->bindParam(':litros_recogidos', $datosRecogida['litros_recogidos'], PDO::PARAM_INT);
             $stmt->bindParam(':visitado', $datosRecogida['visitado'], PDO::PARAM_BOOL);
             $stmt->bindParam(':recogida', $datosRecogida['recogida'], PDO::PARAM_BOOL);
@@ -145,5 +148,25 @@ class recogidasModel
             
             return $e;
         }
+    }
+
+    
+    public function traerIdRuta($datosRecogida){
+
+        $sql = "SELECT id_ruta
+                FROM rutas
+                WHERE (id_conductor = :id_conductor) AND (fecha = :datoFecha)";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(':id_conductor', $datosRecogida['id_conductor'], PDO::PARAM_INT);
+        $stmt->bindParam(':datoFecha', $datosRecogida['fecha'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchColumn(); //Solo queremos devolver el dato id_ruta, no un array.
+        
+        return $resultado;
+
     }
 }
