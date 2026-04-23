@@ -36,7 +36,6 @@
       }
     </ul>
   </div>
-
   <h4>Datos Cliente</h4>
   <div class="mb-3">
     <input type="text" class="form-control" [(ngModel)]="recogida_nueva.nombre" name="nombre"
@@ -78,10 +77,80 @@
   </div>
 
   <!-- FECHA -->
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha"/>
+  <div class="row">
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+
+@if (conductor_seleccionado.nombre != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if ( recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 
   <div class="row">
     <!-- VISITADO -->
@@ -323,12 +392,81 @@
       <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.pais" name="pais" required disabled />
     </div>
   </div>
-
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
-    <input type="date" class="form-control" [(ngModel)]="cont_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+  <div class="row">
+      <!-- FECHA -->
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="cont_recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+  
+@if (cont_recogida_nueva.id_conductor != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if (cont_recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="cont_recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 
   <div class="row">
     <!-- VISITADO -->
@@ -510,10 +648,81 @@
     </div>
   </div>
 
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <input type="date" class="form-control" [(ngModel)]="eess_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+
+  <div class="row">
+      <!-- FECHA -->
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="eess_recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+
+@if (conductor_seleccionado.nombre != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if ( eess_recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="eess_recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
 
   <div class="row">
     <!-- VISITADO -->

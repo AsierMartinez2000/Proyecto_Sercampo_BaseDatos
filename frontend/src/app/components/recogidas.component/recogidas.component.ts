@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
 import { ViewportScroller } from '@angular/common';
 import { log } from 'console';
+import { RutasService } from '../../services/rutas.service';
 
 @Component({
   selector: 'app-recogidas.component',
@@ -22,6 +23,7 @@ export class RecogidasComponent {
     id_contenedor: '',
     fecha: '',
     id_ruta: '',
+    id_conductor: '',
     litros_recogidos: 0,
     visitado: true,
     recogida: true,
@@ -56,6 +58,7 @@ export class RecogidasComponent {
     id_contenedor: '', //estoy hay que sacarlo porque los contenedores son varios clietnes
     fecha: '',
     id_ruta: '',
+    id_conductor: '',
     litros_recogidos: 0,
     visitado: true,
     recogida: true,
@@ -78,6 +81,7 @@ export class RecogidasComponent {
     id_contenedor: '', //estoy hay que sacarlo porque los contenedores son varios clietnes
     fecha: '',
     id_ruta: '',
+    id_conductor: '',
     litros_recogidos: 0,
     visitado: true,
     recogida: true,
@@ -107,6 +111,20 @@ export class RecogidasComponent {
     codigo: '',
   };
 
+  //BUSCADOR Y SELECTOR DE CONDUCTOR
+
+  dato_conductor = {
+    nombre: ''
+  }
+
+  array_buscador_conductores: any[] = [];
+
+  conductor_seleccionado = {
+    id_conductor: '',
+    nombre: '',
+    email: ' '
+  }
+
   //almacenar los horecas
   horecas: any[] = [];
 
@@ -124,6 +142,7 @@ export class RecogidasComponent {
     // private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private recogidaService: RecogidasService,
+    private rutasService: RutasService,
     private router: Router,
     private viewportScroll: ViewportScroller,
   ) {}
@@ -400,6 +419,59 @@ export class RecogidasComponent {
     if (this.eess_recogida_nueva.id_contenedor == '' || this.eess_recogida_nueva.fecha == '') {
       this.falloInsertar();
     }
+  }
+
+  buscarConductores() {
+    if (this.dato_conductor.nombre.length > 1) {
+      this.rutasService
+      .traerDatosConductores(this.dato_conductor)
+      .subscribe((resultado: any) => {
+        this.array_buscador_conductores = resultado; //Esto es el array
+        this.cdr.detectChanges();
+        console.log(resultado);
+      });
+    } else {
+      this.array_buscador_conductores = [];
+    }
+  }
+
+   seleccionarConductor(conductor: any) {
+    //Este conductor es el seleccionado dentro del array_conductores de la lista.
+    this.conductor_seleccionado.id_conductor = conductor.id_conductor;
+    this.conductor_seleccionado.nombre = conductor.nombre;
+    this.conductor_seleccionado.email = conductor.email;
+
+    this.recogida_nueva.id_conductor = conductor.id_conductor;
+    this.cont_recogida_nueva.id_conductor = conductor.id_conductor;
+    this.eess_recogida_nueva.id_conductor = conductor.id_conductor;
+
+    this.dato_conductor.nombre = '';
+    this.buscarConductores();
+
+    this.comprobarIdRuta()
+  }
+
+  comprobarIdRuta(){
+    if((this.recogida_nueva.fecha != '') && (this.recogida_nueva.id_conductor != '')){
+      this.recogidaService.traerIdRuta(this.recogida_nueva).subscribe((resultado: any) => {
+        this.recogida_nueva.id_ruta = resultado; //Esto es el id ruta, cuidado no devolver un array.
+        this.cdr.detectChanges();
+        console.log(resultado);
+      });
+    }else if((this.cont_recogida_nueva.fecha != '') && (this.cont_recogida_nueva.id_conductor != '')){
+      this.recogidaService.traerIdRuta(this.cont_recogida_nueva).subscribe((resultado: any) => {
+        this.cont_recogida_nueva.id_ruta = resultado; //Esto es el id ruta, cuidado no devolver un array.
+        this.cdr.detectChanges();
+        console.log(resultado);
+      });
+    } else if((this.eess_recogida_nueva.fecha != '') && (this.eess_recogida_nueva.id_conductor != '')){
+      this.recogidaService.traerIdRuta(this.eess_recogida_nueva).subscribe((resultado: any) => {
+        this.eess_recogida_nueva.id_ruta = resultado; //Esto es el id ruta, cuidado no devolver un array.
+        this.cdr.detectChanges();
+        console.log(resultado);
+      });
+    }
+
   }
 
   falloInsertar(){
