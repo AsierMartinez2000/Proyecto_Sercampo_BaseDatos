@@ -406,18 +406,20 @@ export class RecogidasComponent {
   }
 
   comprobarFormularioHoreca() {
-    if (this.recogida_nueva.id_contenedor == '' || this.recogida_nueva.fecha == '') {
+    if ((this.recogida_nueva.id_contenedor == '' || this.recogida_nueva.fecha == '') || (this.recogida_nueva.id_conductor == '') || (this.recogida_nueva.id_ruta == '')) {
       this.falloInsertar();
+
     }
   }
   comprobarFormularioContenedor() {
-    if (this.cont_recogida_nueva.id_contenedor == '' || this.cont_recogida_nueva.fecha == '') {
+    if ((this.cont_recogida_nueva.id_contenedor == '' || this.cont_recogida_nueva.fecha == '') || (this.cont_recogida_nueva.id_conductor == '') || (this.cont_recogida_nueva.id_ruta == '')) {
       this.falloInsertar();
     }
   }
   comprobarFormularioEESS() {
-    if (this.eess_recogida_nueva.id_contenedor == '' || this.eess_recogida_nueva.fecha == '') {
+    if ((this.eess_recogida_nueva.id_contenedor == '' || this.eess_recogida_nueva.fecha == '') || (this.eess_recogida_nueva.id_conductor == '') || (this.eess_recogida_nueva.id_ruta == '')) {
       this.falloInsertar();
+
     }
   }
 

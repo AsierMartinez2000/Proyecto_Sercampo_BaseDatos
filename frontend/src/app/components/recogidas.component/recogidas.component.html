@@ -306,9 +306,13 @@
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          Asegurate de introducir la fecha y/o un HORECA correspondiente
+          @if(recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR HORECA
+          }
         } @else {
-          Confirma recogida de {{recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA
         }
       </div>
       <div class="modal-footer">
@@ -562,10 +566,13 @@
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          Asegurate de introducir la fecha y/o un CONTENEDOR correspondiente
+          @if(cont_recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR CONTENEDOR
+          }
         } @else {
-
-          Confirma recogida de {{cont_recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA CONTENEDOR
         }
       </div>
       <div class="modal-footer">
@@ -816,9 +823,13 @@
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          Asegurate de introducir la fecha y/o una EESS correspondiente
+          @if(eess_recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR EESS
+          }
         } @else {
-          Confirma recogida de {{cont_recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA EESS
         }
       </div>
       <div class="modal-footer">
