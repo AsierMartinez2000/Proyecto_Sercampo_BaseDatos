@@ -64,6 +64,7 @@ export class ConductoresComponent {
     this.conductor_seleccionado.id_conductor = conductor.id_conductor;
     this.conductor_seleccionado.nombre = conductor.nombre;
     this.conductor_seleccionado.email = conductor.email;
+    this.conductor_seleccionado.telefono = conductor.telefono;
 
     this.dato_conductor.nombre = '';
     this.buscarConductores();
