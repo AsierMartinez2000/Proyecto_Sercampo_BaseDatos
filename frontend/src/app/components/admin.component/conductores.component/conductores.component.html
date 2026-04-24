@@ -42,19 +42,19 @@
           } @else {
             <input
               type="text"
-              class="form-control"
+              class="form-control "
               [(ngModel)]="conductor_seleccionado.nombre"
               name="nombre"
               required
             />
           }</h5>
           @if (!editando) {
-              <p class="card-text mb-1"><strong>Tel:</strong> {{conductor_seleccionado.telefono}}</p>
+              <p class="card-text"><strong>Tel:</strong> {{conductor_seleccionado.telefono}}</p>
           }
           @else {
             <input
               type="text"
-              class="form-control"
+              class="form-control mt-2"
               [(ngModel)]="conductor_seleccionado.telefono"
               name="telefono"
               required
@@ -67,16 +67,19 @@
           }@else {
             <input
               type="email"
-              class="form-control"
+              class="form-control mt-2"
               [(ngModel)]="conductor_seleccionado.email"
               name="email"
               required
             />
           }
           
-          <a class="btn btn-sercampo btn-sm" (click)="modoEdicion()">Editar</a>
           @if (editando) {
-            <!-- <a class="btn btn-sercampo btn-sm" (click)="enviarEdicion()">Editar</a> -->
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
           }
         </div>
       </div>
