@@ -3,6 +3,7 @@ import { RutasService } from '../../../services/rutas.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-conductores.component',
@@ -18,6 +19,7 @@ export class ConductoresComponent {
     // private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private rutasService: RutasService,
+    private adminService: AdminService,
     private router: Router,
   ) {}
 
@@ -43,6 +45,13 @@ export class ConductoresComponent {
     telefono: '',
     email: ' ',
   }
+
+  conductor_edicion_antiguo = {
+    id_conductor: '',
+    nombre: '',
+    telefono: '',
+    email: ' ',
+  };
 
   editando: any = false;
 
@@ -72,11 +81,41 @@ export class ConductoresComponent {
 
   nuevoConductor(conductor_nuevo: any){}
 
-  modoEdicion(){
-    if (this.editando == false) {
-        this.editando = true;
-    } else {
-        this.editando = false;
+  EntrarModoEdicion(){
+    this.conductor_edicion_antiguo.id_conductor = this.conductor_seleccionado.id_conductor;
+    this.conductor_edicion_antiguo.nombre = this.conductor_seleccionado.nombre;
+    this.conductor_edicion_antiguo.email = this.conductor_seleccionado.email;
+    this.conductor_edicion_antiguo.telefono = this.conductor_seleccionado.telefono;
+    //Esto lo hacemos para guardar en conductor_edicion_antiguo, los datos del conductor.
+    //Ya que el valor que esta en conductor_seleccionado se cambia con NGModel
+    this.editando = true;
+  }
+
+  SalirModoEdicion(){
+    this.conductor_seleccionado.id_conductor = this.conductor_edicion_antiguo.id_conductor;
+    this.conductor_seleccionado.nombre = this.conductor_edicion_antiguo.nombre;
+    this.conductor_seleccionado.email = this.conductor_edicion_antiguo.email;
+    this.conductor_seleccionado.telefono = this.conductor_edicion_antiguo.telefono;
+    this.editando = false;
+  }
+
+  enviarEdicion(){
+
+    if(this.conductor_seleccionado.id_conductor != '' && this.conductor_seleccionado.nombre != '' && this.conductor_seleccionado.email != '' && this.conductor_seleccionado.telefono != ''){
+      this.adminService.actualizarConductor(this.conductor_seleccionado).subscribe((resultado: any) => {
+        if (resultado == true){
+          console.log(resultado);
+          this.editando = false;
+          this.cdr.detectChanges();
+        }else {
+          console.log(resultado);
+          this.editando = false;
+          this.cdr.detectChanges();
+        }
+      });
     }
   }
+
+
+
 }

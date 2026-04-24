@@ -14,6 +14,15 @@ session_start();
 
             echo json_encode($productos);
         }
+
+        public function actualizarConductor($datos_conductor){
+
+            $modeloAdmin = new adminModel();
+
+            $exito = $modeloAdmin->actualizarConductor($datos_conductor);
+
+            echo json_encode($exito);
+        }
         
     }
 

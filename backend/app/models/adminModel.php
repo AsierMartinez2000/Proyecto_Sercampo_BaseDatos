@@ -23,4 +23,34 @@ class adminModel{
         
     }
 
+    public function actualizarConductor($datos_conductor){
+        
+        try {
+            
+            $this->db->beginTransaction();
+
+            $sql = "UPDATE conductores
+                SET nombre = :nombre, email = :email, telefono = :telefono
+                WHERE id_conductor = :id_conductor";
+        
+            $stmt = $this->db->prepare($sql);
+            
+            $stmt->bindParam(':nombre', $datos_conductor['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':email', $datos_conductor['email'], PDO::PARAM_STR);
+            $stmt->bindParam(':telefono', $datos_conductor['telefono'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_conductor', $datos_conductor['id_conductor'], PDO::PARAM_STR);
+            
+            $stmt->execute();
+
+            $this->db->commit();
+            
+            return true;
+            
+        } catch (\Error $e) {
+
+            $this->db->rollback();
+            return $e;
+        }
+    }
+
 }

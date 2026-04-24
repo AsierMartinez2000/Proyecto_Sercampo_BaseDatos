@@ -22,4 +22,17 @@ export class AdminService {
       },
     );
   }
+
+  actualizarConductor(datos_conductor: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=admin&action=actualizarConductor`, datos_conductor, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+
 }
