@@ -9,6 +9,7 @@ import { CambioConfirmadoComponent } from './components/cambio-confirmado.compon
 import { RutasComponent } from './components/rutas.component/rutas.component';
 import { AdminComponent } from './components/admin.component/admin.component';
 import { EditarProductosComponent } from './components/admin.component/editar-productos.component/editar-productos.component';
+import { ConductoresComponent } from './components/admin.component/conductores.component/conductores.component';
 
 export const routes: Routes = [
 
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'Confirmado'},
     {path: 'admin', component: AdminComponent, title: 'Admin'},
     {path: 'admin/editarProducto', component: EditarProductosComponent, title: 'Editar Producto'},
+    {path: 'admin/conductores', component: ConductoresComponent, title: 'Conductores'},
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];
