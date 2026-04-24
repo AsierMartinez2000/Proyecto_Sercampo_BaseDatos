@@ -182,7 +182,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (cliente of rutas_guardadas; track cliente.id_cliente) {
+      @for (cliente of rutas_guardadas; track cliente.id_cliente; let indice = $index) {
         <tr class="table-ligth fila-tabla">
           <!-- <td>{{cliente.id_contenedor}}</td> -->
           <!-- <td>{{cliente.PointID}}</td> -->
@@ -197,7 +197,7 @@
           <button
             type="button"
             class="btn btn-danger btn-sm boton-eliminar"
-            (click)="quitarCliente(cliente.id_contenedor)"
+            (click)="quitarCliente(indice)"
           >
             <i class="bi bi-trash"></i>
           </button>
