@@ -135,11 +135,16 @@ export class RutasComponent {
   }
 
   //--------------------------------- MÉTODOS FORMULARIO ---------------------------------
-  quitarCliente(id_cliente_buscado: any) {
-    this.rutas_guardadas = this.rutas_guardadas.filter(
-      (cliente) => cliente.id_contenedor !== id_cliente_buscado,
-    );
-    console.log(this.rutas_guardadas);
+
+  // El siguiente metodo ya no se usa, lo hacemos en base al indice del array en lugar de filtrar por ID
+  // quitarCliente(id_cliente_buscado: any) {   
+  //   this.rutas_guardadas = this.rutas_guardadas.filter(
+  //       (cliente) => cliente.id_contenedor !== id_cliente_buscado,
+  //     );
+  // }
+
+  quitarCliente(indice: any){
+    this.rutas_guardadas.splice(indice, 1);
   }
 
   limpiarPagina() {
