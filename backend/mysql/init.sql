@@ -14,7 +14,7 @@ USE sercampo_db;
 -- Tipo_contenedor: id_tipo_contenedor(PK), tipo, capacidad, notas
 -- Contenedores: id­_contenedor(PK), id_tipo_contenedor(FK), id_cliente(FK), tipo_legal, periodo_recogida_dias, mercancia, latitud, longitud, inicio, fin, activo
 -- Productos: id_productos(PK), tipo, coste, notas.
--- Conductores: id_conductor(PK), nombre, email.
+-- Conductores: id_conductor(PK), nombre, email, telefono.
 -- Zonas: id_zona(PK), nombre.
 -- Municipios: id_municipio(PK), municipio, provincia, pais, id_zona(FK).
 -- Direcciones: id_contenedor(PK FK), dirección, cod_postal, id_municipio(FK).
@@ -104,7 +104,8 @@ CREATE TABLE productos (
 CREATE TABLE conductores (
         id_conductor INT PRIMARY KEY AUTO_INCREMENT,
         nombre VARCHAR(100) NOT NULL,
-        email VARCHAR(255) NOT NULL
+        email VARCHAR(255) NOT NULL,
+        telefono VARCHAR(20)
     );
 
 -- -----------------------------------------------------
