@@ -23,6 +23,16 @@ session_start();
 
             echo json_encode($exito);
         }
+
+        public function nuevoConductor($datos_conductor){
+
+            $modeloAdmin = new adminModel();
+            $conductor = $modeloAdmin->insertarConductor($datos_conductor);
+
+            echo json_encode ($conductor);
+
+
+        }
         
     }
 

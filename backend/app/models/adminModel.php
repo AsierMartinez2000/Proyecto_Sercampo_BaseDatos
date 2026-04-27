@@ -53,4 +53,24 @@ class adminModel{
         }
     }
 
+
+
+    public function insertarConductor($datos_conductor){
+
+     $sql= "INSERT INTO conductores (nombre, email, telefono)
+                VALUES (:nombre, :email, :telefono)";
+
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindParam(':nombre', $datos_conductor['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':email', $datos_conductor['email'], PDO::PARAM_STR);
+            $stmt->bindParam(':telefono', $datos_conductor['telefono'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return true;
+
+
+    }
+
 }

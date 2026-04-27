@@ -20,7 +20,7 @@ export const routes: Routes = [
     {path: 'nuevoCliente', component: NuevoClienteComponent, title: 'Nuevo Cliente'},
     {path: 'recogidas', component: RecogidasComponent, title: 'Recogidas'},
     {path: 'modificar/:id_cliente', component: ModificarComponent, title: 'Modificar'},
-    // {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
+    {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
     {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'Confirmado'},
     {path: 'admin', component: AdminComponent, title: 'Admin'},
     {path: 'admin/editarProducto', component: EditarProductosComponent, title: 'Editar Producto'},

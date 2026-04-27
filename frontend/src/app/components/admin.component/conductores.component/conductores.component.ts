@@ -41,9 +41,9 @@ export class ConductoresComponent {
   };
 
   conductor_nuevo = {
-     nombre: '',
-    telefono: '',
+    nombre: '',
     email: ' ',
+    telefono: '',
   }
 
   conductor_edicion_antiguo = {
@@ -79,7 +79,27 @@ export class ConductoresComponent {
     this.buscarConductores();
   }
 
-  nuevoConductor(conductor_nuevo: any){}
+  nuevoConductor(conductor_nuevo: any){
+
+    this.adminService.insertarNuevoConductor(this.conductor_nuevo).subscribe({
+        next: (respuesta: any) => {
+          console.log('Conductor añadido:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al añadir conductor:', error);
+        },
+        complete: () => {
+          console.log('Conductor añadido');
+          this.cdr.detectChanges();
+          this.router.navigate(['confirmado']); 
+        },
+      });
+     
+
+  }
+
+
+
 
   EntrarModoEdicion(){
     this.conductor_edicion_antiguo.id_conductor = this.conductor_seleccionado.id_conductor;
