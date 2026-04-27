@@ -1,0 +1,19 @@
+.stats{
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    justify-content: center;
+}
+
+.estadisticas-container .card{
+      background-color: #4d5b9f18;
+}
+
+p{
+    font-size: smaller;
+}
+
+
+.botones-filtro button{
+    margin: 4px;     
+}

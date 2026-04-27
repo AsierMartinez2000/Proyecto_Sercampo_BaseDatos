@@ -1,40 +1,181 @@
 <h1>Últimas Recogidas</h1>
 
 <div class="estadisticas-container">
-    <p>aqui irian las tarjetas con los datos</p>
-
-    <ul>
-        <li>Filtrar por Fecha</li>
-        <li>Filtrar por Nombre</li>
-        <li>Filtrar por Municipio</li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
-<hr>
-
-<div class="ult-recogidas-container">
-    <p>aqui iria una lista de las ultimas recogidas</p>
- 
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-   Mas info
-  </button>
-
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    
- <ul>
-        <li>Nombre</li>
-        <li>Tipo legal</li>
-        <li>Litros</li>
-        <li>Fecha</li>
-        <li>Conductor</li>
-        <li>Direccion</li>
-        <li>Municipio</li>
-    </ul>
-
+  <p class="card-text text-center">Estadísticas a partir de {{ fecha | date: 'dd/MM/yyyy' }}</p>
+  <div class="stats">
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">567</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Litros</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">125</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Recogidas Totales</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">2569</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">€ entregados</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">56</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Horecas Recogidos</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">67</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Contenedores Recogidos</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">2</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">EESS recogidas</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
   </div>
 </div>
 
+<hr />
+
+<!-- BOTONES FILTRO -->
+<div class="botones-filtro">
+  <button type="button btn-sm" class="btn btn-outline-secondary">Fecha
+    <input type="text">
+</button>
+<button type="button btn-sm" class="btn btn-outline-secondary">Municipio
+
+    <input type="text">
+</button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">Provincia <input type="text"></button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">Conductor <input type="text"></button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">Vehiculo <input type="text"></button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">Cliente <input type="text"></button>
+</div>
+
+<hr />
+
+<div class="ult-recogidas-container">
+  <div class="card mb-4">
+    <!-- <div class="card-img-top text-center py-4">
+      <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
+    </div> -->
+    <div class="card-body">
+      <h5 class="card-title">Recogida día 25 en Polonio</h5>
+      <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
+      <div class="boton-masinfo ms-auto">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Mas info
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <ul>
+          <li>Dirección</li>
+          <li>Productos DADOS:</li>
+          <li>Legia - 2</li>
+          <li>Dinero - 220:</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <!-- <div class="card-img-top text-center py-4">
+      <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
+    </div> -->
+    <div class="card-body">
+      <h5 class="card-title">Recogida día 26 en Bar la Plaza</h5>
+      <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
+      <div class="boton-masinfo ms-auto">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Mas info
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <ul>
+          <li>Dirección</li>
+          <li>Productos DADOS:</li>
+          <li>Legia - 1</li>
+          <li>Dinero - 220:</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <!-- <div class="card-img-top text-center py-4">
+      <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
+    </div> -->
+    <div class="card-body">
+      <h5 class="card-title">Recogida día 27 en Bar Miguel, Vellisca</h5>
+      <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
+      <div class="boton-masinfo ms-auto">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Mas info
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <ul>
+          <li>Dirección</li>
+          <li>Productos DADOS:</li>
+          <li>Legia - 2</li>
+          <li>Dinero - 220:</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
