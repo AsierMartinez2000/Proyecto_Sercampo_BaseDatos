@@ -47,6 +47,7 @@ export class RutasComponent {
     id_conductor: '',
     nombre: '',
     email: ' ',
+    telefono: ''
   };
 
   //Vehiculo seleccionado
@@ -128,6 +129,7 @@ export class RutasComponent {
     //Este conductor es el seleccionado dentro del array_conductores de la lista.
     this.conductor_seleccionado.id_conductor = conductor.id_conductor;
     this.conductor_seleccionado.nombre = conductor.nombre;
+    this.conductor_seleccionado.telefono = conductor.telefono;
     this.conductor_seleccionado.email = conductor.email;
 
     this.dato_conductor.nombre = '';
