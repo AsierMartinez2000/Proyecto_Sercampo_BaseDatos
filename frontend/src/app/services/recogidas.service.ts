@@ -86,4 +86,15 @@ export class RecogidasService {
        withCredentials: true
     })
   }
+
+  obtenerRecogidas(fecha: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerRecogidasPorFecha`,fecha, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }

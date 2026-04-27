@@ -169,4 +169,29 @@ class recogidasModel
         return $resultado;
 
     }
+
+    public function traerRecogidasPorFecha($fecha){
+
+        $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, d.direccion
+                FROM recogidas AS rec
+                INNER JOIN rutas AS rut ON rec.id_ruta = rut.id_ruta
+                INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
+                INNER JOIN contenedores AS con ON rec.id_contenedor = con.id_contenedor
+                INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
+                INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
+                INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
+                WHERE rec.fecha >= :fecha
+                ORDER BY rec.fecha DESC";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(':fecha', $fecha['fecha'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //Solo queremos devolver el dato id_ruta, no un array.
+        
+        return $resultado;
+
+    }
 }

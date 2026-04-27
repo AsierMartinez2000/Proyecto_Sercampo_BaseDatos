@@ -1,7 +1,7 @@
 <h1>Últimas Recogidas</h1>
 
 <div class="estadisticas-container">
-  <p class="card-text text-center">Estadísticas a partir de {{ fecha | date: 'dd/MM/yyyy' }}</p>
+  <p class="card-text text-center">Estadísticas a partir de {{ datos.fecha | date: 'dd/MM/yyyy' }}</p>
   <div class="stats">
     <div class="card" style="width: 8rem">
       <div class="card-body text-center">
@@ -80,11 +80,13 @@
 <hr />
 
 <div class="ult-recogidas-container">
-  <div class="card mb-4">
+
+
+  <!-- <div class="card mb-4"> -->
     <!-- <div class="card-img-top text-center py-4">
       <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
     </div> -->
-    <div class="card-body">
+    <!-- <div class="card-body">
       <h5 class="card-title">Recogida día 25 en Polonio</h5>
       <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
       <div class="boton-masinfo ms-auto">
@@ -99,9 +101,9 @@
           Mas info
         </button>
       </div>
-    </div>
+    </div> -->
 
-    <div class="collapse" id="collapseExample">
+    <!-- <div class="collapse" id="collapseExample">
       <div class="card card-body">
         <ul>
           <li>Dirección</li>
@@ -111,71 +113,33 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="card mb-4">
-    <!-- <div class="card-img-top text-center py-4">
-      <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
-    </div> -->
-    <div class="card-body">
-      <h5 class="card-title">Recogida día 26 en Bar la Plaza</h5>
-      <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
-      <div class="boton-masinfo ms-auto">
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          Mas info
-        </button>
+  @for (recogida of array_recogidas; track $index) {
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Recogida dia {{ recogida.fecha }} en {{ recogida.nombre_cliente}} </h5>
+        <p>{{ recogida.nombre_cliente}} - {{ recogida.tipo_legal}} - {{ recogida.litros_recogidos}} - {{ recogida.fecha}} -  {{ recogida.nombre_conductor}} - {{ recogida.municipio}} - {{ recogida.direccion}}</p>
+        <div class="boton-masinfo ms-auto">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Mas info
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <ul>
-          <li>Dirección</li>
-          <li>Productos DADOS:</li>
-          <li>Legia - 1</li>
-          <li>Dinero - 220:</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
-  <div class="card mb-4">
-    <!-- <div class="card-img-top text-center py-4">
-      <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
-    </div> -->
-    <div class="card-body">
-      <h5 class="card-title">Recogida día 27 en Bar Miguel, Vellisca</h5>
-      <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
-      <div class="boton-masinfo ms-auto">
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          Mas info
-        </button>
-      </div>
-    </div>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <ul>
-          <li>Dirección</li>
-          <li>Productos DADOS:</li>
-          <li>Legia - 2</li>
-          <li>Dinero - 220:</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
+  }
+
+
+
 </div>
