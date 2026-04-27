@@ -127,9 +127,26 @@
   @for (recogida of array_recogidas; track $index) {
     <div class="card mb-4 custom-card">
   <div class="card-body">
-    <h5 class="card-title">
-     {{ recogida.fecha }} - {{ recogida.nombre_cliente }}
-    </h5>
+
+    <div class="title-boton">
+      <h5 class="card-title">
+       {{ recogida.fecha }} - {{ recogida.nombre_cliente }}
+      </h5>
+  
+      <div class="boton-masinfo mb-3">
+        <button
+          class="btn btn-sercampo btn-sm"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapse"
+          aria-expanded="false"
+        >
+        <!-- AQUI NOS HEMOS QUEDADO EN EL DATA-BS-TARGET QUEREMOS PONER $INDEX -->
+          Más info
+        </button>
+      </div>
+
+    </div>
 
     <div class="info-grid">
       <div class="info-item">
@@ -157,17 +174,16 @@
         <span class="value">{{ recogida.direccion }}</span>
       </div>
     </div>
-
-    <div class="boton-masinfo ms-auto mt-3">
-      <button
-        class="btn btn-primary"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseExample"
-        aria-expanded="false"
-      >
-        Más info
-      </button>
+    <div class="collapse mt-3" id="collapse{{$index}}">
+      <!-- AQUI NOS HEMOS QUEDADO EN EL DATA-BS-TARGET QUEREMOS PONER $INDEX -->
+      <div class="card card-body">
+        <ul>
+          <li>Dirección</li>
+          <li>Productos DADOS:</li>
+          <li>Leguia - 2</li>
+          <li>Dinero - 220:</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

@@ -79,3 +79,16 @@ p{
   font-weight: 500;
   color: #212529;
 }
+/* 
+.boton-masinfo{
+  border: 1px solid red;
+}
+
+.boton-masinfo button{
+  align-items: end;
+} */
+
+.title-boton{
+  display: flex;
+  justify-content: space-between;
+}
