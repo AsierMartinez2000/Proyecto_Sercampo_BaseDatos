@@ -22,7 +22,7 @@ p{
 .custom-card {
   border: none;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -50,7 +50,7 @@ p{
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #f8f9fa;
+  background: #4d5b9f18;
   border-radius: 12px;
   padding: 12px 14px;
   display: flex;
