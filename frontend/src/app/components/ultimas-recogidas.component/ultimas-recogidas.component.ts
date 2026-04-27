@@ -36,14 +36,49 @@ export class UltimasRecogidasComponent implements OnInit {
   ngOnInit() {
     console.log(this.datos.fecha.toLocaleDateString('en-CA'));
     this.cargarRecogidas();
+    this.cdr.detectChanges();
   }
 
   cargarRecogidas(){
     this.recogidasService.obtenerRecogidas(this.datos).subscribe((resultado: any) => {
       console.log(resultado);
       this.array_recogidas = resultado;
-      this.cdr.detectChanges();
+      this.calcularEstadisticas();      
     });
+  }
+
+  calcularEstadisticas(){
+    this.estadisticas.litros = 0;
+
+    this.estadisticas.horecas_recogidos = 0;
+    this.estadisticas.contenedores_recogidos = 0;
+    this.estadisticas.eess_recogidos = 0;
+
+    this.estadisticas.recogidas_totales = 0;
+
+    this.estadisticas.euros_entregado = 0;
+  
+    for(let recogida of this.array_recogidas){
+
+      this.estadisticas.litros += recogida.litros_recogidos;
+
+      if(recogida.tipo_legal == "Horeca"){
+        this.estadisticas.horecas_recogidos++;
+      }
+
+      if(recogida.tipo_legal == "Contenedor"){
+        this.estadisticas.contenedores_recogidos++;
+      }
+
+      if(recogida.tipo_legal == "EESS Repsol"){
+        this.estadisticas.eess_recogidos++;
+      }
+
+      this.estadisticas.recogidas_totales++;
+
+    }
+      this.cdr.detectChanges();
+    console.log(this.estadisticas.litros);
   }
 
 
