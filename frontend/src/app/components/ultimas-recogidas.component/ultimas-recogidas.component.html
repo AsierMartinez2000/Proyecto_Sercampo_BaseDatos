@@ -1,12 +1,14 @@
 <h1>Últimas Recogidas</h1>
 
 <div class="estadisticas-container">
-  <p class="card-text text-center">Estadísticas a partir de {{ datos.fecha | date: 'dd/MM/yyyy' }}</p>
+  <p class="card-text text-center">
+    Estadísticas a partir de {{ datos.fecha | date: 'dd/MM/yyyy' }}
+  </p>
   <div class="stats">
     <div class="card" style="width: 8rem">
       <div class="card-body text-center">
         <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
-        <label for="card-text">567</label>
+        <label for="card-text">{{estadisticas.litros}}</label>
         <!-- <h5 class="card-title">Card title</h5> -->
         <p class="card-text text-center">Litros</p>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
@@ -64,29 +66,37 @@
 
 <!-- BOTONES FILTRO -->
 <div class="botones-filtro">
-  <button type="button btn-sm" class="btn btn-outline-secondary">Fecha
-    <input type="text">
-</button>
-<button type="button btn-sm" class="btn btn-outline-secondary">Municipio
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Fecha
+    <input type="text" />
+  </button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Municipio
 
-    <input type="text">
-</button>
-  <button type="button btn-sm" class="btn btn-outline-secondary">Provincia <input type="text"></button>
-  <button type="button btn-sm" class="btn btn-outline-secondary">Conductor <input type="text"></button>
-  <button type="button btn-sm" class="btn btn-outline-secondary">Vehiculo <input type="text"></button>
-  <button type="button btn-sm" class="btn btn-outline-secondary">Cliente <input type="text"></button>
+    <input type="text" />
+  </button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Provincia <input type="text" />
+  </button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Conductor <input type="text" />
+  </button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Vehiculo <input type="text" />
+  </button>
+  <button type="button btn-sm" class="btn btn-outline-secondary">
+    Cliente <input type="text" />
+  </button>
 </div>
 
 <hr />
 
 <div class="ult-recogidas-container">
-
-
   <!-- <div class="card mb-4"> -->
-    <!-- <div class="card-img-top text-center py-4">
+  <!-- <div class="card-img-top text-center py-4">
       <i class="bi bi-person-fill-add card-img-top icon-admin "></i>
     </div> -->
-    <!-- <div class="card-body">
+  <!-- <div class="card-body">
       <h5 class="card-title">Recogida día 25 en Polonio</h5>
       <p>Nombre - Tipo legal - Litros - Fecha - Conductor - Municipio</p>
       <div class="boton-masinfo ms-auto">
@@ -103,7 +113,7 @@
       </div>
     </div> -->
 
-    <!-- <div class="collapse" id="collapseExample">
+  <!-- <div class="collapse" id="collapseExample">
       <div class="card card-body">
         <ul>
           <li>Dirección</li>
@@ -114,32 +124,84 @@
       </div>
     </div>
   </div> -->
-
   @for (recogida of array_recogidas; track $index) {
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Recogida dia {{ recogida.fecha }} en {{ recogida.nombre_cliente}} </h5>
-        <p>{{ recogida.nombre_cliente}} - {{ recogida.tipo_legal}} - {{ recogida.litros_recogidos}} - {{ recogida.fecha}} -  {{ recogida.nombre_conductor}} - {{ recogida.municipio}} - {{ recogida.direccion}}</p>
-        <div class="boton-masinfo ms-auto">
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            Mas info
-          </button>
-        </div>
+    <div class="card mb-4 custom-card">
+  <div class="card-body">
+    <h5 class="card-title">
+     {{ recogida.fecha }} - {{ recogida.nombre_cliente }}
+    </h5>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Tipo legal</span>
+        <span class="value">{{ recogida.tipo_legal }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Litros</span>
+        <span class="value">{{ recogida.litros_recogidos }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Conductor</span>
+        <span class="value">{{ recogida.nombre_conductor }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Municipio</span>
+        <span class="value">{{ recogida.municipio }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Dirección</span>
+        <span class="value">{{ recogida.direccion }}</span>
       </div>
     </div>
 
-
-
-
+    <div class="boton-masinfo ms-auto mt-3">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+      >
+        Más info
+      </button>
+    </div>
+  </div>
+</div>
   }
 
-
-
 </div>
+
+<!-- @for (recogida of array_recogidas; track $index) {
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">
+        Recogida dia {{ recogida.fecha }} en {{ recogida.nombre_cliente }}
+      </h5>
+      <p> -->
+        <!-- {{ recogida.nombre_cliente }}  -->
+        <!-- {{ recogida.tipo_legal }} 
+        - Litros Recogidos: {{ recogida.litros_recogidos }}  -->
+        <!-- - {{ recogida.fecha }}  -->
+        <!-- - {{ recogida.nombre_conductor }} 
+        - {{ recogida.municipio }} 
+        - {{ recogida.direccion }}
+      </p>
+      <div class="boton-masinfo ms-auto">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Mas info
+        </button>
+      </div>
+    </div>
+  </div>
+} -->
