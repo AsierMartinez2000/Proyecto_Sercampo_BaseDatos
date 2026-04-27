@@ -47,16 +47,13 @@ export class CambioConfirmadoComponent implements OnInit{
         console.log('Id cargado:', (this.cliente.id_cliente = response.id_cliente));
       },
     });
-
     this.cargarClienteEspecifico();
-    this.cdr.detectChanges();
     this.cargarClientes();
   }
 
   //Este metodo carga todos los clientes, va en OnInit, porque la primera vez que entra carga todos.
   cargarClientes(){
-    this.clientes = this.clienteService.obtenerClientes();
-    this.cdr.detectChanges();
+    this.clientes = this.clienteService.obtenerClientes();;
   }
 
   
@@ -70,7 +67,6 @@ export class CambioConfirmadoComponent implements OnInit{
     this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe((resultado: any) => {
       this.cliente = resultado;
       console.log(resultado);
-      this.cdr.detectChanges();
     });
   } 
 }
