@@ -31,9 +31,6 @@ export class CambioConfirmadoComponent implements OnInit{
       activo: ""
   }
 
-  nuevo_cliente:boolean = false;
-
-  
 
   constructor(
     private route: ActivatedRoute,
@@ -51,9 +48,6 @@ export class CambioConfirmadoComponent implements OnInit{
       },
     });
 
-    if (this.cliente.id_cliente != ""){
-      this.nuevo_cliente = true;
-    }
     this.cargarClienteEspecifico();
     this.cdr.detectChanges();
     this.cargarClientes();
@@ -70,12 +64,13 @@ export class CambioConfirmadoComponent implements OnInit{
     console.log("Navegando");
     this.router.navigate(['cliente', id_cliente]);
     };
+    
 
-  cargarClienteEspecifico() {
+    cargarClienteEspecifico() {
     this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe((resultado: any) => {
       this.cliente = resultado;
       console.log(resultado);
       this.cdr.detectChanges();
     });
-  }
+  } 
 }
