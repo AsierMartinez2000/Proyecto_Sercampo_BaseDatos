@@ -36,14 +36,26 @@ export class UltimasRecogidasComponent implements OnInit {
   ngOnInit() {
     console.log(this.datos.fecha.toLocaleDateString('en-CA'));
     this.cargarRecogidas();
+    this.cdr.detectChanges();
   }
 
   cargarRecogidas(){
     this.recogidasService.obtenerRecogidas(this.datos).subscribe((resultado: any) => {
       console.log(resultado);
       this.array_recogidas = resultado;
-      this.cdr.detectChanges();
+      this.calcularEstadisticas();      
     });
+  }
+
+  calcularEstadisticas(){
+   this.estadisticas.litros = 0;
+      for(let recogida of this.array_recogidas){
+      console.log('Litros de esta recogida:', recogida.litros_recogidos);
+      this.estadisticas.litros += recogida.litros_recogidos;
+      console.log('Acumulado hasta ahora:', this.estadisticas.litros);
+      }
+      this.cdr.detectChanges();
+    console.log(this.estadisticas.litros);
   }
 
 
