@@ -45,7 +45,7 @@ cliente_nuevo = {
           if(respuesta == false){
             this.router.navigate(['cagaste']); 
           } else {
-          this.cliente_nuevo = respuesta;
+          this.router.navigate(['confirmado', respuesta]); 
           console.log('Cliente añadido:', respuesta);
           }
         },
@@ -57,7 +57,6 @@ cliente_nuevo = {
         }
       })
       this.cdr.detectChanges();
-      this.router.navigate(['confirmado', this.cliente_nuevo.id_cliente]); 
     } 
     else {
       console.log("PointID y Nombre es obligatorio");
