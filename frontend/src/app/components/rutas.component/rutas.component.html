@@ -24,7 +24,7 @@
     <ul class="list-group">
       @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
         <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
-          {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }},
+          {{cliente_encontrado.cod_eess}} {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }},
           {{ cliente_encontrado.municipio }},
           {{ cliente_encontrado.provincia }}
         </li>
