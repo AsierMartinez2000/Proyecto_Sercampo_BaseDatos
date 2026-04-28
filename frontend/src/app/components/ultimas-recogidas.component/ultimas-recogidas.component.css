@@ -92,3 +92,13 @@ p{
   display: flex;
   justify-content: space-between;
 }
+
+.table-recogidas{
+  border: none;
+  text-align: center;
+}
+
+.table-recogidas thead{
+  background: #4b4b9f27;
+/* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
+}
