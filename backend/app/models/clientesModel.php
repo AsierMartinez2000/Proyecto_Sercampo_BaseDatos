@@ -162,7 +162,7 @@ class clientesModel{
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-            WHERE (c.nombre LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Horeca')
+            WHERE (c.nombre LIKE :datoBuscador OR m.municipio LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Horeca')
             ORDER BY m.provincia, m.municipio";
 
         $stmt = $this->db->prepare($sql);
@@ -212,7 +212,7 @@ class clientesModel{
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
                 INNER JOIN codigos_eess AS codeess ON c.id_cliente = codeess.id_cliente
-            WHERE (codeess.cod_eess LIKE :cod_buscado) AND (con.activo = true) AND (con.tipo_legal = 'EESS Repsol')
+            WHERE (codeess.cod_eess LIKE :cod_buscado OR m.municipio LIKE :cod_buscado) AND (con.activo = true) AND (con.tipo_legal = 'EESS Repsol')
             ORDER BY m.provincia, m.municipio";
 
         $stmt = $this->db->prepare($sql);

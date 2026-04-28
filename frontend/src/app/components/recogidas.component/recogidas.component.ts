@@ -329,7 +329,7 @@ export class RecogidasComponent {
   limpiarFormulario() {
     //datos de horeca
     ((this.recogida_nueva.id_contenedor = ''),
-      // this.recogida_nueva.fecha = '',
+      this.recogida_nueva.fecha = '',
       (this.recogida_nueva.id_ruta = ''),
       (this.recogida_nueva.litros_recogidos = 0),
       (this.recogida_nueva.visitado = true),
@@ -370,7 +370,7 @@ export class RecogidasComponent {
       (this.cont_recogida_nueva.pais = ''),
       //Datos del formulario de contenedor
       (this.cont_recogida_nueva.id_contenedor = ''),
-      // this.cont_recogida_nueva.fecha = '',
+      this.cont_recogida_nueva.fecha = '',
       (this.cont_recogida_nueva.id_ruta = ''),
       (this.cont_recogida_nueva.litros_recogidos = 0),
       (this.cont_recogida_nueva.visitado = true),
@@ -391,7 +391,7 @@ export class RecogidasComponent {
       (this.eess_recogida_nueva.pais = ''),
       //Datos del formulario de contenedor
       (this.eess_recogida_nueva.id_contenedor = ''),
-      // this.eess_recogida_nueva.fecha = '',
+      this.eess_recogida_nueva.fecha = '',
       (this.eess_recogida_nueva.id_ruta = ''),
       (this.eess_recogida_nueva.litros_recogidos = 0),
       (this.eess_recogida_nueva.visitado = true),
@@ -403,6 +403,11 @@ export class RecogidasComponent {
       //    setTimeout(() => {
       //   this.viewportScroll.scrollToPosition([0, 0]);
       // }, 50);
+
+      this.conductor_seleccionado.nombre = '';
+      this.conductor_seleccionado.email = '';
+      this.conductor_seleccionado.id_conductor = '';
+      this.dato_conductor.nombre = '';
   }
 
   comprobarFormularioHoreca() {
@@ -449,6 +454,7 @@ export class RecogidasComponent {
 
     this.dato_conductor.nombre = '';
     this.buscarConductores();
+    this.dato_conductor.nombre = this.conductor_seleccionado.nombre;
 
     this.comprobarIdRuta()
   }
