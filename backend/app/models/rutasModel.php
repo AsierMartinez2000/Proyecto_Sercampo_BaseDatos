@@ -13,13 +13,14 @@ class rutasModel{
         
     public function getRutasPorDato($datoBuscador){
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo, cod.cod_eess
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-            WHERE (m.municipio LIKE :datoBuscador OR c.nombre LIKE :datoBuscador) AND (con.activo = true)
+                LEFT JOIN codigos_eess AS cod ON c.id_cliente = cod.id_cliente
+            WHERE (m.municipio LIKE :datoBuscador OR c.nombre LIKE :datoBuscador OR cod.cod_eess LIKE :datoBuscador) AND (con.activo = true)
             ORDER BY m.provincia, m.municipio";
 
         $stmt = $this->db->prepare($sql);
