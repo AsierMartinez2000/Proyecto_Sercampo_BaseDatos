@@ -111,7 +111,7 @@
 
         <div class="info-item">
           <span class="label">Total € dados</span>
-          <span class="value">{{ recogida.total_intercambio }}</span>
+          <span class="value">{{ this.calcularTotalIntercambio(recogida) }}</span>
         </div>
       </div>
       <div class="collapse mt-3" id="collapse{{$index}}">
@@ -135,13 +135,12 @@
                       <td>{{recogida[key + '_coste']}} €</td>
                       <td>{{recogida[key + '_total']}}</td>
                     </tr>
-                    
-                    {{recogida['total_intercambio'] += (recogida[key + '_cantidad'] * recogida[key + '_coste'])}}
+                    <!-- {{recogida['total_intercambio'] += (recogida[key + '_cantidad'] * recogida[key + '_coste'])}} -->
                   }
               }
             </tbody>
           </table>
-          {{recogida.total_intercambio}}
+          
         </div>
       </div>
     </div>

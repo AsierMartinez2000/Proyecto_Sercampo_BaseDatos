@@ -78,9 +78,23 @@ export class UltimasRecogidasComponent implements OnInit {
 
       this.estadisticas.recogidas_totales++;
 
+      this.estadisticas.euros_entregado =  this.estadisticas.euros_entregado + this.calcularTotalIntercambio(recogida);
+
     }
       this.cdr.detectChanges();
     console.log(this.estadisticas.litros);
   }
+
+  calcularTotalIntercambio(recogida: any) {
+    let total = 0;
+    for (const key of this.productosKeys) {
+      if (key == recogida[key + '_nombre']) {
+        total += recogida[key + '_cantidad'] * recogida[key + '_coste'];
+        console.log(total);
+      }
+    }
+    recogida.total_intercambio = total;
+    return total;
+}
 
 }
