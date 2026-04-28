@@ -24,6 +24,8 @@ export class UltimasRecogidasComponent implements OnInit {
     eess_recogidos: 0
   };
 
+  productosKeys = ['Desengrasante', 'Fregasuelo', 'Lavavajilla', 'Jabón de Manos', 'Higienizante', 'WC Baños', 'Limpia Cristales', 'Lejía', 'Bayetas', 'Filtros', 'Dinero']
+
   array_recogidas: any[] = [];
 
   constructor(
@@ -80,7 +82,6 @@ export class UltimasRecogidasComponent implements OnInit {
       this.cdr.detectChanges();
     console.log(this.estadisticas.litros);
   }
-
 
 
 }

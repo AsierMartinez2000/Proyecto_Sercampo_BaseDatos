@@ -234,7 +234,8 @@ class recogidasModel
                 // $resultadoRecogida[0]['coste'] // 4
                 // $resultadoRecogida[0]['cantidad'] // 12
 
-                $resultado[$i][$resultadoRecogida[$j]['tipo']] = $resultadoRecogida[$j]['cantidad'];
+                $resultado[$i][$resultadoRecogida[$j]['tipo']."_nombre"] = $resultadoRecogida[$j]['tipo'];
+                $resultado[$i][$resultadoRecogida[$j]['tipo']."_cantidad"] = $resultadoRecogida[$j]['cantidad'];
                 $resultado[$i][$resultadoRecogida[$j]['tipo']."_coste"] = $resultadoRecogida[$j]['coste'] ;
             }
 

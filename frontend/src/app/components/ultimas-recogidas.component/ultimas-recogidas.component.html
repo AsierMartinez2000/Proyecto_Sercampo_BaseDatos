@@ -116,16 +116,22 @@
             <thead>
               <tr>
                 <th>Producto</th>
-                <th>Precio</th>
                 <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total €</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Bayetas</td>
-                <td>{{recogida.Bayetas_coste}}</td>
-                <td>{{recogida.Bayetas}}</td>
-              </tr>
+               @for (key of productosKeys; track key) {      
+                  @if (key == recogida[key + '_nombre']) {
+                    <tr>
+                      <td>{{key}}</td>
+                      <td>{{recogida[key + '_cantidad']}}</td>
+                      <td>{{recogida[key + '_coste']}} €</td>
+                      <!-- <td>{{recogida[total_gasto] = recogida[key + '_cantidad'] * recogida[key + '_coste']}}</td> -->
+                    </tr>
+                  }
+              }
             </tbody>
           </table>
         </div>
