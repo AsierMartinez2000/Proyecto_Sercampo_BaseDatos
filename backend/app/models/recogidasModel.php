@@ -172,7 +172,12 @@ class recogidasModel
 
     public function traerRecogidasPorFecha($fecha){
 
-        $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, d.direccion
+        try {
+        
+        $this->db->beginTransaction();
+
+        $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, d.direccion, 
+                rec.id_recogida, rec.id_ruta, rut.id_conductor, con.id_contenedor, c.id_cliente
                 FROM recogidas AS rec
                 INNER JOIN rutas AS rut ON rec.id_ruta = rut.id_ruta
                 INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
@@ -189,9 +194,60 @@ class recogidasModel
 
         $stmt->execute();
 
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //Solo queremos devolver el dato id_ruta, no un array.
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);    
         
+        //AQUI EN RESULTADO TENGO UN ARRAY ASOCIATIVO dentro de un array - 
+        //RESULTADO[0] = nombre_cliente -> Bar Polonio, tipo_legal -> Horeca, id_recogida -> 5
+        //RESULTADO[1] = nombre_cliente -> Bar Asier, tipo_legal -> Horeca, id_recogida -> 8
+        //Tendre en cada posición del array resultado, un array asociativo (Será un objeto al devolverlo)
+
+        //Quiero, recorrer el array resultado, buscando para cada indice los productos asociados al id_recogida correspondiente.
+        //PARA EL ARRAY DE DENTRO DE RESULTADO [0], buscar, productos asociados al id_recogida 5.
+        //Resultado 100 de Dinero y 5 de Lejia.
+        //Como tengo que almacenarlo todo en el array resultado porque solo puedo devolver uno, tendré que hacer algo rollo Resultado[0][dinero] = 100, Resultado[0][lejia] = 5
+
+        //RESULTADO[0] = nombre_cliente -> Bar Polonio, tipo_legal -> Horeca, id_recogida -> 5, dinero -> 100, dinero_coste -> 1, lejia -> 5, lejia_coste -> 12
+
+
+        $sqlProductos = "SELECT p.tipo, p.coste, pr.cantidad
+                        FROM productos_recogidas AS pr
+                        INNER JOIN productos AS p ON pr.id_producto = p.id_producto
+                        WHERE id_recogida = :id_recogida";
+
+        $stmt = $this->db->prepare($sqlProductos);
+
+        for ($i = 0; $i < count($resultado); $i++) {
+
+            $stmt->bindParam(':id_recogida', $resultado[$i]['id_recogida'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $resultadoRecogida = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+            //resultadoRecogida[0] = tipo -> Lejia, coste->4, cantidad->12
+            //resultadoRecogida[1] = tipo -> Dinero, coste->1, cantidad->100
+            //resultadoRecogida[2] = tipo -> Bayetas, coste->1.3, cantidad->8
+
+            for ($j = 0; $j < count($resultadoRecogida); $j++){
+                
+                // $resultadoRecogida[0]['tipo'] //Lejia
+                // $resultadoRecogida[0]['coste'] // 4
+                // $resultadoRecogida[0]['cantidad'] // 12
+
+                $resultado[$i][$resultadoRecogida[$j]['tipo']] = $resultadoRecogida[$j]['cantidad'];
+                $resultado[$i][$resultadoRecogida[$j]['tipo']."_coste"] = $resultadoRecogida[$j]['coste'] ;
+            }
+
+        }
+
+        $this->db->commit();
+
         return $resultado;
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            return $e;
+        }
 
     }
 }

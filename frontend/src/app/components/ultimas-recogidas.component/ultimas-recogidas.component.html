@@ -77,7 +77,6 @@
         <div class="boton-masinfo mb-3">
           <button class="btn btn-sercampo btn-sm" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index"
             aria-expanded="false">
-            <!-- AQUI NOS HEMOS QUEDADO EN EL DATA-BS-TARGET QUEREMOS PONER $INDEX -->
             Más info
           </button>
         </div>
@@ -111,14 +110,24 @@
         </div>
       </div>
       <div class="collapse mt-3" id="collapse{{$index}}">
-        <!-- AQUI NOS HEMOS QUEDADO EN EL DATA-BS-TARGET QUEREMOS PONER $INDEX -->
         <div class="card card-body">
-          <ul>
-            <li>Dirección</li>
-            <li>Productos DADOS:</li>
-            <li>Leguia - 2</li>
-            <li>Dinero - 220:</li>
-          </ul>
+              <!-- Bayetas: {{recogida.bayetas.cantidad}} - {{recogida.bayetas_coste}} -->
+              <table border="1">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bayetas</td>
+                <td>{{recogida.Bayetas_coste}}</td>
+                <td>{{recogida.Bayetas}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
