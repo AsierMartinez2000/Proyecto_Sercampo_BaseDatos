@@ -83,5 +83,4 @@ export class UltimasRecogidasComponent implements OnInit {
     console.log(this.estadisticas.litros);
   }
 
-
 }

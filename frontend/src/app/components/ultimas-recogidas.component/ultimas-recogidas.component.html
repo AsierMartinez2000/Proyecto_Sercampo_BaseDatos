@@ -108,6 +108,11 @@
           <span class="label">Dirección</span>
           <span class="value">{{ recogida.direccion }}</span>
         </div>
+
+        <div class="info-item">
+          <span class="label">Total € dados</span>
+          <span class="value">{{ recogida.total_intercambio }}</span>
+        </div>
       </div>
       <div class="collapse mt-3" id="collapse{{$index}}">
         <div class="card card-body">
@@ -128,12 +133,15 @@
                       <td>{{key}}</td>
                       <td>{{recogida[key + '_cantidad']}}</td>
                       <td>{{recogida[key + '_coste']}} €</td>
-                      <!-- <td>{{recogida[total_gasto] = recogida[key + '_cantidad'] * recogida[key + '_coste']}}</td> -->
+                      <td>{{recogida[key + '_total']}}</td>
                     </tr>
+                    
+                    {{recogida['total_intercambio'] += (recogida[key + '_cantidad'] * recogida[key + '_coste'])}}
                   }
               }
             </tbody>
           </table>
+          {{recogida.total_intercambio}}
         </div>
       </div>
     </div>

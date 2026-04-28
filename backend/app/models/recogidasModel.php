@@ -177,7 +177,7 @@ class recogidasModel
         $this->db->beginTransaction();
 
         $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, d.direccion, 
-                rec.id_recogida, rec.id_ruta, rut.id_conductor, con.id_contenedor, c.id_cliente
+                rec.id_recogida, rec.id_ruta, rut.id_conductor, con.id_contenedor, c.id_cliente, 0 AS total_intercambio 
                 FROM recogidas AS rec
                 INNER JOIN rutas AS rut ON rec.id_ruta = rut.id_ruta
                 INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
@@ -209,7 +209,7 @@ class recogidasModel
         //RESULTADO[0] = nombre_cliente -> Bar Polonio, tipo_legal -> Horeca, id_recogida -> 5, dinero -> 100, dinero_coste -> 1, lejia -> 5, lejia_coste -> 12
 
 
-        $sqlProductos = "SELECT p.tipo, p.coste, pr.cantidad
+        $sqlProductos = "SELECT p.tipo, p.coste, pr.cantidad, p.coste * pr.cantidad AS total_producto
                         FROM productos_recogidas AS pr
                         INNER JOIN productos AS p ON pr.id_producto = p.id_producto
                         WHERE id_recogida = :id_recogida";
@@ -236,7 +236,8 @@ class recogidasModel
 
                 $resultado[$i][$resultadoRecogida[$j]['tipo']."_nombre"] = $resultadoRecogida[$j]['tipo'];
                 $resultado[$i][$resultadoRecogida[$j]['tipo']."_cantidad"] = $resultadoRecogida[$j]['cantidad'];
-                $resultado[$i][$resultadoRecogida[$j]['tipo']."_coste"] = $resultadoRecogida[$j]['coste'] ;
+                $resultado[$i][$resultadoRecogida[$j]['tipo']."_coste"] = $resultadoRecogida[$j]['coste'];
+                $resultado[$i][$resultadoRecogida[$j]['tipo']."_total"] = $resultadoRecogida[$j]['total_producto'];
             }
 
         }
