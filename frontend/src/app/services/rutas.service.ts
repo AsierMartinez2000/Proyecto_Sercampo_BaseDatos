@@ -65,4 +65,15 @@ export class RutasService {
       },
     );
   }
+
+  obtenerRutas(fecha: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=rutas&action=traerRutasPorFecha`,fecha, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }

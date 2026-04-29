@@ -124,4 +124,72 @@ class rutasModel{
         }
     }
 
+
+    public function traerRutasPorFecha($fecha){
+
+        try {
+        
+        $this->db->beginTransaction();
+
+        $sql = "SELECT rut.id_ruta, rut.id_conductor, rut.matricula, rut.notas, rut.fecha, conduc.nombre AS nombre_conductor, conduc.email, conduc.telefono, veh.modelo
+                FROM rutas AS rut
+                INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
+                INNER JOIN vehiculos AS veh ON veh.matricula = rut.matricula
+                WHERE rut.fecha >= :fecha
+                ORDER BY rut.fecha DESC";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(':fecha', $fecha['fecha'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+
+        $sqlRuta_Contenedor = "SELECT con.tipo_legal, c.nombre, c.telefono, c.cif, c.notas AS notas_cliente, 
+                        dir.direccion, dir.cod_postal, m.municipio, m.provincia, m.pais
+                        FROM rutas_contenedores AS rc
+                        INNER JOIN contenedores AS con ON rc.id_contenedor = con.id_contenedor
+                        INNER JOIN clientes AS c ON c.id_cliente = con.id_cliente
+                        INNER JOIN direcciones AS dir ON dir.id_contenedor = con.id_contenedor
+                        INNER JOIN municipios AS m ON m.id_municipio = dir.id_municipio
+                        WHERE rc.id_ruta = :id_ruta";
+
+        $stmt = $this->db->prepare($sqlRuta_Contenedor);
+
+        for ($i = 0; $i < count($resultado); $i++) {
+
+            $stmt->bindParam(':id_ruta', $resultado[$i]['id_ruta'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $resultadoRuta = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+            for ($j = 0; $j < count($resultadoRuta); $j++){
+
+                $resultado[$i][$j."_nombre"] = $resultadoRuta[$j]['nombre'];
+                $resultado[$i][$j."_tipo_legal"] = $resultadoRuta[$j]['tipo_legal'];
+                $resultado[$i][$j."_telefono"] = $resultadoRuta[$j]['telefono'];
+                $resultado[$i][$j."_cif"] = $resultadoRuta[$j]['cif'];
+                $resultado[$i][$j."_notas_cliente"] = $resultadoRuta[$j]['notas_cliente'];
+                $resultado[$i][$j."_direccion"] = $resultadoRuta[$j]['direccion'];
+                $resultado[$i][$j."_cod_postal"] = $resultadoRuta[$j]['cod_postal'];
+                $resultado[$i][$j."_municipio"] = $resultadoRuta[$j]['municipio'];
+                $resultado[$i][$j."_provincia"] = $resultadoRuta[$j]['provincia'];
+                $resultado[$i][$j."_pais"] = $resultadoRuta[$j]['pais'];
+            }
+
+        }
+
+        $this->db->commit();
+
+        return $resultado;
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            return $e;
+        }
+
+    }
+
 }

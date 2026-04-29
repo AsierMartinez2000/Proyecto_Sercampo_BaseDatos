@@ -1,0 +1,104 @@
+.stats{
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    justify-content: center;
+}
+
+.estadisticas-container .card{
+      background-color: #4d5b9f18;
+}
+
+p{
+    font-size: smaller;
+}
+
+
+.botones-filtro button{
+    margin: 4px;     
+}
+
+
+.custom-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* .custom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+} */
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+/* GRID de mini tarjetas */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+/* Mini tarjetas */
+.info-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #4d5b9f18;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+/* .info-item:hover {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  transform: scale(1.02);
+} */
+
+/* Etiqueta pequeña */
+.label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Valor principal */
+.value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #212529;
+}
+/* 
+.boton-masinfo{
+  border: 1px solid red;
+}
+
+.boton-masinfo button{
+  align-items: end;
+} */
+
+.title-boton{
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-recogidas{
+  border: none;
+  text-align: center;
+}
+
+.table-recogidas thead{
+  background: #4b4b9f27;
+/* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
+}

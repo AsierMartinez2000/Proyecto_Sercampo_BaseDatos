@@ -41,6 +41,12 @@ session_start();
 
             echo json_encode($exito);
         }
+
+        public function traerRutasPorFecha($fecha){
+            $modeloRutas = new rutasModel();
+            $array_rutas = $modeloRutas->traerRutasPorFecha($fecha);
+            echo json_encode($array_rutas);
+        }
         
         
     }
