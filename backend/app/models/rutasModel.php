@@ -136,7 +136,10 @@ class rutasModel{
         
         $this->db->beginTransaction();
 
-        $sql = "SELECT rut.id_ruta, rut.id_conductor, rut.matricula, rut.notas, rut.fecha, conduc.nombre AS nombre_conductor, conduc.email, conduc.telefono, veh.modelo
+        $sql = "SELECT rut.id_ruta, rut.id_conductor, rut.matricula, rut.notas, rut.fecha, conduc.nombre AS nombre_conductor, conduc.email, conduc.telefono, veh.modelo, 
+                (SELECT COUNT(rc.id_contenedor)
+                FROM rutas_contenedores AS rc
+                WHERE rc.id_ruta = rut.id_ruta) AS lugares_visitados
                 FROM rutas AS rut
                 INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
                 INNER JOIN vehiculos AS veh ON veh.matricula = rut.matricula
@@ -151,14 +154,15 @@ class rutasModel{
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);    
 
-        $sqlRuta_Contenedor = "SELECT con.tipo_legal, c.nombre, c.telefono, c.cif, c.notas AS notas_cliente, 
+        $sqlRuta_Contenedor = "SELECT con.id_contenedor, con.tipo_legal, c.nombre, c.telefono, c.cif, c.notas AS notas_cliente, 
                         dir.direccion, dir.cod_postal, m.municipio, m.provincia, m.pais
                         FROM rutas_contenedores AS rc
                         INNER JOIN contenedores AS con ON rc.id_contenedor = con.id_contenedor
                         INNER JOIN clientes AS c ON c.id_cliente = con.id_cliente
                         INNER JOIN direcciones AS dir ON dir.id_contenedor = con.id_contenedor
                         INNER JOIN municipios AS m ON m.id_municipio = dir.id_municipio
-                        WHERE rc.id_ruta = :id_ruta";
+                        WHERE rc.id_ruta = :id_ruta
+                        ORDER BY m.municipio ASC";
 
         $stmt = $this->db->prepare($sqlRuta_Contenedor);
 
@@ -172,6 +176,7 @@ class rutasModel{
 
             for ($j = 0; $j < count($resultadoRuta); $j++){
 
+                $resultado[$i][$j."_id"] = $resultadoRuta[$j]['id_contenedor'];
                 $resultado[$i][$j."_nombre"] = $resultadoRuta[$j]['nombre'];
                 $resultado[$i][$j."_tipo_legal"] = $resultadoRuta[$j]['tipo_legal'];
                 $resultado[$i][$j."_telefono"] = $resultadoRuta[$j]['telefono'];

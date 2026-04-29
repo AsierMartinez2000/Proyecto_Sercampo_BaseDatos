@@ -60,16 +60,16 @@
                 </tr>
               </thead>
               <tbody>
-                @for (contenedor of array_rutas; track $index) {
+                @for (i of [].constructor(ruta.lugares_visitados); track $index) {   
                     @if (ruta[$index + '_nombre'] != '') {
                     <tr>
-                      <td>{{ ruta[$index + '_nombre'] }}</td>
-                      <td>{{ ruta[$index + '_tipo_legal'] }}</td>
-                      <td>{{ ruta[$index + '_telefono'] }}</td>
-                      <td>{{ ruta[$index + '_cif'] }} </td>
-                      <td>{{ ruta[$index + '_direccion'] }} </td>
-                      <td>{{ ruta[$index + '_cod_postal'] }} </td>
-                      <td>{{ ruta[$index + '_municipio'] }} </td>
+                        <td>{{ruta[$index + '_nombre'] }}</td>
+                        <td>{{ruta[$index + '_tipo_legal'] }}</td>
+                        <td>{{ruta[$index + '_telefono'] }}</td>
+                        <td>{{ruta[$index + '_cif'] }} </td>
+                        <td>{{ruta[$index + '_direccion'] }} </td>
+                        <td>{{ruta[$index + '_cod_postal'] }} </td>
+                        <td>{{ruta[$index + '_municipio'] }} </td>
                     </tr>
                   }
                 }
