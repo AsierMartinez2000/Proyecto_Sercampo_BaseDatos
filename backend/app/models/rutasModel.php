@@ -13,7 +13,12 @@ class rutasModel{
         
     public function getRutasPorDato($datoBuscador){
 
-        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo, cod.cod_eess
+        $sql = "SELECT con.id_contenedor, c.id_cliente, c.PointID, c.nombre, c.cif, c.telefono, d.cod_postal, d.direccion, 
+                m.municipio, m.provincia, m.pais, t.tipo, con.tipo_legal, con.activo, cod.cod_eess, 
+                        (SELECT MAX(rec.fecha) 
+                        FROM recogidas AS rec 
+                        WHERE rec.id_contenedor = con.id_contenedor
+                        AND rec.fecha <= CURRENT_DATE) AS ultima_fecha
                 FROM contenedores AS con 
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor

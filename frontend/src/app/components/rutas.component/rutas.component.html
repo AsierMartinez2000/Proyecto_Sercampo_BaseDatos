@@ -26,7 +26,7 @@
         <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
           {{cliente_encontrado.cod_eess}} {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }},
           {{ cliente_encontrado.municipio }},
-          {{ cliente_encontrado.provincia }}
+          {{ cliente_encontrado.provincia }} ---- Ultima Recogida: <b>{{cliente_encontrado.ultima_fecha}}</b>
         </li>
       }
     </ul>
