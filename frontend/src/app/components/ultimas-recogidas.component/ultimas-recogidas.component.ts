@@ -2,6 +2,7 @@ import { DatePipe, CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
+import { RutasService } from '../../services/rutas.service';
 
 @Component({
   selector: 'app-ultimas-recogidas.component',
@@ -12,7 +13,12 @@ import { RecogidasService } from '../../services/recogidas.service';
 export class UltimasRecogidasComponent implements OnInit {
 
   datos = {
-    fecha : new Date()
+    fechaInicial : new Date(),
+    fechaFinal: new Date(),
+    tipo_legal: '',
+    conductor: '',
+    municipio: '',
+    provincia: ''
   };
   
   estadisticas = {
@@ -28,22 +34,35 @@ export class UltimasRecogidasComponent implements OnInit {
 
   array_recogidas: any[] = [];
 
+  // dato_conductor = {
+  //   nombre: '',
+  // };
+
+  // dato_vehiculo = {
+  //   dato: '',
+  // };
+
+  // //estos arrays son las lista que aparecen cuando buscamos
+  // array_buscador_vehiculos: any[] = [];
+
+  // array_buscador_conductores: any[] = [];
+
   constructor(
     private cdr: ChangeDetectorRef,
-    private recogidasService: RecogidasService
+    private recogidasService: RecogidasService,
+    private rutasService: RutasService
   ) {
-  this.datos.fecha.setMonth(this.datos.fecha.getMonth() - 1);
+  this.datos.fechaInicial.setMonth(this.datos.fechaInicial.getMonth() - 1);
   }
   
   ngOnInit() {
-    console.log(this.datos.fecha.toLocaleDateString('en-CA'));
+    console.log(this.datos.fechaInicial.toLocaleDateString('en-CA'));
     this.cargarRecogidas();
     this.cdr.detectChanges();
   }
 
   cargarRecogidas(){
     this.recogidasService.obtenerRecogidas(this.datos).subscribe((resultado: any) => {
-      console.log(resultado);
       this.array_recogidas = resultado;
       this.calcularEstadisticas();      
     });
@@ -82,7 +101,6 @@ export class UltimasRecogidasComponent implements OnInit {
 
     }
       this.cdr.detectChanges();
-    console.log(this.estadisticas.litros);
   }
 
   calcularTotalIntercambio(recogida: any) {
@@ -90,11 +108,29 @@ export class UltimasRecogidasComponent implements OnInit {
     for (const key of this.productosKeys) {
       if (key == recogida[key + '_nombre']) {
         total += recogida[key + '_cantidad'] * recogida[key + '_coste'];
-        console.log(total);
       }
     }
     recogida.total_intercambio = total;
     return total;
 }
+
+// buscarConductores() {
+//     if (this.dato_conductor.nombre.length > 1) {
+//       this.rutasService.traerDatosConductores(this.dato_conductor).subscribe((resultado: any) => {
+//         this.array_buscador_conductores = resultado; //Esto es el array
+//         this.cdr.detectChanges();
+//       });
+//     } else {
+//       this.array_buscador_conductores = [];
+//     }
+//   }
+
+//   seleccionarConductor(conductor: any) {
+//     //Este conductor es el seleccionado dentro del array_conductores de la lista.
+//     this.datos.conductor = conductor.nombre;
+
+//     this.dato_conductor.nombre = '';
+//     this.buscarConductores();
+//   }
 
 }

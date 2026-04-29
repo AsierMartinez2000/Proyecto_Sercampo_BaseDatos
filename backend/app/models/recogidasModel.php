@@ -185,12 +185,13 @@ class recogidasModel
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-                WHERE rec.fecha >= :fecha
+                WHERE (rec.fecha >= :fechaInicial) AND (rec.fecha <= :fechaFinal)
                 ORDER BY rec.fecha DESC";
 
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindParam(':fecha', $fecha['fecha'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaInicial', $fecha['fechaInicial'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaFinal', $fecha['fechaFinal'], PDO::PARAM_STR);
 
         $stmt->execute();
 
