@@ -1,0 +1,30 @@
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    margin-left: 12vh;
+    margin-right:12vh;
+}
+
+.card {
+    /* padding: 20px; */
+    width: 12rem;
+    height: 12rem;
+    cursor: pointer;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+.card:hover{
+    
+    box-shadow: 0 3px 7px #4d5b9fa5;
+}
+
+.card-body {
+    text-align: center;
+}
+
+h5{
+    font-weight: bold;
+    font-size:medium;
+}

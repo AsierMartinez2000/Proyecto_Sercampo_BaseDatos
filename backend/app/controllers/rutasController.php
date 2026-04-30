@@ -23,6 +23,31 @@ session_start();
 
             echo json_encode($conductores_encontrados);
         }
+
+        public function buscadorVehiculo($datoVehiculo){
+
+            $modeloRutas = new rutasModel();
+
+            $vehiculos_encontrados = $modeloRutas->getVehiculos($datoVehiculo);
+
+            echo json_encode($vehiculos_encontrados);
+        }
+        
+        public function insertarRuta($datoRuta){
+
+            $modeloRutas = new rutasModel();
+
+            $exito = $modeloRutas->nuevaRuta($datoRuta);
+
+            echo json_encode($exito);
+        }
+
+        public function traerRutasPorFecha($fecha){
+            $modeloRutas = new rutasModel();
+            $array_rutas = $modeloRutas->traerRutasPorFecha($fecha);
+            echo json_encode($array_rutas);
+        }
+        
         
     }
 

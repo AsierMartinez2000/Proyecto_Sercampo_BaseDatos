@@ -27,7 +27,6 @@
     font-family: 'Montserrat';
 }
 
-
 /* TITULOS */
 h1 {
   font-family: "Montserrat", sans-serif;
@@ -41,8 +40,7 @@ h4{
 
 /*ESTILOS RELACIONADOS CON LAS TABLAS */
 table{
-  margin-top: 2vh;
-  
+  margin-top: 2vh;  
 }
 
 thead th:first-child {
@@ -54,13 +52,14 @@ thead th:last-child {
 }
 
 .table th{
-  background-color: #ff8f50;
-  text-wrap: nowrap;
+  background-color: #ff9050;
+  /* text-wrap: nowrap; */
 }
 
 .table td{
   border-right: 1px solid rgb(241, 241, 241);
   border-bottom: 2px solid #4d5b9f41;
+  font-size: 15px;
 }
 
 /* Esto es el hover de las filas de las tablas */
@@ -71,7 +70,6 @@ thead th:last-child {
 
 
 /* FORMULARIOS */
-
 /* Etiquetas de formularios*/
 label{
     font-weight: bold;
@@ -81,17 +79,16 @@ label{
     font-weight: 400;
 }
 
-
-
 /* BOTONES */
 .btn-sercampo {
   border: none;
   background-color: #4d5b9f;
-  color:white
+  color:white;
 }
 .btn-sercampo:hover{
   background-color: #ff8f50;
-  color:white
+  color:white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .btn-filtro{
@@ -110,4 +107,13 @@ label{
   border: white;
 }
 
+/* ICONOS */
+.icon-admin{
+  font-size: 5vh;
+  color: #4d5b9f;
+}
 
+/* BACKGROUND */
+.bg-sercampo{
+  box-shadow: 0 3px 7px #4d5b9fa5;
+}

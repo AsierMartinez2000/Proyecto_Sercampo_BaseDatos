@@ -43,6 +43,12 @@ session_start();
             
             $id_cliente = $modeloCliente->comprobarCliente($datos);
 
+            if($id_cliente == false){
+
+                echo json_encode($id_cliente);
+                
+            } else {
+
             $id_tipo = $modeloContenedor->getTipo($datos);
 
             $id_contenedor = $modeloContenedor->setNuevoContenedor($id_tipo, $id_cliente, $datos);
@@ -50,6 +56,8 @@ session_start();
             $modeloDireccion->setNuevaDireccion($id_contenedor, $id_municipio, $datos);
             
             echo json_encode($id_cliente);
+
+            }
         }
 
         public function actualizarCliente($datos){

@@ -2,3 +2,42 @@
     background-color:  #4d5b9f27;
     cursor: pointer;
 }
+
+.buscador_item:active{
+    background-color:   #ff90506a;
+}
+
+.titulo-datos{
+    text-align: center;
+}
+
+.icono-vaciar{
+    margin-top: 1px;
+    
+}
+
+.icono::before {
+    content: "\F629"; 
+    font-size: 4vh;
+    color: var(--bs-danger);
+}
+
+.icono:hover::before {
+    content: "\F628"; /* código del icono hover */
+    font-size: 4vh;
+    color: var(--bs-danger);
+    cursor: pointer;
+}
+
+.bi-trash {
+    color: var(--bs-danger);
+}
+
+.boton-eliminar:hover .bi-trash {
+    color: white;
+}
+.buscador {
+    height: auto;
+    min-height: 5vh;
+}
+

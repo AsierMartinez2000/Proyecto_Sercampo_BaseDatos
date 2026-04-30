@@ -1,14 +1,14 @@
 <h1>El cambio se hizo con éxito</h1>
 
 <div class="emoji">
-    <p>&#129400;</p>
+    <p>&#129395;</p>
 
 </div>
 
 <div class="botones">
     <button class="btn btn-sercampo btn-md" 
             [routerLink]="['/dashboard']">Volver a Inicio</button>
-    @if (this.nuevo_cliente == true) {
+    @if (this.cliente.nombre != '') {
         <button class="btn btn-sercampo btn-md" (click)="redirigirCliente(cliente.id_cliente)">Ir a {{cliente.nombre}}</button>
     }
 </div>

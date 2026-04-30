@@ -1,0 +1,83 @@
+<h1>Últimas Rutas</h1>
+
+<div class="estadisticas-container">
+  <p class="card-text text-center">
+    Rutas a partir de {{ datos.fecha | date: 'dd/MM/yyyy' }}
+  </p>
+   <div class="stats">
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.rutas_totales }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Rutas totales</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.rutas_Asier }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Recogidas Asier</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="ult-rutas-container">
+  @for (ruta of array_rutas; track ruta.id_ruta) {
+    <div class="card mb-4 custom-card">
+      <div class="card-body">
+        <div class="title-boton">
+          <h5 class="card-title">{{ ruta.fecha }} - {{ ruta.nombre_conductor }} - {{ ruta.modelo }}</h5>
+        </div>
+        <div class="boton-masinfo mb-3">
+            <button
+              class="btn btn-sercampo btn-sm"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + $index"
+              aria-expanded="false"
+            >
+            Ver Lugares
+            </button>
+        </div>
+        <div class="collapse mt-3" id="collapse{{ $index }}">
+          <div class="card card-body">
+            <table class="table-recogidas">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Tipo Legal</th>
+                  <th>Telefono</th>
+                  <th>CIF</th>
+                  <th>Direccion</th>
+                  <th>CP</th>
+                  <th>Municipio</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (i of [].constructor(ruta.lugares_visitados); track $index) {   
+                    @if (ruta[$index + '_nombre'] != '') {
+                    <tr>
+                        <td>{{ruta[$index + '_nombre'] }}</td>
+                        <td>{{ruta[$index + '_tipo_legal'] }}</td>
+                        <td>{{ruta[$index + '_telefono'] }}</td>
+                        <td>{{ruta[$index + '_cif'] }} </td>
+                        <td>{{ruta[$index + '_direccion'] }} </td>
+                        <td>{{ruta[$index + '_cod_postal'] }} </td>
+                        <td>{{ruta[$index + '_municipio'] }} </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

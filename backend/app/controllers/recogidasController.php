@@ -58,9 +58,17 @@ session_start();
             echo json_encode($recogidaExitosa);
         }
         
-
+        public function traerIdRuta($datosRecogida){
+            $modeloRecogida = new recogidasModel();
+            $id_ruta = $modeloRecogida->traerIdRuta($datosRecogida);
+            echo json_encode($id_ruta);
+        }
        
-        
+        public function traerRecogidasPorFecha($fecha){
+            $modeloRecogida = new recogidasModel();
+            $array_recogidas = $modeloRecogida->traerRecogidasPorFecha($fecha);
+            echo json_encode($array_recogidas);
+        }
     }
 
 ?>

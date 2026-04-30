@@ -36,7 +36,6 @@
       }
     </ul>
   </div>
-
   <h4>Datos Cliente</h4>
   <div class="mb-3">
     <input type="text" class="form-control" [(ngModel)]="recogida_nueva.nombre" name="nombre"
@@ -78,10 +77,80 @@
   </div>
 
   <!-- FECHA -->
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha"/>
+  <div class="row">
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+
+@if (conductor_seleccionado.nombre != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if ( recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 
   <div class="row">
     <!-- VISITADO -->
@@ -225,7 +294,7 @@
         <h5 class="modal-title">
           <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
           @if (fallo_recogida) {
-          <i class="bi bi-exclamation-circle-fill"></i>
+          <i class="bi bi-exclamation-triangle-fill"></i>
           Fallo en la recogida
         } @else {
           <i class="bi bi-check-circle-fill"></i>
@@ -237,9 +306,13 @@
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          Asegurate de introducir la fecha y/o un HORECA correspondiente
+          @if(recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR HORECA
+          }
         } @else {
-          Confirma recogida de {{recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA
         }
       </div>
       <div class="modal-footer">
@@ -282,15 +355,15 @@
 
   <h4>Datos Contenedor</h4>
   <div class="mb-3">
-    <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.nombre" name="nombre"
+    <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.nombre" name="nombre" placeholder="Nombre"
       value="Contenedor Vía Pública" disabled />
   </div>
   <div class="row mt-3 mb-3">
     <div class="col mb-3">
-      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.cif" name="cif" disabled />
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.cif" name="cif" placeholder="CIF" disabled />
     </div>
     <div class="col mb-3">
-      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.telefono" name="telefono" disabled />
+      <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.telefono" name="telefono" placeholder="Teléfono" disabled />
     </div>
   </div>
 
@@ -323,12 +396,81 @@
       <input type="text" class="form-control" [(ngModel)]="cont_recogida_nueva.pais" name="pais" required disabled />
     </div>
   </div>
-
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <!-- esto lo miramos mas adelante, molaria que se viese el calendario -->
-    <input type="date" class="form-control" [(ngModel)]="cont_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+  <div class="row">
+      <!-- FECHA -->
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="cont_recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+  
+@if (conductor_seleccionado.id_conductor != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if (cont_recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="cont_recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 
   <div class="row">
     <!-- VISITADO -->
@@ -411,17 +553,26 @@
 
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+          @if (fallo_recogida) {
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Fallo en la recogida
+        } @else {
+          <i class="bi bi-check-circle-fill"></i>
+          Confirmar recogida
+        }
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          <i class="bi bi-exclamation-diamond-fill"></i>
-          Asegurate de introducir la fecha y/o un CONTENEDOR correspondiente
+          @if(cont_recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR CONTENEDOR
+          }
         } @else {
-          Confirma recogida de {{cont_recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA CONTENEDOR
         }
       </div>
       <div class="modal-footer">
@@ -504,10 +655,81 @@
     </div>
   </div>
 
-  <div class="mb-3 w-25">
-    <label for="fecha">Fecha</label>
-    <input type="date" class="form-control" [(ngModel)]="eess_recogida_nueva.fecha" name="fecha" placeholder="Fecha" />
+
+  <div class="row">
+      <!-- FECHA -->
+    <div class="mb-3 col">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="eess_recogida_nueva.fecha" name="fecha" placeholder="Fecha" (click)="comprobarIdRuta()"/>
+    </div>
+  <!-- CONDUCTOR -->
+    <div class="mb-3 col">
+      <label for="fecha">Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
+
+@if (conductor_seleccionado.nombre != '') {
+<hr>
+<div class="titulo-datos mb-3">
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre-conductor"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if ( eess_recogida_nueva.fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="eess_recogida_nueva.fecha"
+          name="fecha-seleccionada"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
 
   <div class="row">
     <!-- VISITADO -->
@@ -588,18 +810,26 @@
 
       <div class="modal-header">
         <h5 class="modal-title">
-          
-          {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }}
+          @if (fallo_recogida) {
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Fallo en la recogida
+        } @else {
+          <i class="bi bi-check-circle-fill"></i>
+          Confirmar recogida
+        }
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
         @if (fallo_recogida) {
-          <i class="bi bi-exclamation-diamond-fill"></i>
-          Asegurate de introducir la fecha y/o una EESS correspondiente
+          @if(eess_recogida_nueva.id_ruta == ''){
+            NO HAY RUTA PARA ESTE CONDUCTOR EN LA FECHA SELECCIONADA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR EESS
+          }
         } @else {
-          Confirma recogida de {{cont_recogida_nueva.nombre}}
+          CONFIRMAR RECOGIDA EESS
         }
       </div>
       <div class="modal-footer">

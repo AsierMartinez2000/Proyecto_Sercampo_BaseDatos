@@ -1,96 +1,223 @@
 <h1>Rutas</h1>
 
 <form class="Buscador" id="Buscador">
-    <div class="container mt-4 mb-4">
-        <!-- Buscador Contenedor-->
-        <div class="mb-3">
-    <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" placeholder="Buscar Lugar"
-        [(ngModel)]="dato_buscado.dato" (keyup)="buscarGeneral()" />
-  
-        </div>
+  <div class="container">
+    <!-- Buscador Contenedor-->
+    <div class="row buscador mb-4">
+      <div class="col-11">
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          placeholder="Buscar Lugar"
+          [(ngModel)]="dato_buscado.dato"
+          (keyup)="buscarGeneral()"
+        />
+      </div>
+      <div class="col-1 icono-vaciar">
+        <i class="bi bi-x-square icono" (click)="vaciarBuscador()"></i>
+      </div>
+    </div>
+    </div>
+    <div class="resultados">   
+    <!-- Resultados -->
+    <ul class="list-group">
+      @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
+        <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
+          {{cliente_encontrado.cod_eess}} {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }},
+          {{ cliente_encontrado.municipio }},
+          {{ cliente_encontrado.provincia }} ---- Ultima Recogida: <b>{{cliente_encontrado.ultima_fecha}}</b>
+        </li>
+      }
+    </ul>
+  </div>
+  <div class="row">
+    <div class="mb-3 col">
+      <label for="conductor">Asignar Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
         <!-- Resultados -->
-        <ul class="list-group">
-            @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
-            <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
-                {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }},
-                {{ cliente_encontrado.provincia }}
-            </li>
-            }
-        </ul>
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}}
+          </li>
+        }
+      </ul>
     </div>
-    <div class="row">
-        <div class="mb-3 col">
-            <label for="conductor">Asignar Conductor</label>
-            <input type="text" class="form-control buscador_Buscador" name="nombre_buscado"
-                [(ngModel)]="dato_conductor.nombre" (click)="buscarConductores()" (keyup)="buscarConductores()" />
-            <ul class="list-group">
-                <!-- Resultados -->
-                @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
-                <li class="list-group-item buscador_item">
-                    {{ conductor.nombre }}
-                </li>
-                }
-            </ul>
-        </div>
-        <div class="mb-3 col-3">
-            <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha">
-        </div>
+    <div class="mb-3 col">
+      <label for="conductor">Asignar Vehiculo</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_vehiculo.dato"
+        (click)="buscarVehiculos()"
+        (keyup)="buscarVehiculos()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
+          <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)" >
+            {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
+          </li>
+        }
+      </ul>
     </div>
-    <div class="mb-3">
-            <label for="notas">Notas</label>
-            <textarea class="form-control" name="notas" id="notas" ></textarea>
-        </div>
+    <div class="mb-3 col-3">
+      <label for="fecha">Fecha</label>
+      <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="notas">Notas</label>
+    <textarea class="form-control" name="notas" [(ngModel)]="notas"></textarea>
+  </div>
 </form>
+
 
 <!-- <button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
     LIMPIAR PAGINA
 </button> -->
 
+<!-- AQUI IRAN LOS DATOS QUE SELECCIONEMOS EN EL BUSCADOR -->
+@if (conductor_seleccionado.nombre != '') {
+<hr>
+<div class="titulo-datos mb-3">
+  <label>DATOS RUTA</label>
+</div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Teléfono Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.telefono"
+          name="telefono"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
 
-<!-- <h2>¿Donde vamos hoy?</h2> -->
+@if (vehiculo_seleccionado.matricula != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Matricula </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="vehiculo_seleccionado.matricula"
+          name="matricula"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Modelo </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="vehiculo_seleccionado.modelo"
+          name="modelo"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if ( fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="fecha"
+          name="fecha"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
 <div class="tabla">
-    <table class="table">
-        <thead>
-            <tr>
-                <!-- <th class="table-primary">ID Contenedor</th> -->
-                <!-- <th class="table-primary">PointID</th> -->
-                <th class="table-primary">Nombre</th>
-                <th class="table-primary">CIF</th>
-                <th class="table-primary">Telefono</th>
-                <th class="table-primary">CP</th>
-                <th class="table-primary">Direccion</th>
-                <th class="table-primary">Municipio</th>
-                <th class="table-primary">Provincia</th>
-                <th class="table-primary">Contenedor</th>
-                
-                <!-- <th class="table-primary">Tipo Legal</th> -->
-                <!-- <th class="table-primary">Activo</th> -->
-            </tr>
-        </thead>
-        <tbody>
-            @for (cliente of rutas_guardadas; track cliente.id_cliente){
-            <tr class="table-ligth fila-tabla">
-                <!-- <td>{{cliente.id_contenedor}}</td> -->
-                <!-- <td>{{cliente.PointID}}</td> -->
-                <td>{{cliente.nombre}}</td>
-                <td>{{cliente.cif}}</td>
-                <td>{{cliente.telefono}}</td>
-                <td>{{cliente.cod_postal}}</td>
-                <td>{{cliente.direccion}}</td>
-                <td>{{cliente.municipio}}</td>
-                <td>{{cliente.provincia}}</td>
-                <td>{{cliente.tipo}}</td>
-                <button type="button" class="btn btn-danger btn-sm" (click)="quitarCliente(cliente.id_contenedor)"> <i class="bi bi-trash"></i></button>
-                
-                <!-- <td>{{cliente.tipo_legal}}</td> -->
-                <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
-                
-            </tr>
-            }
-        </tbody>
-    </table>
-    
-  
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th class="table-primary">ID Contenedor</th> -->
+        <!-- <th class="table-primary">PointID</th> -->
+        <th class="table-primary">Nombre</th>
+        <th class="table-primary">CIF</th>
+        <th class="table-primary">Telefono</th>
+        <th class="table-primary">CP</th>
+        <th class="table-primary">Direccion</th>
+        <th class="table-primary">Municipio</th>
+        <th class="table-primary">Provincia</th>
+        <th class="table-primary">Contenedor</th>
 
+        <!-- <th class="table-primary">Tipo Legal</th> -->
+        <!-- <th class="table-primary">Activo</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      @for (cliente of rutas_guardadas; track cliente.id_cliente; let indice = $index) {
+        <tr class="table-ligth fila-tabla">
+          <!-- <td>{{cliente.id_contenedor}}</td> -->
+          <!-- <td>{{cliente.PointID}}</td> -->
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.cif }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.cod_postal }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.municipio }}</td>
+          <td>{{ cliente.provincia }}</td>
+          <td>{{ cliente.tipo }}</td>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm boton-eliminar"
+            (click)="quitarCliente(indice)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+
+          <!-- <td>{{cliente.tipo_legal}}</td> -->
+          <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
+        </tr>
+      }
+    </tbody>
+  </table>
+  <hr>
+  <button type="submit" class="btn btn-success" (click)="guardarRuta()">Enviar Ruta</button>
 </div>

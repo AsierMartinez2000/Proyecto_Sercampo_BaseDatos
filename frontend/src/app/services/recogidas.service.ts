@@ -75,4 +75,26 @@ export class RecogidasService {
        withCredentials: true
     })
   }
+
+  traerIdRuta(datos_recogida: any): Observable<any>{
+    return this.httpClient
+      .post(`${this.url}?controller=recogidas&action=traerIdRuta`, datos_recogida, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+       withCredentials: true
+    })
+  }
+
+  obtenerRecogidas(fecha: any): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=traerRecogidasPorFecha`,fecha, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }
