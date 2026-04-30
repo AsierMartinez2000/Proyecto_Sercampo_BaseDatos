@@ -31,8 +31,25 @@ session_start();
 
             echo json_encode ($conductor);
 
-
         }
+
+        public function nuevoVehiculo($datos_vehiculo){
+            
+            $modeloAdmin = new adminModel();
+            $vehiculo = $modeloAdmin->insertarVehiculo($datos_vehiculo);
+
+            echo json_encode ($vehiculo);
+        }
+
+
+        public function actualizarVehiculo($datos_vehiculo){
+
+            $modeloAdmin = new adminModel();
+            $vehiculo = $modeloAdmin->actualizarVehiculo($datos_vehiculo);
+
+            echo json_encode ($vehiculo);
+        }
+        
         
     }
 

@@ -1,0 +1,138 @@
+<h1>Vehiculos</h1>
+
+<div class="Vehiculos-container">
+  <!-- SELECTOR Vehiculos -->
+  <div class="selector-Vehiculos">
+    <div class="row">
+
+    
+    <div class="mb-3 col-8">
+      <label for="vehiculo">Elegir Vehiculo</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="matricula_buscado"
+        [(ngModel)]="dato_vehiculo.dato"
+        (click)="buscarVehiculos()"
+        (keyup)="buscarVehiculos()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (vehiculo of array_buscador_vehiculos; track vehiculo.id_vehiculo) {
+          <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)" >
+            {{ vehiculo.matricula }} - {{vehiculo.modelo}} - {{vehiculo.num_bastidor}}
+          </li>
+        }
+      </ul>
+    </div>
+  
+
+  <!-- @if (vehiculo_seleccionado.matricula != '') { -->
+
+    <div class="col-2 mt-4">
+      <!-- TARJETA vehiculo SELECCIONADO -->
+      <div class="card bg-sercampo" style="width: 22rem;">
+        <div class="card-body">
+          @if (vehiculo_seleccionado.matricula == '') {
+            <h5 class="card-title">Matricula</h5>
+          }
+          <h5 class="card-title">
+          @if (!editando) {
+            {{vehiculo_seleccionado.matricula}}
+          } @else {
+            <input
+              type="text"
+              class="form-control "
+              [(ngModel)]="vehiculo_seleccionado.matricula"
+              name="matricula"
+              required
+            />
+          }</h5>
+          @if (!editando) {
+              <p class="card-text"><strong>Tel:</strong> {{vehiculo_seleccionado.modelo}}</p>
+          }
+          @else {
+            <input
+              type="text"
+              class="form-control mt-2"
+              [(ngModel)]="vehiculo_seleccionado.modelo"
+              name="modelo"
+              required
+            />
+          }
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}
+            
+          }@else {
+            <input
+              type="num_bastidor"
+              class="form-control mt-2"
+              [(ngModel)]="vehiculo_seleccionado.num_bastidor"
+              name="num_bastidor"
+              required
+            />
+          }
+          
+          @if (editando) {
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
+          }
+        </div>
+      </div>
+
+    </div>
+
+  <!-- } -->
+
+  </div>
+  </div>
+  <!-- LINEA DIVISORIA -->
+  
+  
+  <!-- FORMULARIO AÑADIR vehiculo -->
+  <div class="formulario mt-5">
+     <hr>
+     <form (ngSubmit)="nuevovehiculo(this.vehiculo_nuevo)">
+       <h4>Nuevo vehiculo</h4>
+        <!-- matricula -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">matricula</span>
+         <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="vehiculo_nuevo.matricula"
+           name="matricula_vehiculo"
+           required
+         />
+       </div>
+      
+       <!--Modelo -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Teléfono</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.modelo"
+             name="modelo_vehiculo"
+           />
+         </div>
+       <!--Numero Bastidor -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Numero Bastidor</span>
+           <input
+             type="num_bastidor"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.num_bastidor"
+             name="num_bastidor"
+           />
+         </div>
+         <button type="submit" class="btn btn-danger">Guardar Nuevo vehiculo</button>
+     </form>
+   </div>
+
+
+</div>

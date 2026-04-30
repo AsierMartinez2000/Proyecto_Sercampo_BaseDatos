@@ -73,4 +73,12 @@ class adminModel{
 
     }
 
+    public function actualizarVehiculo($datos_vehiculo){
+
+    }
+
+    public function insertarVehiculo($datos_vehiculo){
+        
+    }
+
 }
