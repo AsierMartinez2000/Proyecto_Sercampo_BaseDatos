@@ -162,18 +162,18 @@ export class VehiculosComponent {
         if (resultado == true){
           console.log(resultado);
 
-              this.vehiculo_seleccionado.matricula = resultado.matricula;
-              this.vehiculo_seleccionado.modelo = resultado.modelo;
-              this.vehiculo_seleccionado.fecha_itv = resultado.fecha_itv;
-              this.vehiculo_seleccionado.fecha_mantenimiento = resultado.fecha_mantenimiento;
-              this.vehiculo_seleccionado.precio_mantenimiento = resultado.precio_mantenimiento;
-              this.vehiculo_seleccionado.taller_mantenimiento = resultado.taller_mantenimiento;
-              this.vehiculo_seleccionado.num_bastidor = resultado.num_bastidor;
-              this.vehiculo_seleccionado.num_poliza = resultado.num_poliza;
-              this.vehiculo_seleccionado.tel_emergencias = resultado.tel_emergencias;
-              this.vehiculo_seleccionado.tel_contacto = resultado.tel_contacto;
-              this.vehiculo_seleccionado.empresa = resultado.empresa;
-              this.cdr.detectChanges();
+              // this.vehiculo_seleccionado.matricula = resultado.matricula;
+              // this.vehiculo_seleccionado.modelo = resultado.modelo;
+              // this.vehiculo_seleccionado.fecha_itv = resultado.fecha_itv;
+              // this.vehiculo_seleccionado.fecha_mantenimiento = resultado.fecha_mantenimiento;
+              // this.vehiculo_seleccionado.precio_mantenimiento = resultado.precio_mantenimiento;
+              // this.vehiculo_seleccionado.taller_mantenimiento = resultado.taller_mantenimiento;
+              // this.vehiculo_seleccionado.num_bastidor = resultado.num_bastidor;
+              // this.vehiculo_seleccionado.num_poliza = resultado.num_poliza;
+              // this.vehiculo_seleccionado.tel_emergencias = resultado.tel_emergencias;
+              // this.vehiculo_seleccionado.tel_contacto = resultado.tel_contacto;
+              // this.vehiculo_seleccionado.empresa = resultado.empresa;
+              // this.cdr.detectChanges();
 
 
           this.editando = false;

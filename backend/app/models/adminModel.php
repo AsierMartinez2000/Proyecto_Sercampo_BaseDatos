@@ -161,24 +161,9 @@ class adminModel{
 
                 $stmt->execute();
 
-                $sqlDevolverVehiculos = "SELECT v.matricula, v.modelo, v.num_bastidor, v.fecha_itv, v.fecha_mantenimiento, v.precio_mantenimiento, v.taller_mantenimiento, v.num_poliza,
-                s.tel_emergencias, s.tel_contacto, s.empresa
-                FROM vehiculos AS v
-                INNER JOIN seguros_vehiculos AS s ON v.num_poliza = s.num_poliza
-                WHERE matricula = :matricula AND num_bastidor = :num_bastidor";
-
-                $stmt = $this->db->prepare($sqlDevolverVehiculos);
-
-                $stmt->bindParam(':matricula', $datos_vehiculo['matricula'], PDO::PARAM_STR);
-                $stmt->bindParam(':num_bastidor', $datos_vehiculo['num_bastidor'], PDO::PARAM_STR);
-
-                $stmt->execute();
-
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-
                 $this->db->commit();
 
-                return $resultado;
+                return true;
 
             } else {
                 //Si entra al else, es porque el numero de poliza que nos viene es distinto al que tiene esa matricula y num_bastidor asignado.
@@ -237,26 +222,26 @@ class adminModel{
 
                 //PARA ACTUALIZAR LO QUE TENIAMOS EN EL FORMULARIO, TRAEMOS DE NUEVO EL VEHICULO ENTERO CON LOS DATOS NUEVOS.
 
-                $sqlDevolverVehiculos = "SELECT v.matricula, v.modelo, v.num_bastidor, v.fecha_itv, v.fecha_mantenimiento, v.precio_mantenimiento, v.taller_mantenimiento, v.num_poliza,
-                s.tel_emergencias, s.tel_contacto, s.empresa
-                FROM vehiculos AS v
-                INNER JOIN seguros_vehiculos AS s ON v.num_poliza = s.num_poliza
-                WHERE matricula = :matricula AND num_bastidor = :num_bastidor";
+                // $sqlDevolverVehiculos = "SELECT v.matricula, v.modelo, v.num_bastidor, v.fecha_itv, v.fecha_mantenimiento, v.precio_mantenimiento, v.taller_mantenimiento, v.num_poliza,
+                // s.tel_emergencias, s.tel_contacto, s.empresa
+                // FROM vehiculos AS v
+                // INNER JOIN seguros_vehiculos AS s ON v.num_poliza = s.num_poliza
+                // WHERE WHERE matricula = :matricula AND num_bastidor = :num_bastidor";
 
-                $stmt = $this->db->prepare($sqlDevolverVehiculos);
+                // $stmt = $this->db->prepare($sqlDevolverVehiculos);
 
-                $stmt->bindParam(':matricula', $datos_vehiculo['matricula'], PDO::PARAM_STR);
-                $stmt->bindParam(':num_bastidor', $datos_vehiculo['num_bastidor'], PDO::PARAM_STR);
+                // $stmt->bindParam(':matricula', $datos_vehiculo['matricula'], PDO::PARAM_STR);
+                // $stmt->bindParam(':num_bastidor', $datos_vehiculo['num_bastidor'], PDO::PARAM_STR);
 
-                $stmt->execute();
+                // $stmt->execute();
 
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                // $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
                 
                 $this->db->commit();
 
-                // return true;
+                return true;
 
-                return $resultado;
+                // return $resultado;
 
             }
 
