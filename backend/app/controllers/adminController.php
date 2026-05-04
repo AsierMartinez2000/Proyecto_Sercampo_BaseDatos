@@ -6,13 +6,20 @@ session_start();
 
     class adminController{
 
-        public function traerProductos(){
+        public function traerProductos($dato_producto){
 
             $modeloAdmin = new adminModel();
 
-            $productos = $modeloAdmin->getProductos();
+            $productos = $modeloAdmin->getProductos($dato_producto);
 
             echo json_encode($productos);
+        }
+
+        public function actualizarProducto($dato_producto){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarProducto($dato_producto);
+
+            echo json_encode($exito);
         }
 
         public function actualizarConductor($datos_conductor){

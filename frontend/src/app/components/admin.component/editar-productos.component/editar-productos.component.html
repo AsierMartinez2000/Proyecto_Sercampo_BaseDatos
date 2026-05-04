@@ -1,17 +1,57 @@
 <h1>Editar Productos</h1>
 
-
-<div class="productos-container">
-    
-     <ul class="list-group">
-      @for (producto of productos; track producto.id_cliente) {
-        <li class="list-group-item buscador_item">
-          {{ producto.tipo}} - {{ producto.coste }} - {{ producto.notas }}
-        </li>
-      }
-    </ul>
-
+<div class="row">
+<div class="mb-3 col-8">
+  <label for="vehiculo">Elegir Producto</label>
+  <input
+    type="text"
+    class="form-control buscador_Buscador"
+    name="producto_buscado"
+    [(ngModel)]="dato_producto.dato"
+    (click)="buscarProducto()"
+    (keyup)="buscarProducto()"
   
+  />
+  <ul class="list-group">
+    @for (producto of array_buscador_productos; track producto.id_producto) {
+      <li class="list-group-item buscador_item" (click)="seleccionarProducto(producto)">
+        {{ producto.tipo }}
+      </li>
+    }
+  </ul>
+</div>
 
+@if (producto_seleccionado.tipo != '') {
+  <div class="formulario-edicion">
+    <div class="card bg-sercampo" style="width: 22rem">
+      <div class="card-body">
+        <h5 class="card-title">{{producto_seleccionado.tipo}}</h5>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Coste</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="producto_seleccionado.coste"
+           name="coste"
+           required
+           />
+          </div>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Notas</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="producto_seleccionado.notas"
+           name="notas"
+           required
+           />
+          </div>
+        <button  (click)="enviarEdicion()" class="btn btn-primary">Editar</button>
+      </div>
+    </div>
+  </div>
+}
 
 </div>
+
+

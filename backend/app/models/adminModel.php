@@ -11,15 +11,36 @@ class adminModel{
         $this->db = ConexionBD::conexion();
     }
         
-    public function getProductos(){
+    public function getProductos($dato_producto){
         $sql = "SELECT *
-                FROM productos";
+                FROM productos
+                WHERE tipo LIKE :dato_producto";
         
         $stmt = $this->db->prepare($sql);
-
+        $dato = "%" . $dato_producto['dato'] . "%";
+        $stmt->bindParam(':dato_producto', $dato, PDO::PARAM_STR);
         $stmt->execute();
 
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
+    }
+
+
+    public function actualizarProducto($dato_producto) {
+
+            $sql = "UPDATE productos
+                SET coste = :coste, notas = :notas
+                WHERE id_producto = :id_producto";
+        
+            $stmt = $this->db->prepare($sql);
+            
+            $stmt->bindParam(':coste', $dato_producto['coste'], PDO::PARAM_STR);
+            $stmt->bindParam(':notas', $dato_producto['notas'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_producto', $dato_producto['id_producto'], PDO::PARAM_INT);
+            
+            $stmt->execute();
+
+            return true;
         
     }
 

@@ -10,18 +10,35 @@ export class AdminService {
 
   constructor(private httpClient: HttpClient) {}
 
-  traerProductos(): Observable<any> {
+
+  //-------------------------- METODOS PRODUCTOS --------------------------
+
+  traerDatosProductos(datos_productos:any): Observable<any> {
     return this.httpClient.post(
-      `${this.url}?controller=admin&action=traerProductos`,
+      `${this.url}?controller=admin&action=traerProductos`, datos_productos,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Accept: 'application/json',
+          'Accept': 'application/json',
         }),
         withCredentials: true,
       },
     );
   }
+
+    actualizarProducto(dato_producto: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=admin&action=actualizarProducto`, dato_producto, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+
+  // -------------------------- METODOS CONDUCTOR --------------------------
 
   actualizarConductor(datos_conductor: any): Observable<any> {
     return this.httpClient
@@ -45,6 +62,9 @@ export class AdminService {
       withCredentials: true
     })
   }
+
+
+  // ------------------------------ METODOS VEHICULOS ------------------------------
 
   traerDatosVehiculos(datosVehiculo: any): Observable<any> {
     return this.httpClient.post(
@@ -87,6 +107,9 @@ export class AdminService {
       },
     );
   }
+
+
+
 
 
 }

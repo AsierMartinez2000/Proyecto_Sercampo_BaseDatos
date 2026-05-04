@@ -27,7 +27,7 @@ export const routes: Routes = [
     {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'Confirmado'},
     // {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
     {path: 'admin', component: AdminComponent, title: 'Admin'},
-    {path: 'admin/editarProducto', component: EditarProductosComponent, title: 'Editar Producto'},
+    {path: 'admin/editarProductos', component: EditarProductosComponent, title: 'Editar Productos'},
     {path: 'admin/conductores', component: ConductoresComponent, title: 'Conductores'},
     {path: 'admin/vehiculos', component: VehiculosComponent, title: 'Vehiculos'},
     {path: 'ultimasRecogidas', component: UltimasRecogidasComponent, title: 'Ultimas Recogidas'},
