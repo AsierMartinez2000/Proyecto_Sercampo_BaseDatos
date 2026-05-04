@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { RutasService } from '../../../services/rutas.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,7 +15,6 @@ export class VehiculosComponent {
   constructor(
     // private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private rutasService: RutasService,
     private adminService: AdminService,
     private router: Router,
   ) {}
@@ -75,7 +73,7 @@ export class VehiculosComponent {
  // --------------------------------- MÉTODOS vehiculoES  ---------------------------------
   buscarVehiculos() {
     if (this.dato_vehiculo.dato.length > 1) {
-      this.rutasService.traerDatosVehiculos(this.dato_vehiculo).subscribe((resultado: any) => {
+      this.adminService.traerDatosVehiculos(this.dato_vehiculo).subscribe((resultado: any) => {
         this.array_buscador_vehiculos = resultado; //Esto es el array
         this.cdr.detectChanges();
         console.log(resultado);
@@ -98,13 +96,13 @@ export class VehiculosComponent {
     this.vehiculo_seleccionado.tel_emergencias = vehiculo.tel_emergencias;
     this.vehiculo_seleccionado.tel_contacto = vehiculo.tel_contacto;
     this.vehiculo_seleccionado.empresa = vehiculo.empresa;
+    this.cdr.detectChanges();
 
     this.dato_vehiculo.dato = '';
     this.buscarVehiculos();
   }
 
-  nuevovehiculo(vehiculo_nuevo: any){
-    //NO ESTA CREADO EN EL BACK
+  nuevoVehiculo(vehiculo_nuevo: any){
     this.adminService.insertarNuevoVehiculo(this.vehiculo_nuevo).subscribe({
         next: (respuesta: any) => {
           console.log('vehiculo añadido:', respuesta);
@@ -115,7 +113,7 @@ export class VehiculosComponent {
         complete: () => {
           console.log('vehiculo añadido');
           this.cdr.detectChanges();
-          this.router.navigate(['confirmado']); 
+          this.router.navigate(['confirmado', ""]); 
         },
       });
      
@@ -159,12 +157,28 @@ export class VehiculosComponent {
   }
 
   enviarEdicion(){
-    //NO ESTA CREADO EN EL BACK
     if(this.vehiculo_seleccionado.matricula != '' && this.vehiculo_seleccionado.modelo != '' && this.vehiculo_seleccionado.num_bastidor != '' && this.vehiculo_seleccionado.num_poliza != ''){
       this.adminService.actualizarVehiculo(this.vehiculo_seleccionado).subscribe((resultado: any) => {
         if (resultado == true){
           console.log(resultado);
+
+              this.vehiculo_seleccionado.matricula = resultado.matricula;
+              this.vehiculo_seleccionado.modelo = resultado.modelo;
+              this.vehiculo_seleccionado.fecha_itv = resultado.fecha_itv;
+              this.vehiculo_seleccionado.fecha_mantenimiento = resultado.fecha_mantenimiento;
+              this.vehiculo_seleccionado.precio_mantenimiento = resultado.precio_mantenimiento;
+              this.vehiculo_seleccionado.taller_mantenimiento = resultado.taller_mantenimiento;
+              this.vehiculo_seleccionado.num_bastidor = resultado.num_bastidor;
+              this.vehiculo_seleccionado.num_poliza = resultado.num_poliza;
+              this.vehiculo_seleccionado.tel_emergencias = resultado.tel_emergencias;
+              this.vehiculo_seleccionado.tel_contacto = resultado.tel_contacto;
+              this.vehiculo_seleccionado.empresa = resultado.empresa;
+              this.cdr.detectChanges();
+
+
           this.editando = false;
+          
+          
           this.cdr.detectChanges();
         }else {
           console.log(resultado);

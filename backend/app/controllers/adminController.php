@@ -33,14 +33,15 @@ session_start();
 
         }
 
-        public function nuevoVehiculo($datos_vehiculo){
-            
+        public function buscadorVehiculo($datos_vehiculo){
+
             $modeloAdmin = new adminModel();
-            $vehiculo = $modeloAdmin->insertarVehiculo($datos_vehiculo);
 
-            echo json_encode ($vehiculo);
+            $vehiculos_encontrados = $modeloAdmin->getVehiculos($datos_vehiculo);
+
+            echo json_encode($vehiculos_encontrados);
         }
-
+        
 
         public function actualizarVehiculo($datos_vehiculo){
 
@@ -50,6 +51,16 @@ session_start();
             echo json_encode ($vehiculo);
         }
         
+        
+        public function nuevoVehiculo($datos_vehiculo){
+            
+            $modeloAdmin = new adminModel();
+            $vehiculo = $modeloAdmin->insertarVehiculo($datos_vehiculo);
+
+            echo json_encode ($vehiculo);
+        }
+
+
         
     }
 

@@ -46,6 +46,20 @@ export class AdminService {
     })
   }
 
+  traerDatosVehiculos(datosVehiculo: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=admin&action=buscadorVehiculo`,
+      datosVehiculo,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
   insertarNuevoVehiculo(datosVehiculo: any): Observable<any> {
     return this.httpClient.post(
       `${this.url}?controller=admin&action=nuevoVehiculo`,
