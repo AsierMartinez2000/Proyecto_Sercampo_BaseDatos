@@ -72,8 +72,13 @@ export class EditarProductosComponent implements OnInit {
 
         if (resultado == true){
           console.log(resultado);
-          // this.editando = false;
+          this.producto_seleccionado.id_producto = "";
+          this.producto_seleccionado.tipo = "Producto Editado";
+          this.producto_seleccionado.coste = "";
+          this.producto_seleccionado.notas = "";
+
           this.cdr.detectChanges();
+
         }else {
           console.log(resultado);
           // this.editando = false;
