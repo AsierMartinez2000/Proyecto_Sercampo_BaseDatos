@@ -67,6 +67,13 @@ session_start();
             echo json_encode ($vehiculo);
         }
 
+        public function buscadorUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $array_usuarios = $modeloAdmin->getUsuarios($datos_usuario);
+
+            echo json_encode ($array_usuarios);
+        }
+
 
         
     }

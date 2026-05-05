@@ -317,4 +317,24 @@ class adminModel{
         }
     }
 
+    public function getUsuarios($datos_usuario){
+
+        $sql = "SELECT id_usuario, nombre, email, telefono, password, rol
+                FROM usuarios
+                WHERE (nombre LIKE :datoUsuario) OR (email LIKE :datoUsuario) OR (rol LIKE :datoUsuario)";
+
+        $stmt = $this->db->prepare($sql);
+
+        $dato = "%" . $datos_usuario['dato'] . "%";
+
+        $stmt->bindParam(':datoUsuario', $dato, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+
+    }
+
 }

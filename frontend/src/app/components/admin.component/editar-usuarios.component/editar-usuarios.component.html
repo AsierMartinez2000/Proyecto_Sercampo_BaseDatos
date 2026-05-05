@@ -1,0 +1,29 @@
+<h1>Editar Usuarios</h1>
+
+
+<div class="usuarios-container">
+  <!-- SELECTOR usuarios -->
+  <div class="selector-usuarios">
+    <div class="row">
+
+    
+    <div class="mb-3 col-8">
+      <label for="usuario">Elegir usuario</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_usuario.dato"
+        (click)="buscarUsuarios()"
+        (keyup)="buscarUsuarios()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (usuario of array_buscador_usuarios; track usuario.id_usuario) {
+          <li class="list-group-item buscador_item" (click)="seleccionarUsuario(usuario)" >
+            {{ usuario.nombre }} - {{usuario.email}} {{usuario.telefono}}
+          </li>
+        }
+      </ul>
+    </div>
+</div>

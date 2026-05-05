@@ -108,6 +108,22 @@ export class AdminService {
     );
   }
 
+  // ------------------------------ METODOS USUARIOS ------------------------------
+
+  traerDatosUsuarios(datos_usuario: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=admin&action=buscadorUsuario`,
+      datos_usuario,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
 
 
 
