@@ -28,3 +28,14 @@ h5{
     font-weight: bold;
     font-size:medium;
 }
+
+.disabled{
+    background-color: rgba(128, 128, 128, 0.26);
+    cursor: default;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.disabled:hover{
+    background-color: rgba(128, 128, 128, 0.26);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
