@@ -6,6 +6,7 @@ session_start();
 
     class adminController{
 
+        // ---------------------METODOS PRODUCTOS---------------------
         public function traerProductos($dato_producto){
 
             $modeloAdmin = new adminModel();
@@ -22,6 +23,8 @@ session_start();
             echo json_encode($exito);
         }
 
+        // ---------------------METODOS CONDUCTOR---------------------
+        //Get conductor se hizo con rutas service para reciclar
         public function actualizarConductor($datos_conductor){
 
             $modeloAdmin = new adminModel();
@@ -34,12 +37,13 @@ session_start();
         public function nuevoConductor($datos_conductor){
 
             $modeloAdmin = new adminModel();
-            $conductor = $modeloAdmin->insertarConductor($datos_conductor);
+            $exito = $modeloAdmin->insertarConductor($datos_conductor);
 
-            echo json_encode ($conductor);
+            echo json_encode ($exito);
 
         }
 
+        // ---------------------METODOS VEHICULO---------------------
         public function buscadorVehiculo($datos_vehiculo){
 
             $modeloAdmin = new adminModel();
@@ -53,20 +57,21 @@ session_start();
         public function actualizarVehiculo($datos_vehiculo){
 
             $modeloAdmin = new adminModel();
-            $vehiculo = $modeloAdmin->actualizarVehiculo($datos_vehiculo);
+            $exito = $modeloAdmin->actualizarVehiculo($datos_vehiculo);
 
-            echo json_encode ($vehiculo);
+            echo json_encode ($exito);
         }
         
         
         public function nuevoVehiculo($datos_vehiculo){
             
             $modeloAdmin = new adminModel();
-            $vehiculo = $modeloAdmin->insertarVehiculo($datos_vehiculo);
+            $exito = $modeloAdmin->insertarVehiculo($datos_vehiculo);
 
-            echo json_encode ($vehiculo);
+            echo json_encode ($exito);
         }
 
+        // ---------------------METODOS USUARIO---------------------
         public function buscadorUsuario($datos_usuario){
             $modeloAdmin = new adminModel();
             $array_usuarios = $modeloAdmin->getUsuarios($datos_usuario);
@@ -74,6 +79,19 @@ session_start();
             echo json_encode ($array_usuarios);
         }
 
+        public function actualizarUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarUsuario($datos_usuario);
+
+            echo json_encode ($exito);
+        }
+
+        public function nuevoUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->insertarUsuario($datos_usuario);
+
+            echo json_encode ($exito);
+        }
 
         
     }

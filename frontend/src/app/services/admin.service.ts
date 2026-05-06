@@ -124,6 +124,34 @@ export class AdminService {
     );
   }
 
+  actualizarUsuario(datos_usuario: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=admin&action=actualizarUsuario`,
+      datos_usuario,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
+  insertarNuevoUsuario(datos_usuario: any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=admin&action=nuevoUsuario`,
+      datos_usuario,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
 
 
 

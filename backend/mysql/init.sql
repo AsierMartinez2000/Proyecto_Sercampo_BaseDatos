@@ -37,7 +37,7 @@ CREATE TABLE usuarios (
         email VARCHAR(255) UNIQUE NOT NULL,
         telefono VARCHAR(15),
         password VARCHAR(255) NOT NULL,
-        rol ENUM ('admin', 'user') NOT NULL
+        rol ENUM ('admin', 'user', 'conductor') NOT NULL
     );
 
 
