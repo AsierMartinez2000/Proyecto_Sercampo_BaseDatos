@@ -108,4 +108,15 @@ export class RecogidasService {
       withCredentials: true
     })
   }
+
+  cargarProvincias(): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=cargarProvincias`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
 }

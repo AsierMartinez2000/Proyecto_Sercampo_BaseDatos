@@ -75,6 +75,12 @@ session_start();
             $array_conductores = $modeloRecogida->cargarConductores();
             echo json_encode($array_conductores);
         }
+
+        public function cargarProvincias(){
+            $modeloRecogida = new recogidasModel();
+            $array_provincias = $modeloRecogida->cargarProvincias();
+            echo json_encode($array_provincias);
+        }
     }
 
 ?>

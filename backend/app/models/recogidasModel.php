@@ -191,6 +191,19 @@ class recogidasModel
             $sql .= " AND (rut.id_conductor = :id_conductor)";
         }
 
+        if ($datos_filtros['tipo_legal'] != "") {
+            $sql .= " AND (con.tipo_legal = :tipo_legal)";
+        }
+
+        if ($datos_filtros['municipio'] != "") {
+            $sql .= " AND (m.municipio LIKE :municipio)";
+        }
+   
+        if ($datos_filtros['provincia'] != "") {
+            $sql .= " AND (m.provincia LIKE :provincia)";
+        }
+
+
         $sql .= " ORDER BY rec.fecha DESC";
 
         $stmt = $this->db->prepare($sql);
@@ -200,6 +213,20 @@ class recogidasModel
         
         if ($datos_filtros['conductor'] != "") {
             $stmt->bindParam(':id_conductor', $datos_filtros['conductor'], PDO::PARAM_STR);
+        }
+
+        if ($datos_filtros['tipo_legal'] != "") {
+            $stmt->bindParam(':tipo_legal', $datos_filtros['tipo_legal'], PDO::PARAM_STR);
+        }
+
+        if ($datos_filtros['municipio'] != "") {
+            $municipio = "%" . $datos_filtros['municipio'] . "%";
+            $stmt->bindParam(':municipio', $municipio, PDO::PARAM_STR);
+        }
+    
+        if ($datos_filtros['provincia'] != "") {
+            $provincia = "%" . $datos_filtros['provincia'] . "%";
+            $stmt->bindParam(':provincia', $provincia, PDO::PARAM_STR);
         }
 
         $stmt->execute();
@@ -267,6 +294,21 @@ class recogidasModel
 
         $sql = "SELECT id_conductor, nombre, email, telefono
                 FROM conductores";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //Solo queremos devolver el dato id_ruta, no un array.
+        
+        return $resultado;
+
+    }
+
+    public function cargarProvincias(){
+
+        $sql = "SELECT DISTINCT provincia
+                FROM municipios";
 
         $stmt = $this->db->prepare($sql);
 

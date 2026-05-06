@@ -77,18 +77,48 @@
   [(ngModel)]="datos.conductor"
   name="conductor"
   >
-    <option value="" disabled>Seleccione un conductor</option>
+    <option value="">Cualquier conductor</option>
     @for (conductor of array_conductores; track $index) {
       <option [value]="conductor.id_conductor">{{ conductor.nombre }}</option>
     }
   </select>
 
   <!-- TIPO LEGAL -->
-   
+  <label for="tipo_legal">Tipo Legal</label>
+  <select
+  class="form-control"
+  [(ngModel)]="datos.tipo_legal"
+  name="tipo_legal"
+  >
+    <option value="">Cualquier tipo legal</option>
+    <option value="Horeca">Horeca</option>
+    <option value="EESS Repsol">EESS REPSOL</option>
+    <option value="Contenedor">Contenedor Via Publica</option>
+  </select>
 
   <!-- MUNICIPIO -->
 
+  <label for="municipio">Municipio</label>
+  <input
+  type="text"
+  class="form-control"
+  [(ngModel)]="datos.municipio"
+  name="municipio"
+  />
+
   <!-- PROVINCIA -->
+
+  <label for="provincia">Provincia</label>
+  <select
+  class="form-control"
+  [(ngModel)]="datos.provincia"
+  name="provincia"
+  >
+    <option value="">Cualquier provincia</option>
+    @for (provincia of array_provincias; track $index) {
+      <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+    }
+  </select>
 
   <button class="btn btn-sercampo mt-3" (click)="cargarRecogidas();">Buscar</button>
   <hr>

@@ -36,6 +36,8 @@ export class UltimasRecogidasComponent implements OnInit {
 
   array_conductores: any[] = [];
 
+  array_provincias: any[] = [];
+
   // dato_conductor = {
   //   nombre: '',
   // };
@@ -73,8 +75,12 @@ export class UltimasRecogidasComponent implements OnInit {
   }
 
   cargarSelects(){
-      this.recogidasService.cargarConductores().subscribe((resultado: any) => {
+    this.recogidasService.cargarConductores().subscribe((resultado: any) => {
       this.array_conductores = resultado;
+    })
+
+    this.recogidasService.cargarProvincias().subscribe((resultado: any) => {
+      this.array_provincias = resultado;
     })
   }
 
