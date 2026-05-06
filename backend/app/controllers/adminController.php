@@ -94,6 +94,23 @@ session_start();
         }
 
         
+        // ---------------------METODOS CONTENEDORES---------------------
+        public function traerContenedores($dato_contenedor){
+
+            $modeloAdmin = new adminModel();
+
+            $contenedores = $modeloAdmin->getContenedores($dato_contenedor);
+
+            echo json_encode($contenedores);
+        }
+
+        public function actualizarContenedor($dato_contenedor){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarContenedor($dato_contenedor);
+
+            echo json_encode($exito);
+        }
+        
     }
 
 ?>

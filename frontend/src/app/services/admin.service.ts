@@ -153,6 +153,33 @@ export class AdminService {
   }
 
 
+  
+  //-------------------------- METODOS CONTENEDORES --------------------------
+
+  traerDatosContenedores(datos_contenedor:any): Observable<any> {
+    return this.httpClient.post(
+      `${this.url}?controller=admin&action=traerContenedores`, datos_contenedor,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
+    actualizarContenedor(dato_contenedor: any): Observable<any> {
+    return this.httpClient
+    .post(`${this.url}?controller=admin&action=actualizarContenedor`, dato_contenedor, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
 
 
 

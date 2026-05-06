@@ -15,6 +15,7 @@ import { EstadisticasComponent } from './components/estadisticas.component/estad
 import { UltimasRecogidasComponent } from './components/ultimas-recogidas.component/ultimas-recogidas.component';
 import { UltimasRutasComponent } from './components/ultimas-rutas.component/ultimas-rutas.component';
 import { EditarUsuariosComponent } from './components/admin.component/editar-usuarios.component/editar-usuarios.component';
+import { EditarContenedoresComponent } from './components/admin.component/editar-contenedores.component/editar-contenedores.component';
 
 export const routes: Routes = [
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
     {path: 'admin/conductores', component: ConductoresComponent, title: 'Conductores'},
     {path: 'admin/vehiculos', component: VehiculosComponent, title: 'Vehiculos'},
     {path: 'admin/editarUsuarios', component: EditarUsuariosComponent, title: 'Usuarios'},
+    {path: 'admin/editarContenedores', component: EditarContenedoresComponent, title: 'Contenedores'},
     {path: 'ultimasRecogidas', component: UltimasRecogidasComponent, title: 'Ultimas Recogidas'},
     {path: 'ultimasRutas', component: UltimasRutasComponent, title: 'Ultimas Rutas'},
     {path: 'estadisticas', component: EstadisticasComponent, title: 'Estadisticas'},

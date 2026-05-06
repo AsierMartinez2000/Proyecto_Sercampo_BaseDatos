@@ -398,4 +398,41 @@ class adminModel{
         return true;
 
     }
+
+        // ---------------------METODOS CONTENEDORES---------------------
+
+    public function getContenedores($dato_contenedor){
+        $sql = "SELECT id_tipo_contenedor, tipo, capacidad, notas
+                FROM tipo_contenedor
+                WHERE tipo LIKE :dato_contenedor";
+        
+        $stmt = $this->db->prepare($sql);
+        $dato = "%" . $dato_contenedor['dato'] . "%";
+        $stmt->bindParam(':dato_contenedor', $dato, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
+    }
+
+
+    public function actualizarContenedor($dato_contenedor) {
+
+            $sql = "UPDATE tipo_contenedor
+                SET capacidad = :capacidad, notas = :notas
+                WHERE id_tipo_contenedor = :id_tipo_contenedor";
+        
+            $stmt = $this->db->prepare($sql);
+            
+            $stmt->bindParam(':capacidad', $dato_contenedor['capacidad'], PDO::PARAM_STR);
+            $stmt->bindParam(':notas', $dato_contenedor['notas'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_tipo_contenedor', $dato_contenedor['id_tipo_contenedor'], PDO::PARAM_INT);
+            
+            $stmt->execute();
+
+            return true;
+        
+    }
+
+
 }
