@@ -14,15 +14,20 @@
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
-    <div class="card" style="width: 8rem">
-      <div class="card-body text-center">
-        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
-        <label for="card-text">{{ estadisticas.rutas_Asier }}</label>
-        <!-- <h5 class="card-title">Card title</h5> -->
-        <p class="card-text text-center">Recogidas Asier</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <!-- <div class="card" style="width: 8rem">
+        <div class="card-body text-center">
+          <label for="card-text">{{ estadisticas.rutas_Asier }}</label>
+          <p class="card-text text-center">Recogidas Asier</p>
+        </div>
+      </div> -->
+    @for (conductor of array_conductores; track $index) {
+      <div class="card" style="width: 8rem">
+        <div class="card-body text-center">
+          <label for="card-text">{{calcularPrueba(conductor.id_conductor)}}</label>
+          <p class="card-text text-center">Recogidas {{ conductor.nombre }}</p>
+        </div>
       </div>
-    </div>
+    }
   </div>
 </div>
 <hr />
