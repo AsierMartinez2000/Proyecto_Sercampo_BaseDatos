@@ -63,12 +63,34 @@
 </div>
 
 <div class="filtrar-container">
+  <!-- FECHAS -->
   <label for="fecha">Fecha desde la que buscar</label>
   <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaInicial" />
+
   <label for="fecha">Fecha hasta la que buscar</label>
   <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaFinal" />
 
-  <button (click)="cargarRecogidas();">Buscar</button>
+  <!-- CONDUCTOR -->
+  <label for="conductor">Conductor</label>
+  <select
+  class="form-control"
+  [(ngModel)]="datos.conductor"
+  name="conductor"
+  >
+    <option value="" disabled>Seleccione un conductor</option>
+    @for (conductor of array_conductores; track $index) {
+      <option [value]="conductor.id_conductor">{{ conductor.nombre }}</option>
+    }
+  </select>
+
+  <!-- TIPO LEGAL -->
+   
+
+  <!-- MUNICIPIO -->
+
+  <!-- PROVINCIA -->
+
+  <button class="btn btn-sercampo mt-3" (click)="cargarRecogidas();">Buscar</button>
   <hr>
 
   <!-- BUSCADOR DE CONDUCTORES COMENTADO NO SE SI HACERLO ASI -->

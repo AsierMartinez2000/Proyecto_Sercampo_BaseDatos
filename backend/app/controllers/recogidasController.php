@@ -64,10 +64,16 @@ session_start();
             echo json_encode($id_ruta);
         }
        
-        public function traerRecogidasPorFecha($fecha){
+        public function traerRecogidasFiltradas($fecha){
             $modeloRecogida = new recogidasModel();
-            $array_recogidas = $modeloRecogida->traerRecogidasPorFecha($fecha);
+            $array_recogidas = $modeloRecogida->traerRecogidasFiltradas($fecha);
             echo json_encode($array_recogidas);
+        }
+
+        public function cargarConductores(){
+            $modeloRecogida = new recogidasModel();
+            $array_conductores = $modeloRecogida->cargarConductores();
+            echo json_encode($array_conductores);
         }
     }
 

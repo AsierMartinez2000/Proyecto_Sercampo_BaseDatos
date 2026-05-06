@@ -170,13 +170,13 @@ class recogidasModel
 
     }
 
-    public function traerRecogidasPorFecha($fecha){
+    public function traerRecogidasFiltradas($datos_filtros){
 
         try {
         
         $this->db->beginTransaction();
 
-        $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, d.direccion, 
+        $sql = "SELECT c.nombre AS nombre_cliente, con.tipo_legal, rec.litros_recogidos, rec.fecha, conduc.nombre AS nombre_conductor, m.municipio, m.provincia, d.direccion, 
                 rec.id_recogida, rec.id_ruta, rut.id_conductor, con.id_contenedor, c.id_cliente, 0 AS total_intercambio 
                 FROM recogidas AS rec
                 INNER JOIN rutas AS rut ON rec.id_ruta = rut.id_ruta
@@ -185,13 +185,22 @@ class recogidasModel
                 INNER JOIN clientes AS c ON con.id_cliente = c.id_cliente
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-                WHERE (rec.fecha >= :fechaInicial) AND (rec.fecha <= :fechaFinal)
-                ORDER BY rec.fecha DESC";
+                WHERE (rec.fecha >= :fechaInicial) AND (rec.fecha <= :fechaFinal)";
+
+        if ($datos_filtros['conductor'] != "") {
+            $sql .= " AND (rut.id_conductor = :id_conductor)";
+        }
+
+        $sql .= " ORDER BY rec.fecha DESC";
 
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindParam(':fechaInicial', $fecha['fechaInicial'], PDO::PARAM_STR);
-        $stmt->bindParam(':fechaFinal', $fecha['fechaFinal'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaInicial', $datos_filtros['fechaInicial'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaFinal', $datos_filtros['fechaFinal'], PDO::PARAM_STR);
+        
+        if ($datos_filtros['conductor'] != "") {
+            $stmt->bindParam(':id_conductor', $datos_filtros['conductor'], PDO::PARAM_STR);
+        }
 
         $stmt->execute();
 
@@ -251,6 +260,21 @@ class recogidasModel
             $this->db->rollBack();
             return $e;
         }
+
+    }
+
+    public function cargarConductores(){
+
+        $sql = "SELECT id_conductor, nombre, email, telefono
+                FROM conductores";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //Solo queremos devolver el dato id_ruta, no un array.
+        
+        return $resultado;
 
     }
 }

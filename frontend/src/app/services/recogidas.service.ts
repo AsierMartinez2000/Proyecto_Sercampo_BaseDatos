@@ -89,7 +89,18 @@ export class RecogidasService {
 
   obtenerRecogidas(fecha: any): Observable<any>{
     return this.httpClient
-    .post(`${this.url}?controller=recogidas&action=traerRecogidasPorFecha`,fecha, {
+    .post(`${this.url}?controller=recogidas&action=traerRecogidasFiltradas`,fecha, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  cargarConductores(): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=recogidas&action=cargarConductores`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
