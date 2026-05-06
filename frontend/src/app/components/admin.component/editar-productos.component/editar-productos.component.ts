@@ -36,20 +36,17 @@ export class EditarProductosComponent implements OnInit {
 
   ngOnInit(): void {
 
-   
+   this.buscarProducto();
 
   }
 
   buscarProducto(){
-    if (this.dato_producto.dato.length > 1) {
       this.adminService.traerDatosProductos(this.dato_producto).subscribe((resultado: any) => {
         this.array_buscador_productos = resultado; //Esto es el array
         this.cdr.detectChanges();
         console.log(resultado);
       });
-    } else {
-      this.array_buscador_productos = [];
-    }
+    
   }
 
   seleccionarProducto(producto:any){

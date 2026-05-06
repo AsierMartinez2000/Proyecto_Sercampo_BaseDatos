@@ -12,13 +12,13 @@
     (keyup)="buscarProducto()"
   
   />
-  <div class="grupo-productos">
+  <ul class="list-group">
     @for (producto of array_buscador_productos; track producto.id_producto) {
-      <button class="btn btn-producto w-25" (click)="seleccionarProducto(producto)">
+      <li class="list-group-item buscador_item" (click)="seleccionarProducto(producto)">
         {{ producto.tipo }}
-      </button>
+      </li>
     }
-  </div>
+  </ul>
 </div>
 
 @if (producto_seleccionado.tipo != '') {
