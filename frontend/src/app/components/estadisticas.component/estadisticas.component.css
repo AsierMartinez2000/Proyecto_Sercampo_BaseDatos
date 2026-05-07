@@ -4,4 +4,16 @@
     cursor: pointer;
 }
 
+.cards-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    /* text-align: center; */
+    /* height: 50vh; */
+    width: 50vh;
+    background-color: #4d5b9f10;
+}
 
