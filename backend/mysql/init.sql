@@ -190,7 +190,7 @@ CREATE TABLE rutas (
 -- -----------------------------------------------------
 -- Tabla: Rutas-contenedores
 -- -----------------------------------------------------
-CREATE TABLE rutas-contenedores(
+CREATE TABLE rutas_contenedores(
         id_ruta INT,
         id_contenedor INT,
         PRIMARY KEY (id_ruta, id_contenedor),

@@ -1,21 +1,77 @@
-.stats{
-    display: flex;
-    flex-direction: row;
-    gap: 2vh;
-    justify-content: center;
-}
-
-.estadisticas-container .card{
-      background-color: #4d5b9f18;
-}
+/* ------------ GENERALES ------------*/
 
 p{
     font-size: smaller;
+    text-align: center;
+}
+
+tr{
+  font-size: smaller;
+  text-align: left;
+}
+
+tr th{
+  font-size:small;
+  padding-left: 4px;
 }
 
 
-.botones-filtro button{
-    margin: 4px;     
+/* --------------- ESTADISTICAS --------------*/
+.stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2vh;
+}
+
+.estadisticas-container .card{
+      width: 8rem;
+      background-color: #4d5b9f18;
+      display: block;
+      
+}
+
+
+/* ---------------- FILTROS --------------- */
+
+.filtros-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-select, .form-control, .date{
+  font-size: small;
+}
+
+.form-select, .form-control, .date:hover{
+  cursor: pointer;
+}
+
+.boton-buscar{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 22.5vh;
+}
+
+
+
+
+/* ------------- TARJETAS UTLIMAS RUTAS -----------*/
+.ult-rutas-container{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+
 }
 
 
@@ -23,25 +79,49 @@ p{
   border: none;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* .custom-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-} */
+
 
 .card-title {
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-size: small;
+  font-weight: bold;
+  /* margin-bottom: 1rem; */
   color: #2c3e50;
 }
 
+.row label{
+  font-size: small;
+  font-weight: normal;
+}
+
+.table-recogidas{
+  /* border: none; */
+  text-align: center;
+}
+
+.table-recogidas thead{
+  background: #4b4b9f27;
+/* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
+}
+
+
+.mas-info-collapse{
+  border: 3px solid red;
+}
+
+
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  CSS PRUEBAS */
+
+
 /* GRID de mini tarjetas */
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  /* gap:1vh; */
 }
 
 /* Mini tarjetas */
@@ -64,51 +144,3 @@ p{
   border: 1px solid #dee2e6;
   transform: scale(1.02);
 } */
-
-/* Etiqueta pequeña */
-.label {
-  font-size: 0.75rem;
-  color: #6c757d;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Valor principal */
-.value {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #212529;
-}
-/* 
-.boton-masinfo{
-  border: 1px solid red;
-}
-
-.boton-masinfo button{
-  align-items: end;
-} */
-
-.title-boton{
-  display: flex;
-  justify-content: space-between;
-}
-
-.table-recogidas{
-  border: none;
-  text-align: center;
-}
-
-.table-recogidas thead{
-  background: #4b4b9f27;
-/* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
-}
-
-tr{
-  font-size: smaller;
-  text-align: left;
-}
-
-tr th{
-  font-size:small;
-  padding-left: 4px;
-}
