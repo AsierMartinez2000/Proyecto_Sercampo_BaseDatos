@@ -12,25 +12,36 @@ import { RecogidasService } from '../../services/recogidas.service';
 })
 export class UltimasRutasComponent implements OnInit{
 
-  datos = {
-    fecha : new Date()
+    datos = {
+    fechaInicial : new Date(),
+    fechaFinal: new Date(),
+    conductor: '', //Aqui tengo el id_conductor
+    vehiculo: '', //Aqui tengo la matricula
+    //ESTOS 3 DE DEBAJO NO SE USAN POR EL MOMENTO
+    tipo_legal: '',
+    municipio: '',
+    provincia: ''
   };
 
-  array_conductores: any[] = [];
+  array_rutas: any[] = []; //Este array almacena todas las rutas que hay que desplegar
 
   estadisticas = {
     rutas_totales: 0,
     lugares_totales: 0,
   };
 
-  array_rutas: any[] = [];
+  array_conductores: any[] = []; //Estos array sirven para los SELECT de los filtros
+
+  array_vehiculos: any[] = [];
+
+  array_provincias: any[] = []; //ESTE SE CARGA PERO NO SE USA
   
   constructor(
     private cdr: ChangeDetectorRef,
     private rutasService: RutasService,
     private recogidasService: RecogidasService
   ) {
-    this.datos.fecha.setMonth(this.datos.fecha.getMonth() - 1);
+    this.datos.fechaInicial.setMonth(this.datos.fechaInicial.getMonth() - 1);
   }
 
   ngOnInit() {
@@ -45,12 +56,23 @@ export class UltimasRutasComponent implements OnInit{
       this.array_rutas = resultado;
       this.calcularEstadisticas();      
     });
+
+    
   }
 
   cargarSelects(){
     this.recogidasService.cargarConductores().subscribe((resultado: any) => {
       this.array_conductores = resultado;
-  })
+    })
+
+    this.rutasService.cargarVehiculos().subscribe((resultado: any) => {
+      this.array_vehiculos = resultado;
+    })
+
+    //PROVINCIAS NO SE USA DE MOMENTO
+    this.recogidasService.cargarProvincias().subscribe((resultado: any) => {
+        this.array_provincias = resultado;
+      })
   }
 
   calcularEstadisticas(){

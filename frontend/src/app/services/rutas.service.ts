@@ -66,9 +66,20 @@ export class RutasService {
     );
   }
 
-  obtenerRutas(fecha: any): Observable<any>{
+  obtenerRutas(filtros: any): Observable<any>{
     return this.httpClient
-    .post(`${this.url}?controller=rutas&action=traerRutasPorFecha`,fecha, {
+    .post(`${this.url}?controller=rutas&action=traerRutasFiltradas`,filtros, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
+  }
+
+  cargarVehiculos(): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=rutas&action=cargarVehiculos`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'

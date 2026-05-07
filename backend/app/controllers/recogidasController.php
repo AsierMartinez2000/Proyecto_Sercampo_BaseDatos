@@ -64,9 +64,9 @@ session_start();
             echo json_encode($id_ruta);
         }
        
-        public function traerRecogidasFiltradas($fecha){
+        public function traerRecogidasFiltradas($filtros){
             $modeloRecogida = new recogidasModel();
-            $array_recogidas = $modeloRecogida->traerRecogidasFiltradas($fecha);
+            $array_recogidas = $modeloRecogida->traerRecogidasFiltradas($filtros);
             echo json_encode($array_recogidas);
         }
 

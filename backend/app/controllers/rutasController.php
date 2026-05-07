@@ -42,12 +42,17 @@ session_start();
             echo json_encode($exito);
         }
 
-        public function traerRutasPorFecha($fecha){
+        public function traerRutasFiltradas($filtros){
             $modeloRutas = new rutasModel();
-            $array_rutas = $modeloRutas->traerRutasPorFecha($fecha);
+            $array_rutas = $modeloRutas->traerRutasFiltradas($filtros);
             echo json_encode($array_rutas);
         }
         
+        public function cargarVehiculos(){
+            $modeloRutas = new rutasModel();
+            $array_vehiculos = $modeloRutas->cargarVehiculos();
+            echo json_encode($array_vehiculos);
+        }
         
     }
 

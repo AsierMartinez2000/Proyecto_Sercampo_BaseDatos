@@ -79,6 +79,19 @@ class rutasModel{
 
     }
 
+    public function cargarVehiculos(){
+         $sql = "SELECT matricula, modelo
+                FROM vehiculos";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //Solo queremos devolver el dato id_ruta, no un array.
+        
+        return $resultado;
+    }
+
     public function nuevaRuta($datosRuta)
     {
 
@@ -130,7 +143,7 @@ class rutasModel{
     }
 
 
-    public function traerRutasPorFecha($fecha){
+    public function traerRutasFiltradas($datos_filtros){
 
         try {
         
@@ -143,12 +156,63 @@ class rutasModel{
                 FROM rutas AS rut
                 INNER JOIN conductores AS conduc ON conduc.id_conductor = rut.id_conductor
                 INNER JOIN vehiculos AS veh ON veh.matricula = rut.matricula
-                WHERE rut.fecha >= :fecha
-                ORDER BY rut.fecha DESC";
+                WHERE (rut.fecha >= :fechaInicial) AND (rut.fecha <= :fechaFinal)";
+
+        
+        if ($datos_filtros['conductor'] != "") {
+            $sql .= " AND (rut.id_conductor = :id_conductor)";
+        }
+
+        if ($datos_filtros['vehiculo'] != "") {
+            $sql .= " AND (rut.matricula = :matricula)";
+        }
+
+        //COMENTADOS PORQUE NO SE USAN DE MOMENTO
+
+        // if ($datos_filtros['tipo_legal'] != "") {
+        //     $sql .= " AND (con.tipo_legal = :tipo_legal)";
+        // }
+
+        // if ($datos_filtros['municipio'] != "") {
+        //     $sql .= " AND (m.municipio LIKE :municipio)";
+        // }
+   
+        // if ($datos_filtros['provincia'] != "") {
+        //     $sql .= " AND (m.provincia LIKE :provincia)";
+        // }
+
+        $sql .= " ORDER BY rut.fecha DESC";
 
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindParam(':fecha', $fecha['fecha'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaInicial', $datos_filtros['fechaInicial'], PDO::PARAM_STR);
+        $stmt->bindParam(':fechaFinal', $datos_filtros['fechaFinal'], PDO::PARAM_STR);
+
+        if ($datos_filtros['conductor'] != "") {
+            $stmt->bindParam(':id_conductor', $datos_filtros['conductor'], PDO::PARAM_STR);
+        }
+
+        
+        if ($datos_filtros['vehiculo'] != "") {
+            $stmt->bindParam(':matricula', $datos_filtros['vehiculo'], PDO::PARAM_STR);
+        }
+
+
+        //COMENTADOS PORQUE NO SE USAN DE MOMENTO
+
+        // if ($datos_filtros['tipo_legal'] != "") {
+        //     $stmt->bindParam(':tipo_legal', $datos_filtros['tipo_legal'], PDO::PARAM_STR);
+        // }
+
+        // if ($datos_filtros['municipio'] != "") {
+        //     $municipio = "%" . $datos_filtros['municipio'] . "%";
+        //     $stmt->bindParam(':municipio', $municipio, PDO::PARAM_STR);
+        // }
+    
+        // if ($datos_filtros['provincia'] != "") {
+        //     $provincia = "%" . $datos_filtros['provincia'] . "%";
+        //     $stmt->bindParam(':provincia', $provincia, PDO::PARAM_STR);
+        // }
 
         $stmt->execute();
 
@@ -202,4 +266,5 @@ class rutasModel{
 
     }
 
+    
 }
