@@ -13,6 +13,20 @@ p{
     font-size: smaller;
 }
 
+.form-select, .form-control, .date{
+  font-size: small;
+
+}
+.form-select, .form-control, .date:hover{
+  cursor: pointer;
+
+}
+
+.row label{
+  font-size: x-small;
+  font-weight: normal;
+}
+
 
 .botones-filtro button{
     margin: 4px;     
