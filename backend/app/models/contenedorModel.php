@@ -34,8 +34,8 @@ class contenedorModel{
 
     public function setNuevoContenedor($id_tipo, $id_cliente, $datos){
 
-        $sql = "INSERT INTO contenedores (id_tipo_contenedor, id_cliente, tipo_legal, periodo_recogida_dias, mercancia, latitud, longitud, inicio, fin, activo)
-                VALUES (:id_tipo_contenedor, :id_cliente, :tipo_legal, null, null, null, null, CURRENT_TIMESTAMP, null, true) ";
+        $sql = "INSERT INTO contenedores (id_tipo_contenedor, id_cliente, tipo_legal, periodo_recogida_dias, latitud, longitud, inicio, fin, activo)
+                VALUES (:id_tipo_contenedor, :id_cliente, :tipo_legal, null, null, null, CURRENT_TIMESTAMP, null, true) ";
 
         $stmt = $this->db->prepare($sql);
 
