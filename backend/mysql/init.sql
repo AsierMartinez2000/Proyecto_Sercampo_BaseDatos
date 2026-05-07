@@ -12,7 +12,7 @@ USE sercampo_db;
 -- Usuarios: id_usuario(PK), nombre, email, telefono, password, rol, foto
 -- Clientes: id_cliente(PK), POINTID, nombre, cif, telefono, notas
 -- Tipo_contenedor: id_tipo_contenedor(PK), tipo, capacidad, notas
--- Contenedores: id­_contenedor(PK), id_tipo_contenedor(FK), id_cliente(FK), tipo_legal, periodo_recogida_dias, mercancia, latitud, longitud, inicio, fin, activo
+-- Contenedores: id­_contenedor(PK), id_tipo_contenedor(FK), id_cliente(FK), tipo_legal, periodo_recogida_dias, latitud, longitud, inicio, fin, activo
 -- Productos: id_productos(PK), tipo, coste, notas.
 -- Conductores: id_conductor(PK), nombre, email, telefono.
 -- Zonas: id_zona(PK), nombre.
@@ -75,7 +75,6 @@ CREATE TABLE contenedores (
         id_cliente INT NOT NULL,
         tipo_legal ENUM ('Horeca', 'EESS Repsol', 'Contenedor') NOT NULL,
         periodo_recogida_dias INT,
-        mercancia VARCHAR(255),
         latitud DECIMAL(10,8),   
         longitud DECIMAL(11,8),
         inicio DATE,
