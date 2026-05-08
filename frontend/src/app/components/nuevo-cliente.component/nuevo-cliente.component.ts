@@ -28,8 +28,9 @@ cliente_nuevo = {
     pais: ''
   };
 
-  //HAY QUE PONER ACTIVO POR DEFECTO A SI
+  fallo_insertar:boolean = false;
 
+  
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
@@ -61,5 +62,24 @@ cliente_nuevo = {
     else {
       console.log("PointID y Nombre es obligatorio");
     }
+  }
+
+
+   comprobarFormulario() {
+    if ((this.cliente_nuevo.PointID == '' || this.cliente_nuevo.nombre_cliente == '') || (this.cliente_nuevo.cif_cliente == '') || (this.cliente_nuevo.tipo_legal == ''
+      || this.cliente_nuevo.direccion == '' || this.cliente_nuevo.municipio == '' || this.cliente_nuevo.tipo_contenedor == '' || this.cliente_nuevo.provincia == '')) {
+      this.falloInsertar();
+
+    }
+  }
+
+   falloInsertar(){
+    this.fallo_insertar = true;
+  }
+
+  cerrarFallo(){
+    setTimeout(() => {
+      this.fallo_insertar = false;
+    }, 50);
   }
 }

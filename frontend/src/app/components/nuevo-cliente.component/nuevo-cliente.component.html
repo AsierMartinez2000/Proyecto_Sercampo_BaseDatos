@@ -1,9 +1,9 @@
 <h1>Nuevo Cliente</h1>
 
-<form (ngSubmit)="anadirCliente(this.cliente_nuevo)">
+<form>
   <h4>Datos Cliente</h4>
   <!-- POINT-ID -->
-    <div class="col input-group input-group-sm mb-3">
+  <div class="col input-group input-group-sm mb-3">
     <span class="input-group-text">PointID</span>
     <input
       type="text"
@@ -15,8 +15,8 @@
   </div>
 
   <!-- NOMBRE -->
-    <div class="col input-group input-group-sm mb-3">
-      <span class="input-group-text">Nombre</span>
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Nombre</span>
     <input
       type="text"
       class="form-control"
@@ -25,7 +25,7 @@
       required
     />
   </div>
- 
+
   <!-- CIF Y TELEFONO -->
   <div class="row mt-3 mb-3">
     <div class="col input-group input-group-sm mb-3">
@@ -50,44 +50,43 @@
   </div>
 
   <!-- TIPO CONTENEDOR Y TIPO LEGAL -->
-   <div class="row mt-3 mb-3">
+  <div class="row mt-3 mb-3">
+    <div class="col mb-3">
+      <h4 for="floatingSelect">Tipo Contenedor</h4>
+      <select
+        class="form-select"
+        id="floatingSelect"
+        [(ngModel)]="cliente_nuevo.tipo_contenedor"
+        name="tipo_contenedor"
+      >
+        <option value="" disabled selected>Selecciona tipo contenedor</option>
+        <option value="Urbanoil">Urbanoil</option>
+        <option value="Interoil">Interoil</option>
+        <option value="Bidón">Bidón</option>
+        <option value="Soterrado">Soterrado</option>
+        <option value="Horecoil">Horecoil</option>
+        <option value="Conteroil">Conteroil</option>
+        <option value="Box">Box</option>
+        <option value="Repsol">Repsol</option>
+      </select>
+    </div>
 
-     <div class="col mb-3">
-       <h4 for="floatingSelect">Tipo Contenedor</h4>
-       <select
-         class="form-select"
-         id="floatingSelect"
-         [(ngModel)]="cliente_nuevo.tipo_contenedor"
-         name="tipo_contenedor"
-       >
-         <option value="" disabled selected>Selecciona tipo contenedor</option>
-         <option value="Urbanoil">Urbanoil</option>
-         <option value="Interoil">Interoil</option>
-         <option value="Bidón">Bidón</option>
-         <option value="Soterrado">Soterrado</option>
-         <option value="Horecoil">Horecoil</option>
-         <option value="Conteroil">Conteroil</option>
-         <option value="Box">Box</option>
-         <option value="Repsol">Repsol</option>
-       </select>
-     </div>
-   
-     <div class="col mb-3">
-       <h4 for="floatingSelect">Tipo legal</h4>
-       <select
-         class="form-select"
-         id="floatingSelect"
-         [(ngModel)]="cliente_nuevo.tipo_legal"
-         name="tipo_legal"
-         required
-       >
-         <option value="" disabled selected>Selecciona tipo legal</option>
-         <option value="Horeca">Horeca</option>
-         <option value="EESS Repsol">EESS Repsol</option>
-         <option value="Contenedor">Contenedor</option>
-       </select>
-     </div>
-   </div>
+    <div class="col mb-3">
+      <h4 for="floatingSelect">Tipo legal</h4>
+      <select
+        class="form-select"
+        id="floatingSelect"
+        [(ngModel)]="cliente_nuevo.tipo_legal"
+        name="tipo_legal"
+        required
+      >
+        <option value="" disabled selected>Selecciona tipo legal</option>
+        <option value="Horeca">Horeca</option>
+        <option value="EESS Repsol">EESS Repsol</option>
+        <option value="Contenedor">Contenedor</option>
+      </select>
+    </div>
+  </div>
 
   <h4>Dirección</h4>
   <div class="row">
@@ -106,14 +105,14 @@
     <div class="col input-group input-group-sm mb-3">
       <span class="input-group-text">Municipio</span>
       <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente_nuevo.municipio"
-      name="municipio"
-      required
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.municipio"
+        name="municipio"
+        required
       />
     </div>
-    
+
     <div class="col input-group input-group-sm mb-3">
       <span class="input-group-text">Código Postal</span>
       <input
@@ -124,7 +123,7 @@
         required
       />
     </div>
-    
+
     <div class="col input-group input-group-sm mb-3">
       <span class="input-group-text">Provincia</span>
       <input
@@ -137,13 +136,69 @@
     </div>
     <div class="col input-group input-group-sm mb-3">
       <span class="input-group-text">País</span>
-      <input type="text" class="form-control" [(ngModel)]="cliente_nuevo.pais" name="pais" required />
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente_nuevo.pais"
+        name="pais"
+        required
+      />
     </div>
   </div>
- 
-  <button type="submit" class="btn btn-danger">Guardar Nuevo Cliente</button>
+
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-danger"
+    data-bs-toggle="modal"
+    data-bs-target="#nuevoCliente"
+    (click)="comprobarFormulario()"
+  >
+    Guardar Nuevo Cliente
+  </button>
 </form>
 
-<!-- SE QUEDA PENDIENTE DE PREGUNTAR A ELENA QUÉ NECESITA Y LOS CÓDIGOS DE LAS EESS -->
-<form class="contenedor"></form>
-<form class="eess"></form>
+<!-- Modal HORECA-->
+<div class="modal fade" id="nuevoCliente" data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
+          @if (fallo_insertar) {
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            Fallo al añadir cliente
+          } @else {
+            <i class="bi bi-check-circle-fill"></i>
+            Confirmar nuevo cliente
+          }
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        @if (fallo_insertar) {
+          FALTAN DATOS DEL NUEVO CLIENTE
+        } @else {
+          AÑADIR NUEVO CLIENTE
+        }
+      </div>
+      <div class="modal-footer">
+        @if (fallo_insertar) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button
+            (click)="anadirCliente(this.cliente_nuevo)"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+          >
+            Guardar Recogida
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
