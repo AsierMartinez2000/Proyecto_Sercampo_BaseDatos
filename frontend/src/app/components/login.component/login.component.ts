@@ -21,20 +21,31 @@ export class LoginComponent {
     password: '1234'
   }
 
-  iniciarSesion(datos_login:any){
-    if (this.datos_login.nombre != "" && this.datos_login.password != "") {
-      this.loginService.comprobarLogin(datos_login).subscribe((resultado: any) => {
-        if(resultado){
+ iniciarSesion(datos_login: any) {
+  if (this.datos_login.nombre != "" && this.datos_login.password != "") {
+    this.loginService.comprobarLogin(datos_login).subscribe((resultado: any) => {
+      if (resultado === true) {
         this.loginService.setEstado(true);
-        // this.loginService.traerDatosUsuario(datos_login).subscribe((resultado: any) => {
-        //   this.loginService.setUsuario(resultado);
-        // })
-        this.cdr.detectChanges();
+        
+        this.loginService.traerDatosUsuario(datos_login).subscribe((datosUsuario: any) => {  
+
+          this.loginService.setUsuario(datosUsuario);
+          this.cdr.detectChanges();
+        });
+
       } else {
-        console.log("Error de Login");
+        console.log("Error de Login - Credenciales incorrectas");
+
+        alert("Usuario o contraseña incorrectos");
       }
     });
-    } 
+
+  } else {
+
+    console.log("Por favor complete todos los campos");
+
+    alert("Por favor complete todos los campos");
   }
+}
 
 }

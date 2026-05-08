@@ -34,7 +34,7 @@ export class LoginService {
     // Inicializar el estado solo en el navegado
     if (isPlatformBrowser(this.platformId)) { //Comprobamos si es el navegador que corresponde al Token. (Seguridad)
       this.EstadoLogin.set(this.obtenerEstadoInicial()); //Seteamos EstadoLogin al valor que devuelva el metodo.
-      
+
       const usuarioGuardado = localStorage.getItem('usuario'); //Obtiene el objeto/item "usuario" de localStorage y lo guarda.
   
       if(usuarioGuardado){ //Si es true, es porque lo encontró, por lo que había un usuario guardado ya.
@@ -75,6 +75,8 @@ export class LoginService {
   setUsuario(usuario: Usuario) {
 
     this.UsuarioActual.set(usuario);
+
+    console.log(usuario);
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('usuario', JSON.stringify(usuario));

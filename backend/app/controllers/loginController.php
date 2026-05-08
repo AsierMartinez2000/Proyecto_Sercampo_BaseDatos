@@ -16,4 +16,14 @@ class LoginController
 
     }
 
+    public function traerDatos($datos_login)
+    {
+        $modeloLogin = new loginModel();
+
+        $datos_usuario = $modeloLogin->traerDatosUsuario($datos_login);
+
+        echo json_encode($datos_usuario);
+
+    }
+
 }
