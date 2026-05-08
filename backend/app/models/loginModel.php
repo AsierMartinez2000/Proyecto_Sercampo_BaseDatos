@@ -12,23 +12,25 @@
         }
 
         // Método para buscar al usuario en la base de datos
-        public function buscarUsuario($nombre, $password){
+        public function procesarLogin($datos_login){
 
-            $sql = "SELECT id_usuario, nombre, password 
-                    FROM usuarios WHERE nombre = :nombre";
+            $sql = "SELECT id_usuario
+                    FROM usuarios
+                    WHERE (nombre = :nombre) AND (password = :password)";
             
-            //CONSULTA PREPARADA    
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-            $stmt->execute();
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            //VERIFICAR CONTRASEÑA
-            if(password_verify($password, $usuario['password']))
-            {
-                return $usuario['id_usuario'];
+            $stmt->bindParam(':nombre', $datos_login['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':password', $datos_login['password'], PDO::PARAM_STR);
+            $stmt->execute();
+
+            $resultado = $stmt->fetchColumn();
+
+            if($resultado != false){
+                return true;
+            } else{
+                return false;
             }
-                
         }
     }
 

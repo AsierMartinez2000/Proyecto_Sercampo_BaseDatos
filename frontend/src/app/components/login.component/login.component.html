@@ -1,0 +1,33 @@
+<h1>INICIO DE SESION</h1>
+
+
+<div class="formulario mt-5">
+     <hr>
+     <form (ngSubmit)="iniciarSesion(this.datos_login)">
+        <!-- NOMBRE -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Nombre</span>
+         <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="datos_login.nombre"
+           name="nombre"
+           required
+         />
+       </div>
+      
+       <!--PASSWORD -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Contraseña</span>
+           <input
+             type="password"
+             class="form-control"
+             [(ngModel)]="datos_login.password"
+             name="password"
+           />
+         </div>
+         <button type="submit" class="btn btn-danger">INICIAR SESION</button>
+     </form>
+</div>
+
+
