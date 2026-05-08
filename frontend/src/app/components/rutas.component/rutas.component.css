@@ -1,11 +1,3 @@
-.buscador_item:hover{
-    background-color:  #4d5b9f27;
-    cursor: pointer;
-}
-
-.buscador_item:active{
-    background-color:   #ff90506a;
-}
 
 .titulo-datos{
     text-align: center;

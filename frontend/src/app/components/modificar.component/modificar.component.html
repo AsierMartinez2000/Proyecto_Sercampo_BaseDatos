@@ -1,163 +1,196 @@
-<h1>Modificar {{cliente.nombre}}</h1>
-
-
-
+<h1>Modificar {{ cliente.nombre }}</h1>
 
 <form>
   <!-- <input type="text" class="form-control" [(ngModel)]="this.cliente.tipo_contenedor" name="tipo_contenedor" required> -->
 
-  <div class="form-floating mt-3 mb-3">
-    <select
-      class="form-select"
-      id="floatingSelect"
-      [(ngModel)]="cliente.tipo"
-      name="tipo"
-    >
-      <option value="" disabled selected>Selecciona tipo contenedor</option>
-      <option value="Urbanoil">Urbanoil</option>
-      <option value="Interoil">Interoil</option>
-      <option value="Bidón">Bidón</option>
-      <option value="Soterrado">Soterrado</option>
-      <option value="Horecoil">Horecoil</option>
-      <option value="Conteroil">Conteroil</option>
-      <option value="Box">Box</option>
-      <option value="Repsol">Repsol</option>
-    </select>
-    <label for="floatingSelect">Tipo Contenedor</label>
+  <div class="row mt-5">
+
+    <div class="col mb-3 mt-2 ">
+      <label for="floatingSelect">Tipo Contenedor</label>
+      <select
+        class="form-select"
+        id="floatingSelect"
+        [(ngModel)]="cliente.tipo"
+        name="tipo_contenedor"
+      >
+        <option value="" disabled selected>Selecciona tipo contenedor</option>
+        <option value="Urbanoil">Urbanoil</option>
+        <option value="Interoil">Interoil</option>
+        <option value="Bidón">Bidón</option>
+        <option value="Soterrado">Soterrado</option>
+        <option value="Horecoil">Horecoil</option>
+        <option value="Conteroil">Conteroil</option>
+        <option value="Box">Box</option>
+        <option value="Repsol">Repsol</option>
+      </select>
+    </div>
+
+    <!-- <textarea class="form-control" [(ngModel)]="cliente.tipo_legal" name="tipo_legal" rows="3"></textarea> -->
+    <div class="col mb-3 mt-2">
+      <label for="floatingSelect">Tipo legal</label>
+      <select
+        class="form-select"
+        id="floatingSelect"
+        [(ngModel)]="cliente.tipo_legal"
+        name="tipo_legal"
+        required
+      >
+        <option value="" disabled selected>Selecciona tipo legal</option>
+        <option value="Horeca">Horeca</option>
+        <option value="EESS Repsol">EESS Repsol</option>
+        <option value="Contenedor">Contenedor</option>
+      </select>
+    </div>
+
+    <div class="col mb-3">
+      <label class="form-label">PointID</label>
+      <input type="text" class="form-control" [(ngModel)]="cliente.PointID" name="PointID" required />
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">PointID</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.PointID"
-      name="PointID"
-      required
-    />
-  </div>
 
-  <div class="mb-3">
-    <label class="form-label">Nombre</label>
+  <!-- NOMBRE -->
+  <div class="col input-group input-group-sm mb-3">
+    <span class="input-group-text">Nombre</span>
     <input
       type="text"
       class="form-control"
       [(ngModel)]="cliente.nombre"
-      name="nombre"
+      name="nombre_cliente"
       required
     />
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">CIF</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.cif"
-      name="cif"
-    />
+  <!-- CIF Y TELEFONO -->
+  <div class="row mt-3 mb-3">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">CIF</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.cif"
+        name="cif_cliente"
+      />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Teléfono</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.telefono"
+        name="telefono_cliente"
+      />
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Teléfono</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.telefono"
-      name="telefono"
-    />
+  <label>Dirección</label>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.direccion"
+        name="direccion"
+        required
+      />
+    </div>
   </div>
+  <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.municipio"
+        name="municipio"
+        required
+      />
+    </div>
 
-  <!-- <textarea class="form-control" [(ngModel)]="cliente.tipo_legal" name="tipo_legal" rows="3"></textarea> -->
-  <div class="form-floating mt-3 mb-3">
-    <select
-      class="form-select"
-      id="floatingSelect"
-      [(ngModel)]="cliente.tipo_legal"
-      name="tipo_legal"
-      required
-    >
-      <option value="" disabled selected>Selecciona tipo legal</option>
-      <option value="Horeca">Horeca</option>
-      <option value="EESS Repsol">EESS Repsol</option>
-      <option value="Contenedor">Contenedor</option>
-    </select>
-    <label for="floatingSelect">Tipo legal</label>
-  </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.cod_postal"
+        name="cod_postal"
+        required
+      />
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">Dirección</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.direccion"
-      name="direccion"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Código Postal</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.cod_postal"
-      name="cod_postal"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Municipio</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.municipio"
-      name="municipio"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Provincia</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="cliente.provincia"
-      name="provincia"
-      required
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Pais</label>
-    <input type="text" class="form-control" [(ngModel)]="cliente.pais" name="pais" required />
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.provincia"
+        name="provincia"
+        required
+      />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="cliente.pais"
+        name="pais"
+        required
+      />
+    </div>
   </div>
 
   <!-- <button type="submit" (click)="actualizarCliente()" class="btn btn-danger">Guardar Cliente</button> -->
 
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarCliente">
-  Guardar Cliente
-</button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    data-bs-toggle="modal"
+    data-bs-target="#confirmarCliente"
+  >
+    Guardar Cliente
+  </button>
 
-<!-- Modal -->
-<div class="modal fade" id="confirmarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarClienteLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmarClienteLabel">Guardar Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Modificar {{cliente.nombre}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="actualizarCliente()" class="btn btn-success" data-bs-dismiss="modal">Guardar Cambios</button>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="confirmarCliente"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="confirmarClienteLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmarClienteLabel">Guardar Cliente</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">Modificar {{ cliente.nombre }}</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button
+            type="button"
+            (click)="actualizarCliente()"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+          >
+            Guardar Cambios
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </form>
+
+<!-- --------------------------------------------- -->
+
