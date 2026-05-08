@@ -14,6 +14,8 @@ import { VehiculosComponent } from './components/admin.component/vehiculos.compo
 import { EstadisticasComponent } from './components/estadisticas.component/estadisticas.component';
 import { UltimasRecogidasComponent } from './components/ultimas-recogidas.component/ultimas-recogidas.component';
 import { UltimasRutasComponent } from './components/ultimas-rutas.component/ultimas-rutas.component';
+import { EditarUsuariosComponent } from './components/admin.component/editar-usuarios.component/editar-usuarios.component';
+import { EditarContenedoresComponent } from './components/admin.component/editar-contenedores.component/editar-contenedores.component';
 
 export const routes: Routes = [
 
@@ -27,9 +29,11 @@ export const routes: Routes = [
     {path: 'confirmado/:id_cliente', component: CambioConfirmadoComponent, title: 'Confirmado'},
     // {path: 'confirmado', component: CambioConfirmadoComponent, title: 'confirmado'},
     {path: 'admin', component: AdminComponent, title: 'Admin'},
-    {path: 'admin/editarProducto', component: EditarProductosComponent, title: 'Editar Producto'},
+    {path: 'admin/editarProductos', component: EditarProductosComponent, title: 'Editar Productos'},
     {path: 'admin/conductores', component: ConductoresComponent, title: 'Conductores'},
     {path: 'admin/vehiculos', component: VehiculosComponent, title: 'Vehiculos'},
+    {path: 'admin/editarUsuarios', component: EditarUsuariosComponent, title: 'Usuarios'},
+    {path: 'admin/editarContenedores', component: EditarContenedoresComponent, title: 'Contenedores'},
     {path: 'ultimasRecogidas', component: UltimasRecogidasComponent, title: 'Ultimas Recogidas'},
     {path: 'ultimasRutas', component: UltimasRutasComponent, title: 'Ultimas Rutas'},
     {path: 'estadisticas', component: EstadisticasComponent, title: 'Estadisticas'},

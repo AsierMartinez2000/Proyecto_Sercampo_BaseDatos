@@ -25,53 +25,179 @@
         }
       </ul>
     </div>
-  
-
-  <!-- @if (vehiculo_seleccionado.matricula != '') { -->
-
     <div class="col-2 mt-4">
       <!-- TARJETA vehiculo SELECCIONADO -->
       <div class="card bg-sercampo" style="width: 22rem;">
         <div class="card-body">
-          @if (vehiculo_seleccionado.matricula == '') {
-            <h5 class="card-title">Matricula</h5>
-          }
           <h5 class="card-title">
+          <!-- Matricula -->
           @if (!editando) {
-            {{vehiculo_seleccionado.matricula}}
+            <p class="card-text"><strong>Matricula:</strong> {{vehiculo_seleccionado.matricula}}</p>
           } @else {
-            <input
-              type="text"
-              class="form-control "
-              [(ngModel)]="vehiculo_seleccionado.matricula"
-              name="matricula"
-              required
-            />
+            <p class="card-text"><strong>Matricula:</strong> {{vehiculo_seleccionado.matricula}}</p>
           }</h5>
+
+          <!-- Modelo -->
           @if (!editando) {
-              <p class="card-text"><strong>Tel:</strong> {{vehiculo_seleccionado.modelo}}</p>
+              <p class="card-text"><strong>Modelo:</strong> {{vehiculo_seleccionado.modelo}}</p>
           }
           @else {
-            <input
-              type="text"
-              class="form-control mt-2"
-              [(ngModel)]="vehiculo_seleccionado.modelo"
-              name="modelo"
-              required
-            />
+            <p class="card-text"><strong>Modelo:</strong> {{vehiculo_seleccionado.modelo}}</p>
           }
+
+          <!-- Num Bastidor -->
+          @if (!editando) {
+             <p class="card-text"><strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}</p>  
+          }@else {
+            <p class="card-text"><strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}</p>
+          }
+
+          <!-- Fecha ITV -->
           @if (!editando) {
             <p class="card-text">
-            <strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}
+            <strong>Fecha ITV:</strong> {{vehiculo_seleccionado.fecha_itv}}
             
           }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha ITV</span>
+           <input
+           type="date"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.fecha_itv"
+           name="fecha_itv"
+           required
+           />
+          </div>
+          }
+          
+          <!-- Fecha Mantenimiento -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Fecha Mantenimiento:</strong> {{vehiculo_seleccionado.fecha_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha mantenimiento</span>
+           <input
+           type="date"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.fecha_mantenimiento"
+           name="fecha_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Taller Mantenimiento-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Taller Mantenimiento:</strong> {{vehiculo_seleccionado.taller_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Taller mantenimiento</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.taller_mantenimiento"
+           name="taller_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Precio Mantenimiento-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Precio Mantenimiento:</strong> {{vehiculo_seleccionado.precio_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Precio mantenimiento</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.precio_mantenimiento"
+           name="precio_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Num Poliza-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Numero Poliza:</strong> {{vehiculo_seleccionado.num_poliza}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Numero Poliza</span>
             <input
-              type="num_bastidor"
-              class="form-control mt-2"
-              [(ngModel)]="vehiculo_seleccionado.num_bastidor"
-              name="num_bastidor"
-              required
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.num_poliza"
+            name="num_poliza"
+            required
             />
+          </div>
+          }
+
+          <!-- Empresa Seguro-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Empresa Seguro:</strong> {{vehiculo_seleccionado.empresa}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Empresa</span>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.empresa"
+            name="empresa"
+            required
+            />
+          </div>
+          }
+
+          <!-- Tel Contacto-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Telefono Contacto:</strong> {{vehiculo_seleccionado.tel_contacto}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Telefono Contacto</span>
+              <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_seleccionado.tel_contacto"
+              name="tel_contacto"
+              required
+              />
+          </div>
+          }
+
+          <!-- Tel Emergencias-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Telefono Emergencias:</strong> {{vehiculo_seleccionado.tel_emergencias}}
+            
+          }@else {
+
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono Emergencias</span>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.tel_emergencias"
+            name="tel_emergencias"
+            required
+            />
+          </div>
           }
           
           @if (editando) {
@@ -85,9 +211,6 @@
       </div>
 
     </div>
-
-  <!-- } -->
-
   </div>
   </div>
   <!-- LINEA DIVISORIA -->
@@ -96,11 +219,11 @@
   <!-- FORMULARIO AÑADIR vehiculo -->
   <div class="formulario mt-5">
      <hr>
-     <form (ngSubmit)="nuevovehiculo(this.vehiculo_nuevo)">
+     <form (ngSubmit)="nuevoVehiculo(this.vehiculo_nuevo)">
        <h4>Nuevo vehiculo</h4>
         <!-- matricula -->
          <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">matricula</span>
+           <span class="input-group-text">Matricula</span>
          <input
            type="text"
            class="form-control"
@@ -112,7 +235,7 @@
       
        <!--Modelo -->
          <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">Teléfono</span>
+           <span class="input-group-text">Modelo</span>
            <input
              type="text"
              class="form-control"
@@ -124,12 +247,101 @@
          <div class="col input-group input-group-sm mb-3">
            <span class="input-group-text">Numero Bastidor</span>
            <input
-             type="num_bastidor"
+             type="text"
              class="form-control"
              [(ngModel)]="vehiculo_nuevo.num_bastidor"
              name="num_bastidor"
            />
          </div>
+
+        <!--Fecha ITV -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha ITV</span>
+           <input
+             type="date"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.fecha_itv"
+             name="fecha_itv"
+           />
+         </div>
+
+        <!--Fecha Mantenimiento -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha Mantenimiento</span>
+           <input
+             type="date"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.fecha_mantenimiento"
+             name="fecha_mantenimiento"
+           />
+         </div>
+        
+        <!--Taller Mantenimiento -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Taller Mantenimiento</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.taller_mantenimiento"
+             name="taller_mantenimiento"
+           />
+         </div>
+
+        <!--Precio Mantenimiento -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Precio Mantenimiento</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.precio_mantenimiento"
+             name="precio_mantenimiento"
+           />
+         </div>
+
+        <!--Numero Poliza -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Numero de Poliza</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.num_poliza"
+             name="num_poliza"
+           />
+         </div>
+
+        <!--Empresa Seguro -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Empresa del seguro</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.empresa"
+             name="empresa"
+           />
+         </div>
+
+        <!--Telefono Contacto -->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono Contacto</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.tel_contacto"
+             name="tel_contacto"
+           />
+         </div>
+
+        <!--Telefono Emergencias-->
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono Emergencias</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.tel_emergencias"
+             name="tel_emergencias"
+           />
+         </div>
+
          <button type="submit" class="btn btn-danger">Guardar Nuevo vehiculo</button>
      </form>
    </div>

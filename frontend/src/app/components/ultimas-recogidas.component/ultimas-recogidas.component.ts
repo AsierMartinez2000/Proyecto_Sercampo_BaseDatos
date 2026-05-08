@@ -16,7 +16,7 @@ export class UltimasRecogidasComponent implements OnInit {
     fechaInicial : new Date(),
     fechaFinal: new Date(),
     tipo_legal: '',
-    conductor: '',
+    conductor: '', //Aqui tengo el id_conductor
     municipio: '',
     provincia: ''
   };
@@ -33,6 +33,10 @@ export class UltimasRecogidasComponent implements OnInit {
   productosKeys = ['Desengrasante', 'Fregasuelo', 'Lavavajilla', 'Jabón de Manos', 'Higienizante', 'WC Baños', 'Limpia Cristales', 'Lejía', 'Bayetas', 'Filtros', 'Dinero']
 
   array_recogidas: any[] = [];
+
+  array_conductores: any[] = [];
+
+  array_provincias: any[] = [];
 
   // dato_conductor = {
   //   nombre: '',
@@ -57,15 +61,27 @@ export class UltimasRecogidasComponent implements OnInit {
   
   ngOnInit() {
     console.log(this.datos.fechaInicial.toLocaleDateString('en-CA'));
+    this.cargarSelects();
     this.cargarRecogidas();
     this.cdr.detectChanges();
   }
 
   cargarRecogidas(){
+    console.log(this.datos);
     this.recogidasService.obtenerRecogidas(this.datos).subscribe((resultado: any) => {
       this.array_recogidas = resultado;
       this.calcularEstadisticas();      
     });
+  }
+
+  cargarSelects(){
+    this.recogidasService.cargarConductores().subscribe((resultado: any) => {
+      this.array_conductores = resultado;
+    })
+
+    this.recogidasService.cargarProvincias().subscribe((resultado: any) => {
+      this.array_provincias = resultado;
+    })
   }
 
   calcularEstadisticas(){

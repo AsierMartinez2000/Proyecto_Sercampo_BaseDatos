@@ -6,15 +6,25 @@ session_start();
 
     class adminController{
 
-        public function traerProductos(){
+        // ---------------------METODOS PRODUCTOS---------------------
+        public function traerProductos($dato_producto){
 
             $modeloAdmin = new adminModel();
 
-            $productos = $modeloAdmin->getProductos();
+            $productos = $modeloAdmin->getProductos($dato_producto);
 
             echo json_encode($productos);
         }
 
+        public function actualizarProducto($dato_producto){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarProducto($dato_producto);
+
+            echo json_encode($exito);
+        }
+
+        // ---------------------METODOS CONDUCTOR---------------------
+        //Get conductor se hizo con rutas service para reciclar
         public function actualizarConductor($datos_conductor){
 
             $modeloAdmin = new adminModel();
@@ -27,29 +37,79 @@ session_start();
         public function nuevoConductor($datos_conductor){
 
             $modeloAdmin = new adminModel();
-            $conductor = $modeloAdmin->insertarConductor($datos_conductor);
+            $exito = $modeloAdmin->insertarConductor($datos_conductor);
 
-            echo json_encode ($conductor);
+            echo json_encode ($exito);
 
         }
 
-        public function nuevoVehiculo($datos_vehiculo){
-            
+        // ---------------------METODOS VEHICULO---------------------
+        public function buscadorVehiculo($datos_vehiculo){
+
             $modeloAdmin = new adminModel();
-            $vehiculo = $modeloAdmin->insertarVehiculo($datos_vehiculo);
 
-            echo json_encode ($vehiculo);
+            $vehiculos_encontrados = $modeloAdmin->getVehiculos($datos_vehiculo);
+
+            echo json_encode($vehiculos_encontrados);
         }
-
+        
 
         public function actualizarVehiculo($datos_vehiculo){
 
             $modeloAdmin = new adminModel();
-            $vehiculo = $modeloAdmin->actualizarVehiculo($datos_vehiculo);
+            $exito = $modeloAdmin->actualizarVehiculo($datos_vehiculo);
 
-            echo json_encode ($vehiculo);
+            echo json_encode ($exito);
         }
         
+        
+        public function nuevoVehiculo($datos_vehiculo){
+            
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->insertarVehiculo($datos_vehiculo);
+
+            echo json_encode ($exito);
+        }
+
+        // ---------------------METODOS USUARIO---------------------
+        public function buscadorUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $array_usuarios = $modeloAdmin->getUsuarios($datos_usuario);
+
+            echo json_encode ($array_usuarios);
+        }
+
+        public function actualizarUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarUsuario($datos_usuario);
+
+            echo json_encode ($exito);
+        }
+
+        public function nuevoUsuario($datos_usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->insertarUsuario($datos_usuario);
+
+            echo json_encode ($exito);
+        }
+
+        
+        // ---------------------METODOS CONTENEDORES---------------------
+        public function traerContenedores($dato_contenedor){
+
+            $modeloAdmin = new adminModel();
+
+            $contenedores = $modeloAdmin->getContenedores($dato_contenedor);
+
+            echo json_encode($contenedores);
+        }
+
+        public function actualizarContenedor($dato_contenedor){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarContenedor($dato_contenedor);
+
+            echo json_encode($exito);
+        }
         
     }
 

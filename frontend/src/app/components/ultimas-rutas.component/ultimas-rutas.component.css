@@ -102,3 +102,13 @@ p{
   background: #4b4b9f27;
 /* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
 }
+
+tr{
+  font-size: smaller;
+  text-align: left;
+}
+
+tr th{
+  font-size:small;
+  padding-left: 4px;
+}
