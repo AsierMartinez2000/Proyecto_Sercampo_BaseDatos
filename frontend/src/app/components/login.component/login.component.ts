@@ -24,8 +24,11 @@ export class LoginComponent {
   iniciarSesion(datos_login:any){
     if (this.datos_login.nombre != "" && this.datos_login.password != "") {
       this.loginService.comprobarLogin(datos_login).subscribe((resultado: any) => {
-      if(resultado){
+        if(resultado){
         this.loginService.setEstado(true);
+        // this.loginService.traerDatosUsuario(datos_login).subscribe((resultado: any) => {
+        //   this.loginService.setUsuario(resultado);
+        // })
         this.cdr.detectChanges();
       } else {
         console.log("Error de Login");
