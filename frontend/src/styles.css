@@ -113,6 +113,18 @@ label{
   color: #4d5b9f;
 }
 
+/* Iconos de los modales */
+.bi-exclamation-triangle-fill{
+    font-size:xx-large;
+    color: #ff8f50;
+}
+
+.bi-check-circle-fill{
+    font-size:xx-large;
+    color: #198754;
+
+}
+
 /* BACKGROUND */
 .bg-sercampo{
   box-shadow: 0 3px 7px #4d5b9fa5;
