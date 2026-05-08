@@ -32,6 +32,23 @@
                 return false;
             }
         }
+
+        public function traerDatosUsuario($datos_login){
+            $sql = "SELECT id_usuario, nombre, email, telefono, rol
+                FROM usuarios
+                WHERE (nombre = :nombre) AND (password = :password)";
+            
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindParam(':nombre', $datos_login['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':password', $datos_login['password'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultado;
+        }
     }
 
 
