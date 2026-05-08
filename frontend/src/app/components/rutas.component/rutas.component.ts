@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RutasService } from '../../services/rutas.service';
+import { isEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-rutas.component',
@@ -71,6 +72,8 @@ export class RutasComponent {
     notas: this.notas,
   };
 
+  fallo_insertar: boolean = false;
+
   // --------------------------------- MÉTODO GENERAL ---------------------------------
   buscarGeneral() {
     if (this.dato_buscado.dato.length >= 3) {
@@ -87,6 +90,23 @@ export class RutasComponent {
   vaciarBuscador() {
     this.dato_buscado.dato = '';
     this.array_buscador = [];
+  }
+
+  comprobarFormulario(){
+ if (this.vehiculo_seleccionado.matricula == '' || this.conductor_seleccionado.id_conductor == '' || this.vehiculo_seleccionado.matricula == '' || this.vehiculo_seleccionado.num_poliza == '' || this.rutas_guardadas.length == 0 ) {
+      this.falloInsertar();
+
+    }
+  }
+
+ falloInsertar(){
+    this.fallo_insertar = true;
+  }
+
+  cerrarFallo(){
+    setTimeout(() => {
+      this.fallo_insertar = false;
+    }, 50);
   }
 
   // --------------------------------- MÉTODOS VEHICULOS ---------------------------------

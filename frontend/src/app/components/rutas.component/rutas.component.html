@@ -3,7 +3,7 @@
 <form class="Buscador" id="Buscador">
   <div class="container">
     <!-- Buscador Contenedor-->
-    <div class="row buscador mb-4">
+    <div class="row buscador">
       <div class="col-11">
         <input
           type="text"
@@ -219,5 +219,53 @@
     </tbody>
   </table>
   <hr>
-  <button type="submit" class="btn btn-success" (click)="guardarRuta()">Enviar Ruta</button>
+  <button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarRuta" (click)="comprobarFormulario()">
+  Enviar Ruta
+</button>
+</div>
+
+<!-- -----------------------  MODAL --------------------- -->
+<div class="modal fade" id="confirmarRuta" data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
+          @if (fallo_insertar) {
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Fallo en al insertar ruta
+        } @else {
+          <i class="bi bi-check-circle-fill"></i>
+          Confirmar Ruta
+        }
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        @if (fallo_insertar) {
+          @if(rutas_guardadas.length <= 0){
+            NO SE PUEDE GUARDAR LA RUTA
+          } @else{
+            ASEGÚRATE DE INTRODUCIR LOS DATOS
+          }
+        } @else {
+          CONFIRMAR RUTA
+        }
+      </div>
+      <div class="modal-footer">
+        @if (fallo_insertar) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="guardarRuta()" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Recogida
+          </button>
+        }
+      </div>
+
+    </div>
+  </div>
 </div>
