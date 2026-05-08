@@ -4,6 +4,12 @@
 <!-- Añadiremos un menu lateral -->
 <div class="main">
 
+     @if(!comprobarLogin()){
+
+          <app-login></app-login>
+          
+     } @else {
+
      <div class="sidebar">
           <app-sidebar></app-sidebar>
      </div>
@@ -24,6 +30,8 @@
           </div>
           
      </div>
+
+     }
 </div>
 
 

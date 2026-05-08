@@ -16,6 +16,7 @@ import { UltimasRecogidasComponent } from './components/ultimas-recogidas.compon
 import { UltimasRutasComponent } from './components/ultimas-rutas.component/ultimas-rutas.component';
 import { EditarUsuariosComponent } from './components/admin.component/editar-usuarios.component/editar-usuarios.component';
 import { EditarContenedoresComponent } from './components/admin.component/editar-contenedores.component/editar-contenedores.component';
+import { LoginComponent } from './components/login.component/login.component';
 
 export const routes: Routes = [
 
@@ -37,6 +38,7 @@ export const routes: Routes = [
     {path: 'ultimasRecogidas', component: UltimasRecogidasComponent, title: 'Ultimas Recogidas'},
     {path: 'ultimasRutas', component: UltimasRutasComponent, title: 'Ultimas Rutas'},
     {path: 'estadisticas', component: EstadisticasComponent, title: 'Estadisticas'},
+    // {path: 'login', component: LoginComponent, title: 'Login'},
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];
