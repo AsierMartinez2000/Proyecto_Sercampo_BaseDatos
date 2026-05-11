@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RutasService } from '../../services/rutas.service';
 import { RecogidasService } from '../../services/recogidas.service';
 
+
 @Component({
   selector: 'app-ultimas-rutas.component',
   imports: [DatePipe,CommonModule, FormsModule],
