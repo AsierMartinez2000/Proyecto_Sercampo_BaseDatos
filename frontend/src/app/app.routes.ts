@@ -42,3 +42,76 @@ export const routes: Routes = [
     {path: 'error', component:Error404Component, title: 'Error 404'},
     {path: '**', component: Error404Component, title: 'Error 404'}, //IMPORTANTE - SIEMPRE LA ULTIMA
 ];
+
+
+/*
+
+// app.routes.ts
+import { Routes } from '@angular/router';
+import { roleGuard } from './guards/auth.guard';
+
+// Importa tus componentes
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { RutasComponent } from './components/rutas/rutas.component';
+// ... otros imports
+
+export const routes: Routes = [
+  // Ruta por defecto
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  
+  // Login - Acceso público
+  { 
+    path: 'login', 
+    component: LoginComponent, 
+    title: 'Iniciar Sesión' 
+  },
+  
+  // Dashboard - Acceso para todos los roles autenticados
+  { 
+    path: 'dashboard', 
+    component: DashboardComponent, 
+    title: 'Dashboard',
+    canActivate: [roleGuard()] // Sin roles específicos = cualquier usuario autenticado
+  },
+  
+  // Ejemplo de ruta solo para admin
+  { 
+    path: 'admin', 
+    component: AdminComponent, 
+    title: 'Administración',
+    canActivate: [roleGuard(['admin'])] // Solo admin
+  },
+  
+  // Ejemplo de ruta para admin y user
+  { 
+    path: 'gestion', 
+    component: GestionComponent, 
+    title: 'Gestión',
+    canActivate: [roleGuard(['admin', 'user'])] // admin y user
+  },
+  
+  // Ejemplo de ruta para conductor
+  { 
+    path: 'rutas', 
+    component: RutasComponent, 
+    title: 'Rutas',
+    canActivate: [roleGuard(['conductor', 'admin'])] // conductor y admin
+  },
+  
+  // Ejemplo de ruta para todos los roles
+  { 
+    path: 'perfil', 
+    component: PerfilComponent, 
+    title: 'Mi Perfil',
+    canActivate: [roleGuard(['admin', 'user', 'conductor'])] // Todos los roles
+  },
+  
+  // Ruta para manejar acceso no autorizado (404)
+  { 
+    path: '**', 
+    redirectTo: '/dashboard' 
+  }
+];
+
+*/
