@@ -1,6 +1,6 @@
 //Importamos la herramienta Routes y la herramienta propia roleGuard, para limitar que rol entra a cada componente
 import { Routes } from '@angular/router';
-import { roleGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/auth-guard';
 
 //Importamos los componentes de nuestra aplicación
 import { DashboardComponent } from './components/dashboard.component/dashboard.component';
