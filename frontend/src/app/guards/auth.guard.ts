@@ -13,12 +13,14 @@ export function roleGuard(allowedRoles?: string[]): CanActivateFn {
     
     if (!isLoggedIn) {
         //Si no esta logeado, devolver false, no hace falta redirigir, porque no tenemos /login como tal, solo un if en app.html
-        return false;
+        loginService.cerrarSesion();
+        return true;
     }
 
     // Si no se especifican roles, permitir acceso (solo requiere estar logueado) - CREO QUE QUIERO QUITAR ESTA LINEA
     if (!allowedRoles || allowedRoles.length === 0) {
-      return true;
+        loginService.cerrarSesion();
+        return true;
     }
 
     // Obtener el rol del usuario desde el servicio
@@ -30,7 +32,7 @@ export function roleGuard(allowedRoles?: string[]): CanActivateFn {
     }
 
     // Si el rol no está autorizado, o no existe, redirigmos al dashboard (Por defecto) y devolvemos false.
-    router.navigate(['/dashboard']);
+    router.navigate(['/ultimasRutas']);
     return false;
   };
 

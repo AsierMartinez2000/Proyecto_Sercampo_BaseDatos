@@ -44,8 +44,9 @@ export class LoginComponent {
               case 'conductor':
                 this.router.navigate(['/ultimasRutas']);
                 break;
-              default:
+              case 'user':
                 this.router.navigate(['/dashboard']);
+                break;
             }
 
           this.cdr.detectChanges();
