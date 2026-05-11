@@ -19,7 +19,7 @@ export class LoginComponent {
   ) {}
 
   datos_login = {
-    nombre: 'Asier',
+    nombre: 'Laura',
     password: '1234'
   }
 
