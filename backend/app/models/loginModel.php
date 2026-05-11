@@ -45,7 +45,7 @@
 
             $stmt->execute();
 
-            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $resultado;
         }

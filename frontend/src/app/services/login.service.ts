@@ -91,6 +91,9 @@ export class LoginService {
     return this.UsuarioActual()?.rol || null;
   }
 
+  obtenerEstadoLogin(): boolean {
+    return this.EstadoLogin();
+  }
 
   comprobarLogin(datos_login: any): Observable<any> {
     return this.httpClient.post(
