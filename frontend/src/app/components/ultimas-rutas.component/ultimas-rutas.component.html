@@ -104,75 +104,80 @@
   </div>
 </div>
 
+<hr />
+
 <!-- -------------------------ULTIMAS RUTAS --------------------------- -->
 
-<div class="ult-rutas-container mt-3">
-  @for (ruta of array_rutas; track ruta.id_ruta) {
-    <div class="card mb-4 custom-card">
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ ruta.fecha }} - {{ ruta.nombre_conductor }} - {{ ruta.modelo }}
-        </h5>
+<div class="rutas-table-container mt-3">
+  <div class="table-responsive">
+    <table class="table table-rutas table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Conductor</th>
+          <th>Vehículo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ruta of array_rutas; track ruta.id_ruta) {
+          <tr>
+            <td>{{ ruta.fecha }}</td>
+            <td>{{ ruta.nombre_conductor }}</td>
+            <td>{{ ruta.modelo }}</td>
+            <td>
+              <button
+                class="btn btn-sercampo btn-sm"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse' + $index"
+                aria-expanded="false"
+              >
+                Ver detalles
+              </button>
+            </td>
+          </tr>
+          <tr class="collapse-row">
+            <td colspan="4" class="p-0 border-0">
+              <div class="mas-info-collapse collapse" id="collapse{{ $index }}">
+                <div class="detalles-grid">
+                  @for (i of [].constructor(ruta.lugares_visitados); track $index) {
+                    @if (ruta[$index + '_nombre'] != '') {
+                      <div class="detalle-card">
+                        <div class="detalle-header">
+                          <h6 class="detalle-nombre">{{ ruta[$index + '_nombre'] }}</h6>
+                          <span class="detalle-tipo">{{ ruta[$index + '_tipo_legal'] }}</span>
+                        </div>
 
-        <!-- <div class="info-grid">
-          <div class="info-item">
-            <span class="label">Fecha</span>
-            <span class="value">{{ ruta.fecha }}</span>
-          </div>
-          <div class="info-item">
-            <span class="label">Conductor</span>
-            <span class="value">{{ ruta.nombre_conductor }}</span>
-          </div>
-          <div class="info-item">
-            <span class="label">Vehiculo</span>
-            <span class="value">{{ ruta.modelo }}</span>
-          </div>
-        </div> -->
+                        <div class="detalle-body">
+                          <div class="detalle-info-row">
+                            <span class="detalle-label">Teléfono</span>
+                            <span class="detalle-value">{{ ruta[$index + '_telefono'] }}</span>
+                          </div>
+                          <div class="detalle-info-row">
+                            <span class="detalle-label">CIF</span>
+                            <span class="detalle-value">{{ ruta[$index + '_cif'] }}</span>
+                          </div>
+                        </div>
 
-        <div class="boton-masinfo mb-3">
-          <button
-            class="btn btn-sercampo btn-sm"
-            type="button"
-            data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#collapse' + $index"
-            aria-expanded="false"
-          >
-            Más info
-          </button>
-        </div>
-        <div class="mas-info-collapse collapse mt-3" id="collapse{{ $index }}">
-          <div class="card">
-            <table class="table-recogidas">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tipo Legal</th>
-                  <th>Telefono</th>
-                  <th>CIF</th>
-                  <th>Direccion</th>
-                  <th>CP</th>
-                  <th>Municipio</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (i of [].constructor(ruta.lugares_visitados); track $index) {
-                  @if (ruta[$index + '_nombre'] != '') {
-                    <tr>
-                      <td>{{ ruta[$index + '_nombre'] }}</td>
-                      <td>{{ ruta[$index + '_tipo_legal'] }}</td>
-                      <td>{{ ruta[$index + '_telefono'] }}</td>
-                      <td>{{ ruta[$index + '_cif'] }}</td>
-                      <td>{{ ruta[$index + '_direccion'] }}</td>
-                      <td>{{ ruta[$index + '_cod_postal'] }}</td>
-                      <td>{{ ruta[$index + '_municipio'] }}</td>
-                    </tr>
+                        <div class="detalle-footer">
+                          <div class="detalle-direccion">
+                            <span>📍</span>
+                            <span
+                              >{{ ruta[$index + '_direccion'] }}, {{ ruta[$index + '_cod_postal'] }}
+                              {{ ruta[$index + '_municipio'] }}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    }
                   }
-                }
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  }
+                </div>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -218,7 +218,7 @@ class rutasModel{
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);    
 
-        $sqlRuta_Contenedor = "SELECT con.id_contenedor, con.tipo_legal, c.nombre, c.telefono, c.cif, c.notas AS notas_cliente, 
+        $sqlRuta_Contenedor = "SELECT con.id_contenedor, con.tipo_legal, c.nombre, c.telefono, con.latitud, con.longitud, c.cif, c.notas AS notas_cliente, 
                         dir.direccion, dir.cod_postal, m.municipio, m.provincia, m.pais
                         FROM rutas_contenedores AS rc
                         INNER JOIN contenedores AS con ON rc.id_contenedor = con.id_contenedor
