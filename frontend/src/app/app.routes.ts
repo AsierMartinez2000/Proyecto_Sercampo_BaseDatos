@@ -78,7 +78,7 @@ export const routes: Routes = [
         path: 'cliente/:id_cliente',
         component: ClienteComponent,
         title: 'Cliente',
-        canActivate: [roleGuard(['admin', 'user', 'conductor'])]
+        canActivate: [roleGuard(['admin'])]
     },
 
     {
@@ -92,7 +92,7 @@ export const routes: Routes = [
         path: 'recogidas',
         component: RecogidasComponent,
         title: 'Recogidas',
-        canActivate: [roleGuard(['admin', 'user', 'conductor'])]
+        canActivate: [roleGuard(['admin', 'user'])]
     },
 
     {
@@ -157,7 +157,7 @@ export const routes: Routes = [
         path: 'ultimasRecogidas',
         component: UltimasRecogidasComponent,
         title: 'Ultimas Recogidas',
-        canActivate: [roleGuard(['admin', 'user'])]
+        canActivate: [roleGuard(['admin', 'user', 'conductor'])]
     },
 
     {

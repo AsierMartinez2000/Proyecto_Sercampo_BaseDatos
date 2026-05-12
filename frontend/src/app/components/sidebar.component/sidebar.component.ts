@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
@@ -8,11 +8,12 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
-export class SidebarComponent {
+export class SidebarComponent{
 
   constructor(
-    private loginService: LoginService
-  ) {}
+    protected loginService: LoginService
+  ) {
+  }
 
   cerrarSesion(){
     this.loginService.cerrarSesion();
