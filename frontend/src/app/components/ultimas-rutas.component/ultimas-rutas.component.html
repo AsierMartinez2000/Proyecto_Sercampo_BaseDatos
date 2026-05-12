@@ -112,11 +112,11 @@
   <div class="table-responsive">
     <table class="table table-rutas table-striped">
       <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Conductor</th>
-          <th>Vehículo</th>
-          <th>Acciones</th>
+        <tr class="fila-titulo-tabla">
+          <th  class="fila-titulo-tabla">Fecha</th>
+          <th class="fila-titulo-tabla">Conductor</th>
+          <th class="fila-titulo-tabla">Vehículo</th>
+          <th class="fila-titulo-tabla">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -137,39 +137,45 @@
               </button>
             </td>
           </tr>
+          <!-- FILA QUE SE DESPLIEGA CON LA INFO -->
           <tr class="collapse-row">
             <td colspan="4" class="p-0 border-0">
               <div class="mas-info-collapse collapse" id="collapse{{ $index }}">
                 <div class="detalles-grid">
+                  <div class="fila-titulos detalle-titulos">
+                    <span class="titulo-card">Nombre</span>
+                    <!-- <span class="titulo-card">Tipo</span> -->
+                    <span class="titulo-card"><i class="bi bi-telephone-fill"></i>Telefono</span>
+                    <span class="titulo-card"><i class="bi bi-person-vcard-fill"></i>CIF</span>
+                    <span class="titulo-card">Dirección</span>
+                  </div>
                   @for (i of [].constructor(ruta.lugares_visitados); track $index) {
                     @if (ruta[$index + '_nombre'] != '') {
                       <div class="detalle-card">
                         <div class="detalle-header">
-                          <h6 class="detalle-nombre">{{ ruta[$index + '_nombre'] }}</h6>
-                          <span class="detalle-tipo">{{ ruta[$index + '_tipo_legal'] }}</span>
+                        <h6 class="detalle-nombre">{{ ruta[$index + '_nombre'] }}</h6>
+                        <span class="detalle-tipo">{{ ruta[$index + '_tipo_legal'] }}</span>
                         </div>
 
-                        <div class="detalle-body">
-                          <div class="detalle-info-row">
-                            <span class="detalle-label">Teléfono</span>
-                            <span class="detalle-value">{{ ruta[$index + '_telefono'] }}</span>
-                          </div>
-                          <div class="detalle-info-row">
-                            <span class="detalle-label">CIF</span>
-                            <span class="detalle-value">{{ ruta[$index + '_cif'] }}</span>
-                          </div>
+                        <!-- <div class="detalle-body"> -->
+                        <div class="detalle-info-row">
+                          
+                          <span class="detalle-value">{{ ruta[$index + '_telefono'] }}</span>
                         </div>
-
-                        <div class="detalle-footer">
-                          <div class="detalle-direccion">
-                            <span>📍</span>
-                            <span
-                              >{{ ruta[$index + '_direccion'] }}, {{ ruta[$index + '_cod_postal'] }}
-                              {{ ruta[$index + '_municipio'] }}</span
-                            >
-                          </div>
+                        <div class="detalle-info-row">
+                          
+                          <span class="detalle-value">{{ ruta[$index + '_cif'] }}</span>
+                        </div>
+                        <div class="detalle-info-row detalle-direccion">
+                          <i class="bi bi-geo-alt-fill"></i>
+                          <span class="detalle-value">
+                            {{ ruta[$index + '_direccion'] }}, 
+                            {{ ruta[$index + '_cod_postal'] }}
+                            {{ ruta[$index + '_municipio'] }}</span
+                          >
                         </div>
                       </div>
+                      <!-- </div> -->
                     }
                   }
                 </div>
@@ -181,3 +187,5 @@
     </table>
   </div>
 </div>
+
+<!-- --------------- -->
