@@ -8,15 +8,16 @@ import { Observable } from 'rxjs';
 export class AdminService {
   private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
 
   //-------------------------- METODOS PRODUCTOS --------------------------
 
-  traerDatosProductos(datos_productos:any): Observable<any> {
-    return this.httpClient.post(
-      `${this.url}?controller=admin&action=traerProductos`, datos_productos,
+  traerDatosProductos(datos_productos: any): Observable<any> {
+    return this.httpClient.get(
+      `${this.url}?controller=admin&action=traerProductos`,
       {
+        params: datos_productos, // Los datos van como query params
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -26,53 +27,54 @@ export class AdminService {
     );
   }
 
-    actualizarProducto(dato_producto: any): Observable<any> {
-    return this.httpClient
-    .post(`${this.url}?controller=admin&action=actualizarProducto`, dato_producto, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+  actualizarProducto(dato_producto: any): Observable<any> {
+    return this.httpClient.put(
+      `${this.url}?controller=admin&action=actualizarProducto`,
+      dato_producto,  // El body se mantiene igual que en POST
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      }
+    );
   }
-
 
   // -------------------------- METODOS CONDUCTOR --------------------------
 
   actualizarConductor(datos_conductor: any): Observable<any> {
     return this.httpClient
-    .post(`${this.url}?controller=admin&action=actualizarConductor`, datos_conductor, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+      .post(`${this.url}?controller=admin&action=actualizarConductor`, datos_conductor, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      })
   }
 
 
-  insertarNuevoConductor(datos_conductor: any): Observable<any>{
+  insertarNuevoConductor(datos_conductor: any): Observable<any> {
     return this.httpClient
-    .post(`${this.url}?controller=admin&action=nuevoConductor`, datos_conductor, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+      .post(`${this.url}?controller=admin&action=nuevoConductor`, datos_conductor, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      })
   }
 
 
   // ------------------------------ METODOS VEHICULOS ------------------------------
 
   traerDatosVehiculos(datosVehiculo: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.get(
       `${this.url}?controller=admin&action=buscadorVehiculo`,
-      datosVehiculo,
       {
+        params: datosVehiculo, // Los datos van como query params
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         withCredentials: true,
@@ -95,7 +97,7 @@ export class AdminService {
   }
 
   actualizarVehiculo(datosVehiculo: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.put(
       `${this.url}?controller=admin&action=actualizarVehiculo`,
       datosVehiculo,
       {
@@ -111,12 +113,11 @@ export class AdminService {
   // ------------------------------ METODOS USUARIOS ------------------------------
 
   traerDatosUsuarios(datos_usuario: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.get(
       `${this.url}?controller=admin&action=buscadorUsuario`,
-      datos_usuario,
       {
+        params: datos_usuario,
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         withCredentials: true,
@@ -125,7 +126,7 @@ export class AdminService {
   }
 
   actualizarUsuario(datos_usuario: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.put(
       `${this.url}?controller=admin&action=actualizarUsuario`,
       datos_usuario,
       {
@@ -153,33 +154,35 @@ export class AdminService {
   }
 
 
-  
+
   //-------------------------- METODOS CONTENEDORES --------------------------
 
-  traerDatosContenedores(datos_contenedor:any): Observable<any> {
-    return this.httpClient.post(
-      `${this.url}?controller=admin&action=traerContenedores`, datos_contenedor,
+  traerDatosContenedores(datos_contenedor: any): Observable<any> {
+    return this.httpClient.get(
+      `${this.url}?controller=admin&action=traerContenedores`,
       {
+        params: datos_contenedor,
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json',
         }),
         withCredentials: true,
       },
     );
   }
-
-    actualizarContenedor(dato_contenedor: any): Observable<any> {
-    return this.httpClient
-    .post(`${this.url}?controller=admin&action=actualizarContenedor`, dato_contenedor, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+  
+  actualizarContenedor(dato_contenedor: any): Observable<any> {
+    return this.httpClient.put(
+      `${this.url}?controller=admin&action=actualizarContenedor`,
+      dato_contenedor,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      }
+    );
   }
-
 
 
 
