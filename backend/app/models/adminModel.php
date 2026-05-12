@@ -355,7 +355,7 @@ class adminModel{
             $this->db->beginTransaction();
 
             $sql = "UPDATE usuarios
-                SET nombre = :nombre, email = :email, telefono = :telefono, password = :password, rol = :rol
+                SET nombre = :nombre, email = :email, telefono = :telefono, password = :password
                 WHERE id_usuario = :id_usuario";
         
             $stmt = $this->db->prepare($sql);
@@ -364,7 +364,7 @@ class adminModel{
             $stmt->bindParam(':email', $datos_usuario['email'], PDO::PARAM_STR);
             $stmt->bindParam(':telefono', $datos_usuario['telefono'], PDO::PARAM_STR);
             $stmt->bindParam(':password', $datos_usuario['password'], PDO::PARAM_STR);
-            $stmt->bindParam(':rol', $datos_usuario['rol'], PDO::PARAM_STR);
+            // $stmt->bindParam(':rol', $datos_usuario['rol'], PDO::PARAM_STR);
             $stmt->bindParam(':id_usuario', $datos_usuario['id_usuario'], PDO::PARAM_STR);
             
             $stmt->execute();

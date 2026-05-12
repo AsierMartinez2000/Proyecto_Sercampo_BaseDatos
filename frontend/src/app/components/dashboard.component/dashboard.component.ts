@@ -39,7 +39,10 @@ export class DashboardComponent implements OnInit {
 
   //Este metodo carga todos los clientes, va en OnInit, porque la primera vez que entra carga todos.
   cargarClientes() {
-    this.clientes = this.clienteService.obtenerClientes();
+    this.clienteService.obtenerClientes().subscribe((resultado: any) => {
+      this.clientes = resultado;
+      this.cdr.detectChanges();
+    })
   }
 
   cargarClientesGeneral() {

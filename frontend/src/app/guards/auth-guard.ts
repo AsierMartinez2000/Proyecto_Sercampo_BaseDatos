@@ -33,7 +33,7 @@ export function roleGuard(allowedRoles?: string[]): CanActivateFn {
 
     // Si el rol no está autorizado, o no existe, redirigmos al dashboard (Por defecto) y devolvemos false.
     alert("No puedes acceder");
-    router.navigate(['/ultimasRutas']);
+    // router.navigate(['/ultimasRutas']);
     return false;
   };
 

@@ -50,16 +50,7 @@ export class CambioConfirmadoComponent implements OnInit{
     });
     this.cargarClienteEspecifico();
     this.cdr.detectChanges();
-    this.cargarClientes();
-    this.cdr.detectChanges();
   }
-
-  //Este metodo carga todos los clientes, va en OnInit, porque la primera vez que entra carga todos.
-  cargarClientes(){
-    this.clientes = this.clienteService.obtenerClientes();;
-    this.cdr.detectChanges();
-  }
-
   
   redirigirCliente(id_cliente: any){
     console.log("Navegando");

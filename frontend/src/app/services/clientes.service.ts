@@ -9,26 +9,19 @@ import { Observable } from 'rxjs';
 export class ClientesService {
   private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
 
-  clientes: any[] = [];
+  // clientes: any[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
-  obtenerClientes() {
-    this.httpClient
-      .get(`${this.url}?controller=clientes&action=obtenerClientes`, {
-        withCredentials: true,
-      })
-      .subscribe({
-        next: (response: any) => {
-          this.clientes = response; // Asignar la respuesta al array
-          console.log('Clientes cargados:', (this.clientes = response));
-        },
-        error: (error) => {
-          console.error('Error al cargar clientes:', error);
-        },
-      });
-
-    return this.clientes;
+  obtenerClientes(): Observable<any>{
+    return this.httpClient
+    .post(`${this.url}?controller=clientes&action=obtenerClientes`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    })
   }
 
   obtenerClienteGeneral(dato: any): Observable<any> {
