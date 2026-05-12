@@ -153,14 +153,15 @@ tr th {
 }
 
 .detalle-tipo {
-  font-size: 0.6875rem;
+  font-size: x-small;
   text-transform: uppercase;
-  background-color: #0a57ca21;
   /* letter-spacing: 0.5px; */
-  color: #353738;
+  color: #2a2a2b;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
+
 }
+
 
 
 
@@ -201,6 +202,23 @@ tr th {
 
 .bi-geo-alt-fill{
 color: #dc3545;
+}
+
+
+/* ---------- CLASES DE TIPO LEGAL ----------  */
+.horeca {
+    background-color: #008cff6c; 
+}
+
+.eess {
+    background-color: #fe7b007a; 
+}
+
+.contenedor {
+    background-color: #11c95d4f; 
+}
+.tipo-default {
+    background-color: #beffd7; 
 }
 
 
