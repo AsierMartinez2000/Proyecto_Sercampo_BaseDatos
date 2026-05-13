@@ -40,10 +40,7 @@ p{
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* .custom-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-} */
+
 
 .card-title {
   font-weight: 600;

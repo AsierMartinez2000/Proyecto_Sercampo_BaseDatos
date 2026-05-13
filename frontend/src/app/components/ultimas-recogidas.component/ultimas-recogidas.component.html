@@ -66,12 +66,9 @@
 <!-- FILTROS -->
 <hr />
 
-<!-- FECHAS -->
 <div class="filtrar-container">
-
-  
-  
   <div class="row">
+    <!-- FECHAS -->
     <div class="col-2">
       <label for="fecha">Fecha Inicial</label>
       <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaInicial" />
@@ -128,11 +125,6 @@
   <button class="btn btn-sercampo mt-3" (click)="cargarRecogidas()">Buscar</button>
 
 
-
-
-
-
-
   <!-- BUSCADOR DE CONDUCTORES COMENTADO NO SE SI HACERLO ASI -->
   <!-- <label for="conductor">Asignar Conductor</label>
   <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" [(ngModel)]="dato_conductor.nombre"
@@ -153,6 +145,9 @@
 
   <hr />
 
+</div>
+
+<!-- INFORMACION RECOGIDAS -->
   <div class="ult-recogidas-container">
     @for (recogida of array_recogidas; track $index) {
       <div class="card mb-4 custom-card">
@@ -236,4 +231,3 @@
       </div>
     }
   </div>
-</div>
