@@ -124,7 +124,7 @@ CREATE TABLE zonas (
 CREATE TABLE municipios (
         id_municipio INT PRIMARY KEY AUTO_INCREMENT,
         municipio VARCHAR(50) NOT NULL,
-        provincia VARCHAR(50),
+        provincia VARCHAR(50) NOT NULL,
         pais VARCHAR(50),
         id_zona INT DEFAULT NULL,
         FOREIGN KEY (id_zona) REFERENCES zonas (id_zona) ON DELETE SET NULL
