@@ -28,7 +28,7 @@
 }
 
 .boton-eliminar:hover .bi-trash {
-    color: white;
+    color: var(--bs-light);
 }
 .buscador {
       width: 100%;
@@ -37,7 +37,7 @@
 }
 
 .fila-titulo-tabla{
-    background-color: #4d5b9f18;
+    background-color: var(--color-azul-sercampo-op-baja);
 }
 
 
