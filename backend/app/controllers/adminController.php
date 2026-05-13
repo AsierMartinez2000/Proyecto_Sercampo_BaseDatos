@@ -1,6 +1,7 @@
 <?php 
 
 require_once'../backend/app/models/adminModel.php'; 
+require_once'../backend/app/models/municipioModel.php'; 
 
 session_start();
 
@@ -109,6 +110,17 @@ session_start();
             $exito = $modeloAdmin->actualizarContenedor($dato_contenedor);
 
             echo json_encode($exito);
+        }
+
+        // --------------------- METODOS ZONAS ------------------------
+
+        public function traerMunicipios($provincia){
+
+            $modeloMunicipio = new municipioModel();
+
+            $municipios = $modeloMunicipio->getMunicipios($provincia);
+
+            echo json_encode($municipios);
         }
         
     }

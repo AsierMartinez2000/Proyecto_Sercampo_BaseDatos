@@ -51,4 +51,21 @@ class municipioModel{
         return $id_municipio;
     }
 
+    public function getMunicipios($provincia){
+
+        $sql = "SELECT municipio
+                FROM municipios
+                WHERE provincia = :provincia";
+            
+        $stmt = $this->db->prepare($sql);
+            
+        $stmt->bindParam(':provincia', $provincia['provincia'], PDO::PARAM_STR);
+            
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
+    }
+
 }

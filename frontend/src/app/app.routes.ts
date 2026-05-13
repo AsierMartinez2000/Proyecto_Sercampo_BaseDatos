@@ -20,6 +20,8 @@ import { UltimasRecogidasComponent } from './components/ultimas-recogidas.compon
 import { UltimasRutasComponent } from './components/ultimas-rutas.component/ultimas-rutas.component';
 import { EditarUsuariosComponent } from './components/admin.component/editar-usuarios.component/editar-usuarios.component';
 import { EditarContenedoresComponent } from './components/admin.component/editar-contenedores.component/editar-contenedores.component';
+import { EditarPerfilComponent } from './components/admin.component/editar-perfil.component/editar-perfil.component';
+import { ZonasComponent } from './components/admin.component/zonas.component/zonas.component';
 // import { LoginComponent } from './components/login.component/login.component';
 
 
@@ -41,6 +43,8 @@ import { EditarContenedoresComponent } from './components/admin.component/editar
 //     {path: 'admin/vehiculos', component: VehiculosComponent, title: 'Vehiculos'},
 //     {path: 'admin/editarUsuarios', component: EditarUsuariosComponent, title: 'Usuarios'},
 //     {path: 'admin/editarContenedores', component: EditarContenedoresComponent, title: 'Contenedores'},
+//     {path: 'admin/Zonas', component: ZonasComponent, title: 'Zonas'},
+//     {path: 'admin/editarPerfil', component: EditarPerfilComponent, title: 'Editar Perfil'},
 //     {path: 'ultimasRecogidas', component: UltimasRecogidasComponent, title: 'Ultimas Recogidas'},
 //     {path: 'ultimasRutas', component: UltimasRutasComponent, title: 'Ultimas Rutas'},
 //     {path: 'estadisticas', component: EstadisticasComponent, title: 'Estadisticas'},
@@ -150,6 +154,20 @@ export const routes: Routes = [
         path: 'admin/editarContenedores',
         component: EditarContenedoresComponent,
         title: 'Contenedores',
+        canActivate: [roleGuard(['admin'])]
+    },
+
+    {
+        path: 'admin/zonas',
+        component: ZonasComponent,
+        title: 'Zonas',
+        canActivate: [roleGuard(['admin'])]
+    },
+
+    {
+        path: 'admin/editarPerfil',
+        component: EditarPerfilComponent,
+        title: 'Editar Perfil',
         canActivate: [roleGuard(['admin'])]
     },
 

@@ -1,0 +1,21 @@
+<h1>Zonas</h1>
+
+<div class="input-group input-group-sm mb-3">
+      <select class="form-select" [(ngModel)]="provincia_seleccionada.provincia" (ngModelChange)="onProvinciaChange()" name="provincia">
+        <option value="">SELECCIONAR PROVINCIA</option>
+        @for (provincia of array_provincias; track $index) {
+          <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+        }
+      </select>
+</div>
+
+@if (provincia_seleccionada.provincia != "") {
+    <div class="input-group input-group-sm mb-3">
+        <select class="form-select" name="municipio">
+            <option value="">SELECCIONAR MUNICIPIO</option>
+            @for (municipio of array_municipios; track $index) {
+                <option [value]="municipio.municipio">{{ municipio.municipio }}</option>
+            }
+        </select>
+    </div>
+}

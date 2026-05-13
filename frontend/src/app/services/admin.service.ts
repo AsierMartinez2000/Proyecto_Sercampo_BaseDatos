@@ -184,6 +184,19 @@ export class AdminService {
     );
   }
 
+  cargarMunicipios(provincia: any): Observable<any> {
+    return this.httpClient.get(
+      `${this.url}?controller=admin&action=traerMunicipios`,
+      {
+        params: provincia,
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+        }),
+        withCredentials: true,
+      },
+    );
+  }
+
 
 
 }
