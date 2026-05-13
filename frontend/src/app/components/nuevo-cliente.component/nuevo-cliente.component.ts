@@ -5,6 +5,7 @@ import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-nuevo-cliente.component',
@@ -36,12 +37,15 @@ cliente_nuevo = {
 
   array_provincias: any[] = [];
 
+  array_municipios: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private clienteService: ClientesService,
     private router: Router,
-    private recogidasService: RecogidasService
+    private recogidasService: RecogidasService,
+    private adminService: AdminService
   ){}
 
   ngOnInit(): void {
@@ -93,6 +97,14 @@ cliente_nuevo = {
         console.log('Opción no reconocida:', valor);
         break;
     }
+  }
+
+  onProvinciaChange() {
+    this.cdr.detectChanges();
+    this.adminService.cargarMunicipios(this.cliente_nuevo).subscribe((resultado: any) => {
+      this.array_municipios = resultado;
+      this.cdr.detectChanges();
+    })
   }
 
   cambiarFormularioContenedor(){
