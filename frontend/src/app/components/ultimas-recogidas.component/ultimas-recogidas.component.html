@@ -1,0 +1,233 @@
+<h1>Últimas Recogidas</h1>
+
+<!-- ESTADISTICAS -->
+<div class="estadisticas-container">
+  <p class="card-text text-center">
+    Estadísticas a partir de {{ datos.fechaInicial | date: 'dd/MM/yyyy' }}
+  </p>
+  <div class="stats">
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.litros }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Litros</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.recogidas_totales }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Recogidas Totales</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.euros_entregado }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">€ entregados</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.horecas_recogidos }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Horecas Recogidos</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.contenedores_recogidos }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">Contenedores Recogidos</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="card" style="width: 8rem">
+      <div class="card-body text-center">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.eess_recogidos }}</label>
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text text-center">EESS recogidas</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<hr />
+
+<div class="filtrar-container">
+  <div class="row">
+    <!-- FECHAS -->
+    <div class="col-2">
+      <label for="fecha">Fecha Inicial</label>
+      <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaInicial" />
+    </div>
+    <div class="col-2">
+      <label for="fecha">Fecha Final</label>
+      <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaFinal" />
+    </div>
+    <div class="col-2">
+      <!-- CONDUCTOR -->
+      <label for="conductor">Conductor</label>
+      <select class="form-select" [(ngModel)]="datos.conductor" name="conductor">
+        <option value="">Cualquier conductor</option>
+        @for (conductor of array_conductores; track $index) {
+          <option [value]="conductor.id_conductor">{{ conductor.nombre }}</option>
+        }
+      </select>
+
+    </div>
+
+    <div class="col-2">
+      <!-- TIPO LEGAL -->
+      <label for="tipo_legal">Tipo Legal</label>
+      <select class="form-select" [(ngModel)]="datos.tipo_legal" name="tipo_legal">
+        <option value="">Cualquier tipo legal</option>
+        <option value="Horeca">Horeca</option>
+        <option value="EESS Repsol">EESS REPSOL</option>
+        <option value="Contenedor">Contenedor Via Publica</option>
+      </select>
+    </div>
+
+   
+
+    <div class="col-2">
+
+      <!-- PROVINCIA -->
+      <label for="provincia">Provincia</label>
+      <select class="form-select" [(ngModel)]="datos.provincia" name="provincia">
+        <option value="">Cualquier provincia</option>
+        @for (provincia of array_provincias; track $index) {
+          <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+        }
+      </select>
+    </div>
+
+     <!-- MUNICIPIO -->
+    <div class="col-2">
+      <label for="municipio">Municipio</label>
+      <input type="text" class="form-control" [(ngModel)]="datos.municipio" name="municipio" />
+    </div>
+    
+  </div>
+  
+  <button class="btn btn-sercampo mt-3" (click)="cargarRecogidas()">Buscar</button>
+
+
+  <!-- BUSCADOR DE CONDUCTORES COMENTADO NO SE SI HACERLO ASI -->
+  <!-- <label for="conductor">Asignar Conductor</label>
+  <input type="text" class="form-control buscador_Buscador" name="nombre_buscado" [(ngModel)]="dato_conductor.nombre"
+    (click)="buscarConductores()" (keyup)="buscarConductores()" />
+  <ul class="list-group">
+
+    @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+    <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)">
+      {{ conductor.nombre }} - {{conductor.email}}
+    </li>
+    }
+  </ul>
+</div> -->
+  <!-- <li>Conductor</li>
+<li>Municipio</li>
+<li>Provicincia</li>
+</div> -->
+
+  <hr />
+
+</div>
+
+<!-- INFORMACION RECOGIDAS -->
+  <div class="ult-recogidas-container">
+    @for (recogida of array_recogidas; track $index) {
+      <div class="card mb-4 custom-card">
+        <div class="card-body">
+          <div class="title-boton">
+            <h5 class="card-title">📆{{ recogida.fecha }} 📍{{ recogida.nombre_cliente }}</h5>
+
+            <div class="boton-masinfo mb-3">
+              <button
+                class="btn btn-sercampo btn-sm"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse' + $index"
+                aria-expanded="false"
+              >
+                Más info
+              </button>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Tipo legal</span>
+              <span class="value">{{ recogida.tipo_legal }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Litros</span>
+              <span class="value">{{ recogida.litros_recogidos }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Conductor</span>
+              <span class="value">{{ recogida.nombre_conductor }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Municipio</span>
+              <span class="value">{{ recogida.municipio }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Dirección</span>
+              <span class="value">{{ recogida.direccion }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Total €</span>
+              <span class="value">{{ this.calcularTotalIntercambio(recogida) }}</span>
+            </div>
+          </div>
+          <div class="collapse mt-3" id="collapse{{ $index }}">
+            <div class="card card-body">
+              <!-- Bayetas: {{recogida.bayetas.cantidad}} - {{recogida.bayetas_coste}} -->
+              <table class="table-recogidas">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unidad</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (key of productosKeys; track key) {
+                    @if (key == recogida[key + '_nombre']) {
+                      <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ recogida[key + '_cantidad'] }}</td>
+                        <td>{{ recogida[key + '_coste'] }} €</td>
+                        <td>{{ recogida[key + '_total'] }} €</td>
+                      </tr>
+                      <!-- {{recogida['total_intercambio'] += (recogida[key + '_cantidad'] * recogida[key + '_coste'])}} -->
+                    }
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>

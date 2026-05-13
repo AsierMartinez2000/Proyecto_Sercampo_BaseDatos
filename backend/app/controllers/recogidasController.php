@@ -58,9 +58,29 @@ session_start();
             echo json_encode($recogidaExitosa);
         }
         
-
+        public function traerIdRuta($datosRecogida){
+            $modeloRecogida = new recogidasModel();
+            $id_ruta = $modeloRecogida->traerIdRuta($datosRecogida);
+            echo json_encode($id_ruta);
+        }
        
-        
+        public function traerRecogidasFiltradas($filtros){
+            $modeloRecogida = new recogidasModel();
+            $array_recogidas = $modeloRecogida->traerRecogidasFiltradas($filtros);
+            echo json_encode($array_recogidas);
+        }
+
+        public function cargarConductores(){
+            $modeloRecogida = new recogidasModel();
+            $array_conductores = $modeloRecogida->cargarConductores();
+            echo json_encode($array_conductores);
+        }
+
+        public function cargarProvincias(){
+            $modeloRecogida = new recogidasModel();
+            $array_provincias = $modeloRecogida->cargarProvincias();
+            echo json_encode($array_provincias);
+        }
     }
 
 ?>

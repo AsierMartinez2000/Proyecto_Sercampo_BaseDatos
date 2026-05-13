@@ -1,0 +1,72 @@
+<h1>Zonas</h1>
+
+<div class="input-group input-group-sm mb-3">
+      <select class="form-select" [(ngModel)]="provincia_seleccionada.provincia" (ngModelChange)="onProvinciaChange()" name="provincia">
+        <option value="">SELECCIONAR PROVINCIA</option>
+        @for (provincia of array_provincias; track $index) {
+          <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+        }
+      </select>
+</div>
+
+@if (provincia_seleccionada.provincia != "") {
+    <div class="input-group input-group-sm mb-3">
+        <select class="form-select" name="municipio">
+            <option value="">SELECCIONAR MUNICIPIO</option>
+            @for (municipio of array_municipios; track $index) {
+                <option [value]="municipio.municipio">{{ municipio.municipio }}</option>
+            }
+        </select>
+    </div>
+}
+
+<hr>
+
+  <div class="formulario mt-5">
+     <hr>
+     <form (ngSubmit)="nuevoMunicipio(this.municipio_nuevo)">
+       <h4>Nuevo Municipio</h4>
+        <!-- MUNICIPIO -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Municipio</span>
+         <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="municipio_nuevo.municipio"
+           name="municipio"
+           required
+         />
+       </div>
+      
+       <!--PROVINCIA -->
+        <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Provincia</span>
+            <select class="form-select" [(ngModel)]="municipio_nuevo.provincia" name="provincia">
+                <option value="">SELECCIONAR PROVINCIA</option>
+                @for (provincia of array_provincias; track $index) {
+                <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+                }
+                <option value="otro">OTRO (Especificar)</option>
+            </select>
+
+            <!-- Campo de texto que aparece solo cuando se selecciona "otro" -->
+            @if (municipio_nuevo.provincia === 'otro') {
+                <input type="text" class="form-control" 
+                    [(ngModel)]="municipio_nuevo.provincia_nueva" 
+                    name="provincia_nueva"
+                    placeholder="Escriba la provincia">
+            }
+        </div>
+       <!-- PAIS -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Pais</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="municipio_nuevo.pais"
+             name="pais"
+           />
+         </div>
+         <button type="submit" class="btn btn-danger">Guardar Municipio</button>
+     </form>
+   </div>

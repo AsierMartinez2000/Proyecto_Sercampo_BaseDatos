@@ -1,6 +1,6 @@
 /* En este CSS esrcibiremos los ajustes relacionados con el tamaño y la posicion de los elementos generales de la página */
 
-/* Todos los componentes, tanto el sidebar como el que llamemos */
+/* Todos los componentes, tanto el sidebar como el componente que llamemos */
 .main{
     height: 100vh;
     display: grid;
@@ -14,14 +14,21 @@
     padding: 6vh 1vh 8vh 1vh;
     overflow: hidden;
     
-    
-    
+}
+
+.login{
+    /* margin:0; */
+    /* position: absolute;
+    margin: 15% 30% 30% 40%; */
+    display: grid;
+    grid-template-columns: 8fr;
     
 }
 
-
-.sidebar{
-    
+.vacio{
+    /* display: none; */
 }
+
+
 
 

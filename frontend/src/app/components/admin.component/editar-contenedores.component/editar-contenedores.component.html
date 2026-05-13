@@ -1,0 +1,57 @@
+<h1>Editar Contenedores</h1>
+
+<div class="row">
+<div class="mb-3 col-8">
+  <label for="contenedor">Elegir Contenedor</label>
+  <input
+    type="text"
+    class="form-control buscador_Buscador"
+    name="contenedor_buscado"
+    [(ngModel)]="dato_contenedor.dato"
+    (click)="buscarContenedor()"
+    (keyup)="buscarContenedor()"
+  
+  />
+  <div class="grupo-contenedores">
+    @for (contenedor of array_buscador_contenedores; track contenedor.id_tipo_contenedor) {
+      <button class="btn btn-contenedor w-25" (click)="seleccionarContenedor(contenedor)">
+        {{ contenedor.tipo }}
+      </button>
+    }
+  </div>
+</div>
+
+@if (contenedor_seleccionado.tipo != '') {
+  <div class="formulario-edicion col-4">
+    <div class="card bg-sercampo" style="width: 22rem">
+      <div class="card-body">
+        <h5 class="card-title">{{contenedor_seleccionado.tipo}}</h5>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Capacidad</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="contenedor_seleccionado.capacidad"
+           name="capacidad"
+           required
+           />
+          </div>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Notas</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="contenedor_seleccionado.notas"
+           name="notas"
+           required
+           />
+          </div>
+        <button  (click)="enviarEdicion()" class="btn btn-sercampo">Editar</button>
+      </div>
+    </div>
+  </div>
+}
+
+</div>
+
+

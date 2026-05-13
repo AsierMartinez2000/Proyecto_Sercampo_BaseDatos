@@ -1,0 +1,191 @@
+<h1>Últimas Rutas</h1>
+
+<div class="estadisticas-container">
+  <p class="card-text">Rutas a partir de {{ datos.fechaInicial | date: 'dd/MM/yyyy' }}</p>
+  <div class="stats">
+    <div class="card">
+      <div class="card-body">
+        <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
+        <label for="card-text">{{ estadisticas.rutas_totales }}</label>
+        <p class="card-text">Rutas totales</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+
+    @for (conductor of array_conductores; track $index) {
+      <div class="card" style="width: 8rem">
+        <div class="card-body">
+          <label for="card-text">{{ calcularPrueba(conductor.id_conductor) }}</label>
+          <p class="card-text">Recogidas {{ conductor.nombre }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<hr />
+
+<!-- FILTROS -->
+<div class="row filtros-container">
+  <!-- FECHAS -->
+  <div class="col-2">
+    <label for="fecha">Fecha inico</label>
+    <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaInicial" />
+  </div>
+  <div class="col-2">
+    <label for="fecha">Fecha final</label>
+    <input type="date" class="form-control" name="fecha" [(ngModel)]="datos.fechaFinal" />
+  </div>
+
+  <!-- CONDUCTOR -->
+  <div class="col-3">
+    <label for="conductor">Conductor</label>
+    <select class="form-select" [(ngModel)]="datos.conductor" name="conductor">
+      <option value="">Cualquier conductor</option>
+      @for (conductor of array_conductores; track $index) {
+        <option [value]="conductor.id_conductor">{{ conductor.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="col-3">
+    <!-- VEHICULO -->
+    <label for="vehiculo">Vehiculo</label>
+    <select class="form-select" [(ngModel)]="datos.vehiculo" name="vehiculo">
+      <option value="">Cualquier vehiculo</option>
+      @for (vehiculo of array_vehiculos; track $index) {
+        <option [value]="vehiculo.matricula">{{ vehiculo.modelo }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- QUEDA PENDIENTE VER SI SE PUEDE/SE QUIERE FILTRAR POR ESTO -->
+
+  <!-- TIPO LEGAL -->
+
+  <!-- <label for="tipo_legal">Tipo Legal</label>
+  <select
+  class="form-control"
+  [(ngModel)]="datos.tipo_legal"
+  name="tipo_legal"
+  >
+    <option value="">Cualquier tipo legal</option>
+    <option value="Horeca">Horeca</option>
+    <option value="EESS Repsol">EESS REPSOL</option>
+    <option value="Contenedor">Contenedor Via Publica</option>
+  </select> -->
+
+  <!-- MUNICIPIO -->
+
+  <!-- <label for="municipio">Municipio</label>
+  <input
+  type="text"
+  class="form-control"
+  [(ngModel)]="datos.municipio"
+  name="municipio"
+  /> -->
+
+  <!-- PROVINCIA -->
+
+  <!-- <label for="provincia">Provincia</label>
+  <select
+  class="form-control"
+  [(ngModel)]="datos.provincia"
+  name="provincia"
+  >
+    <option value="">Cualquier provincia</option>
+    @for (provincia of array_provincias; track $index) {
+      <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+    }
+  </select> -->
+  <div class="row boton-buscar">
+    <button class="btn btn-sercampo col-1 mt-3" (click)="cargarRutas()">Buscar</button>
+  </div>
+</div>
+
+<hr />
+
+<!-- -------------------------ULTIMAS RUTAS --------------------------- -->
+
+<div class="rutas-table-container mt-3">
+  <div class="table-responsive">
+    <table class="table table-rutas table-striped">
+      <thead>
+        <tr class="fila-titulo-tabla">
+          <th  class="fila-titulo-tabla">Fecha</th>
+          <th class="fila-titulo-tabla">Conductor</th>
+          <th class="fila-titulo-tabla">Vehículo</th>
+          <th class="fila-titulo-tabla">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ruta of array_rutas; track ruta.id_ruta) {
+          <tr>
+            <td>{{ ruta.fecha }}</td>
+            <td>{{ ruta.nombre_conductor }}</td>
+            <td>{{ ruta.modelo }}</td>
+            <td>
+              <button
+                class="btn btn-sercampo btn-sm"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse' + $index"
+                aria-expanded="false"
+              >
+                Ver detalles
+              </button>
+            </td>
+          </tr>
+          <!-- FILA QUE SE DESPLIEGA CON LA INFO -->
+          <tr class="collapse-row">
+            <td colspan="4" class="p-0 border-0">
+              <div class="mas-info-collapse collapse" id="collapse{{ $index }}">
+                <div class="detalles-grid">
+                  <div class="fila-titulos detalle-titulos">
+                    <span class="titulo-card">Nombre</span>
+                    <!-- <span class="titulo-card">Tipo</span> -->
+                    <span class="titulo-card"><i class="bi bi-telephone-fill"></i>Telefono</span>
+                    <span class="titulo-card"><i class="bi bi-person-vcard-fill"></i>CIF</span>
+                    <span class="titulo-card">Dirección</span>
+                  </div>
+                  @for (i of [].constructor(ruta.lugares_visitados); track $index) {
+                    @if (ruta[$index + '_nombre'] != '') {
+                      <div class="detalle-card">
+                        <div class="detalle-header">
+                        <h6 class="detalle-nombre">{{ ruta[$index + '_nombre'] }}</h6>
+                        <span class="detalle-tipo" [ngClass]="getTipoClass(ruta[$index + '_tipo_legal'])">
+                          {{ ruta[$index + '_tipo_legal'] }}</span>
+                        </div>
+
+                        <!-- <div class="detalle-body"> -->
+                        <div class="detalle-info-row">
+                          
+                          <span class="detalle-value">{{ ruta[$index + '_telefono'] }}</span>
+                        </div>
+                        <div class="detalle-info-row">
+                          
+                          <span class="detalle-value">{{ ruta[$index + '_cif'] }}</span>
+                        </div>
+                        <div class="detalle-info-row detalle-direccion">
+                          <i class="bi bi-geo-alt-fill"></i>
+                          <span class="detalle-value">
+                            {{ ruta[$index + '_direccion'] }}, 
+                            {{ ruta[$index + '_cod_postal'] }}
+                            {{ ruta[$index + '_municipio'] }}</span
+                          >
+                        </div>
+                      </div>
+                      <!-- </div> -->
+                    }
+                  }
+                </div>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- --------------- -->

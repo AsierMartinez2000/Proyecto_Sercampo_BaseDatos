@@ -1,0 +1,36 @@
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    margin-left: 12vh;
+    margin-right:12vh;
+}
+
+.card {
+    /* padding: 20px; */
+    width: 12rem;
+    height: 12rem;
+    cursor: pointer;
+    box-shadow: var(--sombra-negra);
+    
+}
+
+.card:hover{
+    
+    box-shadow: var(--sombra-azul);
+}
+
+.card-body {
+    text-align: center;
+}
+
+.disabled{
+    background-color:var(--bs-gray);
+    cursor: default;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.disabled:hover{
+    background-color: rgba(128, 128, 128, 0.26);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}

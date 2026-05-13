@@ -1,0 +1,18 @@
+.card:hover{
+    box-shadow: var(--sombra-azul);
+    cursor: pointer;
+}
+
+.cards-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    /* text-align: center; */
+    /* height: 50vh; */
+    width: 50vh;
+    background-color: var(--color-azul-sercampo-op-baja);
+}
+

@@ -113,9 +113,10 @@ class clientesModel{
 
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($resultado && isset($resultado['id_cliente'])){
+        if($resultado && isset($resultado['id_cliente'])){ //Si las dos son true es porque venia un PointID y ya existia
                 $id_cliente = $resultado['id_cliente']; 
-            } else {
+                return false; //Devuelve false que para la ejecución
+        } else {
                 $sql2 = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
                         VALUES (:PointID, :nombre, :cif, :telefono, null) ";
 
@@ -129,6 +130,18 @@ class clientesModel{
                 $stmt->execute();
 
                 $id_cliente = $this->db->lastInsertId();
+
+                if ($datos['cod_eess'] != "") {
+                    $sqlEESS = "INSERT INTO codigos_eess (cod_eess, id_cliente)
+                                VALUES (:cod_eess, :id_cliente)";
+                    
+                    $stmt = $this->db->prepare($sqlEESS);
+
+                    $stmt->bindParam(':cod_eess', $datos['cod_eess'], PDO::PARAM_INT); 
+                    $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+
+                    $stmt->execute();
+                }
             }
         } 
             
@@ -161,7 +174,7 @@ class clientesModel{
                 INNER JOIN tipo_contenedor AS t ON con.id_tipo_contenedor = t.id_tipo_contenedor
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
-            WHERE (c.nombre LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Horeca')
+            WHERE (c.nombre LIKE :datoBuscador OR m.municipio LIKE :datoBuscador) AND (con.activo = true) AND (con.tipo_legal = 'Horeca')
             ORDER BY m.provincia, m.municipio";
 
         $stmt = $this->db->prepare($sql);
@@ -211,7 +224,7 @@ class clientesModel{
                 INNER JOIN direcciones AS d ON con.id_contenedor = d.id_contenedor
                 INNER JOIN municipios AS m ON d.id_municipio = m.id_municipio
                 INNER JOIN codigos_eess AS codeess ON c.id_cliente = codeess.id_cliente
-            WHERE (codeess.cod_eess LIKE :cod_buscado) AND (con.activo = true) AND (con.tipo_legal = 'EESS Repsol')
+            WHERE (codeess.cod_eess LIKE :cod_buscado OR m.municipio LIKE :cod_buscado) AND (con.activo = true) AND (con.tipo_legal = 'EESS Repsol')
             ORDER BY m.provincia, m.municipio";
 
         $stmt = $this->db->prepare($sql);

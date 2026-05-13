@@ -12,62 +12,82 @@ import { Router } from '@angular/router';
   styleUrl: './modificar.component.css',
 })
 export class ModificarComponent implements OnInit {
-
-   constructor(
+  constructor(
     private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private clienteService: ClientesService
-  ){ 
-  }
+    private clienteService: ClientesService,
+  ) {}
 
   cliente = {
-      id_contenedor: " ",
-      id_cliente: " ",
-      PointID: " ",
-      nombre: " ",
-      cif: " ",
-      telefono: " ",
-      cod_postal: " ",
-      direccion: " ",
-      municipio: " ",
-      provincia: " ",
-      pais: " ",
-      tipo: " ",
-      tipo_legal: " ",
-      activo: " "
-  }
+    id_contenedor: ' ',
+    id_cliente: ' ',
+    PointID: ' ',
+    nombre: ' ',
+    cif: ' ',
+    telefono: ' ',
+    cod_postal: ' ',
+    direccion: ' ',
+    municipio: ' ',
+    provincia: ' ',
+    pais: ' ',
+    tipo: ' ',
+    tipo_legal: ' ',
+    activo: ' ',
+  };
 
+  fallo_formulario: boolean = false;
 
   ngOnInit(): void {
-
-  this.route.params.subscribe({
+    this.route.params.subscribe({
       next: (response: any) => {
-          this.cliente.id_cliente = response.id_cliente; // Asignar la respuesta al array
-          console.log('Id cargado:', (this.cliente.id_cliente = response.id_cliente));
-        },
+        this.cliente.id_cliente = response.id_cliente; // Asignar la respuesta al array
+        console.log('Id cargado:', (this.cliente.id_cliente = response.id_cliente));
+      },
     });
     this.cargarClienteEspecifico();
   }
 
-
-  cargarClienteEspecifico(){
-    this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe(
-      (resultado:any) =>{
-        this.cliente = resultado;
-        console.log (resultado);
-        this.cdr.detectChanges();
-  });
-  }
-
-
-  actualizarCliente(){
-    this.clienteService.actualizarCliente(this.cliente).subscribe((resultado:any) =>{
-        this.cliente = resultado;
+  cargarClienteEspecifico() {
+    this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe((resultado: any) => {
+      this.cliente = resultado;
+      console.log(resultado);
+      this.cdr.detectChanges();
     });
-  this.router.navigate(['confirmado',this.cliente.id_cliente]);
   }
 
+  actualizarCliente() {
+    this.clienteService.actualizarCliente(this.cliente).subscribe((resultado: any) => {
+      this.cliente = resultado;
+    });
+    this.router.navigate(['confirmado', this.cliente.id_cliente]);
+  }
 
+  comprobarFormulario() {
+    if (
+      this.cliente.PointID == '' ||
+      this.cliente.id_contenedor == '' ||
+      this.cliente.nombre == '' ||
+      this.cliente.cif == '' ||
+      this.cliente.tipo_legal == '' ||
+      this.cliente.direccion == '' ||
+      this.cliente.municipio == '' ||
+      this.cliente.tipo == '' ||
+      this.cliente.provincia == '' ||
+      this.cliente.cod_postal == '' ||
+      this.cliente.pais == ''
+    ) {
+      this.falloInsertar();
+    }
+  }
 
+  falloInsertar() {
+    this.fallo_formulario = true;
+  }
+
+  cerrarFallo() {
+    setTimeout(() => {
+      this.fallo_formulario = false;
+    }, 50);
+  }
 }

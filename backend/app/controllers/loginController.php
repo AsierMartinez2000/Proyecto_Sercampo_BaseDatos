@@ -6,59 +6,24 @@ class LoginController
 {
 
     //metodo para procesarLogin
-    public function procesarLogin($datos)
+    public function procesarLogin($datos_login)
     {
+        $modeloLogin = new loginModel();
 
-        session_start();
+        $exito = $modeloLogin->procesarLogin($datos_login);
 
-        //el envío del formulario tiene que ser POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            // Si alguien intenta acceder por GET, lo redirigimos al home
-            header('Location: index.php?controller=home&action=home');
-            exit();    
-            }
+        echo json_encode($exito);
 
-        //almacenamos en las variables lo que viene del formulario
-        $usuario = $datos['nombre'];
-        $password = $datos['password'];
-
-        //instaciamos $modelo para trabajar con el modelo
-        $modelo = new LoginModel();
-        $id_usuario = $modelo->buscarUsuario($usuario, $password);
-
-        if ($id_usuario) {
-
-            $_SESSION['id_usuario'] = $id_usuario;
-            $_SESSION['nombre'] = $usuario;
-            header('Location: index.php?controller=dashBoard&action=mostrarDashBoard');
-            # code...
-        } else {
-            header('Location: index.php?controller=home&action=home');
-        }
     }
 
-    // CERRAR SESION
-    public function logout()
+    public function traerDatos($datos_login)
     {
-        session_start();
-        // Destruir SESIÓN COMPLETAMENTE
-        $_SESSION = []; // Vaciar array de sesión
+        $modeloLogin = new loginModel();
 
-        
-        // Destruir la cookie de sesión
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
-               
-        // Destruir la sesión
-        session_destroy();
+        $datos_usuario = $modeloLogin->traerDatosUsuario($datos_login);
 
-        // Redirigir al home
-        header('Location: index.php?controller=home&action=home');
-        exit();
+        echo json_encode($datos_usuario);
+
     }
+
 }

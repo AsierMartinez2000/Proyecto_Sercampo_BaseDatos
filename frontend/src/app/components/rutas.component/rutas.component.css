@@ -1,4 +1,53 @@
-.buscador_item:hover{
-    background-color:  #4d5b9f27;
-    cursor: pointer;
+.titulo-datos{
+    text-align: center;
 }
+
+.icono-vaciar{
+    
+    margin-top: 1px;
+}
+
+.icono::before {
+    content: "\F629"; 
+    font-size: 4vh;
+    color: var(--bs-danger);
+    margin-left: 85%;
+
+}
+
+.icono:hover::before {
+    content: "\F628"; /* código del icono hover */
+    font-size: 4vh;
+    color: var(--bs-danger);
+    cursor: pointer;
+    margin-left: 85%;
+}
+
+.bi-trash {
+    color: var(--bs-danger);
+}
+
+.boton-eliminar:hover .bi-trash {
+    color: var(--bs-light);
+}
+.buscador {
+      width: 100%;
+  max-width: 100%;
+    /* min-height: 5vh; */
+}
+
+.fila-titulo-tabla{
+    background-color: var(--color-azul-sercampo-op-baja);
+}
+
+
+.formulario-asignar{
+    margin-top: 2vh;
+}
+
+.container{
+    display: flex;
+    flex-direction: column; 
+
+}
+

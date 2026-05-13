@@ -1,0 +1,445 @@
+<h1>Vehiculos</h1>
+
+<div class="Vehiculos-container">
+  <!-- SELECTOR Vehiculos -->
+  <div class="selector-Vehiculos">
+    <div class="row">
+
+    
+    <div class="mb-3 col-8">
+      <label for="vehiculo">Elegir Vehiculo</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="matricula_buscado"
+        [(ngModel)]="dato_vehiculo.dato"
+        (click)="buscarVehiculos()"
+        (keyup)="buscarVehiculos()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (vehiculo of array_buscador_vehiculos; track vehiculo.id_vehiculo) {
+          <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)" >
+            {{ vehiculo.matricula }} - {{vehiculo.modelo}} - {{vehiculo.num_bastidor}}
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="col-2 mt-4">
+      <!-- TARJETA vehiculo SELECCIONADO -->
+      <div class="card bg-sercampo" style="width: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+          <!-- Matricula -->
+          @if (!editando) {
+            <strong>Matricula:</strong> {{vehiculo_seleccionado.matricula}}
+          } @else {
+            <p class="card-text"><strong>Matricula:</strong> {{vehiculo_seleccionado.matricula}}</p>
+          }</h5>
+
+          <!-- Modelo -->
+          @if (!editando) {
+              <p class="card-text"><strong>Modelo:</strong> {{vehiculo_seleccionado.modelo}}</p>
+          }
+          @else {
+            <p class="card-text"><strong>Modelo:</strong> {{vehiculo_seleccionado.modelo}}</p>
+          }
+
+          <!-- Num Bastidor -->
+          @if (!editando) {
+             <p class="card-text"><strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}</p>  
+          }@else {
+            <p class="card-text"><strong>Numero de Bastidor:</strong> {{vehiculo_seleccionado.num_bastidor}}</p>
+          }
+
+          <!-- Fecha ITV -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Fecha ITV:</strong> {{vehiculo_seleccionado.fecha_itv}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha ITV</span>
+           <input
+           type="date"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.fecha_itv"
+           name="fecha_itv"
+           required
+           />
+          </div>
+          }
+          
+          <!-- Fecha Mantenimiento -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Fecha Mantenimiento:</strong> {{vehiculo_seleccionado.fecha_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Fecha mantenimiento</span>
+           <input
+           type="date"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.fecha_mantenimiento"
+           name="fecha_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Taller Mantenimiento-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Taller Mantenimiento:</strong> {{vehiculo_seleccionado.taller_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Taller mantenimiento</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.taller_mantenimiento"
+           name="taller_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Precio Mantenimiento-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Precio Mantenimiento:</strong> {{vehiculo_seleccionado.precio_mantenimiento}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Precio mantenimiento</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="vehiculo_seleccionado.precio_mantenimiento"
+           name="precio_mantenimiento"
+           required
+           />
+          </div>
+          }
+
+          <!-- Num Poliza-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Numero Poliza:</strong> {{vehiculo_seleccionado.num_poliza}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Numero Poliza</span>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.num_poliza"
+            name="num_poliza"
+            required
+            />
+          </div>
+          }
+
+          <!-- Empresa Seguro-->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Empresa Seguro:</strong> {{vehiculo_seleccionado.empresa}}
+            
+          }@else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Empresa</span>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.empresa"
+            name="empresa"
+            required
+            />
+          </div>
+          }
+
+          <!-- Tel Contacto-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Telefono Contacto:</strong> {{vehiculo_seleccionado.tel_contacto}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Telefono Contacto</span>
+              <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_seleccionado.tel_contacto"
+              name="tel_contacto"
+              required
+              />
+          </div>
+          }
+
+          <!-- Tel Emergencias-->
+
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Telefono Emergencias:</strong> {{vehiculo_seleccionado.tel_emergencias}}
+            
+          }@else {
+
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono Emergencias</span>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="vehiculo_seleccionado.tel_emergencias"
+            name="tel_emergencias"
+            required
+            />
+          </div>
+          }
+          
+          @if (editando) {
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <!-- LINEA DIVISORIA -->
+  
+  
+  <!-- FORMULARIO AÑADIR vehiculo -->
+  <div class="formulario mt-5">
+     <hr>
+     <!-- <form (ngSubmit)="nuevoVehiculo(this.vehiculo_nuevo)"> -->
+      <form>
+       <h4>Añadir un nuevo vehículo</h4>
+        
+       
+       <div class="row">
+        <label>Datos Vehículo</label>
+
+         <!-- matricula -->
+           <div class="col input-group input-group-sm mb-3">
+             <span class="input-group-text">Matricula</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="vehiculo_nuevo.matricula"
+             name="matricula_vehiculo"
+             required
+           />
+         </div>
+        
+         <!--Modelo -->
+           <div class="col input-group input-group-sm mb-3">
+             <span class="input-group-text">Modelo</span>
+             <input
+               type="text"
+               class="form-control"
+               [(ngModel)]="vehiculo_nuevo.modelo"
+               name="modelo_vehiculo"
+             />
+           </div>
+         <!--Numero Bastidor -->
+           <div class="col input-group input-group-sm mb-3">
+             <span class="input-group-text">Numero Bastidor</span>
+             <input
+               type="text"
+               class="form-control"
+               [(ngModel)]="vehiculo_nuevo.num_bastidor"
+               name="num_bastidor"
+             />
+           </div>
+       </div>
+       
+       <div class="row w-25">
+         <label>Datos ITV</label>
+                 <!--Fecha ITV -->
+                   <div class="col input-group input-group-sm mb-3">
+                    <span class="input-group-text">Fecha ITV</span>
+                    <input
+                      type="date"
+                      class="form-control"
+                      [(ngModel)]="vehiculo_nuevo.fecha_itv"
+                      name="fecha_itv"
+                    />
+                  </div>
+         
+                 
+
+
+       </div>
+
+       <div class="row">
+        <label>Datos taller</label>
+         <!--Taller Mantenimiento -->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Taller Mantenimiento</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.taller_mantenimiento"
+              name="taller_mantenimiento"
+            />
+          </div>
+  
+         <!--Precio Mantenimiento -->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Precio Mantenimiento</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.precio_mantenimiento"
+              name="precio_mantenimiento"
+            />
+          </div>
+          <!--Fecha Mantenimiento -->
+                   <div class="col input-group input-group-sm mb-3">
+                    <span class="input-group-text">Fecha Mantenimiento</span>
+                    <input
+                      type="date"
+                      class="form-control"
+                      [(ngModel)]="vehiculo_nuevo.fecha_mantenimiento"
+                      name="fecha_mantenimiento"
+                    />
+                  </div>
+
+       </div>
+
+       <div class="row">
+        <label>Datos Seguro</label>
+         <!--Numero Poliza -->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Numero de Poliza</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.num_poliza"
+              name="num_poliza"
+            />
+          </div>
+  
+         <!--Empresa Seguro -->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Empresa del seguro</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.empresa"
+              name="empresa"
+            />
+          </div>
+
+       </div>
+        
+       <div class="row">
+
+         <!--Telefono Contacto -->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Telefono Contacto</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.tel_contacto"
+              name="tel_contacto"
+            />
+          </div>
+  
+         <!--Telefono Emergencias-->
+           <div class="col input-group input-group-sm mb-3">
+            <span class="input-group-text">Telefono Emergencias</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vehiculo_nuevo.tel_emergencias"
+              name="tel_emergencias"
+            />
+          </div>
+       </div>
+
+
+
+         <!-- <button type="submit" class="btn btn-danger">Guardar Nuevo vehiculo</button> -->
+         <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#nuevoVehiculo"
+          (click)="comprobarFormulario()"
+        >
+          Guardar Vehículo
+        </button>
+     </form>
+   </div>
+
+
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="nuevoVehiculo"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="nuevoVehiculoLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+          <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
+          @if (fallo_formulario) {
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Fallo en el formulario
+        } @else {
+          <i class="bi bi-check-circle-fill"></i>
+          Confirmar Nuevo Vehículo
+        }
+        </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+        @if (fallo_formulario) {
+          @if(vehiculo_nuevo.matricula == '' && vehiculo_nuevo.num_bastidor == '' && vehiculo_nuevo.num_poliza == ''){
+            FALTAN DATOS EN EL FORMULARIO
+          } @else{
+            ASEGURATE DE INTRODUCIR MATRICULA, NÚMERO DE BASTIDOR O PÓLIZA
+          }
+        } @else {
+          CONFIRMAR
+        }
+      </div>
+        <div class="modal-footer">
+        @if (fallo_formulario) {
+          <button (click)="cerrarFallo()" class="btn btn-success" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="nuevoVehiculo(this.vehiculo_nuevo)" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Cambios
+          </button>
+        }
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
