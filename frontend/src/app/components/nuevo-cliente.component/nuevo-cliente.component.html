@@ -142,15 +142,16 @@
     </div>
 
     <div class="col input-group input-group-sm mb-3">
+      <!-- PROVINCIA -->
       <span class="input-group-text">Provincia</span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="cliente_nuevo.provincia"
-        name="provincia"
-        required
-      />
+      <select class="form-select" [(ngModel)]="cliente_nuevo.provincia" name="provincia">
+        <option value=""></option>
+        @for (provincia of array_provincias; track $index) {
+          <option [value]="provincia.provincia">{{ provincia.provincia }}</option>
+        }
+      </select>
     </div>
+
     <div class="col input-group input-group-sm mb-3">
       <span class="input-group-text">País</span>
       <input

@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RecogidasService } from '../../services/recogidas.service';
 
 @Component({
   selector: 'app-nuevo-cliente.component',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './nuevo-cliente.component.html',
   styleUrl: './nuevo-cliente.component.css',
 })
-export class NuevoClienteComponent {
+export class NuevoClienteComponent implements OnInit{
 
 cliente_nuevo = {
     id_cliente: '',
@@ -33,13 +34,20 @@ cliente_nuevo = {
 
   deshabilitarEscritura: boolean = false;
 
-  
+  array_provincias: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private clienteService: ClientesService,
-    private router: Router
+    private router: Router,
+    private recogidasService: RecogidasService
   ){}
+
+  ngOnInit(): void {
+    this.cargarSelects();
+    this.cdr.detectChanges();
+  }
 
   anadirCliente(cliente_nuevo: any){
 
@@ -135,4 +143,12 @@ cliente_nuevo = {
       this.fallo_insertar = false;
     }, 50);
   }
+
+  cargarSelects(){
+    this.recogidasService.cargarProvincias().subscribe((resultado: any) => {
+      this.array_provincias = resultado;
+      this.cdr.detectChanges();
+    })
+  }
+
 }
