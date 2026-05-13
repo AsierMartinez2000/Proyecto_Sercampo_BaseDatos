@@ -399,6 +399,35 @@ class adminModel{
 
     }
 
+    public function actualizarUsuarioPropio($usuario){
+        try {
+
+            $this->db->beginTransaction();
+
+            $sql = "UPDATE usuarios
+                SET nombre = :nombre, email = :email, telefono = :telefono
+                WHERE id_usuario = :id_usuario";
+        
+            $stmt = $this->db->prepare($sql);
+            
+            $stmt->bindParam(':nombre', $usuario['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':email', $usuario['email'], PDO::PARAM_STR);
+            $stmt->bindParam(':telefono', $usuario['telefono'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_usuario', $usuario['id_usuario'], PDO::PARAM_STR);
+            
+            $stmt->execute();
+
+            $this->db->commit();
+            
+            return true;
+            
+        } catch (\Error $e) {
+
+            $this->db->rollback();
+            return $e;
+        }
+    }
+
         // ---------------------METODOS CONTENEDORES---------------------
 
     public function getContenedores($dato_contenedor){

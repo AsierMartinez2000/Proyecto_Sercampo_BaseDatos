@@ -1,1 +1,65 @@
-<p>editar-perfil.component works!</p>
+<h1>Perfil de {{usuario.nombre}}</h1>
+
+    <div class="mt-4">
+      <!-- TARJETA CONDUCTOR SELECCIONADO -->
+      <div class="card bg-sercampo">
+        <div class="card-body">
+          <h5 class="card-title">
+          @if (!editando) {
+            {{usuario.nombre}}
+          } @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Usuario</span>
+           <input
+           type="text"
+           class="form-control "
+           [(ngModel)]="usuario.nombre"
+           name="nombre"
+           required
+           />
+          </div>
+          }</h5>
+
+          @if (!editando) {
+              <p class="card-text"><strong>Telefono:</strong> {{usuario.telefono}}</p>
+          }
+          @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="usuario.telefono"
+           name="telefono"
+           required
+           />
+          </div>
+          }
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Email:</strong> {{usuario.email}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Email</span>
+           <input
+           type="email"
+           class="form-control"
+           [(ngModel)]="usuario.email"
+           name="email"
+           required
+           />
+          </div>
+          }
+      
+          @if (editando) {
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
+          }
+        </div>
+      </div>
+
+    </div>

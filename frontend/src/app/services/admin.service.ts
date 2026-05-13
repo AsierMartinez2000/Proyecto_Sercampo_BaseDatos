@@ -169,7 +169,7 @@ export class AdminService {
       },
     );
   }
-  
+
   actualizarContenedor(dato_contenedor: any): Observable<any> {
     return this.httpClient.put(
       `${this.url}?controller=admin&action=actualizarContenedor`,
@@ -209,5 +209,22 @@ export class AdminService {
         }),
         withCredentials: true
       })
+  }
+
+
+  // 
+
+  actualizarUsuarioPropio(usuario: any): Observable<any> {
+    return this.httpClient.put(
+      `${this.url}?controller=admin&action=actualizarUsuarioPropio`,
+      usuario,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      }
+    );
   }
 }

@@ -94,6 +94,13 @@ session_start();
             echo json_encode ($exito);
         }
 
+        public function actualizarUsuarioPropio($usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarUsuarioPropio($usuario);
+
+            echo json_encode ($exito);
+        }
+
         
         // ---------------------METODOS CONTENEDORES---------------------
         public function traerContenedores($dato_contenedor){
