@@ -11,26 +11,21 @@
     width: 12rem;
     height: 12rem;
     cursor: pointer;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--sombra-negra);
     
 }
 
 .card:hover{
     
-    box-shadow: 0 3px 7px #4d5b9fa5;
+    box-shadow: var(--sombra-azul);
 }
 
 .card-body {
     text-align: center;
 }
 
-h5{
-    font-weight: bold;
-    font-size:medium;
-}
-
 .disabled{
-    background-color: rgba(128, 128, 128, 0.26);
+    background-color:var(--bs-gray);
     cursor: default;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }

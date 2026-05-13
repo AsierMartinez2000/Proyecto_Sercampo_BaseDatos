@@ -6,7 +6,7 @@
 }
 
 .estadisticas-container .card{
-      background-color: #4d5b9f18;
+      background-color: var(--color-azul-sercampo-op-baja);
 }
 
 p{
@@ -37,18 +37,14 @@ p{
   border: none;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* .custom-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-} */
+
 
 .card-title {
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: var(--bs-gray-dark);
 }
 
 /* GRID de mini tarjetas */
@@ -113,6 +109,5 @@ p{
 }
 
 .table-recogidas thead{
-  background: #4b4b9f27;
-/* background: radial-gradient(circle, rgba(255, 143, 80, 1) 0%, rgba(75, 75, 159, 1) 100%); */
+  background: var(--color-azul-sercampo-op-baja);
 }
