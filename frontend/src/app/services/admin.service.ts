@@ -197,6 +197,17 @@ export class AdminService {
     );
   }
 
+  // -------------------------------- METODOS ZONAS ------------------------------
 
 
+  insertarMunicipio(municipio_nuevo: any): Observable<any> {
+    return this.httpClient
+      .post(`${this.url}?controller=admin&action=nuevoMunicipio`, municipio_nuevo, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      })
+  }
 }

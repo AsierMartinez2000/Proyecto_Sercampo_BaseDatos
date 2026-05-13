@@ -122,6 +122,15 @@ session_start();
 
             echo json_encode($municipios);
         }
+
+        public function nuevoMunicipio($municipio){
+
+            $modeloMunicipio = new municipioModel();
+
+            $exito = $modeloMunicipio->insertarMunicipio($municipio);
+
+            echo json_encode($exito);
+        }
         
     }
 

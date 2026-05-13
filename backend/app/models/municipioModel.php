@@ -68,4 +68,37 @@ class municipioModel{
         return $resultado;
     }
 
+    public function insertarMunicipio($municipio){
+
+        if($municipio["provincia"] == "otro"){
+
+            $sql= "INSERT INTO municipios (municipio, provincia, pais)
+            VALUES (:municipio, :provincia, :pais)";
+
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindParam(':municipio', $municipio['municipio'], PDO::PARAM_STR);
+            $stmt->bindParam(':provincia', $municipio['provincia_nueva'], PDO::PARAM_STR);
+            $stmt->bindParam(':pais', $municipio['pais'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return true;
+
+        }else{
+            $sql= "INSERT INTO municipios (municipio, provincia, pais)
+                VALUES (:municipio, :provincia, :pais)";
+
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindParam(':municipio', $municipio['municipio'], PDO::PARAM_STR);
+            $stmt->bindParam(':provincia', $municipio['provincia'], PDO::PARAM_STR);
+            $stmt->bindParam(':pais', $municipio['pais'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return true;
+        }
+    }
+
 }

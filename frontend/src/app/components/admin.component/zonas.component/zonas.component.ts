@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../../services/recogidas.service';
 import { AdminService } from '../../../services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-zonas.component',
@@ -15,7 +16,8 @@ export class ZonasComponent implements OnInit{
   constructor(
     private cdr: ChangeDetectorRef,
     private recogidasService: RecogidasService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router: Router
   ) {}
 
   array_provincias: any[] = [];
@@ -24,6 +26,13 @@ export class ZonasComponent implements OnInit{
 
   provincia_seleccionada = {
     provincia: ""
+  }
+
+  municipio_nuevo = {
+    municipio: "",
+    provincia: "",
+    pais: "España",
+    provincia_nueva: ""
   }
 
   ngOnInit() {
@@ -45,5 +54,24 @@ export class ZonasComponent implements OnInit{
       this.array_municipios = resultado;
       this.cdr.detectChanges();
     })
+  }
+
+  nuevoMunicipio(municipio_nuevo: any){
+
+    if(municipio_nuevo.municipio != '' && municipio_nuevo.provincia != '' && municipio_nuevo.pais != ''){
+      this.adminService.insertarMunicipio(municipio_nuevo).subscribe({
+          next: (respuesta: any) => {
+            console.log('Conductor añadido:', respuesta);
+          },
+          error: (error) => {
+            console.error('Error al añadir conductor:', error);
+          },
+          complete: () => {
+            console.log('Conductor añadido');
+            this.cdr.detectChanges();
+            this.router.navigate(['confirmado', ""]); 
+          },
+        });
+    }
   }
 }
