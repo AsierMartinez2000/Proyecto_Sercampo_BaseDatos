@@ -1,0 +1,77 @@
+<h1>{{cliente.nombre}}</h1>
+   
+    <div class="dashboard">
+
+        <div class="tabla">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                            <!-- <th class="table-primary">ID Contenedor</th> -->
+                            <th class="table-primary">PointID </th>
+                            <th class="table-primary">Nombre</th>
+                            <th class="table-primary">CIF</th>
+                            <th class="table-primary">Telefono</th>
+                            <th class="table-primary">CP</th>
+                            <th class="table-primary">Direccion</th>
+                            <th class="table-primary">Municipio</th>
+                            <th class="table-primary">Provincia</th>
+                            <th class="table-primary">Contenedor</th>
+                            <th class="table-primary">Tipo Legal</th>
+                            <th class="table-primary">Activo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr class="table-ligth">
+                                <!-- <td>{{cliente.id_contenedor}}</td> -->
+                                <td>{{cliente.PointID}}</td>
+                                <td>{{cliente.nombre}}</td>
+                                <td>{{cliente.cif}}</td>
+                                <td>{{cliente.telefono}}</td>
+                                <td>{{cliente.cod_postal}}</td>
+                                <td>{{cliente.direccion}}</td>
+                                <td>{{cliente.municipio}}</td>
+                                <td>{{cliente.provincia}}</td>
+                                <td>{{cliente.tipo}}</td>
+                                <td>{{cliente.tipo_legal}}</td>
+                                <td>
+                                <div class="form-check form-switch">
+                                  <input 
+                                        class="form-check-input" 
+                                        type="checkbox" 
+                                        role="switch"
+                                        id = "botonToggle"
+                                        [checked]="cliente.activo === 1"
+                                         data-bs-toggle="modal" data-bs-target="#confirmarActivo"
+                                        >
+                                <label class="form-check-label" for="flexSwitchCheck{{cliente.activo}}">
+                                    {{cliente.activo ? 'Si' : 'No'}}
+                                </label>
+                                </div>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+            <button (click)="modificarCliente()" class="btn btn-danger btn-sm mt-4">Modificar Cliente</button> 
+        </div>
+    </div>
+
+
+
+<div class="modal fade" id="confirmarActivo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmarActivoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarActivoLabel">Guardar Cliente</h5>
+        <button type="button" (click)="comprobarEstado()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Cambiar estado de {{cliente.nombre}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="comprobarEstado()" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="cambiarEstado()" class="btn btn-success" data-bs-dismiss="modal">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

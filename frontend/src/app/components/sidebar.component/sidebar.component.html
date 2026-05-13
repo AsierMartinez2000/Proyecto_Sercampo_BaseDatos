@@ -1,0 +1,44 @@
+<div class="sidebar">
+  <div class="logo-sercampo">
+    <a [routerLink]="['/dashboard']"><img src="../../../logo.jpg" alt="logo-sercampo" /></a>
+  </div>
+  <nav class="navbar">
+    <ul>
+      @if (this.loginService.obtenerRol() == "admin" || this.loginService.obtenerRol() == "user") {
+      <li><button class="btn btn-sercampo btn-sm" [routerLink]="['/dashboard']">
+          Clientes
+        </button>
+      </li>
+      }
+      @if (this.loginService.obtenerRol() == "admin" || this.loginService.obtenerRol() == "user") {
+      <li>
+        <button class="btn btn-sercampo btn-sm" [routerLink]="['/recogidas']">
+          Recogidas
+        </button>
+      </li>
+      }
+      <li>
+        <button class="btn btn-sercampo btn-sm" [routerLink]="['/rutas']">
+          Rutas
+        </button>
+      </li>
+      <li>
+        <button class="btn btn-sercampo btn-sm" [routerLink]="['/estadisticas']">
+          Estadísticas
+        </button>
+      </li>
+      @if (this.loginService.obtenerRol() == "admin") {
+        <li>
+          <button class="btn btn-sercampo btn-sm" [routerLink]="['/admin']">
+            Admin
+          </button>
+        </li>
+      }
+      <li>
+        <button class="btn btn-danger btn-sm cerrar-sesion" (click)="cerrarSesion()">
+          Cerrar Sesión
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

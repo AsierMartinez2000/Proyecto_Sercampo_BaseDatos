@@ -1,0 +1,202 @@
+<h1>Editar Usuarios</h1>
+
+
+<div class="usuarios-container">
+  <!-- SELECTOR usuarios -->
+  <div class="selector-usuarios">
+    <div class="row">
+
+    
+    <div class="mb-3 col-8">
+      <label for="usuario">Elegir usuario</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_usuario.dato"
+        (click)="buscarUsuarios()"
+        (keyup)="buscarUsuarios()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (usuario of array_buscador_usuarios; track usuario.id_usuario) {
+          <li class="list-group-item buscador_item" (click)="seleccionarUsuario(usuario)" >
+            {{ usuario.nombre }} - {{usuario.email}} - {{usuario.telefono}}
+          </li>
+        }
+      </ul>
+    </div>
+        <div class="col-2 mt-4">
+      <!-- TARJETA USUARIO SELECCIONADO -->
+      <div class="card bg-sercampo" style="width: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            <!-- NOMBRE -->
+          @if (!editando) {
+            <strong>Nombre:</strong> {{usuario_seleccionado.nombre}}
+          } @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Nombre</span>
+           <input
+           type="text"
+           class="form-control "
+           [(ngModel)]="usuario_seleccionado.nombre"
+           name="nombre"
+           required
+           />
+          </div>
+          }</h5>
+
+          <!-- EMAIL -->
+          @if (!editando) {
+              <p class="card-text"><strong>Email:</strong> {{usuario_seleccionado.email}}</p>
+          }
+          @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Email</span>
+           <input
+           type="email"
+           class="form-control"
+           [(ngModel)]="usuario_seleccionado.email"
+           name="email"
+           required
+           />
+          </div>
+          }
+
+          <!-- TELEFONO -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Telefono:</strong> {{usuario_seleccionado.telefono}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="usuario_seleccionado.telefono"
+           name="telefono"
+           required
+           />
+          </div>
+          }
+          
+          <!-- ROL -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Rol:</strong> {{usuario_seleccionado.rol}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Rol</span>
+           <select
+              class="form-control"
+              [(ngModel)]="usuario_seleccionado.rol"
+              name="rol_usuario"
+            >
+              <option value="{{usuario_seleccionado.rol}}" disabled> {{usuario_seleccionado.rol}}</option>
+            </select>
+          </div>
+          }
+
+          <!-- CONTRASEÑA -->
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Contraseña:</strong> {{usuario_seleccionado.password}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Contraseña</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="usuario_seleccionado.password"
+           name="password"
+           required
+           />
+          </div>
+          }
+
+
+          @if (editando) {
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
+          }
+        </div>
+      </div>
+    </div>
+
+  <!-- FORMULARIO AÑADIR usuario -->
+  <div class="formulario mt-5">
+     <hr>
+     <form (ngSubmit)="nuevoUsuario(this.usuario_nuevo)">
+       <h4>Nuevo usuario</h4>
+        <!-- NOMBRE -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Nombre</span>
+         <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="usuario_nuevo.nombre"
+           name="nombre_usuario"
+           required
+         />
+       </div>
+      
+       <!-- EMAIL-->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Email</span>
+           <input
+             type="email"
+             class="form-control"
+             [(ngModel)]="usuario_nuevo.email"
+             name="email_usuario"
+           />
+         </div>
+       <!-- TELEFONO -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="usuario_nuevo.telefono"
+             name="telefono_usuario"
+           />
+         </div>
+
+        <!-- CONTRASEÑA -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Contraseña</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="usuario_nuevo.password"
+             name="password_usuario"
+           />
+         </div>
+
+        <!-- ROL -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Rol</span>
+           <select
+              class="form-select"
+              [(ngModel)]="usuario_nuevo.rol"
+              name="rol_usuario"
+            >
+              <option value="" disabled>Seleccione un rol</option>
+              <option value="admin">Admin</option>
+              <option value="user">Usuario</option>
+              <option value="conductor">Conductor</option>
+            </select>
+         </div>
+         <button type="submit" class="btn btn-danger">Guardar Nuevo Usuario</button>
+     </form>
+   </div>
+
+
+
+</div>

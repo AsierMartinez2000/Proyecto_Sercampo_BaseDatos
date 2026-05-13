@@ -1,0 +1,11 @@
+.btn-producto{
+    /* background-color: #4d5b9f23; */
+     border: 1px var(--color-azul-sercampo-op-baja) solid;
+    margin: 1vh 2vh 1vh 2vh;
+    box-shadow: var(--sombra-negra)
+}
+
+
+.btn-producto:hover{
+    box-shadow: var(--sombra-azul)
+}

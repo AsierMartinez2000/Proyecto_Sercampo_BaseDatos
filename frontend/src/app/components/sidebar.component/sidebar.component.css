@@ -1,0 +1,56 @@
+.sidebar {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-azul-sercampo-op-media);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.logo-sercampo {
+    margin-bottom: 3vh;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.logo-sercampo img {
+    max-width: 20vh;
+
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1vh; 
+}
+
+.navbar li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar button {
+    width: 16vh; 
+    height: 5vh;
+    
+}
+
+.navbar{
+    /* background-color: rebeccapurple; */
+    position: sticky;
+    top: 15%;
+
+}
+
+.cerrar-sesion{
+    
+    margin-top: 260%;
+}

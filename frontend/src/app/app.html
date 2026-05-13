@@ -1,16 +1,29 @@
-
 <!-- Esto es nuestra vista principal de la aplicacion -->
 
 <!-- Añadiremos un menu lateral -->
-<router-outlet></router-outlet>
-<!-- Añadiremos un footer o no -->
-
-<!-- La vista varía en función de si el usuario ha iniciado sesión o no, 
-     Esto se hará con un método en app.ts que comprobaá el estado del usuario 
-     y desde aquí mostrareos un componente u otro
- 
-          Componente Login: para que el usuario se loguee
-          Si ya e ha iniciado sesión si mostraremos el app-nav y el router-outlet y el app-footer
-          
-          -->
+@if (!comprobarLogin()) {  
+   <div class="login">
+         <app-login></app-login>
+   </div>
+   
+} @else {
+       <div class="main">
+          <div class="sidebar">
+               <app-sidebar></app-sidebar>
+          </div>
+    <div class="container-md">
+      <div class="router">
+        <router-outlet></router-outlet>
+        <!-- La vista varía en función de si el usuario ha iniciado sesión o no, 
+                   Esto se hará con un método en app.ts que comprobaá el estado del usuario 
+                   y desde aquí mostrareos un componente u otro
+               
+                        Componente Login: para que el usuario se loguee
+                        Si ya e ha iniciado sesión si mostraremos el app-nav y el router-outlet y el app-footer
+                        
+                        -->
+      </div>
+    </div>
+</div>
+  }
 

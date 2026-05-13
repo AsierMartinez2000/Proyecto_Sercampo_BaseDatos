@@ -1,0 +1,147 @@
+<h1>Conductores</h1>
+
+<div class="conductores-container">
+  <!-- SELECTOR CONDUCTORES -->
+  <div class="selector-conductores">
+    <div class="row">
+
+    
+    <div class="mb-3 col-8">
+      <label for="conductor">Elegir Conductor</label>
+      <input
+        type="text"
+        class="form-control buscador_Buscador"
+        name="nombre_buscado"
+        [(ngModel)]="dato_conductor.nombre"
+        (click)="buscarConductores()"
+        (keyup)="buscarConductores()"
+      />
+      <ul class="list-group">
+        <!-- Resultados -->
+        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
+            {{ conductor.nombre }} - {{conductor.email}} {{conductor.telefono}}
+          </li>
+        }
+      </ul>
+    </div>
+  
+
+  <!-- @if (conductor_seleccionado.nombre != '') { -->
+
+    <div class="col-2 mt-4">
+      <!-- TARJETA CONDUCTOR SELECCIONADO -->
+      <div class="card bg-sercampo" style="width: 22rem;">
+        <div class="card-body">
+          @if (conductor_seleccionado.nombre == '') {
+            <h5 class="card-title">Nombre</h5>
+          }
+          <h5 class="card-title">
+          @if (!editando) {
+            {{conductor_seleccionado.nombre}}
+          } @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Nombre</span>
+           <input
+           type="text"
+           class="form-control "
+           [(ngModel)]="conductor_seleccionado.nombre"
+           name="nombre"
+           required
+           />
+          </div>
+          }</h5>
+          @if (!editando) {
+              <p class="card-text"><strong>Telefono:</strong> {{conductor_seleccionado.telefono}}</p>
+          }
+          @else {
+          <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Telefono</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="conductor_seleccionado.telefono"
+           name="telefono"
+           required
+           />
+          </div>
+          }
+          @if (!editando) {
+            <p class="card-text">
+            <strong>Email:</strong> {{conductor_seleccionado.email}}
+            
+          }@else {
+            <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Email</span>
+           <input
+           type="email"
+           class="form-control"
+           [(ngModel)]="conductor_seleccionado.email"
+           name="email"
+           required
+           />
+          </div>
+          }
+          
+          @if (editando) {
+            <a class="btn btn-success btn-sm mt-2" (click)="enviarEdicion()">Guardar</a>
+            <a class="btn btn-danger btn-sm mt-2" (click)="SalirModoEdicion()">Cancelar</a>
+          }@else{
+            <a class="btn btn-sercampo btn-sm mt-2" (click)="EntrarModoEdicion()">Editar</a>
+            
+          }
+        </div>
+      </div>
+
+    </div>
+
+  <!-- } -->
+
+  </div>
+  </div>
+  <!-- LINEA DIVISORIA -->
+  
+  
+  <!-- FORMULARIO AÑADIR CONDUCTOR -->
+  <div class="formulario mt-5">
+     <hr>
+     <form (ngSubmit)="nuevoConductor(this.conductor_nuevo)">
+       <h4>Nuevo Conductor</h4>
+        <!-- NOMBRE -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Nombre</span>
+         <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="conductor_nuevo.nombre"
+           name="nombre_conductor"
+           required
+         />
+       </div>
+      
+       <!--TELEFONO -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Teléfono</span>
+           <input
+             type="text"
+             class="form-control"
+             [(ngModel)]="conductor_nuevo.telefono"
+             name="telefono_conductor"
+           />
+         </div>
+       <!--EMAIL -->
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Email</span>
+           <input
+             type="email"
+             class="form-control"
+             [(ngModel)]="conductor_nuevo.email"
+             name="email_conductor"
+           />
+         </div>
+         <button type="submit" class="btn btn-danger">Guardar Nuevo Conductor</button>
+     </form>
+   </div>
+
+
+</div>

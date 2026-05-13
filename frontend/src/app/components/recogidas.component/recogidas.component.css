@@ -1,0 +1,24 @@
+span{
+    width: 19vh;
+    /* background-color: #ff905057; */
+
+}
+
+.span_contenedor{
+    width: 22vh;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#limpiar_formulario_btn{
+    margin-left: auto;
+
+}
+
+.label_sin_negrita:hover{
+    cursor: pointer;
+}

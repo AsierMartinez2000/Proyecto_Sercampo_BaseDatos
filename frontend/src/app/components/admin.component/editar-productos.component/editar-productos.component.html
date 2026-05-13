@@ -1,0 +1,57 @@
+<h1>Editar Productos</h1>
+
+<div class="row">
+<div class="mb-3 col-8">
+  <label for="producto">Elegir Producto</label>
+  <input
+    type="text"
+    class="form-control buscador_Buscador"
+    name="producto_buscado"
+    [(ngModel)]="dato_producto.dato"
+    (click)="buscarProducto()"
+    (keyup)="buscarProducto()"
+  
+  />
+  <div class="grupo-productos">
+    @for (producto of array_buscador_productos; track producto.id_producto) {
+      <button class="btn btn-producto w-25" (click)="seleccionarProducto(producto)">
+        {{ producto.tipo }}
+      </button>
+    }
+  </div>
+</div>
+
+@if (producto_seleccionado.tipo != '') {
+  <div class="formulario-edicion col-4">
+    <div class="card bg-sercampo" style="width: 22rem">
+      <div class="card-body">
+        <h5 class="card-title">{{producto_seleccionado.tipo}}</h5>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Coste</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="producto_seleccionado.coste"
+           name="coste"
+           required
+           />
+          </div>
+         <div class="col input-group input-group-sm mb-3">
+           <span class="input-group-text">Notas</span>
+           <input
+           type="text"
+           class="form-control"
+           [(ngModel)]="producto_seleccionado.notas"
+           name="notas"
+           required
+           />
+          </div>
+        <button  (click)="enviarEdicion()" class="btn btn-sercampo">Editar</button>
+      </div>
+    </div>
+  </div>
+}
+
+</div>
+
+

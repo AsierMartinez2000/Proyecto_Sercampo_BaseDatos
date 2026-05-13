@@ -1,0 +1,304 @@
+<h1>Rutas</h1>
+
+<form class="Buscador" id="Buscador">
+  <div class="container">
+    <!-- Buscador Contenedor-->
+    <div class="row buscador">
+      <div class="col-11 nombre">
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          placeholder="Buscar Lugar"
+          [(ngModel)]="dato_buscado.dato"
+          (keyup)="buscarGeneral()"
+        />
+      </div>
+      <div class="col icono-vaciar">
+        <i class="bi bi-x-square icono" (click)="vaciarBuscador()"></i>
+      </div>
+    </div>
+  
+  <div class="resultados">
+    <!-- Resultados -->
+    <ul class="list-group">
+      @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
+        <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
+          {{ cliente_encontrado.cod_eess }} | <b>{{ cliente_encontrado.nombre }}</b> 📍
+          {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }},
+          {{ cliente_encontrado.provincia }} ➡️ Última Recogida:
+          <b>{{ cliente_encontrado.ultima_fecha }}</b>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="formulario-asignar">
+    <div class="row">
+      <div class="mb-2 mt-2 col">
+        <label for="conductor">Asignar Conductor</label>
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          [(ngModel)]="dato_conductor.nombre"
+          (click)="buscarConductores()"
+          (keyup)="buscarConductores()"
+        />
+        <ul class="list-group">
+          <!-- Resultados -->
+          @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+            <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)">
+             🧑🏽 {{ conductor.nombre }} 📧 {{ conductor.email }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="mb-2 mt-2 col">
+        <label for="conductor">Asignar Vehiculo</label>
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          [(ngModel)]="dato_vehiculo.dato"
+          (click)="buscarVehiculos()"
+          (keyup)="buscarVehiculos()"
+        />
+        <ul class="list-group">
+          <!-- Resultados -->
+          @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
+            <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)">
+             🚗 {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="mb-2 mt-2 col-3">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+      </div>
+    </div>
+    <div class="mb-2 mt-2">
+      <label for="notas">Notas</label>
+      <textarea class="form-control" name="notas" [(ngModel)]="notas"></textarea>
+    </div>
+  </div>
+  </div>
+</form>
+
+<!-- ------------------------- -->
+<!-- 
+<div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_conductor.nombre" name="direccion"  />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_vehiculo.dato" name="municipio"  />
+    </div>
+  </div> -->
+<!-- <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_conductor.cod_postal" name="cod_postal" disabled />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.provincia" name="provincia" disabled />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.pais" name="pais" disabled />
+    </div>
+  </div> -->
+
+<!-- ------------------------- -->
+
+<!-- <button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
+    LIMPIAR PAGINA
+</button> -->
+
+<!-- AQUI IRAN LOS DATOS QUE SELECCIONEMOS EN EL BUSCADOR -->
+@if (conductor_seleccionado.nombre != '') {
+  <hr />
+  <div class="titulo-datos mb-3">
+    <label>DATOS RUTA</label>
+  </div>
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Nombre Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.nombre"
+          name="nombre"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Email Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.email"
+          name="email"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Teléfono Conductor </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="conductor_seleccionado.telefono"
+          name="telefono"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if (vehiculo_seleccionado.matricula != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Matricula </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="vehiculo_seleccionado.matricula"
+          name="matricula"
+          disabled
+        />
+      </div>
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Modelo </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="vehiculo_seleccionado.modelo"
+          name="modelo"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+}
+
+@if (fecha != '') {
+  <div class="datos_seleccionados">
+    <div class="row mb-3">
+      <div class="col input-group input-group-sm mb-3">
+        <span class="input-group-text"> Fecha </span>
+        <input type="text" class="form-control" [(ngModel)]="fecha" name="fecha" disabled />
+      </div>
+    </div>
+  </div>
+}
+
+<div class="tabla">
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th class="table-primary">ID Contenedor</th> -->
+        <!-- <th class="table-primary">PointID</th> -->
+        <th class="fila-titulo-tabla">Nombre</th>
+        <th class="fila-titulo-tabla">CIF</th>
+        <th class="fila-titulo-tabla">Telefono</th>
+        <th class="fila-titulo-tabla">CP</th>
+        <th class="fila-titulo-tabla">Direccion</th>
+        <th class="fila-titulo-tabla">Municipio</th>
+        <th class="fila-titulo-tabla">Provincia</th>
+        <th class="fila-titulo-tabla">Contenedor</th>
+
+        <!-- <th class="table-primary">Tipo Legal</th> -->
+        <!-- <th class="table-primary">Activo</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      @for (cliente of rutas_guardadas; track cliente.id_cliente; let indice = $index) {
+        <tr class="table-ligth fila-tabla">
+          <!-- <td>{{cliente.id_contenedor}}</td> -->
+          <!-- <td>{{cliente.PointID}}</td> -->
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.cif }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.cod_postal }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.municipio }}</td>
+          <td>{{ cliente.provincia }}</td>
+          <td>{{ cliente.tipo }}</td>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm boton-eliminar"
+            (click)="quitarCliente(indice)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+
+          <!-- <td>{{cliente.tipo_legal}}</td> -->
+          <!-- <td>{{cliente.activo ? 'Si' : 'No'}}</td> -->
+        </tr>
+      }
+    </tbody>
+  </table>
+  <!-- <hr /> -->
+  <button
+    type="submit"
+    class="btn btn-success"
+    data-bs-toggle="modal"
+    data-bs-target="#confirmarRuta"
+    (click)="comprobarFormulario()"
+  >
+    Enviar Ruta
+  </button>
+</div>
+
+<!-- -----------------------  MODAL --------------------- -->
+<div class="modal fade" id="confirmarRuta" data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
+          @if (fallo_insertar) {
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            Fallo en al insertar ruta
+          } @else {
+            <i class="bi bi-check-circle-fill"></i>
+            Confirmar Ruta
+          }
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        @if (fallo_insertar) {
+          @if (rutas_guardadas.length <= 0) {
+            NO SE PUEDE GUARDAR LA RUTA
+          } @else {
+            ASEGÚRATE DE INTRODUCIR LOS DATOS
+          }
+        } @else {
+          CONFIRMAR RUTA
+        }
+      </div>
+      <div class="modal-footer">
+        @if (fallo_insertar) {
+          <button (click)="cerrarFallo()" class="btn btn-secondary" data-bs-dismiss="modal">
+            Volver
+          </button>
+        } @else {
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="guardarRuta()" class="btn btn-success" data-bs-dismiss="modal">
+            Guardar Ruta
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

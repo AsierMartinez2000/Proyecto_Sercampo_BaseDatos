@@ -1,0 +1,7 @@
+/* Para switch de Bootstrap */
+.form-switch .form-check-input:checked {
+  background-color: var(--bs-green);
+  border-color: var(--bs-green);
+}
+
+
