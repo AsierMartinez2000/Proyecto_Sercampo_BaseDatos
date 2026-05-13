@@ -91,7 +91,7 @@ export class ConductoresComponent {
         complete: () => {
           console.log('Conductor añadido');
           this.cdr.detectChanges();
-          this.router.navigate(['confirmado']); 
+          this.router.navigate(['confirmado', ""]); 
         },
       });
      

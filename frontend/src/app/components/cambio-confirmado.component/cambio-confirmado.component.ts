@@ -14,23 +14,7 @@ export class CambioConfirmadoComponent implements OnInit{
 
   clientes: any[] = [];
 
-  cliente = {
-      id_contenedor: "",
-      id_cliente: "",
-      PointID: "",
-      nombre: "",
-      cif: "",
-      telefono: " ",
-      cod_postal: " ",
-      direccion: " ",
-      municipio: " ",
-      provincia: " ",
-      pais: " ",
-      tipo: " ",
-      tipo_legal: " ",
-      activo: ""
-  }
-
+  cliente:any = null; //Mejor inicializar a null en este caso para evitar que el boton Ir a aparezca vacio.
 
   constructor(
     private route: ActivatedRoute,
@@ -42,14 +26,35 @@ export class CambioConfirmadoComponent implements OnInit{
   ngOnInit(): void {
 
     this.route.params.subscribe({
-      next: (response: any) => {
-        this.cliente.id_cliente = response.id_cliente; // Asignar la respuesta al array
-        this.cdr.detectChanges();
-        console.log('Id cargado:', (this.cliente.id_cliente = response.id_cliente));
+      next: (params: any) => {
+        const idCliente = params['id_cliente'];
+        if (idCliente) {
+          // Solo intentar cargar si hay un ID válido
+          this.cliente = {
+            id_cliente: idCliente,
+            id_contenedor: "",
+            PointID: "",
+            nombre: "",
+            cif: "",
+            telefono: " ",
+            cod_postal: " ",
+            direccion: " ",
+            municipio: " ",
+            provincia: " ",
+            pais: " ",
+            tipo: " ",
+            tipo_legal: " ",
+            activo: ""
+          };
+          this.cargarClienteEspecifico();
+        } else {
+          console.log('No se proporcionó ID de cliente');
+        }
       },
+      error: (error) => {
+        console.error('Error al obtener parámetros:', error);
+      }
     });
-    this.cargarClienteEspecifico();
-    this.cdr.detectChanges();
   }
   
   redirigirCliente(id_cliente: any){
@@ -58,7 +63,7 @@ export class CambioConfirmadoComponent implements OnInit{
     };
     
 
-    cargarClienteEspecifico() {
+  cargarClienteEspecifico() {
     this.clienteService.obtenerClienteEspecifico(this.cliente).subscribe((resultado: any) => {
       this.cliente = resultado;
       this.cdr.detectChanges();
