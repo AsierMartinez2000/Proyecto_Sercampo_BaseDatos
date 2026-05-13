@@ -53,7 +53,7 @@ thead th:last-child {
 
 .table th{
   background-color: #ff9050;
-  /* text-wrap: nowrap; */
+  text-wrap: nowrap;
 }
 
 .table td{
