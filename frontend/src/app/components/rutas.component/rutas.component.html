@@ -4,7 +4,7 @@
   <div class="container">
     <!-- Buscador Contenedor-->
     <div class="row buscador">
-      <div class="col-11">
+      <div class="col-11 nombre">
         <input
           type="text"
           class="form-control buscador_Buscador"
@@ -14,73 +14,107 @@
           (keyup)="buscarGeneral()"
         />
       </div>
-      <div class="col-1 icono-vaciar">
+      <div class="col icono-vaciar">
         <i class="bi bi-x-square icono" (click)="vaciarBuscador()"></i>
       </div>
     </div>
-    </div>
-    <div class="resultados">   
+  
+  <div class="resultados">
     <!-- Resultados -->
     <ul class="list-group">
       @for (cliente_encontrado of array_buscador; track cliente_encontrado.id_cliente) {
         <li class="list-group-item buscador_item" (click)="meterEnRuta(cliente_encontrado)">
-          {{cliente_encontrado.cod_eess}} {{ cliente_encontrado.nombre }}, {{ cliente_encontrado.direccion }},
-          {{ cliente_encontrado.municipio }},
-          {{ cliente_encontrado.provincia }} ---- Ultima Recogida: <b>{{cliente_encontrado.ultima_fecha}}</b>
+          {{ cliente_encontrado.cod_eess }} | <b>{{ cliente_encontrado.nombre }}</b> 📍
+          {{ cliente_encontrado.direccion }}, {{ cliente_encontrado.municipio }},
+          {{ cliente_encontrado.provincia }} ➡️ Última Recogida:
+          <b>{{ cliente_encontrado.ultima_fecha }}</b>
         </li>
       }
     </ul>
   </div>
-  <div class="row">
-    <div class="mb-3 col">
-      <label for="conductor">Asignar Conductor</label>
-      <input
-        type="text"
-        class="form-control buscador_Buscador"
-        name="nombre_buscado"
-        [(ngModel)]="dato_conductor.nombre"
-        (click)="buscarConductores()"
-        (keyup)="buscarConductores()"
-      />
-      <ul class="list-group">
-        <!-- Resultados -->
-        @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
-          <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
-            {{ conductor.nombre }} - {{conductor.email}}
-          </li>
-        }
-      </ul>
+
+  <div class="formulario-asignar">
+    <div class="row">
+      <div class="mb-2 mt-2 col">
+        <label for="conductor">Asignar Conductor</label>
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          [(ngModel)]="dato_conductor.nombre"
+          (click)="buscarConductores()"
+          (keyup)="buscarConductores()"
+        />
+        <ul class="list-group">
+          <!-- Resultados -->
+          @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
+            <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)">
+             🧑🏽 {{ conductor.nombre }} 📧 {{ conductor.email }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="mb-2 mt-2 col">
+        <label for="conductor">Asignar Vehiculo</label>
+        <input
+          type="text"
+          class="form-control buscador_Buscador"
+          name="nombre_buscado"
+          [(ngModel)]="dato_vehiculo.dato"
+          (click)="buscarVehiculos()"
+          (keyup)="buscarVehiculos()"
+        />
+        <ul class="list-group">
+          <!-- Resultados -->
+          @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
+            <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)">
+             🚗 {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="mb-2 mt-2 col-3">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+      </div>
     </div>
-    <div class="mb-3 col">
-      <label for="conductor">Asignar Vehiculo</label>
-      <input
-        type="text"
-        class="form-control buscador_Buscador"
-        name="nombre_buscado"
-        [(ngModel)]="dato_vehiculo.dato"
-        (click)="buscarVehiculos()"
-        (keyup)="buscarVehiculos()"
-      />
-      <ul class="list-group">
-        <!-- Resultados -->
-        @for (vehiculo of array_buscador_vehiculos; track vehiculo.matricula) {
-          <li class="list-group-item buscador_item" (click)="seleccionarVehiculo(vehiculo)" >
-            {{ vehiculo.matricula }} - {{ vehiculo.modelo }}
-          </li>
-        }
-      </ul>
-    </div>
-    <div class="mb-3 col-3">
-      <label for="fecha">Fecha</label>
-      <input type="date" class="form-control" name="fecha" [(ngModel)]="fecha" />
+    <div class="mb-2 mt-2">
+      <label for="notas">Notas</label>
+      <textarea class="form-control" name="notas" [(ngModel)]="notas"></textarea>
     </div>
   </div>
-  <div class="mb-3">
-    <label for="notas">Notas</label>
-    <textarea class="form-control" name="notas" [(ngModel)]="notas"></textarea>
   </div>
 </form>
 
+<!-- ------------------------- -->
+<!-- 
+<div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Dirección</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_conductor.nombre" name="direccion"  />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Municipio</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_vehiculo.dato" name="municipio"  />
+    </div>
+  </div> -->
+<!-- <div class="row">
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Código Postal</span>
+      <input type="text" class="form-control" [(ngModel)]="dato_conductor.cod_postal" name="cod_postal" disabled />
+    </div>
+
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">Provincia</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.provincia" name="provincia" disabled />
+    </div>
+    <div class="col input-group input-group-sm mb-3">
+      <span class="input-group-text">País</span>
+      <input type="text" class="form-control" [(ngModel)]="recogida_nueva.pais" name="pais" disabled />
+    </div>
+  </div> -->
+
+<!-- ------------------------- -->
 
 <!-- <button class="btn btn-danger sm mb-3" (click)="limpiarPagina()" id="limpiar_formulario_btn">
     LIMPIAR PAGINA
@@ -88,10 +122,10 @@
 
 <!-- AQUI IRAN LOS DATOS QUE SELECCIONEMOS EN EL BUSCADOR -->
 @if (conductor_seleccionado.nombre != '') {
-<hr>
-<div class="titulo-datos mb-3">
-  <label>DATOS RUTA</label>
-</div>
+  <hr />
+  <div class="titulo-datos mb-3">
+    <label>DATOS RUTA</label>
+  </div>
   <div class="datos_seleccionados">
     <div class="row mb-3">
       <div class="col input-group input-group-sm mb-3">
@@ -155,18 +189,12 @@
   </div>
 }
 
-@if ( fecha != '') {
+@if (fecha != '') {
   <div class="datos_seleccionados">
     <div class="row mb-3">
       <div class="col input-group input-group-sm mb-3">
         <span class="input-group-text"> Fecha </span>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="fecha"
-          name="fecha"
-          disabled
-        />
+        <input type="text" class="form-control" [(ngModel)]="fecha" name="fecha" disabled />
       </div>
     </div>
   </div>
@@ -218,10 +246,16 @@
       }
     </tbody>
   </table>
-  <hr>
-  <button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmarRuta" (click)="comprobarFormulario()">
-  Enviar Ruta
-</button>
+  <hr />
+  <button
+    type="submit"
+    class="btn btn-success"
+    data-bs-toggle="modal"
+    data-bs-target="#confirmarRuta"
+    (click)="comprobarFormulario()"
+  >
+    Enviar Ruta
+  </button>
 </div>
 
 <!-- -----------------------  MODAL --------------------- -->
@@ -232,21 +266,21 @@
         <h5 class="modal-title">
           <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
           @if (fallo_insertar) {
-          <i class="bi bi-exclamation-triangle-fill"></i>
-          Fallo en al insertar ruta
-        } @else {
-          <i class="bi bi-check-circle-fill"></i>
-          Confirmar Ruta
-        }
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            Fallo en al insertar ruta
+          } @else {
+            <i class="bi bi-check-circle-fill"></i>
+            Confirmar Ruta
+          }
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
         @if (fallo_insertar) {
-          @if(rutas_guardadas.length <= 0){
+          @if (rutas_guardadas.length <= 0) {
             NO SE PUEDE GUARDAR LA RUTA
-          } @else{
+          } @else {
             ASEGÚRATE DE INTRODUCIR LOS DATOS
           }
         } @else {
@@ -265,7 +299,6 @@
           </button>
         }
       </div>
-
     </div>
   </div>
 </div>
