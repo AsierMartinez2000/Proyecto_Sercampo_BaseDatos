@@ -1,30 +1,83 @@
 /* En este CSS ajustaremos los estilos generales del proyecto */
 
+/* VARIABLES */
+
+:root {
+  /* colores propios*/
+  --color-azul-sercampo: #4d5b9f;
+  --color-azul-sercampo-op-media: rgba(77, 91, 159, 0.5);
+  --color-azul-sercampo-op-baja: rgba(77, 91, 159, 0.1);
+
+  --color-naranja-sercampo: #ff9050;
+  --color-naranja-sercampo-op-media: rgb(255, 144, 80, 0.5);
+  --color-naranja-sercampo-op-baja: rgb(255, 144, 80, 0.1);
+
+  /* colores contenedores */
+  --contenedor-horeca: rgba(0, 140, 255, 0.5);
+  --contenedor-eess: rgba(254, 123, 0, 0.5);
+  --contenedor-contenedor: rgba(17, 201, 93, 0.5);
+  --contenedor-default: rgba(190, 255, 215, 0.5);
+
+  /* colores bootstrap */
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+
+  /* box-shadow */
+  --sombra-negra: 0 1px 5px rgba(0, 0, 0, 0.3);
+  --sombra-azul: 0 3px 7px rgba(76, 90, 158, 0.5);
+
+
+}
+
+
 /* FUENTES DEL PROYECTO */
 @font-face {
   font-family: "Montserrat";
   src: url("../public/fonts/Montserrat-Regular.ttf") format("truetype");
-  font-weight: 400; /* Regular */
+  font-weight: 400;
+  /* Regular */
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("../public/fonts/Montserrat-Italic.ttf") format("truetype");
-  font-weight: 400; /* Regular */
-  font-style: italic; /* Italic */
+  font-weight: 400;
+  /* Regular */
+  font-style: italic;
+  /* Italic */
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("../public/fonts/Montserrat-ExtraBold.ttf") format("truetype");
-  font-weight: 800; /* ExtraBold */
+  font-weight: 800;
+  /* ExtraBold */
   font-style: normal;
 }
 
 /* ESTILOS GENERALES */
-*{
-    font-family: 'Montserrat';
+* {
+  font-family: 'Montserrat';
 }
 
 /* TITULOS */
@@ -32,15 +85,32 @@ h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   text-align: center;
+  color: var(--bs-gray-dark);
 }
 
-h4{
-    font-weight: bold;
+h4 {
+  font-weight: bold;
+  color: var(--bs-gray-dark);
 }
+
+h5{
+  font-weight: bold;
+  font-size:medium;
+  color: var(--bs-gray-dark);
+}
+
+p {
+  font-size: smaller;
+  /* text-align: center; */
+  color: var(--bs-gray-dark);
+}
+
+
+
 
 /*ESTILOS RELACIONADOS CON LAS TABLAS */
-table{
-  margin-top: 2vh;  
+table {
+  margin-top: 2vh;
 }
 
 thead th:first-child {
@@ -51,77 +121,92 @@ thead th:last-child {
   border-top-right-radius: 10px;
 }
 
-.table th{
-  background-color: #ff9050;
-  /* text-wrap: nowrap; */
+.table th {
+  background-color: var(--color-naranja-sercampo);
+  text-wrap: nowrap;
 }
 
-.table td{
-  border-right: 1px solid rgb(241, 241, 241);
-  border-bottom: 2px solid #4d5b9f41;
+.table td {
+  border-right: 1px solid var(--bs-light);
+  border-bottom: 2px solid var(--color-azul-sercampo-op-media);
   font-size: 15px;
 }
 
 /* Esto es el hover de las filas de las tablas */
-.fila-tabla:hover td{
-  background-color: #ff905027;
+.fila-tabla:hover td {
+  background-color: var(--color-naranja-sercampo-op-baja);
   cursor: pointer;
 }
 
 
 /* FORMULARIOS */
 /* Etiquetas de formularios*/
-label{
-    font-weight: bold;
+label {
+  font-weight: bold;
+  color: var(--bs-gray-dark);
 }
 
-.label_sin_negrita{
-    font-weight: 400;
+.label_sin_negrita {
+  font-weight: 400;
 }
 
 /* BOTONES */
 .btn-sercampo {
   border: none;
-  background-color: #4d5b9f;
-  color:white;
-}
-.btn-sercampo:hover{
-  background-color: #ff8f50;
-  color:white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  background-color: var(--color-azul-sercampo);
+  color: var(--bs-light);
 }
 
-.btn-filtro{
-  background-color: #4d5b9f;
-  color: white;
+.btn-sercampo:hover {
+  background-color: var(--color-naranja-sercampo);
+  color: var(--bs-light);
+  box-shadow: var(--sombra-negra);
 }
 
-.btn-filtro:hover{
-  background-color: white;
-  color: #4d5b9f;
-  border: 1px solid #4d5b9f;
+.btn-filtro {
+  background-color: var(--color-azul-sercampo);
+  color: var(--bs-light);
 }
-.btn-filtro.active{
-  background-color: #ff90507c;
-  color: black;
-  border: white;
+
+.btn-filtro:hover {
+  background-color: var(--bs-light);
+  color: var(--color-azul-sercampo);
+  border: 1px solid var(--color-azul-sercampo);
+}
+
+.btn-filtro.active {
+  background-color: var(--color-naranja-sercampo-op-media);
+  color: var(--bs-dark);
+  border: var(--bs-light);
 }
 
 /* ICONOS */
-.icon-admin{
+.icon-admin {
   font-size: 5vh;
-  color: #4d5b9f;
+  color: var(--color-azul-sercampo);
+}
+
+/* ICONOS DE LOS MODALES */
+.bi-exclamation-triangle-fill {
+  font-size: xx-large;
+  color: var(--color-naranja-sercampo);
+}
+
+.bi-check-circle-fill {
+  font-size: xx-large;
+  color: var(--bs-green);
+
 }
 
 /* BACKGROUND */
-.bg-sercampo{
-  box-shadow: 0 3px 7px #4d5b9fa5;
+.bg-sercampo {
+  box-shadow: var(--sombra-azul);
 }
 
 
 /* LISTAS */
-.list-group-item:hover{
-    cursor: pointer;
-    background-color: #4d5b9f;
-    color: #ffffff;
+.list-group-item:hover {
+  cursor: pointer;
+  background-color: var(--color-azul-sercampo);
+  color: var(--bs-light);
 }

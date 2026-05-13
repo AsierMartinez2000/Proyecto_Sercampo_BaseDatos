@@ -31,7 +31,7 @@
     <ul class="list-group">
       @for (horeca of horecas; track horeca.id_cliente) {
       <li class="list-group-item buscador_item" (click)="seleccionarHoreca(horeca)">
-        {{ horeca.nombre }}, {{ horeca.municipio }}, {{ horeca.provincia }}
+       📍 <b>{{ horeca.nombre }}</b>, {{ horeca.municipio }}, {{ horeca.provincia }}
       </li>
       }
     </ul>
@@ -289,7 +289,6 @@
 <div class="modal fade" id="confirmarHoreca" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-
       <div class="modal-header">
         <h5 class="modal-title">
           <!-- {{ fallo_recogida ? 'Fallo en la recogida' : 'Confirmar Recogida' }} -->
@@ -347,7 +346,7 @@
     <ul class="list-group">
       @for (contenedor of array_contenedores; track contenedor.id_cliente) {
       <li class="list-group-item buscador_item" (click)="seleccionarContenedor(contenedor)">
-        {{contenedor.direccion}}, {{contenedor.cod_postal}}, {{ contenedor.municipio }}, {{ contenedor.provincia }}
+       📍 {{contenedor.direccion}}, {{contenedor.cod_postal}}, {{ contenedor.municipio }}, {{ contenedor.provincia }}
       </li>
       }
     </ul>
@@ -607,7 +606,7 @@
     <ul class="list-group">
       @for (eess of array_eess; track eess.id_cliente) {
       <li class="list-group-item buscador_item" (click)="seleccionarEESS(eess)">
-        {{ eess.cod_eess }}, {{ eess.nombre }},  {{ eess.direccion }}, {{ eess.municipio }}, {{ eess.provincia }}
+        {{ eess.cod_eess }} | <b>{{ eess.nombre }}</b> 📍 {{ eess.direccion }}, {{ eess.municipio }}, {{ eess.provincia }}
       </li>
       }
     </ul>

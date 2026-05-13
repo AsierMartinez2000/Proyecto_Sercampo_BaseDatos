@@ -38,17 +38,16 @@ session_start();
             $modeloDireccion = new direccionModel();
             $modeloContenedor = new contenedorModel();
 
-
-            $id_municipio = $modeloMunicipio->comprobarMunicipio($datos);
+            $id_cliente = $modeloCliente->comprobarCliente($datos); //Primero comprobamos si ya existe ese Point ID, si no existe crea el cliente y devuelve el id.
             
-            $id_cliente = $modeloCliente->comprobarCliente($datos);
-
             if($id_cliente == false){
-
+                
                 echo json_encode($id_cliente);
                 
             } else {
 
+            $id_municipio = $modeloMunicipio->comprobarMunicipio($datos); //Si existe el municipio devuelve el id, si no, lo crea y devuelve el id
+                    
             $id_tipo = $modeloContenedor->getTipo($datos);
 
             $id_contenedor = $modeloContenedor->setNuevoContenedor($id_tipo, $id_cliente, $datos);

@@ -25,6 +25,9 @@ export class VehiculosComponent {
 
   array_buscador_vehiculos: any[] = [];
 
+  // Variable para el modal de error
+  fallo_formulario: boolean = false;
+
    //vehiculo seleccionado
   vehiculo_seleccionado = {
     matricula: '',
@@ -103,20 +106,35 @@ export class VehiculosComponent {
   }
 
   nuevoVehiculo(vehiculo_nuevo: any){
-    this.adminService.insertarNuevoVehiculo(this.vehiculo_nuevo).subscribe({
-        next: (respuesta: any) => {
-          console.log('vehiculo añadido:', respuesta);
-        },
-        error: (error) => {
-          console.error('Error al añadir vehiculo:', error);
-        },
-        complete: () => {
-          console.log('vehiculo añadido');
-          this.cdr.detectChanges();
-          this.router.navigate(['confirmado', ""]); 
-        },
-      });
+
+      if(vehiculo_nuevo.matricula != "" && vehiculo_nuevo.num_bastidor != ""){
+        
+        this.adminService.insertarNuevoVehiculo(this.vehiculo_nuevo).subscribe({
+            next: (respuesta: any) => {
+            console.log('vehiculo añadido:', respuesta);
+            },
+            error: (error) => {
+            console.error('Error al añadir vehiculo:', error);
+            },
+            complete: () => {
+              console.log('vehiculo añadido');
+              this.cdr.detectChanges();
+              this.router.navigate(['confirmado', ""]); 
+            },
+          });
+      } else {
+        console.log ("Matrícula y número bastidor obligatorio");
+
+      }
+
      
+
+  }
+
+  comprobarFormulario(){
+    if((this.vehiculo_nuevo.matricula == '' || this.vehiculo_nuevo.num_bastidor == '' || this.vehiculo_nuevo.num_poliza == '')){
+      this.falloInsertar();
+    }
 
   }
 
@@ -174,11 +192,7 @@ export class VehiculosComponent {
               // this.vehiculo_seleccionado.tel_contacto = resultado.tel_contacto;
               // this.vehiculo_seleccionado.empresa = resultado.empresa;
               // this.cdr.detectChanges();
-
-
-          this.editando = false;
-          
-          
+          this.editando = false;         
           this.cdr.detectChanges();
         }else {
           console.log(resultado);
@@ -189,6 +203,13 @@ export class VehiculosComponent {
     }
   }
 
+    falloInsertar(){
+    this.fallo_formulario = true;
+  }
 
-
+  cerrarFallo(){
+    setTimeout(() => {
+      this.fallo_formulario = false;
+    }, 50);
+  }
 }

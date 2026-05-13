@@ -8,15 +8,14 @@ import { Observable } from 'rxjs';
 export class RutasService {
   private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   traerDatosBuscador(datoBuscador: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.get(
       `${this.url}?controller=rutas&action=buscadorParaRutas`,
-      datoBuscador,
       {
+        params: datoBuscador,
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         withCredentials: true,
@@ -25,12 +24,11 @@ export class RutasService {
   }
 
   traerDatosConductores(datoConductor: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.get(
       `${this.url}?controller=rutas&action=buscadorConductor`,
-      datoConductor,
       {
+        params: datoConductor,
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         withCredentials: true,
@@ -39,12 +37,11 @@ export class RutasService {
   }
 
   traerDatosVehiculos(datoVehiculo: any): Observable<any> {
-    return this.httpClient.post(
+    return this.httpClient.get(
       `${this.url}?controller=rutas&action=buscadorVehiculo`,
-      datoVehiculo,
       {
+        params: datoVehiculo,
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         withCredentials: true,
@@ -66,25 +63,26 @@ export class RutasService {
     );
   }
 
-  obtenerRutas(filtros: any): Observable<any>{
+  obtenerRutas(filtros: any): Observable<any> {
     return this.httpClient
-    .post(`${this.url}?controller=rutas&action=traerRutasFiltradas`,filtros, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+      .post(`${this.url}?controller=rutas&action=traerRutasFiltradas`, filtros, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }),
+        withCredentials: true
+      })
   }
 
-  cargarVehiculos(): Observable<any>{
-    return this.httpClient
-    .post(`${this.url}?controller=rutas&action=cargarVehiculos`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }),
-      withCredentials: true
-    })
+  cargarVehiculos(): Observable<any> {
+    return this.httpClient.get(
+      `${this.url}?controller=rutas&action=cargarVehiculos`,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json'
+        }),
+        withCredentials: true
+      }
+    );
   }
 }

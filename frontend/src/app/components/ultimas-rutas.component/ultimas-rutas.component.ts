@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RutasService } from '../../services/rutas.service';
 import { RecogidasService } from '../../services/recogidas.service';
 
+
 @Component({
   selector: 'app-ultimas-rutas.component',
   imports: [DatePipe,CommonModule, FormsModule],
@@ -108,5 +109,19 @@ export class UltimasRutasComponent implements OnInit{
     return total_conductor;
   }
 
+  
+  getTipoClass(tipo_legal:string): String{
+     switch (tipo_legal) {
+        case 'Horeca':
+            return 'horeca';
+        case 'EESS Repsol':
+            return 'eess';
+        case 'Contenedor':
+            return 'contenedor';
+        default:
+            return 'tipo-default'; 
+    }
+
+  }
 
 }

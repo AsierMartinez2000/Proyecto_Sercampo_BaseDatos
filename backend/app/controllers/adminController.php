@@ -1,6 +1,7 @@
 <?php 
 
 require_once'../backend/app/models/adminModel.php'; 
+require_once'../backend/app/models/municipioModel.php'; 
 
 session_start();
 
@@ -93,6 +94,13 @@ session_start();
             echo json_encode ($exito);
         }
 
+        public function actualizarUsuarioPropio($usuario){
+            $modeloAdmin = new adminModel();
+            $exito = $modeloAdmin->actualizarUsuarioPropio($usuario);
+
+            echo json_encode ($exito);
+        }
+
         
         // ---------------------METODOS CONTENEDORES---------------------
         public function traerContenedores($dato_contenedor){
@@ -107,6 +115,26 @@ session_start();
         public function actualizarContenedor($dato_contenedor){
             $modeloAdmin = new adminModel();
             $exito = $modeloAdmin->actualizarContenedor($dato_contenedor);
+
+            echo json_encode($exito);
+        }
+
+        // --------------------- METODOS ZONAS ------------------------
+
+        public function traerMunicipios($provincia){
+
+            $modeloMunicipio = new municipioModel();
+
+            $municipios = $modeloMunicipio->getMunicipios($provincia);
+
+            echo json_encode($municipios);
+        }
+
+        public function nuevoMunicipio($municipio){
+
+            $modeloMunicipio = new municipioModel();
+
+            $exito = $modeloMunicipio->insertarMunicipio($municipio);
 
             echo json_encode($exito);
         }

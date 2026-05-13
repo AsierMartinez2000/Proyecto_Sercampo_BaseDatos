@@ -1,15 +1,11 @@
-.grupo-contenedores{
-    
-}
-
 .btn-contenedor{
     /* background-color: #4d5b9f23; */
-    border: 1px #4d5b9f8c solid;
+    border: 1px var(--color-azul-sercampo-op-baja) solid;
     margin: 1vh 2vh 1vh 2vh;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 
 .btn-contenedor:hover{
-    box-shadow: 0 3px 7px #4d5b9fa5
+    box-shadow: var(--sombra-azul)
 }

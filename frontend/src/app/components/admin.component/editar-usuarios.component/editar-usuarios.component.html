@@ -53,7 +53,7 @@
           }
           @else {
           <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">email</span>
+           <span class="input-group-text">Email</span>
            <input
            type="email"
            class="form-control"
@@ -71,7 +71,7 @@
             
           }@else {
             <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">telefono</span>
+           <span class="input-group-text">Telefono</span>
            <input
            type="text"
            class="form-control"
@@ -89,16 +89,13 @@
             
           }@else {
             <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">rol</span>
+           <span class="input-group-text">Rol</span>
            <select
               class="form-control"
               [(ngModel)]="usuario_seleccionado.rol"
               name="rol_usuario"
             >
-              <option value="" disabled>Seleccione un rol</option>
-              <option value="admin">Admin</option>
-              <option value="user">Usuario</option>
-              <option value="conductor">Conductor</option>
+              <option value="{{usuario_seleccionado.rol}}" disabled> {{usuario_seleccionado.rol}}</option>
             </select>
           </div>
           }
@@ -110,7 +107,7 @@
             
           }@else {
             <div class="col input-group input-group-sm mb-3">
-           <span class="input-group-text">password</span>
+           <span class="input-group-text">Contraseña</span>
            <input
            type="text"
            class="form-control"
@@ -186,7 +183,7 @@
          <div class="col input-group input-group-sm mb-3">
            <span class="input-group-text">Rol</span>
            <select
-              class="form-control"
+              class="form-select"
               [(ngModel)]="usuario_nuevo.rol"
               name="rol_usuario"
             >

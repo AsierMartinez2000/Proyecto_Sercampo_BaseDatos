@@ -4,15 +4,19 @@
   </div>
   <nav class="navbar">
     <ul>
+      @if (this.loginService.obtenerRol() == "admin" || this.loginService.obtenerRol() == "user") {
       <li><button class="btn btn-sercampo btn-sm" [routerLink]="['/dashboard']">
-          Inicio
+          Clientes
         </button>
       </li>
+      }
+      @if (this.loginService.obtenerRol() == "admin" || this.loginService.obtenerRol() == "user") {
       <li>
         <button class="btn btn-sercampo btn-sm" [routerLink]="['/recogidas']">
           Recogidas
         </button>
       </li>
+      }
       <li>
         <button class="btn btn-sercampo btn-sm" [routerLink]="['/rutas']">
           Rutas
@@ -23,16 +27,18 @@
           Estadísticas
         </button>
       </li>
+      @if (this.loginService.obtenerRol() == "admin") {
+        <li>
+          <button class="btn btn-sercampo btn-sm" [routerLink]="['/admin']">
+            Admin
+          </button>
+        </li>
+      }
       <li>
-        <button class="btn btn-sercampo btn-sm mt-4" [routerLink]="['/admin']">
-          Admin
-        </button>
-      </li>
-      <!-- <li>
-        <button class="btn btn-danger btn-sm mt-4" [routerLink]="['/logout']">
+        <button class="btn btn-danger btn-sm cerrar-sesion" (click)="cerrarSesion()">
           Cerrar Sesión
         </button>
-      </li> -->
+      </li>
     </ul>
   </nav>
 </div>
