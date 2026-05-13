@@ -25,10 +25,13 @@ cliente_nuevo = {
     cod_postal: '',
     municipio: '',
     provincia: '',
-    pais: ''
+    pais: '',
+    cod_eess: ''
   };
 
   fallo_insertar:boolean = false;
+
+  deshabilitarEscritura: boolean = false;
 
   
   constructor(
@@ -64,12 +67,62 @@ cliente_nuevo = {
     }
   }
 
+  onTipoLegalChange(valor: string) {
+    switch (valor) {
+      case 'Horeca':
+        console.log('Seleccionado Horeca');
+        this.cambiarFormularioVacio();
+        break;
+      case 'EESS Repsol':
+        console.log('Seleccionado EESS Repsol');
+        this.cambiarFormularioVacio();
+        break;
+      case 'Contenedor':
+        console.log('Seleccionado Contenedor');
+        this.cambiarFormularioContenedor();
+        break;
+      default:
+        console.log('Opción no reconocida:', valor);
+        break;
+    }
+  }
+
+  cambiarFormularioContenedor(){
+    this.cliente_nuevo.nombre_cliente = "Contenedor Vía Pública";
+    this.cliente_nuevo.telefono_cliente = "969240610";
+    this.cliente_nuevo.cif_cliente = "B16249906";
+    this.cliente_nuevo.cod_eess = "";
+
+    this.deshabilitarEscritura = true;
+    this.cdr.detectChanges();
+  }
+
+  cambiarFormularioVacio(){
+    if(this.cliente_nuevo.nombre_cliente == "Contenedor Vía Pública" || this.cliente_nuevo.telefono_cliente == "969240610" || this.cliente_nuevo.cif_cliente == "B16249906"){
+
+      this.cliente_nuevo.nombre_cliente = "";
+      this.cliente_nuevo.telefono_cliente = "";
+      this.cliente_nuevo.cif_cliente = "";
+    }
+    
+    this.cliente_nuevo.cod_eess = "";
+    
+    this.deshabilitarEscritura = false;
+    this.cdr.detectChanges();
+  }
+
+
 
    comprobarFormulario() {
     if ((this.cliente_nuevo.PointID == '' || this.cliente_nuevo.nombre_cliente == '') || (this.cliente_nuevo.cif_cliente == '') || (this.cliente_nuevo.tipo_legal == ''
       || this.cliente_nuevo.direccion == '' || this.cliente_nuevo.municipio == '' || this.cliente_nuevo.tipo_contenedor == '' || this.cliente_nuevo.provincia == '')) {
       this.falloInsertar();
+    }
 
+    if (this.cliente_nuevo.tipo_legal == "EESS Repsol"){
+      if(this.cliente_nuevo.cod_eess == '' || this.cliente_nuevo.cod_eess.length < 3){
+        this.falloInsertar();
+      }
     }
   }
 

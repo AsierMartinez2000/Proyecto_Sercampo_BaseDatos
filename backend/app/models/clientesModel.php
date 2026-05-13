@@ -113,10 +113,10 @@ class clientesModel{
 
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($resultado && isset($resultado['id_cliente'])){
+        if($resultado && isset($resultado['id_cliente'])){ //Si las dos son true es porque venia un PointID y ya existia
                 $id_cliente = $resultado['id_cliente']; 
-                return false;
-            } else {
+                return false; //Devuelve false que para la ejecución
+        } else {
                 $sql2 = "INSERT INTO clientes (PointID, nombre, cif, telefono, notas)
                         VALUES (:PointID, :nombre, :cif, :telefono, null) ";
 
@@ -130,6 +130,18 @@ class clientesModel{
                 $stmt->execute();
 
                 $id_cliente = $this->db->lastInsertId();
+
+                if ($datos['cod_eess'] != "") {
+                    $sqlEESS = "INSERT INTO codigos_eess (cod_eess, id_cliente)
+                                VALUES (:cod_eess, :id_cliente)";
+                    
+                    $stmt = $this->db->prepare($sqlEESS);
+
+                    $stmt->bindParam(':cod_eess', $datos['cod_eess'], PDO::PARAM_INT); 
+                    $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+
+                    $stmt->execute();
+                }
             }
         } 
             
