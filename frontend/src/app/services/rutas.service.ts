@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RutasService {
-  private url = 'base-datos-sercamponet.vercel.app';
+  private url = 'https://backend-sercamponet.rf.gd/index.php';
 
   constructor(private httpClient: HttpClient) { }
 
