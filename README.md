@@ -21,8 +21,11 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 - Abrir la carpeta en VSCode
 - Ejecutar el comando ´npm install´ para instalar las dependencias y Angular/CLI
 ![alt text](image-2.png)
-- Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve
-    
+- En phpMyadmin crear una nueva base de datos llamada "sercampo_db".
+![alt text](image-3.png)
+- Abrir el archivo init.sql y ejecutarlo para instalar la base de datos y obtener datos de pruebas.
+- Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve -o
+   
 
 
 ## Construido con 🛠️
