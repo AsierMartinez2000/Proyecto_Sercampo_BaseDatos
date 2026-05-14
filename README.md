@@ -15,13 +15,13 @@ Tras una breve presentación de su problema y entrevistarnos con los responsable
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-    - Descargar el proyecto
-    ![alt text](image.png)
-    - Guardar carpeta en tus archivos locales
-    - Abrir la carpeta en VSCode
-    - Ejecutar el comando ´npm install´ para instalar las dependencias y Angular/CLI
-    ![alt text](image-2.png)
-    - Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve
+- Descargar el proyecto
+![alt text](image.png)
+- Guardar carpeta en tus archivos locales
+- Abrir la carpeta en VSCode
+- Ejecutar el comando ´npm install´ para instalar las dependencias y Angular/CLI
+![alt text](image-2.png)
+- Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve
     
 
 
