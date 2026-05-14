@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { Router } from '@angular/router';
+export const renderMode = 'ssr';
 
 @Component({
   selector: 'app-modificar.component',

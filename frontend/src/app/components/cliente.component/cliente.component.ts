@@ -4,6 +4,7 @@ import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { verifyHostBindings } from '@angular/compiler';
+export const renderMode = 'ssr';
 
 @Component({
   selector: 'app-cliente.component',
