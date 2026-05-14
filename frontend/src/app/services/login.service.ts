@@ -18,7 +18,7 @@ export interface Usuario {
   providedIn: 'root',
 })
 export class LoginService {
-  private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
+  private url = 'base-datos-sercamponet.vercel.app';
 
   private EstadoLogin = signal<boolean>(false); //Definimos una variable de tipo señal.
   readonly estadoLogin = this.EstadoLogin.asReadonly(); //Y otra que se comunica con la señal. 

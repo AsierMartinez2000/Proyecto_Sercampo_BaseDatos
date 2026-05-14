@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecogidasService {
-  private url = 'http://localhost/proyecto_sercampo_basedatos/backend/index.php';
+  private url = 'base-datos-sercamponet.vercel.app';
 
   constructor(private httpClient: HttpClient) { }
 
