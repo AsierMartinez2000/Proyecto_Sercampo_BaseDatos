@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RutasService {
-  private url = 'https://backend-sercamponet.rf.gd/index.php';
+  private url = 'https://lauraolmedilla.es/index.php';
 
   constructor(private httpClient: HttpClient) { }
 

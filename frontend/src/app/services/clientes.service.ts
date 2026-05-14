@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ClientesService {
-  private url = 'https://backend-sercamponet.rf.gd/index.php';
+  private url = 'https://lauraolmedilla.es/index.php';
 
   // clientes: any[] = [];
 
