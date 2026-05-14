@@ -1,6 +1,6 @@
 <?php
 // Headers básicos para API
-header("Access-Control-Allow-Origin: http://localhost:4200"); // La URL de tu Angular
+header("Access-Control-Allow-Origin: proyecto-sercamponet.wuaze.com"); // La URL de tu Angular
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
