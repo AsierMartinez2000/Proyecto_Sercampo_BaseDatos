@@ -126,6 +126,7 @@ export class EditarUsuariosComponent {
   }
 
   nuevoUsuario(usuario_nuevo: any){
+    if(usuario_nuevo.nombre != '' && usuario_nuevo.password != '' && usuario_nuevo.rol != ''){
     this.adminService.insertarNuevoUsuario(this.usuario_nuevo).subscribe({
         next: (respuesta: any) => {
           console.log('usuario añadido:', respuesta);
@@ -139,7 +140,6 @@ export class EditarUsuariosComponent {
           this.router.navigate(['confirmado','']); 
         },
       });
-     
-
+    }
   }
 }

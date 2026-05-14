@@ -94,14 +94,18 @@ h4 {
 }
 
 h5{
-  font-weight: bold;
-  font-size:medium;
+  font-size: medium;
+  font-weight: bolder;
   color: var(--bs-gray-dark);
 }
 
 p {
   font-size: smaller;
   /* text-align: center; */
+  color: var(--bs-gray-dark);
+}
+
+input{
   color: var(--bs-gray-dark);
 }
 
@@ -209,4 +213,10 @@ label {
   cursor: pointer;
   background-color: var(--color-azul-sercampo);
   color: var(--bs-light);
+}
+
+
+/* TARJETAS */
+.card-title{
+  color: var(--bs-gray-dark);
 }

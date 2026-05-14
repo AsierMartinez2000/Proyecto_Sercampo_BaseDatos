@@ -20,7 +20,7 @@
         <!-- Resultados -->
         @for (conductor of array_buscador_conductores; track conductor.id_conductor) {
           <li class="list-group-item buscador_item" (click)="seleccionarConductor(conductor)" >
-            {{ conductor.nombre }} - {{conductor.email}} {{conductor.telefono}}
+            {{ conductor.nombre }} | {{conductor.email}} - {{conductor.telefono}}
           </li>
         }
       </ul>
@@ -28,7 +28,6 @@
   
 
   <!-- @if (conductor_seleccionado.nombre != '') { -->
-
     <div class="col-2 mt-4">
       <!-- TARJETA CONDUCTOR SELECCIONADO -->
       <div class="card bg-sercampo" style="width: 22rem;">
