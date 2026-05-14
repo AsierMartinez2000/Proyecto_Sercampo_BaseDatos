@@ -61,13 +61,13 @@ export class ZonasComponent implements OnInit{
     if(municipio_nuevo.municipio != '' && municipio_nuevo.provincia != '' && municipio_nuevo.pais != ''){
       this.adminService.insertarMunicipio(municipio_nuevo).subscribe({
           next: (respuesta: any) => {
-            console.log('Conductor añadido:', respuesta);
+            console.log('Municipio añadido:', respuesta);
           },
           error: (error) => {
-            console.error('Error al añadir conductor:', error);
+            console.error('Error al añadir municipio:', error);
           },
           complete: () => {
-            console.log('Conductor añadido');
+            console.log('Municipio añadido');
             this.cdr.detectChanges();
             this.router.navigate(['confirmado', ""]); 
           },

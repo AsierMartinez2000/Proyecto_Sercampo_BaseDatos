@@ -1,0 +1,15 @@
+.anadir-zona{
+
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vh;
+    background-color: var(--bs-light);
+    
+}
+
+.nuevo-municipio{
+    padding-top: 6vh;
+}

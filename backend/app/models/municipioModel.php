@@ -55,7 +55,8 @@ class municipioModel{
 
         $sql = "SELECT municipio
                 FROM municipios
-                WHERE provincia = :provincia";
+                WHERE provincia = :provincia
+                ORDER BY municipio ASC";
             
         $stmt = $this->db->prepare($sql);
             
