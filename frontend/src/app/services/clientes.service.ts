@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ClientesService {
-  private url = 'base-datos-sercamponet.vercel.app';
+  private url = 'https://backend-sercamponet.rf.gd/index.php';
 
   // clientes: any[] = [];
 
