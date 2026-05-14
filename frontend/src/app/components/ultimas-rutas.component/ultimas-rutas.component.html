@@ -1,13 +1,14 @@
 <h1>Últimas Rutas</h1>
 
 <div class="estadisticas-container">
-  <p class="card-text">Rutas a partir de {{ datos.fechaInicial | date: 'dd/MM/yyyy' }}</p>
+  <p class="card-text text-center">
+    Rutas a partir de {{ datos.fechaInicial | date: 'dd/MM/yyyy' }}</p>
   <div class="stats">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body text-center">
         <!-- <i class="bi bi-droplet-fill card-img-top icon-admin "></i> -->
         <label for="card-text">{{ estadisticas.rutas_totales }}</label>
-        <p class="card-text">Rutas totales</p>
+        <p class="card-text text-center">Rutas totales</p>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
@@ -15,8 +16,8 @@
     @for (conductor of array_conductores; track $index) {
       <div class="card" style="width: 8rem">
         <div class="card-body">
-          <label for="card-text">{{ calcularPrueba(conductor.id_conductor) }}</label>
-          <p class="card-text">Recogidas {{ conductor.nombre }}</p>
+          <label for="card-text text-center">{{ calcularPrueba(conductor.id_conductor) }}</label>
+          <p class="card-text text-center">Recogidas {{ conductor.nombre }}</p>
         </div>
       </div>
     }

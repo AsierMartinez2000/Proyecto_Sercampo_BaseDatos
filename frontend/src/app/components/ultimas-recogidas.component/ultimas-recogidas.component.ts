@@ -2,7 +2,7 @@ import { DatePipe, CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RecogidasService } from '../../services/recogidas.service';
-import { RutasService } from '../../services/rutas.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-ultimas-recogidas.component',
@@ -38,6 +38,8 @@ export class UltimasRecogidasComponent implements OnInit {
 
   array_provincias: any[] = [];
 
+  array_municipios: any[] = [];
+
   // dato_conductor = {
   //   nombre: '',
   // };
@@ -54,7 +56,7 @@ export class UltimasRecogidasComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private recogidasService: RecogidasService,
-    private rutasService: RutasService
+    private adminService: AdminService
   ) {
   this.datos.fechaInicial.setMonth(this.datos.fechaInicial.getMonth() - 1);
   }
@@ -130,23 +132,12 @@ export class UltimasRecogidasComponent implements OnInit {
     return total;
 }
 
-// buscarConductores() {
-//     if (this.dato_conductor.nombre.length > 1) {
-//       this.rutasService.traerDatosConductores(this.dato_conductor).subscribe((resultado: any) => {
-//         this.array_buscador_conductores = resultado; //Esto es el array
-//         this.cdr.detectChanges();
-//       });
-//     } else {
-//       this.array_buscador_conductores = [];
-//     }
-//   }
-
-//   seleccionarConductor(conductor: any) {
-//     //Este conductor es el seleccionado dentro del array_conductores de la lista.
-//     this.datos.conductor = conductor.nombre;
-
-//     this.dato_conductor.nombre = '';
-//     this.buscarConductores();
-//   }
+  onProvinciaChange() {
+    this.cdr.detectChanges();
+    this.adminService.cargarMunicipios(this.datos).subscribe((resultado: any) => {
+      this.array_municipios = resultado;
+      this.cdr.detectChanges();
+    })
+  }
 
 }
