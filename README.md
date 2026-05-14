@@ -44,7 +44,7 @@ Puedes encontrar mucha más de información este proyecto en nuestra [Documentac
 
 Aquí puedes acceder a la memoria [Memoria](https://github.com/AsierMartinez2000/Proyecto_Sercampo_BaseDatos/blob/develop/Anexos/Memoria/Memoria_Final_SercampoNET_AsierMartinez_LauraOlmedilla.pdf)
 
-Aquí puedes acceder al Manual de Usuario [ManualUsuaro](https://github.com/AsierMartinez2000/Proyecto_Sercampo_BaseDatos/blob/develop/Anexos/Manual%20de%20Usuario/Manual%20de%20Usuario%20-%20SercampoNET.pdf)
+Aquí puedes acceder al Manual de Usuario [ManualUsuario](https://github.com/AsierMartinez2000/Proyecto_Sercampo_BaseDatos/blob/develop/Anexos/Manual%20de%20Usuario/Manual%20de%20Usuario%20-%20SercampoNET.pdf)
 
 
 ## Autores ✒️
