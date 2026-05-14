@@ -22,9 +22,9 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 - Ejecutar el comando ´npm install´ para instalar las dependencias y Angular/CLI
 ![alt text](image-2.png)
 - En phpMyadmin crear una nueva base de datos llamada "sercampo_db"
-         
+
 ![alt text](image-3.png)
-- Abrir el archivo init.sql y ejecutarlo para instalar la base de datos y obtener datos de pruebas.
+- Abrir el archivo init.sql y ejecutarlo para instalar la base de datos.
 - Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve -o
    
 
