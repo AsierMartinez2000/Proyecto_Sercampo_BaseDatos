@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
 import { ChangeDetectorRef } from '@angular/core';
+export const renderMode = 'ssr';
 
 @Component({
   selector: 'app-cambio-confirmado.component',
