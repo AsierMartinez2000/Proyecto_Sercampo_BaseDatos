@@ -1,8 +1,10 @@
 {
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/frontend/browser",
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/src/index.html"
+      "destination": "/index.html"
     }
   ]
 }
