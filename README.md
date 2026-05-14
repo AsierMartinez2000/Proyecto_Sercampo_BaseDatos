@@ -1,10 +1,50 @@
-# Proyecto_Sercampo_BaseDatos
-Proyecto de una base de datos para Sercampo
+# Proyecto SERCAMPONET
 
-Se ha diseñado un entidad relación en base a los excels y lo hablado con Elena para crear una base de datos, está será local en la oficina de Sercampo, y tendrá un front, para que Elena pueda hacer las consultas que quiera en base a la información que necesite.
+El proyecto tiene como finalidad el desarrollo de una aplicación web dinámica orientada a la gestión integral de una empresa dedicada a la recogida y reciclaje de aceite, mediante contenedores distribuidos en diferentes ubicaciones geográficas. La solución propuesta, integra tecnologías tanto del lado del cliente como del servidor, así como el diseño y explotación de una base de datos relacional.
 
-Este proyecto consiste en una aplicación web que implementa operaciones CRUD (Create, Read, Update, Delete) para la gestión de usuarios.
+La aplicación permitirá centralizar la información relativa a clientes, contenedores, rutas de recogida, conductores, productos entregados y registros de actividad, proporcionando una herramienta que facilite la toma de decisiones, la trazabilidad de las operaciones y la optimización de los recursos logísticos.
+El sistema está diseñado bajo un enfoque modular y escalable, permitiendo la incorporación de nuevas funcionalidades en fases posteriores, como la geolocalización avanzada o sistemas de alertas automatizadas.
+Este proyecto surge por la necesidad en la empresa Sercampo, de una hacer digitalización adecuada y funcional del proceso de recogida de datos e información actualmente obsoleta.
 
-El sistema permite crear nuevos registros, visualizar la información almacenada, actualizar datos existentes y eliminar registros cuando sea necesario.
+Tras una breve presentación de su problema y entrevistarnos con los responsables de la empresa y la persona encargada de dicho registro de información, se desarrolló la aplicación.
 
-El objetivo de esta aplicación es proporcionar una herramienta sencilla para administrar información de usuarios mediante una interfaz web intuitiva, permitiendo realizar operaciones básicas de gestión de datos de forma eficiente.
+![alt text](image-1.png)
+
+
+## Comenzando 🚀
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+- Descargar el proyecto
+![alt text](image.png)
+- Guardar carpeta en tus archivos locales
+- Abrir la carpeta en VSCode
+- Ejecutar el comando ´npm install´ para instalar las dependencias y Angular/CLI
+![alt text](image-2.png)
+- En phpMyadmin crear una nueva base de datos llamada "sercampo_db"
+
+![alt text](image-3.png)
+- Abrir el archivo init.sql y ejecutarlo para instalar la base de datos.
+- Para ver el proyecto iniciado en el navegador hacer en la consola: ng serve -o
+   
+
+
+## Construido con 🛠️
+
+
+* [Angular](https://angular.dev) - El framework web usado
+* [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - Estilos
+* [MySQL](https://www.mysql.com) - Sistema Gestor de Base de Datos
+* [PHP](https://www.php.net/manual/en/index.php) - Lenguaje utilizado para el Backend de la aplicación
+
+
+## Documentación 📖
+
+Puedes encontrar mucha más de información este proyecto en nuestra [Documentación](https://github.com/AsierMartinez2000/Proyecto_Sercampo_BaseDatos/tree/develop/Anexos)
+
+
+## Autores ✒️
+
+
+* **Asier Martínez**  - [AsierMartinez2000](https://github.com/AsierMartinez2000)
+* **Laura Olmedilla** - [olmelau](https://github.com/olmelau)
