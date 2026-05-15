@@ -55,7 +55,8 @@ export class UltimasRutasComponent implements OnInit{
   cargarRutas(){
     this.rutasService.obtenerRutas(this.datos).subscribe((resultado: any) => {
       this.array_rutas = resultado;
-      this.calcularEstadisticas();      
+      this.calcularEstadisticas();   
+      console.log(resultado);   
     });
 
     
