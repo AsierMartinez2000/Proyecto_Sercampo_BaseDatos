@@ -27,7 +27,7 @@ export class ClienteComponent implements OnInit {
       pais: " ",
       tipo: " ",
       tipo_legal: " ",
-      activo: 1
+      activo: true
   }
 
   botonToggle:any;
@@ -72,10 +72,10 @@ export class ClienteComponent implements OnInit {
 
   cambiarEstado() {
 
-    if(this.cliente.activo === 1){
-      this.cliente.activo = 0;
+    if(this.cliente.activo === true){
+      this.cliente.activo = false;
     } else {
-      this.cliente.activo = 1;
+      this.cliente.activo = true;
     }
 
     this.clienteService.actualizarEstadoCliente(this.cliente).subscribe((resultado: any) => {
@@ -95,7 +95,7 @@ export class ClienteComponent implements OnInit {
     const botonToggle: HTMLInputElement = document.getElementById('botonToggle') as HTMLInputElement;
     
     // Verificar el valor de cliente.activo y actualizar el checkbox
-    if (this.cliente.activo === 1) {
+    if (this.cliente.activo === true) {
         botonToggle.checked = true;
     } else {
         botonToggle.checked = false;
