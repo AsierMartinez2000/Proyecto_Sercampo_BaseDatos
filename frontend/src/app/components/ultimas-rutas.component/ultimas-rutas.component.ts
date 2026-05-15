@@ -52,15 +52,56 @@ export class UltimasRutasComponent implements OnInit{
     this.cdr.detectChanges();
   }
 
-  cargarRutas(){
-    this.rutasService.obtenerRutas(this.datos).subscribe((resultado: any) => {
-      this.array_rutas = resultado;
-      this.calcularEstadisticas();   
-      console.log(resultado);   
-    });
+  // cargarRutas(){
+  //   this.rutasService.obtenerRutas(this.datos).subscribe((resultado: any) => {
+  //     this.array_rutas = resultado;
+  //     this.calcularEstadisticas();   
+  //     console.log(resultado);   
+  //   });
 
+
+  // }
+
+
+cargarRutas(){
+  this.rutasService.obtenerRutas(this.datos).subscribe((resultado: any) => {
+    // Transformar los datos
+    this.array_rutas = resultado.map((ruta: any) => {
+      // Si ya tiene la estructura correcta, devolverla como está
+      if (Array.isArray(ruta.lugares_visitados)) {
+        return ruta;
+      }
+      
+      // Si no, construir el array de lugares
+      const lugares = [];
+      const cantidad = ruta.lugares_visitados || 0;
+      
+      for (let i = 0; i < cantidad; i++) {
+        const nombre = ruta[i + '_nombre'] || ruta[`${i}_nombre`];
+        if (nombre && nombre !== '') {
+          lugares.push({
+            nombre: nombre,
+            tipo_legal: ruta[i + '_tipo_legal'] || ruta[`${i}_tipo_legal`] || '',
+            telefono: ruta[i + '_telefono'] || ruta[`${i}_telefono`] || '',
+            cif: ruta[i + '_cif'] || ruta[`${i}_cif`] || '',
+            direccion: ruta[i + '_direccion'] || ruta[`${i}_direccion`] || '',
+            cod_postal: ruta[i + '_cod_postal'] || ruta[`${i}_cod_postal`] || '',
+            municipio: ruta[i + '_municipio'] || ruta[`${i}_municipio`] || '',
+          });
+        }
+      }
+      
+      // Devolver la ruta con el array de lugares construido
+      return {
+        ...ruta,
+        lugares_visitados: lugares
+      };
+    });
     
-  }
+    console.log('=== DATOS TRANSFORMADOS ===', this.array_rutas);
+    this.calcularEstadisticas();   
+  });
+}
 
   cargarSelects(){
     this.recogidasService.cargarConductores().subscribe((resultado: any) => {
