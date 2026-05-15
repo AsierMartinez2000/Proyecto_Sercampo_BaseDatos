@@ -99,7 +99,7 @@ export class UltimasRecogidasComponent implements OnInit {
   
     for(let recogida of this.array_recogidas){
 
-      this.estadisticas.litros = this.estadisticas.litros + recogida.litros_recogidos;
+      this.estadisticas.litros = Number(this.estadisticas.litros) + Number(recogida.litros_recogidos);
 
       if(recogida.tipo_legal == "Horeca"){
         this.estadisticas.horecas_recogidos++;
