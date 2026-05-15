@@ -19,8 +19,8 @@ export class LoginComponent {
   ) {}
 
   datos_login = {
-    nombre: 'Laura',
-    password: '1234'
+    nombre: '',
+    password: ''
   }
 
  iniciarSesion(datos_login: any) {
