@@ -13,3 +13,219 @@
 .nuevo-municipio{
     padding-top: 6vh;
 }
+
+/* Estilos base - Desktop */
+.anadir-zona {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.anadir-zona .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.anadir-zona .col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.nuevo-municipio {
+  padding: 1rem;
+}
+
+.nuevo-municipio h4 {
+  margin-bottom: 1.5rem;
+}
+
+.formulario {
+  max-width: 600px;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.btn-sercampo {
+  transition: all 0.3s ease;
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .anadir-zona {
+    padding: 0.8rem;
+  }
+
+  .anadir-zona .row {
+    gap: 0.8rem;
+  }
+
+  .anadir-zona .col {
+    min-width: 180px;
+  }
+
+  .formulario {
+    max-width: 100%;
+  }
+
+  .nuevo-municipio {
+    padding: 0.8rem;
+  }
+}
+
+/* Móvil grande / Tablet pequeña (576px - 768px) */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  .anadir-zona {
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .anadir-zona .row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .anadir-zona .col {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .btn-sercampo {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .nuevo-municipio {
+    padding: 0.5rem;
+  }
+
+  .formulario .input-group {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .input-group-text {
+    font-size: 0.9rem;
+  }
+
+  .form-select,
+  .formulario input {
+    font-size: 0.9rem;
+  }
+
+  .btn-danger {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Móvil (hasta 576px) */
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .anadir-zona {
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .anadir-zona .row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .anadir-zona .col {
+    width: 100%;
+  }
+
+  .input-group-sm .input-group-text {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+    min-width: 100px;
+  }
+
+  .input-group-sm select,
+  .input-group-sm input {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .form-select {
+    font-size: 0.85rem;
+  }
+
+  .btn-sercampo {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .nuevo-municipio {
+    padding: 0.3rem;
+  }
+
+  .formulario {
+    max-width: 100%;
+  }
+
+  .formulario .col {
+    width: 100%;
+  }
+
+  .formulario .input-group {
+    margin-bottom: 0.3rem !important;
+  }
+
+  .btn-danger {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Ajuste para el input de "otra provincia" */
+  .provincia_nueva {
+    margin-top: 0.3rem;
+  }
+}
+
+
+
+/* Ajuste de márgenes y padding global */
+@media screen and (max-width: 768px) {
+  .anadir-zona,
+  .nuevo-municipio {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.8rem !important;
+  }
+
+  .mt-5 {
+    margin-top: 2rem !important;
+  }
+}
+
