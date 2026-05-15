@@ -138,13 +138,12 @@
             </td>
           </tr>
           <!-- FILA QUE SE DESPLIEGA CON LA INFO -->
-          <tr class="collapse-row">
+          <!-- <tr class="collapse-row">
             <td colspan="4" class="p-0 border-0">
               <div class="mas-info-collapse collapse" id="collapse{{ $index }}">
                 <div class="detalles-grid">
                   <div class="fila-titulos detalle-titulos">
                     <span class="titulo-card">Nombre</span>
-                    <!-- <span class="titulo-card">Tipo</span> -->
                     <span class="titulo-card"><i class="bi bi-telephone-fill"></i>Telefono</span>
                     <span class="titulo-card"><i class="bi bi-person-vcard-fill"></i>CIF</span>
                     <span class="titulo-card">Dirección</span>
@@ -158,7 +157,6 @@
                           {{ ruta[$index + '_tipo_legal'] }}</span>
                         </div>
 
-                        <!-- <div class="detalle-body"> -->
                         <div class="detalle-info-row">
                           
                           <span class="detalle-value">{{ ruta[$index + '_telefono'] }}</span>
@@ -176,13 +174,56 @@
                           >
                         </div>
                       </div>
-                      <!-- </div> -->
                     }
                   }
                 </div>
               </div>
             </td>
-          </tr>
+          </tr> -->
+
+           <!-- FILA QUE SE DESPLIEGA CON LA INFO -->
+  <tr class="collapse-row">
+    <td colspan="4" class="p-0 border-0">
+      <div class="mas-info-collapse collapse" id="collapse{{ $index }}">
+        <div class="detalles-grid">
+          <div class="fila-titulos detalle-titulos">
+            <span class="titulo-card">Nombre</span>
+            <span class="titulo-card"><i class="bi bi-telephone-fill"></i>Telefono</span>
+            <span class="titulo-card"><i class="bi bi-person-vcard-fill"></i>CIF</span>
+            <span class="titulo-card">Dirección</span>
+          </div>
+          
+          <!-- AQUÍ EL CAMBIO IMPORTANTE -->
+          @for (lugar of ruta.lugares_visitados; track $index) {
+            @if (lugar.nombre && lugar.nombre != '') {
+              <div class="detalle-card">
+                <div class="detalle-header">
+                  <h6 class="detalle-nombre">{{ lugar.nombre }}</h6>
+                  <span class="detalle-tipo" [ngClass]="getTipoClass(lugar.tipo_legal)">
+                    {{ lugar.tipo_legal }}
+                  </span>
+                </div>
+                <div class="detalle-info-row">
+                  <span class="detalle-value">{{ lugar.telefono }}</span>
+                </div>
+                <div class="detalle-info-row">
+                  <span class="detalle-value">{{ lugar.cif }}</span>
+                </div>
+                <div class="detalle-info-row detalle-direccion">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <span class="detalle-value">
+                    {{ lugar.direccion }}, 
+                    {{ lugar.cod_postal }}
+                    {{ lugar.municipio }}
+                  </span>
+                </div>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </td>
+  </tr>
         }
       </tbody>
     </table>
