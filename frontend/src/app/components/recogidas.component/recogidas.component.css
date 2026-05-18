@@ -22,3 +22,417 @@ span{
 .label_sin_negrita:hover{
     cursor: pointer;
 }
+
+
+/* Estilos generales para contenedores */
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+h4 {
+  margin: 1.5rem 0 1rem 0;
+}
+
+.buscador_Buscador,
+.buscador_horeca,
+.buscador_contenedor,
+.buscador_EESS {
+  width: 100%;
+}
+
+.list-group {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.buscador_item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.datos_seleccionados {
+  margin: 1rem 0;
+}
+
+hr {
+  margin: 1.5rem 0;
+}
+
+.btn-success {
+  width: auto;
+  min-width: 200px;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  .botones {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .botones .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  #limpiar_formulario_btn {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .container {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .row .col {
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+
+  .input-group-sm .input-group-text {
+    font-size: 0.85rem;
+    min-width: auto;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .input-group-sm input,
+  .input-group-sm textarea {
+    font-size: 0.85rem;
+  }
+
+  .form-check-label {
+    font-size: 0.9rem;
+  }
+
+  .btn-success {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .list-group {
+    max-height: 250px;
+  }
+}
+
+/* Móvil grande / Tablet pequeña (576px - 768px) */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+    padding: 0 0.5rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .botones .btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .botones .btn-filtro {
+    margin-right: 0 !important;
+  }
+
+  #limpiar_formulario_btn {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  /* Formularios */
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .row .col {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .row .col.mb-3 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .input-group-sm .input-group-text {
+    width: 30%;
+    min-width: 100px;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .input-group-sm input,
+  .input-group-sm textarea {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  /* Radio buttons */
+  .form-check {
+    margin-bottom: 0.3rem;
+  }
+
+  .form-check-label {
+    font-size: 0.85rem;
+  }
+
+  .input-group .form-check {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Lista de resultados */
+  .list-group {
+    max-height: 200px;
+  }
+
+  .list-group-item {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  /* Datos seleccionados */
+  .datos_seleccionados .row {
+    flex-direction: column;
+  }
+
+  .datos_seleccionados .col {
+    width: 100%;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+
+  .btn-success {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    margin: 0.8rem 0;
+  }
+
+  textarea {
+    font-size: 0.85rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Móvil (hasta 576px) */
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    padding: 0 0.3rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    margin: 1rem 0 0.8rem 0;
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0 0.3rem;
+  }
+
+  .botones .btn {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.45rem;
+  }
+
+  #limpiar_formulario_btn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .container {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+
+  .mt-4 {
+    margin-top: 1rem !important;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Input groups */
+  .input-group-sm {
+    margin-bottom: 0.3rem !important;
+  }
+
+  .input-group-sm .input-group-text {
+    width: 35%;
+    min-width: 90px;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .input-group-sm input {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  /* Buscadores */
+  .buscador_Buscador,
+  .buscador_horeca,
+  .buscador_contenedor,
+  .buscador_EESS {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* Lista de resultados */
+  .list-group {
+    max-height: 180px;
+  }
+
+  .list-group-item {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* Labels */
+  label {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Radio buttons */
+  .input-group.mb-2 {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .form-check {
+    font-size: 0.85rem;
+  }
+
+  .form-check-input {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .form-check-label {
+    font-size: 0.8rem;
+  }
+
+  /* Datos conductor y fecha */
+  .datos_seleccionados .input-group-sm .input-group-text {
+    width: 40%;
+    min-width: 100px;
+  }
+
+  /* Notas */
+  textarea {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* Botón guardar */
+  .btn-success {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    margin: 0.6rem 0;
+  }
+
+  hr {
+    margin: 0.8rem 0;
+  }
+}
+
+/* Modal responsive */
+@media screen and (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .modal-header {
+    padding: 0.8rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .modal-title i {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    font-size: 0.9rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    margin: 0;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .modal-header .btn-close {
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+  }
+}
+
