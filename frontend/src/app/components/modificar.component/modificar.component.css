@@ -1,0 +1,274 @@
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 1.8rem;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+  }
+
+  form {
+    padding: 0.8rem;
+  }
+
+  .col {
+    min-width: 180px;
+  }
+
+  .input-group-sm .input-group-text {
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+
+  .form-select,
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .btn-danger {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Móvil grande / Tablet pequeña (576px - 768px) */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    padding: 0.5rem;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .row.mt-5 {
+    margin-top: 1.5rem !important;
+  }
+
+  .row.mt-3 {
+    margin-top: 0.5rem !important;
+  }
+
+  .col {
+    width: 100%;
+    min-width: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .col.mb-3 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .col.mt-2 {
+    margin-top: 0.3rem !important;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+
+  .form-select {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .input-group-sm .input-group-text {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+    min-width: 100px;
+  }
+
+  .input-group-sm input {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .input-group.mb-3 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .btn-danger {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Móvil (hasta 576px) */
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 1.3rem;
+    padding: 0 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  form {
+    padding: 0.3rem;
+  }
+
+  .row.mt-5 {
+    margin-top: 1rem !important;
+  }
+
+  .row.mt-3 {
+    margin-top: 0.3rem !important;
+  }
+
+  .col {
+    margin-bottom: 0.3rem;
+  }
+
+  .col.mb-3 {
+    margin-bottom: 0.3rem !important;
+  }
+
+  .col.mt-2 {
+    margin-top: 0.2rem !important;
+  }
+
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .form-select {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.5rem;
+    height: auto;
+  }
+
+  .form-control {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .input-group-sm .input-group-text {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
+    min-width: 90px;
+  }
+
+  .input-group-sm input {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .input-group.mb-3 {
+    margin-bottom: 0.3rem !important;
+  }
+
+  .btn-danger {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    margin-top: 0.8rem;
+  }
+}
+
+/* Pantallas muy pequeñas (hasta 400px) */
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  label {
+    font-size: 0.85rem;
+  }
+
+  .form-select {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .form-control {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .input-group-sm .input-group-text {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.3rem;
+    min-width: 80px;
+  }
+
+  .input-group-sm input {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .btn-danger {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+
+  /* Ajuste para selects en pantallas muy pequeñas */
+  select.form-select {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.3rem;
+  }
+
+  select.form-select option {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
+}
+
+
+/* Modal responsive */
+@media screen and (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .modal-header {
+    padding: 0.8rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .modal-title i {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    font-size: 0.9rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    margin: 0;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .modal-header .btn-close {
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+  }
+}
